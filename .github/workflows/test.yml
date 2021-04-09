@@ -1,0 +1,14 @@
+name: pull-request
+"on":
+  pull_request:
+    branches:
+    - master
+job:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: install
+        run: testing/setup.sh
