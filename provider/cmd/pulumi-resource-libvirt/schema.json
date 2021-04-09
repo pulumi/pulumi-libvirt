@@ -1,0 +1,1736 @@
+{
+    "name": "libvirt",
+    "description": "A Pulumi package for creating and managing libvirt cloud resources.",
+    "keywords": [
+        "pulumi",
+        "libvirt"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`libvirt` Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt).",
+    "repository": "https://github.com/pulumi/pulumi-libvirt",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "uri": {
+                "type": "string",
+                "description": "libvirt connection URI for operations. See https://libvirt.org/uri.html\n",
+                "defaultInfo": {
+                    "environment": [
+                        "LIBVIRT_DEFAULT_URI"
+                    ]
+                }
+            }
+        },
+        "defaults": [
+            "uri"
+        ]
+    },
+    "types": {
+        "libvirt:index/DomainBootDevice:DomainBootDevice": {
+            "properties": {
+                "devs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/DomainConsole:DomainConsole": {
+            "properties": {
+                "sourceHost": {
+                    "type": "string",
+                    "description": "IP address to listen on. Defaults to 127.0.0.1.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourcePath": {
+                    "type": "string",
+                    "description": "Source path\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceService": {
+                    "type": "string",
+                    "description": "Port number or a service name. Defaults to a\nrandom port.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "targetPort": {
+                    "type": "string",
+                    "description": "Target port\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "targetType": {
+                    "type": "string",
+                    "description": "for the first console and defaults to `serial`.\nSubsequent `console` blocks must have a different type - usually `virtio`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "targetPort",
+                "type"
+            ]
+        },
+        "libvirt:index/DomainCpu:DomainCpu": {
+            "properties": {
+                "mode": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "mode"
+            ]
+        },
+        "libvirt:index/DomainDisk:DomainDisk": {
+            "properties": {
+                "blockDevice": {
+                    "type": "string",
+                    "description": "The path to the host device to use as the block device for this disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "file": {
+                    "type": "string",
+                    "description": "The filename to use as the block device for this disk (read-only)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "scsi": {
+                    "type": "boolean",
+                    "description": "Use a scsi controller for this disk.  The controller\nmodel is set to `virtio-scsi`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The http url to use as the block device for this disk (read-only)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The volume id to use for this disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "wwn": {
+                    "type": "string",
+                    "description": "Specify a WWN to use for the disk if the disk is using\na scsi controller, if not specified then a random wwn is generated for the disk\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/DomainFilesystem:DomainFilesystem": {
+            "properties": {
+                "accessmode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "readonly": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "source": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "target": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "source",
+                "target"
+            ]
+        },
+        "libvirt:index/DomainGraphics:DomainGraphics": {
+            "properties": {
+                "autoport": {
+                    "type": "boolean",
+                    "description": "defaults to \"yes\"\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "listenAddress": {
+                    "type": "string",
+                    "description": "IP Address where the VNC listener should be started if\n`listen_type` is set to `address`. Defaults to 127.0.0.1\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "listenType": {
+                    "type": "string",
+                    "description": "\"listen type\", defaults to \"none\"\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/DomainNetworkInterface:DomainNetworkInterface": {
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An IP address for this domain in this network.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "bridge": {
+                    "type": "string",
+                    "description": "Provides a bridge from the VM directly to the LAN. This assumes\nthere is a bridge device on the host which has one or more of the hosts\nphysical NICs enslaved. The guest VM will have an associated _tun_ device\ncreated and enslaved to the bridge. The IP range / network configuration is\nwhatever is used on the LAN. This provides the guest VM full incoming \u0026\noutgoing net access just like a physical machine.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "A hostname that will be assigned to this domain\nresource in this network.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "mac": {
+                    "type": "string",
+                    "description": "The specific MAC address to use for this interface.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "macvtap": {
+                    "type": "string",
+                    "description": "Packets whose destination is on the same host as where they\noriginate from are directly delivered to the target macvtap device. Both\norigin and destination devices need to be in bridge mode for direct delivery.\nIf either one of them is in vepa mode, a VEPA capable bridge is required.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "networkId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "networkName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "passthrough": {
+                    "type": "string",
+                    "description": "This feature attaches a virtual function of a SRIOV capable\nNIC directly to a VM without losing the migration capability. All packets are\nsent to the VF/IF of the configured network device. Depending on the\ncapabilities of the device additional prerequisites or limitations may apply;\nfor example, on Linux this requires kernel 2.6.38 or newer.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "vepa": {
+                    "type": "string",
+                    "description": "All VMs' packets are sent to the external bridge. Packets whose\ndestination is a VM on the same host as where the packet originates from are\nsent back to the host by the VEPA capable bridge (today's bridges are\ntypically not VEPA capable).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "waitForLease": {
+                    "type": "boolean",
+                    "description": "When creating the domain resource, wait until the\nnetwork interface gets a DHCP lease from libvirt, so that the computed IP\naddresses will be available when the domain is up and the plan applied.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "addresses",
+                        "hostname",
+                        "mac",
+                        "networkId",
+                        "networkName"
+                    ]
+                }
+            }
+        },
+        "libvirt:index/DomainNvram:DomainNvram": {
+            "properties": {
+                "file": {
+                    "type": "string",
+                    "description": "The filename to use as the block device for this disk (read-only)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "template": {
+                    "type": "string",
+                    "description": "path to the file used to override variables from the master NVRAM\nstore.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "file"
+            ]
+        },
+        "libvirt:index/DomainVideo:DomainVideo": {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/DomainXml:DomainXml": {
+            "properties": {
+                "xslt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDhcp:NetworkDhcp": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "when false, disable the DHCP server\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDns:NetworkDns": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "when false, disable the DHCP server\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "forwarders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/NetworkDnsForwarder:NetworkDnsForwarder"
+                    },
+                    "description": "Either `address`, `domain`, or both must be set\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hosts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/NetworkDnsHost:NetworkDnsHost"
+                    },
+                    "description": "a DNS host entry block. You can have one or more of these\nblocks in your DNS definition. You must specify both `ip` and `hostname`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "localOnly": {
+                    "type": "boolean",
+                    "description": "true/false: true means 'do not forward unresolved requests for this domain to the part DNS server\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "srvs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/NetworkDnsSrv:NetworkDnsSrv"
+                    },
+                    "description": "a DNS SRV entry block. You can have one or more of these blocks\nin your DNS definition. You must specify `service` and `protocol`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDnsForwarder:NetworkDnsForwarder": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain used by the DNS server.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDnsHost:NetworkDnsHost": {
+            "properties": {
+                "hostname": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ip": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDnsSrv:NetworkDnsSrv": {
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "The domain used by the DNS server.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "priority": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "service": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "target": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "weight": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkRoute:NetworkRoute": {
+            "properties": {
+                "cidr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "gateway": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cidr",
+                "gateway"
+            ]
+        },
+        "libvirt:index/NetworkXml:NetworkXml": {
+            "properties": {
+                "xslt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/PoolXml:PoolXml": {
+            "properties": {
+                "xslt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/VolumeXml:VolumeXml": {
+            "properties": {
+                "xslt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        }
+    },
+    "provider": {
+        "description": "The provider type for the libvirt package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "inputProperties": {
+            "uri": {
+                "type": "string",
+                "description": "libvirt connection URI for operations. See https://libvirt.org/uri.html\n",
+                "defaultInfo": {
+                    "environment": [
+                        "LIBVIRT_DEFAULT_URI"
+                    ]
+                }
+            }
+        }
+    },
+    "resources": {
+        "libvirt:index/cloudInitDisk:CloudInitDisk": {
+            "properties": {
+                "metaData": {
+                    "type": "string",
+                    "description": "cloud-init user data.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n"
+                },
+                "networkConfig": {
+                    "type": "string",
+                    "description": "cloud-init network-config data.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n"
+                },
+                "userData": {
+                    "type": "string",
+                    "description": "cloud-init user data.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "metaData": {
+                    "type": "string",
+                    "description": "cloud-init user data.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n"
+                },
+                "networkConfig": {
+                    "type": "string",
+                    "description": "cloud-init network-config data.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n"
+                },
+                "userData": {
+                    "type": "string",
+                    "description": "cloud-init user data.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CloudInitDisk resources.\n",
+                "properties": {
+                    "metaData": {
+                        "type": "string",
+                        "description": "cloud-init user data.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name for the resource, required by libvirt.\n"
+                    },
+                    "networkConfig": {
+                        "type": "string",
+                        "description": "cloud-init network-config data.\n"
+                    },
+                    "pool": {
+                        "type": "string",
+                        "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n"
+                    },
+                    "userData": {
+                        "type": "string",
+                        "description": "cloud-init user data.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "libvirt:index/domain:Domain": {
+            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst defaultDomain = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Libvirt.Domain(\"default\", new Libvirt.DomainArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"_default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "arch": {
+                    "type": "string",
+                    "description": "The architecture for the VM (probably x86_64 or i686),\nyou normally won't need to set this unless you are building a special VM\n"
+                },
+                "autostart": {
+                    "type": "boolean",
+                    "description": "Set to `true` to start the domain on host boot up.\nIf not specified `false` is assumed.\n"
+                },
+                "bootDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainBootDevice:DomainBootDevice"
+                    },
+                    "description": "A list of devices (dev) which defines boot order. Example\nbelow.\n"
+                },
+                "cloudinit": {
+                    "type": "string",
+                    "description": "The `libvirt.CloudInitDisk` disk that has to be used by\nthe domain. This is going to be attached as a CDROM ISO. Changing the\ncloud-init won't cause the domain to be recreated, however the change will\nhave effect on the next reboot.\n"
+                },
+                "cmdlines": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "description": "Arguments to the kernel\n"
+                },
+                "consoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainConsole:DomainConsole"
+                    }
+                },
+                "coreosIgnition": {
+                    "type": "string",
+                    "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n"
+                },
+                "cpu": {
+                    "$ref": "#/types/libvirt:index/DomainCpu:DomainCpu",
+                    "description": "Configures CPU mode. See below for more\ndetails.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n"
+                },
+                "disks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainDisk:DomainDisk"
+                    },
+                    "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n"
+                },
+                "emulator": {
+                    "type": "string",
+                    "description": "The path of the emulator to use\n"
+                },
+                "filesystems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainFilesystem:DomainFilesystem"
+                    },
+                    "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n"
+                },
+                "firmware": {
+                    "type": "string",
+                    "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n"
+                },
+                "fwCfgName": {
+                    "type": "string",
+                    "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n"
+                },
+                "graphics": {
+                    "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics"
+                },
+                "initrd": {
+                    "type": "string",
+                    "description": "The path of the initrd to boot.\n"
+                },
+                "kernel": {
+                    "type": "string",
+                    "description": "The path of the kernel to boot\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The machine type,\nyou normally won't need to set this unless you are running on a platform that\ndefaults to the wrong machine type for your template\n"
+                },
+                "memory": {
+                    "type": "integer",
+                    "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n"
+                },
+                "metadata": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                },
+                "networkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainNetworkInterface:DomainNetworkInterface"
+                    },
+                    "description": "An array of one or more network interfaces to\nattach to the domain. The `network_interface` object structure is documented\nbelow.\n"
+                },
+                "nvram": {
+                    "$ref": "#/types/libvirt:index/DomainNvram:DomainNvram",
+                    "description": "this block allows specifying the following attributes related to the _nvram_:\n"
+                },
+                "qemuAgent": {
+                    "type": "boolean",
+                    "description": "By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).\n"
+                },
+                "running": {
+                    "type": "boolean",
+                    "description": "Use `false` to turn off the instance. If not specified,\ntrue is assumed and the instance, if stopped, will be started at next apply.\n"
+                },
+                "vcpu": {
+                    "type": "integer",
+                    "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
+                },
+                "video": {
+                    "$ref": "#/types/libvirt:index/DomainVideo:DomainVideo"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/DomainXml:DomainXml"
+                }
+            },
+            "required": [
+                "arch",
+                "emulator",
+                "machine",
+                "name"
+            ],
+            "inputProperties": {
+                "arch": {
+                    "type": "string",
+                    "description": "The architecture for the VM (probably x86_64 or i686),\nyou normally won't need to set this unless you are building a special VM\n"
+                },
+                "autostart": {
+                    "type": "boolean",
+                    "description": "Set to `true` to start the domain on host boot up.\nIf not specified `false` is assumed.\n"
+                },
+                "bootDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainBootDevice:DomainBootDevice"
+                    },
+                    "description": "A list of devices (dev) which defines boot order. Example\nbelow.\n"
+                },
+                "cloudinit": {
+                    "type": "string",
+                    "description": "The `libvirt.CloudInitDisk` disk that has to be used by\nthe domain. This is going to be attached as a CDROM ISO. Changing the\ncloud-init won't cause the domain to be recreated, however the change will\nhave effect on the next reboot.\n"
+                },
+                "cmdlines": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "description": "Arguments to the kernel\n"
+                },
+                "consoles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainConsole:DomainConsole"
+                    }
+                },
+                "coreosIgnition": {
+                    "type": "string",
+                    "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n"
+                },
+                "cpu": {
+                    "$ref": "#/types/libvirt:index/DomainCpu:DomainCpu",
+                    "description": "Configures CPU mode. See below for more\ndetails.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n"
+                },
+                "disks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainDisk:DomainDisk"
+                    },
+                    "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n"
+                },
+                "emulator": {
+                    "type": "string",
+                    "description": "The path of the emulator to use\n"
+                },
+                "filesystems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainFilesystem:DomainFilesystem"
+                    },
+                    "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n"
+                },
+                "firmware": {
+                    "type": "string",
+                    "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n"
+                },
+                "fwCfgName": {
+                    "type": "string",
+                    "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n"
+                },
+                "graphics": {
+                    "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics"
+                },
+                "initrd": {
+                    "type": "string",
+                    "description": "The path of the initrd to boot.\n"
+                },
+                "kernel": {
+                    "type": "string",
+                    "description": "The path of the kernel to boot\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The machine type,\nyou normally won't need to set this unless you are running on a platform that\ndefaults to the wrong machine type for your template\n"
+                },
+                "memory": {
+                    "type": "integer",
+                    "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n"
+                },
+                "metadata": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                },
+                "networkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/DomainNetworkInterface:DomainNetworkInterface"
+                    },
+                    "description": "An array of one or more network interfaces to\nattach to the domain. The `network_interface` object structure is documented\nbelow.\n"
+                },
+                "nvram": {
+                    "$ref": "#/types/libvirt:index/DomainNvram:DomainNvram",
+                    "description": "this block allows specifying the following attributes related to the _nvram_:\n"
+                },
+                "qemuAgent": {
+                    "type": "boolean",
+                    "description": "By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).\n"
+                },
+                "running": {
+                    "type": "boolean",
+                    "description": "Use `false` to turn off the instance. If not specified,\ntrue is assumed and the instance, if stopped, will be started at next apply.\n"
+                },
+                "vcpu": {
+                    "type": "integer",
+                    "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
+                },
+                "video": {
+                    "$ref": "#/types/libvirt:index/DomainVideo:DomainVideo"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/DomainXml:DomainXml"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Domain resources.\n",
+                "properties": {
+                    "arch": {
+                        "type": "string",
+                        "description": "The architecture for the VM (probably x86_64 or i686),\nyou normally won't need to set this unless you are building a special VM\n"
+                    },
+                    "autostart": {
+                        "type": "boolean",
+                        "description": "Set to `true` to start the domain on host boot up.\nIf not specified `false` is assumed.\n"
+                    },
+                    "bootDevices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/DomainBootDevice:DomainBootDevice"
+                        },
+                        "description": "A list of devices (dev) which defines boot order. Example\nbelow.\n"
+                    },
+                    "cloudinit": {
+                        "type": "string",
+                        "description": "The `libvirt.CloudInitDisk` disk that has to be used by\nthe domain. This is going to be attached as a CDROM ISO. Changing the\ncloud-init won't cause the domain to be recreated, however the change will\nhave effect on the next reboot.\n"
+                    },
+                    "cmdlines": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        },
+                        "description": "Arguments to the kernel\n"
+                    },
+                    "consoles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/DomainConsole:DomainConsole"
+                        }
+                    },
+                    "coreosIgnition": {
+                        "type": "string",
+                        "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n"
+                    },
+                    "cpu": {
+                        "$ref": "#/types/libvirt:index/DomainCpu:DomainCpu",
+                        "description": "Configures CPU mode. See below for more\ndetails.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n"
+                    },
+                    "disks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/DomainDisk:DomainDisk"
+                        },
+                        "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n"
+                    },
+                    "emulator": {
+                        "type": "string",
+                        "description": "The path of the emulator to use\n"
+                    },
+                    "filesystems": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/DomainFilesystem:DomainFilesystem"
+                        },
+                        "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n"
+                    },
+                    "firmware": {
+                        "type": "string",
+                        "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n"
+                    },
+                    "fwCfgName": {
+                        "type": "string",
+                        "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n"
+                    },
+                    "graphics": {
+                        "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics"
+                    },
+                    "initrd": {
+                        "type": "string",
+                        "description": "The path of the initrd to boot.\n"
+                    },
+                    "kernel": {
+                        "type": "string",
+                        "description": "The path of the kernel to boot\n"
+                    },
+                    "machine": {
+                        "type": "string",
+                        "description": "The machine type,\nyou normally won't need to set this unless you are running on a platform that\ndefaults to the wrong machine type for your template\n"
+                    },
+                    "memory": {
+                        "type": "integer",
+                        "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n"
+                    },
+                    "metadata": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                    },
+                    "networkInterfaces": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/DomainNetworkInterface:DomainNetworkInterface"
+                        },
+                        "description": "An array of one or more network interfaces to\nattach to the domain. The `network_interface` object structure is documented\nbelow.\n"
+                    },
+                    "nvram": {
+                        "$ref": "#/types/libvirt:index/DomainNvram:DomainNvram",
+                        "description": "this block allows specifying the following attributes related to the _nvram_:\n"
+                    },
+                    "qemuAgent": {
+                        "type": "boolean",
+                        "description": "By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).\n"
+                    },
+                    "running": {
+                        "type": "boolean",
+                        "description": "Use `false` to turn off the instance. If not specified,\ntrue is assumed and the instance, if stopped, will be started at next apply.\n"
+                    },
+                    "vcpu": {
+                        "type": "integer",
+                        "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
+                    },
+                    "video": {
+                        "$ref": "#/types/libvirt:index/DomainVideo:DomainVideo"
+                    },
+                    "xml": {
+                        "$ref": "#/types/libvirt:index/DomainXml:DomainXml"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "libvirt:index/ignition:Ignition": {
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "pool": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "content",
+                "name"
+            ],
+            "inputProperties": {
+                "content": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "pool": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "content"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Ignition resources.\n",
+                "properties": {
+                    "content": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "pool": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "libvirt:index/network:Network": {
+            "description": "Manages a VM network resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatnetwork.html).\n",
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n"
+                },
+                "autostart": {
+                    "type": "boolean",
+                    "description": "Set to `true` to start the network on host boot up.\nIf not specified `false` is assumed.\n"
+                },
+                "bridge": {
+                    "type": "string",
+                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat` and `route` modes).\n"
+                },
+                "dhcp": {
+                    "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
+                    "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n"
+                },
+                "dns": {
+                    "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
+                    "description": "configuration of DNS specific settings for the network\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain used by the DNS server.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                },
+                "mtu": {
+                    "type": "integer",
+                    "description": "The MTU to set for the underlying network interfaces. When\nnot supplied, libvirt will use the default for the interface, usually 1500.\nLibvirt version 5.1 and greater will advertise this value to nodes via DHCP.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/NetworkRoute:NetworkRoute"
+                    },
+                    "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml"
+                }
+            },
+            "required": [
+                "bridge",
+                "name"
+            ],
+            "inputProperties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n"
+                },
+                "autostart": {
+                    "type": "boolean",
+                    "description": "Set to `true` to start the network on host boot up.\nIf not specified `false` is assumed.\n"
+                },
+                "bridge": {
+                    "type": "string",
+                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat` and `route` modes).\n"
+                },
+                "dhcp": {
+                    "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
+                    "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n"
+                },
+                "dns": {
+                    "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
+                    "description": "configuration of DNS specific settings for the network\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain used by the DNS server.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                },
+                "mtu": {
+                    "type": "integer",
+                    "description": "The MTU to set for the underlying network interfaces. When\nnot supplied, libvirt will use the default for the interface, usually 1500.\nLibvirt version 5.1 and greater will advertise this value to nodes via DHCP.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/NetworkRoute:NetworkRoute"
+                    },
+                    "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Network resources.\n",
+                "properties": {
+                    "addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n"
+                    },
+                    "autostart": {
+                        "type": "boolean",
+                        "description": "Set to `true` to start the network on host boot up.\nIf not specified `false` is assumed.\n"
+                    },
+                    "bridge": {
+                        "type": "string",
+                        "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat` and `route` modes).\n"
+                    },
+                    "dhcp": {
+                        "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
+                        "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n"
+                    },
+                    "dns": {
+                        "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
+                        "description": "configuration of DNS specific settings for the network\n"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "The domain used by the DNS server.\n"
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                    },
+                    "mtu": {
+                        "type": "integer",
+                        "description": "The MTU to set for the underlying network interfaces. When\nnot supplied, libvirt will use the default for the interface, usually 1500.\nLibvirt version 5.1 and greater will advertise this value to nodes via DHCP.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                    },
+                    "routes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/NetworkRoute:NetworkRoute"
+                        },
+                        "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n"
+                    },
+                    "xml": {
+                        "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "libvirt:index/pool:Pool": {
+            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    type: \"dir\",\n    path: \"/home/user/cluster_storage\",\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    type=\"dir\",\n    path=\"/home/user/cluster_storage\")\nopensuse_leap = libvirt.Volume(\"opensuseLeap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // A pool for all cluster volumes\n        var cluster = new Libvirt.Pool(\"cluster\", new Libvirt.PoolArgs\n        {\n            Type = \"dir\",\n            Path = \"/home/user/cluster_storage\",\n        });\n        var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new Libvirt.VolumeArgs\n        {\n            Pool = cluster.Name,\n            Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "allocation": {
+                    "type": "integer"
+                },
+                "available": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the pool. Currently, only \"dir\" supported.\n"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/PoolXml:PoolXml"
+                }
+            },
+            "required": [
+                "allocation",
+                "available",
+                "capacity",
+                "name",
+                "type"
+            ],
+            "inputProperties": {
+                "allocation": {
+                    "type": "integer"
+                },
+                "available": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the pool. Currently, only \"dir\" supported.\n"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/PoolXml:PoolXml"
+                }
+            },
+            "requiredInputs": [
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Pool resources.\n",
+                "properties": {
+                    "allocation": {
+                        "type": "integer"
+                    },
+                    "available": {
+                        "type": "string"
+                    },
+                    "capacity": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name for the resource, required by libvirt.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the pool. Currently, only \"dir\" supported.\n"
+                    },
+                    "xml": {
+                        "$ref": "#/types/libvirt:index/PoolXml:PoolXml"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "libvirt:index/volume:Volume": {
+            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Base OS image to use to create a cluster of different\n        // nodes\n        var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new Libvirt.VolumeArgs\n        {\n            Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n        });\n        // volume to attach to the \"master\" domain as main disk\n        var master = new Libvirt.Volume(\"master\", new Libvirt.VolumeArgs\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        });\n        // volumes to attach to the \"workers\" domains as main disk\n        var worker = new List\u003cLibvirt.Volume\u003e();\n        for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n        {\n            var range = new { Value = rangeIndex };\n            worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new Libvirt.VolumeArgs\n            {\n                BaseVolumeId = opensuseLeap.Id,\n            }));\n        }\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor key0, _ := range _var.Workers_count {\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "baseVolumeId": {
+                    "type": "string",
+                    "description": "The backing volume (CoW) to use for this volume.\n"
+                },
+                "baseVolumeName": {
+                    "type": "string",
+                    "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n"
+                },
+                "baseVolumePool": {
+                    "type": "string",
+                    "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml"
+                }
+            },
+            "required": [
+                "format",
+                "name",
+                "size"
+            ],
+            "inputProperties": {
+                "baseVolumeId": {
+                    "type": "string",
+                    "description": "The backing volume (CoW) to use for this volume.\n"
+                },
+                "baseVolumeName": {
+                    "type": "string",
+                    "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n"
+                },
+                "baseVolumePool": {
+                    "type": "string",
+                    "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "xml": {
+                    "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Volume resources.\n",
+                "properties": {
+                    "baseVolumeId": {
+                        "type": "string",
+                        "description": "The backing volume (CoW) to use for this volume.\n"
+                    },
+                    "baseVolumeName": {
+                        "type": "string",
+                        "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n"
+                    },
+                    "baseVolumePool": {
+                        "type": "string",
+                        "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n"
+                    },
+                    "format": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                    },
+                    "pool": {
+                        "type": "string",
+                        "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n"
+                    },
+                    "size": {
+                        "type": "integer"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "xml": {
+                        "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getNetworkDnsHostTemplate.\n",
+                "properties": {
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "ip": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hostname",
+                    "ip"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNetworkDnsHostTemplate.\n",
+                "properties": {
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ip": {
+                        "type": "string"
+                    },
+                    "rendered": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hostname",
+                    "ip",
+                    "rendered",
+                    "id"
+                ]
+            }
+        },
+        "libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getNetworkDnsSrvTemplate.\n",
+                "properties": {
+                    "domain": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "type": "string"
+                    },
+                    "priority": {
+                        "type": "string"
+                    },
+                    "protocol": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "target": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "protocol",
+                    "service"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNetworkDnsSrvTemplate.\n",
+                "properties": {
+                    "domain": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "port": {
+                        "type": "string"
+                    },
+                    "priority": {
+                        "type": "string"
+                    },
+                    "protocol": {
+                        "type": "string"
+                    },
+                    "rendered": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "target": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "protocol",
+                    "rendered",
+                    "service",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "2.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+        },
+        "nodejs": {
+            "dependencies": {
+                "@pulumi/pulumi": "^2.17.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^8.0.25"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing libvirt cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`dmacvicar/terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`dmacvicar/terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
+            "requires": {
+                "pulumi": "\u003e=2.17.0,\u003c3.0.0"
+            }
+        }
+    }
+}
