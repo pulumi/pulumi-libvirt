@@ -4,6 +4,8 @@ set -x -ef -o pipefail
 sudo apt-get update
 sudo apt-get install -y lxc libvirt-daemon libvirt-dev libvirt-daemon-driver-lxc libvirt-daemon-system pkg-config
 
-sudo lxc-create -t download -n foo -- --dist ubuntu --release bionic --arch amd64 --no-validate
+sudo usermod -a -G libvirt $(whoami)
 
-sudo virsh -c lxc:// list
+lxc-create -t download -n foo -- --dist ubuntu --release bionic --arch amd64 --no-validate
+
+virsh -c lxc:// list
