@@ -1,7 +1,7 @@
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GO111MODULE: "on"
-  LIBVIRT_DEFAULT_URI: lxc://
+  LIBVIRT_DEFAULT_URI: "qemu+unix:///session"
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
@@ -211,7 +211,7 @@ jobs:
     - name: Run setup script
       run: testing/setup.sh
     - name: Run tests
-      run: cd examples && sudo go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language
+      run: cd examples && go test -v -count=1 -cover -timeout 2h -tags=${{ matrix.language
         }} -parallel 4 .
     - if: failure() && github.event_name == 'push'
       name: Notify Slack
