@@ -1,0 +1,3 @@
+name: libvirt-domain-py
+runtime: python
+description: A minimal Python Pulumi program
