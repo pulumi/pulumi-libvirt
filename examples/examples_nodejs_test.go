@@ -10,10 +10,10 @@ import (
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
-func TestDomainTs(t *testing.T) {
+func TestPoolTs(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: filepath.Join(getCwd(t), "domain", "ts"),
+			Dir: filepath.Join(getCwd(t), "pool", "ts"),
 		})
 
 	integration.ProgramTest(t, &test)

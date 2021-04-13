@@ -1,7 +1,7 @@
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GO111MODULE: "on"
-  LIBVIRT_DEFAULT_URI: lxc://
+  CGO_ENABLED: 1
+  LIBVIRT_DEFAULT_URI: "lxc:///"
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
