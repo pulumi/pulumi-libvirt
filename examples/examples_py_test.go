@@ -11,7 +11,6 @@ import (
 )
 
 func TestDomainPy(t *testing.T) {
-	t.Skip("Skipping while in development")
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: filepath.Join(getCwd(t), "domain", "py"),
