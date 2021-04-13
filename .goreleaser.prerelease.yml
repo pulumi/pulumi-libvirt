@@ -15,11 +15,9 @@ builds:
 - binary: pulumi-resource-libvirt
   dir: provider
   env:
-  - CGO_ENABLED=0
-  - GO111MODULE=on
+  - CGO_ENABLED=1
   goarch:
   - amd64
-  - arm64
   goos:
   - darwin
   - windows

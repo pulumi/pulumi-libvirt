@@ -10,11 +10,10 @@ import (
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
-func TestDomainPy(t *testing.T) {
-	t.Skip("Skipping while in development")
+func TestPoolPy(t *testing.T) {
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: filepath.Join(getCwd(t), "domain", "py"),
+			Dir: filepath.Join(getCwd(t), "pool", "py"),
 		})
 
 	integration.ProgramTest(t, &test)
