@@ -72,7 +72,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-libvirt",
-		GitHubOrg: "dmacvicar",
+		GitHubOrg:   "dmacvicar",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"uri": {
 				Default: &tfbridge.DefaultInfo{
