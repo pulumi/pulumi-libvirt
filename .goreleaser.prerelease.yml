@@ -19,8 +19,8 @@ builds:
   goarch:
   - amd64
   goos:
-  - darwin
-  - windows
+#  - darwin
+#  - windows
   - linux
   ldflags:
   - -X github.com/pulumi/pulumi-libvirt/provider/pkg/version.Version={{.Tag}}
