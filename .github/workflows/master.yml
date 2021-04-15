@@ -212,7 +212,7 @@ jobs:
           role-session-name: ${{ env.PROVIDER}}@githubActions
           role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
       - name: Run setup script
-        run: testing/setup.sh
+        run: brew install libvirt
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
