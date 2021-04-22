@@ -29,3 +29,5 @@ release:
   disable: true
 snapshot:
   name_template: '{{ .Tag }}-SNAPSHOT'
+checksum:
+  name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}_checksums.txt"

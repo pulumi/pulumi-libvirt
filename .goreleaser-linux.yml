@@ -19,8 +19,6 @@ builds:
   goarch:
   - amd64
   goos:
-#  - darwin
-#  - windows
   - linux
   ldflags:
   - -X github.com/pulumi/pulumi-libvirt/provider/pkg/version.Version={{.Tag}}
@@ -28,6 +26,8 @@ builds:
 changelog:
   skip: true
 release:
-  disable: false
+  disable: true
 snapshot:
   name_template: '{{ .Tag }}-SNAPSHOT'
+checksum:
+  name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}_{{ .Version }}_checksums.txt"

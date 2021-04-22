@@ -156,10 +156,10 @@ jobs:
         status: ${{ job.status }}
     strategy:
       fail-fast: true
-  publish:
-    name: publish
+  publish-darwin:
+    name: publish-darwin
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
@@ -179,7 +179,7 @@ jobs:
         role-session-name: ${{ env.PROVIDER}}@githubActions
         role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
     - name: Run setup script
-      run: testing/setup.sh
+      run: brew install libvirt
     - name: Setup Go
       uses: actions/setup-go@v2
       with:
@@ -193,11 +193,87 @@ jobs:
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
-        args: -p 3 release --rm-dist --timeout 60m0s
+        args: -p 3 -f .goreleaser-darwin.yml release --rm-dist --timeout 60m0s
         version: latest
+  publish-linux:
+    name: publish-linux
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Checkout Scripts Repo
+        uses: actions/checkout@v2
+        with:
+          path: ci-scripts
+          repository: pulumi/scripts
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: us-east-2
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-duration-seconds: 3600
+          role-external-id: upload-pulumi-release
+          role-session-name: ${{ env.PROVIDER}}@githubActions
+          role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
+      - name: Run setup script
+        run: brew install libvirt
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.1.0
+        with:
+          repo: pulumi/pulumictl
+      - name: Install Pulumi CLI
+        uses: pulumi/action-install-pulumi-cli@v1.0.1
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          args: -p 3 -f .goreleaser-darwin.yml release --rm-dist --timeout 60m0s
+          version: latest
+  publish-gha:
+    name: GHA Release
+    needs: [publish-linux, publish-darwin]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${pulumictl get version --language generic}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: us-east-2
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-duration-seconds: 3600
+          role-external-id: upload-pulumi-release
+          role-session-name: ${{ env.PROVIDER}}@githubActions
+          role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
+      - name: Prepare GitHub Action Release + Checksums
+        run: |
+          mkdir /tmp/release-prep && cd /tmp/release-prep
+          touch pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
+          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-linux-amd64_v${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
+          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-darwin-amd64_v${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
+          wget http://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-amd64.tar.gz
+          wget http://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-darwin.tar.gz
+          aws s3 cp /tmp/release-prep/pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt s3://get.pulumi.com/releases/plugins
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            /tmp/release-prep/pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
+            /tmp/release-prep/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-amd64.tar.gz
+            /tmp/release-prep/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-darwin.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish_sdk:
     name: publish_sdk
-    needs: publish
+    needs: publish-gha
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
