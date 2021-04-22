@@ -5,8 +5,8 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 
 __all__ = [
@@ -43,12 +43,34 @@ class DomainBootDevice(dict):
     def devs(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "devs")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainConsole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "targetPort":
+            suggest = "target_port"
+        elif key == "sourceHost":
+            suggest = "source_host"
+        elif key == "sourcePath":
+            suggest = "source_path"
+        elif key == "sourceService":
+            suggest = "source_service"
+        elif key == "targetType":
+            suggest = "target_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainConsole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainConsole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainConsole.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  target_port: str,
                  type: str,
@@ -127,9 +149,6 @@ class DomainConsole(dict):
         """
         return pulumi.get(self, "target_type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainCpu(dict):
@@ -142,12 +161,28 @@ class DomainCpu(dict):
     def mode(self) -> str:
         return pulumi.get(self, "mode")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainDisk(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "blockDevice":
+            suggest = "block_device"
+        elif key == "volumeId":
+            suggest = "volume_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainDisk. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainDisk.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainDisk.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  block_device: Optional[str] = None,
                  file: Optional[str] = None,
@@ -228,9 +263,6 @@ class DomainDisk(dict):
         """
         return pulumi.get(self, "wwn")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainFilesystem(dict):
@@ -266,12 +298,28 @@ class DomainFilesystem(dict):
     def readonly(self) -> Optional[bool]:
         return pulumi.get(self, "readonly")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainGraphics(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "listenAddress":
+            suggest = "listen_address"
+        elif key == "listenType":
+            suggest = "listen_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainGraphics. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainGraphics.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainGraphics.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  autoport: Optional[bool] = None,
                  listen_address: Optional[str] = None,
@@ -326,12 +374,30 @@ class DomainGraphics(dict):
         """
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainNetworkInterface(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "networkId":
+            suggest = "network_id"
+        elif key == "networkName":
+            suggest = "network_name"
+        elif key == "waitForLease":
+            suggest = "wait_for_lease"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainNetworkInterface. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainNetworkInterface.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainNetworkInterface.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  addresses: Optional[Sequence[str]] = None,
                  bridge: Optional[str] = None,
@@ -484,9 +550,6 @@ class DomainNetworkInterface(dict):
         """
         return pulumi.get(self, "wait_for_lease")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainNvram(dict):
@@ -519,9 +582,6 @@ class DomainNvram(dict):
         """
         return pulumi.get(self, "template")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainVideo(dict):
@@ -541,9 +601,6 @@ class DomainVideo(dict):
         """
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DomainXml(dict):
@@ -556,9 +613,6 @@ class DomainXml(dict):
     @pulumi.getter
     def xslt(self) -> Optional[str]:
         return pulumi.get(self, "xslt")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -579,12 +633,26 @@ class NetworkDhcp(dict):
         """
         return pulumi.get(self, "enabled")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class NetworkDns(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "localOnly":
+            suggest = "local_only"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NetworkDns. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NetworkDns.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NetworkDns.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  enabled: Optional[bool] = None,
                  forwarders: Optional[Sequence['outputs.NetworkDnsForwarder']] = None,
@@ -653,9 +721,6 @@ class NetworkDns(dict):
         """
         return pulumi.get(self, "srvs")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class NetworkDnsForwarder(dict):
@@ -683,9 +748,6 @@ class NetworkDnsForwarder(dict):
         """
         return pulumi.get(self, "domain")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class NetworkDnsHost(dict):
@@ -706,9 +768,6 @@ class NetworkDnsHost(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         return pulumi.get(self, "ip")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -777,9 +836,6 @@ class NetworkDnsSrv(dict):
     def weight(self) -> Optional[str]:
         return pulumi.get(self, "weight")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class NetworkRoute(dict):
@@ -799,9 +855,6 @@ class NetworkRoute(dict):
     def gateway(self) -> str:
         return pulumi.get(self, "gateway")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class NetworkXml(dict):
@@ -814,9 +867,6 @@ class NetworkXml(dict):
     @pulumi.getter
     def xslt(self) -> Optional[str]:
         return pulumi.get(self, "xslt")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -831,9 +881,6 @@ class PoolXml(dict):
     def xslt(self) -> Optional[str]:
         return pulumi.get(self, "xslt")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class VolumeXml(dict):
@@ -846,8 +893,5 @@ class VolumeXml(dict):
     @pulumi.getter
     def xslt(self) -> Optional[str]:
         return pulumi.get(self, "xslt")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on
@@ -23,7 +23,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {

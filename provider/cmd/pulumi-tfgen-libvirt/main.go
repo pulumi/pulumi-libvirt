@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 
 	libvirt "github.com/pulumi/pulumi-libvirt/provider"
 	"github.com/pulumi/pulumi-libvirt/provider/pkg/version"

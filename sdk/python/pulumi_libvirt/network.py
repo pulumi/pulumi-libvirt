@@ -5,15 +5,491 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Network']
+__all__ = ['NetworkArgs', 'Network']
+
+@pulumi.input_type
+class NetworkArgs:
+    def __init__(__self__, *,
+                 addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 autostart: Optional[pulumi.Input[bool]] = None,
+                 bridge: Optional[pulumi.Input[str]] = None,
+                 dhcp: Optional[pulumi.Input['NetworkDhcpArgs']] = None,
+                 dns: Optional[pulumi.Input['NetworkDnsArgs']] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 mtu: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]] = None,
+                 xml: Optional[pulumi.Input['NetworkXmlArgs']] = None):
+        """
+        The set of arguments for constructing a Network resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] addresses: A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
+               CIDR notation.  This defines the subnets associated to that network.
+               This argument is also used to define the address on the real host.
+               If `dhcp {  enabled = true }` addresses is also used to define the address range served by
+               the DHCP server.
+               No DHCP server will be started if `addresses` is omitted.
+        :param pulumi.Input[bool] autostart: Set to `true` to start the network on host boot up.
+               If not specified `false` is assumed.
+        :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
+               device which will be used to construct the virtual network (when not provided,
+               it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
+               You need to use it in conjuction with the adresses variable.
+        :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input[str] domain: The domain used by the DNS server.
+        :param pulumi.Input[str] mode: One of:
+               - `none`: the guests can talk to each other and the host OS, but cannot reach
+               any other machines on the LAN.
+               - `nat`: it is the default network mode. This is a configuration that
+               allows guest OS to get outbound connectivity regardless of whether the host
+               uses ethernet, wireless, dialup, or VPN networking without requiring any
+               specific admin configuration. In the absence of host networking, it at
+               least allows guests to talk directly to each other.
+               - `route`: this is a variant on the default network which routes traffic from
+               the virtual network to the LAN **without applying any NAT**. It requires that
+               the IP address range be pre-configured in the routing tables of the router
+               on the host network.
+               - `bridge`: use a pre-existing host bridge. The guests will effectively be
+               directly connected to the physical network (i.e. their IP addresses will
+               all be on the subnet of the physical network, and there will be no
+               restrictions on inbound or outbound connections). The `bridge` network
+               attribute is mandatory in this case.
+        :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
+               not supplied, libvirt will use the default for the interface, usually 1500.
+               Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
+        :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
+               Changing this forces a new resource to be created.
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]] routes: a list of static routes. A `cidr` and a `gateway` must
+               be provided. The `gateway` must be reachable via the bridge interface.
+        """
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
+        if autostart is not None:
+            pulumi.set(__self__, "autostart", autostart)
+        if bridge is not None:
+            pulumi.set(__self__, "bridge", bridge)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dns is not None:
+            pulumi.set(__self__, "dns", dns)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if mtu is not None:
+            pulumi.set(__self__, "mtu", mtu)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+        if xml is not None:
+            pulumi.set(__self__, "xml", xml)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
+        CIDR notation.  This defines the subnets associated to that network.
+        This argument is also used to define the address on the real host.
+        If `dhcp {  enabled = true }` addresses is also used to define the address range served by
+        the DHCP server.
+        No DHCP server will be started if `addresses` is omitted.
+        """
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "addresses", value)
+
+    @property
+    @pulumi.getter
+    def autostart(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to `true` to start the network on host boot up.
+        If not specified `false` is assumed.
+        """
+        return pulumi.get(self, "autostart")
+
+    @autostart.setter
+    def autostart(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autostart", value)
+
+    @property
+    @pulumi.getter
+    def bridge(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bridge device defines the name of a bridge
+        device which will be used to construct the virtual network (when not provided,
+        it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        """
+        return pulumi.get(self, "bridge")
+
+    @bridge.setter
+    def bridge(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bridge", value)
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> Optional[pulumi.Input['NetworkDhcpArgs']]:
+        """
+        DHCP configuration. 
+        You need to use it in conjuction with the adresses variable.
+        """
+        return pulumi.get(self, "dhcp")
+
+    @dhcp.setter
+    def dhcp(self, value: Optional[pulumi.Input['NetworkDhcpArgs']]):
+        pulumi.set(self, "dhcp", value)
+
+    @property
+    @pulumi.getter
+    def dns(self) -> Optional[pulumi.Input['NetworkDnsArgs']]:
+        """
+        configuration of DNS specific settings for the network
+        """
+        return pulumi.get(self, "dns")
+
+    @dns.setter
+    def dns(self, value: Optional[pulumi.Input['NetworkDnsArgs']]):
+        pulumi.set(self, "dns", value)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain used by the DNS server.
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        One of:
+        - `none`: the guests can talk to each other and the host OS, but cannot reach
+        any other machines on the LAN.
+        - `nat`: it is the default network mode. This is a configuration that
+        allows guest OS to get outbound connectivity regardless of whether the host
+        uses ethernet, wireless, dialup, or VPN networking without requiring any
+        specific admin configuration. In the absence of host networking, it at
+        least allows guests to talk directly to each other.
+        - `route`: this is a variant on the default network which routes traffic from
+        the virtual network to the LAN **without applying any NAT**. It requires that
+        the IP address range be pre-configured in the routing tables of the router
+        on the host network.
+        - `bridge`: use a pre-existing host bridge. The guests will effectively be
+        directly connected to the physical network (i.e. their IP addresses will
+        all be on the subnet of the physical network, and there will be no
+        restrictions on inbound or outbound connections). The `bridge` network
+        attribute is mandatory in this case.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def mtu(self) -> Optional[pulumi.Input[int]]:
+        """
+        The MTU to set for the underlying network interfaces. When
+        not supplied, libvirt will use the default for the interface, usually 1500.
+        Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
+        """
+        return pulumi.get(self, "mtu")
+
+    @mtu.setter
+    def mtu(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "mtu", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique name for the resource, required by libvirt.
+        Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]]:
+        """
+        a list of static routes. A `cidr` and a `gateway` must
+        be provided. The `gateway` must be reachable via the bridge interface.
+        """
+        return pulumi.get(self, "routes")
+
+    @routes.setter
+    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]]):
+        pulumi.set(self, "routes", value)
+
+    @property
+    @pulumi.getter
+    def xml(self) -> Optional[pulumi.Input['NetworkXmlArgs']]:
+        return pulumi.get(self, "xml")
+
+    @xml.setter
+    def xml(self, value: Optional[pulumi.Input['NetworkXmlArgs']]):
+        pulumi.set(self, "xml", value)
+
+
+@pulumi.input_type
+class _NetworkState:
+    def __init__(__self__, *,
+                 addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 autostart: Optional[pulumi.Input[bool]] = None,
+                 bridge: Optional[pulumi.Input[str]] = None,
+                 dhcp: Optional[pulumi.Input['NetworkDhcpArgs']] = None,
+                 dns: Optional[pulumi.Input['NetworkDnsArgs']] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 mtu: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]] = None,
+                 xml: Optional[pulumi.Input['NetworkXmlArgs']] = None):
+        """
+        Input properties used for looking up and filtering Network resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] addresses: A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
+               CIDR notation.  This defines the subnets associated to that network.
+               This argument is also used to define the address on the real host.
+               If `dhcp {  enabled = true }` addresses is also used to define the address range served by
+               the DHCP server.
+               No DHCP server will be started if `addresses` is omitted.
+        :param pulumi.Input[bool] autostart: Set to `true` to start the network on host boot up.
+               If not specified `false` is assumed.
+        :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
+               device which will be used to construct the virtual network (when not provided,
+               it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
+               You need to use it in conjuction with the adresses variable.
+        :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input[str] domain: The domain used by the DNS server.
+        :param pulumi.Input[str] mode: One of:
+               - `none`: the guests can talk to each other and the host OS, but cannot reach
+               any other machines on the LAN.
+               - `nat`: it is the default network mode. This is a configuration that
+               allows guest OS to get outbound connectivity regardless of whether the host
+               uses ethernet, wireless, dialup, or VPN networking without requiring any
+               specific admin configuration. In the absence of host networking, it at
+               least allows guests to talk directly to each other.
+               - `route`: this is a variant on the default network which routes traffic from
+               the virtual network to the LAN **without applying any NAT**. It requires that
+               the IP address range be pre-configured in the routing tables of the router
+               on the host network.
+               - `bridge`: use a pre-existing host bridge. The guests will effectively be
+               directly connected to the physical network (i.e. their IP addresses will
+               all be on the subnet of the physical network, and there will be no
+               restrictions on inbound or outbound connections). The `bridge` network
+               attribute is mandatory in this case.
+        :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
+               not supplied, libvirt will use the default for the interface, usually 1500.
+               Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
+        :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
+               Changing this forces a new resource to be created.
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]] routes: a list of static routes. A `cidr` and a `gateway` must
+               be provided. The `gateway` must be reachable via the bridge interface.
+        """
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
+        if autostart is not None:
+            pulumi.set(__self__, "autostart", autostart)
+        if bridge is not None:
+            pulumi.set(__self__, "bridge", bridge)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dns is not None:
+            pulumi.set(__self__, "dns", dns)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if mtu is not None:
+            pulumi.set(__self__, "mtu", mtu)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+        if xml is not None:
+            pulumi.set(__self__, "xml", xml)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
+        CIDR notation.  This defines the subnets associated to that network.
+        This argument is also used to define the address on the real host.
+        If `dhcp {  enabled = true }` addresses is also used to define the address range served by
+        the DHCP server.
+        No DHCP server will be started if `addresses` is omitted.
+        """
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "addresses", value)
+
+    @property
+    @pulumi.getter
+    def autostart(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to `true` to start the network on host boot up.
+        If not specified `false` is assumed.
+        """
+        return pulumi.get(self, "autostart")
+
+    @autostart.setter
+    def autostart(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autostart", value)
+
+    @property
+    @pulumi.getter
+    def bridge(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bridge device defines the name of a bridge
+        device which will be used to construct the virtual network (when not provided,
+        it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        """
+        return pulumi.get(self, "bridge")
+
+    @bridge.setter
+    def bridge(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bridge", value)
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> Optional[pulumi.Input['NetworkDhcpArgs']]:
+        """
+        DHCP configuration. 
+        You need to use it in conjuction with the adresses variable.
+        """
+        return pulumi.get(self, "dhcp")
+
+    @dhcp.setter
+    def dhcp(self, value: Optional[pulumi.Input['NetworkDhcpArgs']]):
+        pulumi.set(self, "dhcp", value)
+
+    @property
+    @pulumi.getter
+    def dns(self) -> Optional[pulumi.Input['NetworkDnsArgs']]:
+        """
+        configuration of DNS specific settings for the network
+        """
+        return pulumi.get(self, "dns")
+
+    @dns.setter
+    def dns(self, value: Optional[pulumi.Input['NetworkDnsArgs']]):
+        pulumi.set(self, "dns", value)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain used by the DNS server.
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        One of:
+        - `none`: the guests can talk to each other and the host OS, but cannot reach
+        any other machines on the LAN.
+        - `nat`: it is the default network mode. This is a configuration that
+        allows guest OS to get outbound connectivity regardless of whether the host
+        uses ethernet, wireless, dialup, or VPN networking without requiring any
+        specific admin configuration. In the absence of host networking, it at
+        least allows guests to talk directly to each other.
+        - `route`: this is a variant on the default network which routes traffic from
+        the virtual network to the LAN **without applying any NAT**. It requires that
+        the IP address range be pre-configured in the routing tables of the router
+        on the host network.
+        - `bridge`: use a pre-existing host bridge. The guests will effectively be
+        directly connected to the physical network (i.e. their IP addresses will
+        all be on the subnet of the physical network, and there will be no
+        restrictions on inbound or outbound connections). The `bridge` network
+        attribute is mandatory in this case.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def mtu(self) -> Optional[pulumi.Input[int]]:
+        """
+        The MTU to set for the underlying network interfaces. When
+        not supplied, libvirt will use the default for the interface, usually 1500.
+        Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
+        """
+        return pulumi.get(self, "mtu")
+
+    @mtu.setter
+    def mtu(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "mtu", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique name for the resource, required by libvirt.
+        Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]]:
+        """
+        a list of static routes. A `cidr` and a `gateway` must
+        be provided. The `gateway` must be reachable via the bridge interface.
+        """
+        return pulumi.get(self, "routes")
+
+    @routes.setter
+    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]]):
+        pulumi.set(self, "routes", value)
+
+    @property
+    @pulumi.getter
+    def xml(self) -> Optional[pulumi.Input['NetworkXmlArgs']]:
+        return pulumi.get(self, "xml")
+
+    @xml.setter
+    def xml(self, value: Optional[pulumi.Input['NetworkXmlArgs']]):
+        pulumi.set(self, "xml", value)
 
 
 class Network(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -28,9 +504,7 @@ class Network(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]]] = None,
                  xml: Optional[pulumi.Input[pulumi.InputType['NetworkXmlArgs']]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Manages a VM network resource within libvirt. For more information see
         [the official documentation](https://libvirt.org/formatnetwork.html).
@@ -77,12 +551,43 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]] routes: a list of static routes. A `cidr` and a `gateway` must
                be provided. The `gateway` must be reachable via the bridge interface.
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[NetworkArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages a VM network resource within libvirt. For more information see
+        [the official documentation](https://libvirt.org/formatnetwork.html).
+
+        :param str resource_name: The name of the resource.
+        :param NetworkArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(NetworkArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 autostart: Optional[pulumi.Input[bool]] = None,
+                 bridge: Optional[pulumi.Input[str]] = None,
+                 dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
+                 dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 mtu: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]]] = None,
+                 xml: Optional[pulumi.Input[pulumi.InputType['NetworkXmlArgs']]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -92,19 +597,19 @@ class Network(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = NetworkArgs.__new__(NetworkArgs)
 
-            __props__['addresses'] = addresses
-            __props__['autostart'] = autostart
-            __props__['bridge'] = bridge
-            __props__['dhcp'] = dhcp
-            __props__['dns'] = dns
-            __props__['domain'] = domain
-            __props__['mode'] = mode
-            __props__['mtu'] = mtu
-            __props__['name'] = name
-            __props__['routes'] = routes
-            __props__['xml'] = xml
+            __props__.__dict__["addresses"] = addresses
+            __props__.__dict__["autostart"] = autostart
+            __props__.__dict__["bridge"] = bridge
+            __props__.__dict__["dhcp"] = dhcp
+            __props__.__dict__["dns"] = dns
+            __props__.__dict__["domain"] = domain
+            __props__.__dict__["mode"] = mode
+            __props__.__dict__["mtu"] = mtu
+            __props__.__dict__["name"] = name
+            __props__.__dict__["routes"] = routes
+            __props__.__dict__["xml"] = xml
         super(Network, __self__).__init__(
             'libvirt:index/network:Network',
             resource_name,
@@ -175,19 +680,19 @@ class Network(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _NetworkState.__new__(_NetworkState)
 
-        __props__["addresses"] = addresses
-        __props__["autostart"] = autostart
-        __props__["bridge"] = bridge
-        __props__["dhcp"] = dhcp
-        __props__["dns"] = dns
-        __props__["domain"] = domain
-        __props__["mode"] = mode
-        __props__["mtu"] = mtu
-        __props__["name"] = name
-        __props__["routes"] = routes
-        __props__["xml"] = xml
+        __props__.__dict__["addresses"] = addresses
+        __props__.__dict__["autostart"] = autostart
+        __props__.__dict__["bridge"] = bridge
+        __props__.__dict__["dhcp"] = dhcp
+        __props__.__dict__["dns"] = dns
+        __props__.__dict__["domain"] = domain
+        __props__.__dict__["mode"] = mode
+        __props__.__dict__["mtu"] = mtu
+        __props__.__dict__["name"] = name
+        __props__.__dict__["routes"] = routes
+        __props__.__dict__["xml"] = xml
         return Network(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -303,10 +808,4 @@ class Network(pulumi.CustomResource):
     @pulumi.getter
     def xml(self) -> pulumi.Output[Optional['outputs.NetworkXml']]:
         return pulumi.get(self, "xml")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
