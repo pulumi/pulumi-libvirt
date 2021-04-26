@@ -232,7 +232,7 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args: -p 3 -f .goreleaser-darwin.yml release --rm-dist --timeout 60m0s
+          args: -p 3 -f .goreleaser-linux.yml release --rm-dist --timeout 60m0s
           version: latest
   publish-gha:
     name: GHA Release
