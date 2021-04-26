@@ -30,4 +30,4 @@ release:
 snapshot:
   name_template: '{{ .Tag }}-SNAPSHOT'
 checksum:
-  name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}_checksums.txt"
+  name_template: '{{ .ProjectName }}-darwin-amd64_{{ .Version }}_checksums.txt'
