@@ -257,8 +257,8 @@ jobs:
         run: |
           mkdir /tmp/release-prep && cd /tmp/release-prep
           touch pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
-          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-linux-amd64_v${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
-          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-darwin-amd64_v${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
+          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-linux-amd64_${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
+          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-darwin-amd64_${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
           wget http://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-amd64.tar.gz
           wget http://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-darwin.tar.gz
           aws s3 cp /tmp/release-prep/pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt s3://get.pulumi.com/releases/plugins
