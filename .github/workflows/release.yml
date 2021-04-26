@@ -245,7 +245,7 @@ jobs:
         with:
           repo: pulumi/pulumictl
       - name: Set PreRelease Version
-        run: echo "CURRENT_TAG=v$(pulumictl get version --language generic)"
+        run: echo "CURRENT_TAG=$(pulumictl get version --language generic)"
           >> $GITHUB_ENV
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
