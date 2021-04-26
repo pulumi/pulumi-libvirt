@@ -244,9 +244,9 @@ jobs:
         uses: jaxxstorm/action-install-gh-release@v1.1.0
         with:
           repo: pulumi/pulumictl
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::$(pulumictl get version --language generic)
+      - name: Set PreRelease Version
+        run: echo "CURRENT_TAG=v$(pulumictl get version --language generic)"
+          >> $GITHUB_ENV
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -260,19 +260,19 @@ jobs:
       - name: Prepare GitHub Action Release + Checksums
         run: |
           mkdir /tmp/release-prep && cd /tmp/release-prep
-          touch pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
-          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-linux-amd64_${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
-          curl -K http://get.pulumi.com/releases/plugins/pulumi-libvirt-darwin-amd64_${{ steps.vars.outputs.tag }}_checksums.txt >> pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
-          wget http://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-amd64.tar.gz
-          wget http://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-darwin.tar.gz
-          aws s3 cp /tmp/release-prep/pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt s3://get.pulumi.com/releases/plugins
+          touch pulumi-libvirt_${{ env.CURRENT_TAG }}_checksums.txt
+          curl -K https://get.pulumi.com/releases/plugins/pulumi-libvirt-linux-amd64_${{ env.CURRENT_TAG }}_checksums.txt >> pulumi-libvirt_${{ env.CURRENT_TAG }}_checksums.txt
+          curl -K https://get.pulumi.com/releases/plugins/pulumi-libvirt-darwin-amd64_${{ env.CURRENT_TAG }}_checksums.txt >> pulumi-libvirt_${{ env.CURRENT_TAG }}_checksums.txt
+          wget https://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ env.CURRENT_TAG }}-linux-amd64.tar.gz
+          wget https://get.pulumi.com/releases/plugins/pulumi-resource-libvirt-v${{ env.CURRENT_TAG }}-linux-darwin.tar.gz
+          aws s3 cp /tmp/release-prep/pulumi-libvirt_${{ env.CURRENT_TAG }}_checksums.txt s3://get.pulumi.com/releases/plugins
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            /tmp/release-prep/pulumi-libvirt_${{ steps.vars.outputs.tag }}_checksums.txt
-            /tmp/release-prep/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-amd64.tar.gz
-            /tmp/release-prep/pulumi-resource-libvirt-v${{ steps.vars.outputs.tag }}-linux-darwin.tar.gz
+            /tmp/release-prep/pulumi-libvirt_${{ env.CURRENT_TAG }}_checksums.txt
+            /tmp/release-prep/pulumi-resource-libvirt-v${{ env.CURRENT_TAG }}-linux-amd64.tar.gz
+            /tmp/release-prep/pulumi-resource-libvirt-v${{ env.CURRENT_TAG }}-linux-darwin.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish_sdk:
