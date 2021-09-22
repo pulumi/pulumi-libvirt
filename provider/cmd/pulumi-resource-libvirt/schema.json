@@ -111,7 +111,12 @@
         "libvirt:index/DomainCpu:DomainCpu": {
             "properties": {
                 "mode": {
-                    "type": "string"
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -588,6 +593,44 @@
                     }
                 },
                 "weight": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDnsmasqOptions:NetworkDnsmasqOptions": {
+            "properties": {
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption"
+                    },
+                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify both `option_name` and `option_value`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption": {
+            "properties": {
+                "optionName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "optionValue": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -1228,6 +1271,10 @@
                     "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
                     "description": "configuration of DNS specific settings for the network\n"
                 },
+                "dnsmasqOptions": {
+                    "$ref": "#/types/libvirt:index/NetworkDnsmasqOptions:NetworkDnsmasqOptions",
+                    "description": "configuration of Dnsmasq options for the network\nYou need to provide a list of option name and value pairs.\n"
+                },
                 "domain": {
                     "type": "string",
                     "description": "The domain used by the DNS server.\n"
@@ -1283,6 +1330,10 @@
                     "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
                     "description": "configuration of DNS specific settings for the network\n"
                 },
+                "dnsmasqOptions": {
+                    "$ref": "#/types/libvirt:index/NetworkDnsmasqOptions:NetworkDnsmasqOptions",
+                    "description": "configuration of Dnsmasq options for the network\nYou need to provide a list of option name and value pairs.\n"
+                },
                 "domain": {
                     "type": "string",
                     "description": "The domain used by the DNS server.\n"
@@ -1335,6 +1386,10 @@
                     "dns": {
                         "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
                         "description": "configuration of DNS specific settings for the network\n"
+                    },
+                    "dnsmasqOptions": {
+                        "$ref": "#/types/libvirt:index/NetworkDnsmasqOptions:NetworkDnsmasqOptions",
+                        "description": "configuration of Dnsmasq options for the network\nYou need to provide a list of option name and value pairs.\n"
                     },
                     "domain": {
                         "type": "string",
@@ -1698,6 +1753,52 @@
                     "id"
                 ]
             }
+        },
+        "libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getNetworkDnsmasqOptionsTemplate.\n",
+                "properties": {
+                    "optionName": {
+                        "type": "string"
+                    },
+                    "optionValue": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "optionName",
+                    "optionValue"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNetworkDnsmasqOptionsTemplate.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "optionName": {
+                        "type": "string"
+                    },
+                    "optionValue": {
+                        "type": "string"
+                    },
+                    "rendered": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "optionName",
+                    "optionValue",
+                    "rendered",
+                    "id"
+                ]
+            }
         }
     },
     "language": {
@@ -1705,8 +1806,7 @@
             "compatibility": "tfbridge20",
             "namespaces": null,
             "packageReferences": {
-                "Pulumi": "3.*",
-                "System.Collections.Immutable": "1.6.0"
+                "Pulumi": "3.*"
             }
         },
         "go": {

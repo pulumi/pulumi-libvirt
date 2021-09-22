@@ -24,6 +24,8 @@ __all__ = [
     'NetworkDnsForwarderArgs',
     'NetworkDnsHostArgs',
     'NetworkDnsSrvArgs',
+    'NetworkDnsmasqOptionsArgs',
+    'NetworkDnsmasqOptionsOptionArgs',
     'NetworkRouteArgs',
     'NetworkXmlArgs',
     'PoolXmlArgs',
@@ -945,6 +947,60 @@ class NetworkDnsSrvArgs:
     @weight.setter
     def weight(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
+class NetworkDnsmasqOptionsArgs:
+    def __init__(__self__, *,
+                 options: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]] options: a Dnsmasq option entry block. You can have one or more of these
+               blocks in your definition. You must specify both `option_name` and `option_value`.
+        """
+        if options is not None:
+            pulumi.set(__self__, "options", options)
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]]]:
+        """
+        a Dnsmasq option entry block. You can have one or more of these
+        blocks in your definition. You must specify both `option_name` and `option_value`.
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]]]):
+        pulumi.set(self, "options", value)
+
+
+@pulumi.input_type
+class NetworkDnsmasqOptionsOptionArgs:
+    def __init__(__self__, *,
+                 option_name: Optional[pulumi.Input[str]] = None,
+                 option_value: Optional[pulumi.Input[str]] = None):
+        if option_name is not None:
+            pulumi.set(__self__, "option_name", option_name)
+        if option_value is not None:
+            pulumi.set(__self__, "option_value", option_value)
+
+    @property
+    @pulumi.getter(name="optionName")
+    def option_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "option_name")
+
+    @option_name.setter
+    def option_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "option_name", value)
+
+    @property
+    @pulumi.getter(name="optionValue")
+    def option_value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "option_value")
+
+    @option_value.setter
+    def option_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "option_value", value)
 
 
 @pulumi.input_type

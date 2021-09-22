@@ -7,6 +7,7 @@ from .cloud_init_disk import *
 from .domain import *
 from .get_network_dns_host_template import *
 from .get_network_dns_srv_template import *
+from .get_network_dnsmasq_options_template import *
 from .ignition import *
 from .network import *
 from .pool import *

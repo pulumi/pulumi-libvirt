@@ -2149,6 +2149,241 @@ func (o NetworkDnsSrvArrayOutput) Index(i pulumi.IntInput) NetworkDnsSrvOutput {
 	}).(NetworkDnsSrvOutput)
 }
 
+type NetworkDnsmasqOptions struct {
+	// a Dnsmasq option entry block. You can have one or more of these
+	// blocks in your definition. You must specify both `optionName` and `optionValue`.
+	Options []NetworkDnsmasqOptionsOption `pulumi:"options"`
+}
+
+// NetworkDnsmasqOptionsInput is an input type that accepts NetworkDnsmasqOptionsArgs and NetworkDnsmasqOptionsOutput values.
+// You can construct a concrete instance of `NetworkDnsmasqOptionsInput` via:
+//
+//          NetworkDnsmasqOptionsArgs{...}
+type NetworkDnsmasqOptionsInput interface {
+	pulumi.Input
+
+	ToNetworkDnsmasqOptionsOutput() NetworkDnsmasqOptionsOutput
+	ToNetworkDnsmasqOptionsOutputWithContext(context.Context) NetworkDnsmasqOptionsOutput
+}
+
+type NetworkDnsmasqOptionsArgs struct {
+	// a Dnsmasq option entry block. You can have one or more of these
+	// blocks in your definition. You must specify both `optionName` and `optionValue`.
+	Options NetworkDnsmasqOptionsOptionArrayInput `pulumi:"options"`
+}
+
+func (NetworkDnsmasqOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkDnsmasqOptions)(nil)).Elem()
+}
+
+func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsOutput() NetworkDnsmasqOptionsOutput {
+	return i.ToNetworkDnsmasqOptionsOutputWithContext(context.Background())
+}
+
+func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOutput)
+}
+
+func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput {
+	return i.ToNetworkDnsmasqOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOutput).ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx)
+}
+
+// NetworkDnsmasqOptionsPtrInput is an input type that accepts NetworkDnsmasqOptionsArgs, NetworkDnsmasqOptionsPtr and NetworkDnsmasqOptionsPtrOutput values.
+// You can construct a concrete instance of `NetworkDnsmasqOptionsPtrInput` via:
+//
+//          NetworkDnsmasqOptionsArgs{...}
+//
+//  or:
+//
+//          nil
+type NetworkDnsmasqOptionsPtrInput interface {
+	pulumi.Input
+
+	ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput
+	ToNetworkDnsmasqOptionsPtrOutputWithContext(context.Context) NetworkDnsmasqOptionsPtrOutput
+}
+
+type networkDnsmasqOptionsPtrType NetworkDnsmasqOptionsArgs
+
+func NetworkDnsmasqOptionsPtr(v *NetworkDnsmasqOptionsArgs) NetworkDnsmasqOptionsPtrInput {
+	return (*networkDnsmasqOptionsPtrType)(v)
+}
+
+func (*networkDnsmasqOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkDnsmasqOptions)(nil)).Elem()
+}
+
+func (i *networkDnsmasqOptionsPtrType) ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput {
+	return i.ToNetworkDnsmasqOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *networkDnsmasqOptionsPtrType) ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsPtrOutput)
+}
+
+type NetworkDnsmasqOptionsOutput struct{ *pulumi.OutputState }
+
+func (NetworkDnsmasqOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkDnsmasqOptions)(nil)).Elem()
+}
+
+func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsOutput() NetworkDnsmasqOptionsOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput {
+	return o.ToNetworkDnsmasqOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsPtrOutput {
+	return o.ApplyT(func(v NetworkDnsmasqOptions) *NetworkDnsmasqOptions {
+		return &v
+	}).(NetworkDnsmasqOptionsPtrOutput)
+}
+
+// a Dnsmasq option entry block. You can have one or more of these
+// blocks in your definition. You must specify both `optionName` and `optionValue`.
+func (o NetworkDnsmasqOptionsOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
+	return o.ApplyT(func(v NetworkDnsmasqOptions) []NetworkDnsmasqOptionsOption { return v.Options }).(NetworkDnsmasqOptionsOptionArrayOutput)
+}
+
+type NetworkDnsmasqOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (NetworkDnsmasqOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkDnsmasqOptions)(nil)).Elem()
+}
+
+func (o NetworkDnsmasqOptionsPtrOutput) ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsPtrOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsPtrOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
+	return o.ApplyT(func(v *NetworkDnsmasqOptions) NetworkDnsmasqOptions { return *v }).(NetworkDnsmasqOptionsOutput)
+}
+
+// a Dnsmasq option entry block. You can have one or more of these
+// blocks in your definition. You must specify both `optionName` and `optionValue`.
+func (o NetworkDnsmasqOptionsPtrOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
+	return o.ApplyT(func(v *NetworkDnsmasqOptions) []NetworkDnsmasqOptionsOption {
+		if v == nil {
+			return nil
+		}
+		return v.Options
+	}).(NetworkDnsmasqOptionsOptionArrayOutput)
+}
+
+type NetworkDnsmasqOptionsOption struct {
+	OptionName  *string `pulumi:"optionName"`
+	OptionValue *string `pulumi:"optionValue"`
+}
+
+// NetworkDnsmasqOptionsOptionInput is an input type that accepts NetworkDnsmasqOptionsOptionArgs and NetworkDnsmasqOptionsOptionOutput values.
+// You can construct a concrete instance of `NetworkDnsmasqOptionsOptionInput` via:
+//
+//          NetworkDnsmasqOptionsOptionArgs{...}
+type NetworkDnsmasqOptionsOptionInput interface {
+	pulumi.Input
+
+	ToNetworkDnsmasqOptionsOptionOutput() NetworkDnsmasqOptionsOptionOutput
+	ToNetworkDnsmasqOptionsOptionOutputWithContext(context.Context) NetworkDnsmasqOptionsOptionOutput
+}
+
+type NetworkDnsmasqOptionsOptionArgs struct {
+	OptionName  pulumi.StringPtrInput `pulumi:"optionName"`
+	OptionValue pulumi.StringPtrInput `pulumi:"optionValue"`
+}
+
+func (NetworkDnsmasqOptionsOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkDnsmasqOptionsOption)(nil)).Elem()
+}
+
+func (i NetworkDnsmasqOptionsOptionArgs) ToNetworkDnsmasqOptionsOptionOutput() NetworkDnsmasqOptionsOptionOutput {
+	return i.ToNetworkDnsmasqOptionsOptionOutputWithContext(context.Background())
+}
+
+func (i NetworkDnsmasqOptionsOptionArgs) ToNetworkDnsmasqOptionsOptionOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOptionOutput)
+}
+
+// NetworkDnsmasqOptionsOptionArrayInput is an input type that accepts NetworkDnsmasqOptionsOptionArray and NetworkDnsmasqOptionsOptionArrayOutput values.
+// You can construct a concrete instance of `NetworkDnsmasqOptionsOptionArrayInput` via:
+//
+//          NetworkDnsmasqOptionsOptionArray{ NetworkDnsmasqOptionsOptionArgs{...} }
+type NetworkDnsmasqOptionsOptionArrayInput interface {
+	pulumi.Input
+
+	ToNetworkDnsmasqOptionsOptionArrayOutput() NetworkDnsmasqOptionsOptionArrayOutput
+	ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(context.Context) NetworkDnsmasqOptionsOptionArrayOutput
+}
+
+type NetworkDnsmasqOptionsOptionArray []NetworkDnsmasqOptionsOptionInput
+
+func (NetworkDnsmasqOptionsOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkDnsmasqOptionsOption)(nil)).Elem()
+}
+
+func (i NetworkDnsmasqOptionsOptionArray) ToNetworkDnsmasqOptionsOptionArrayOutput() NetworkDnsmasqOptionsOptionArrayOutput {
+	return i.ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkDnsmasqOptionsOptionArray) ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOptionArrayOutput)
+}
+
+type NetworkDnsmasqOptionsOptionOutput struct{ *pulumi.OutputState }
+
+func (NetworkDnsmasqOptionsOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkDnsmasqOptionsOption)(nil)).Elem()
+}
+
+func (o NetworkDnsmasqOptionsOptionOutput) ToNetworkDnsmasqOptionsOptionOutput() NetworkDnsmasqOptionsOptionOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsOptionOutput) ToNetworkDnsmasqOptionsOptionOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsOptionOutput) OptionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkDnsmasqOptionsOption) *string { return v.OptionName }).(pulumi.StringPtrOutput)
+}
+
+func (o NetworkDnsmasqOptionsOptionOutput) OptionValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkDnsmasqOptionsOption) *string { return v.OptionValue }).(pulumi.StringPtrOutput)
+}
+
+type NetworkDnsmasqOptionsOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkDnsmasqOptionsOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkDnsmasqOptionsOption)(nil)).Elem()
+}
+
+func (o NetworkDnsmasqOptionsOptionArrayOutput) ToNetworkDnsmasqOptionsOptionArrayOutput() NetworkDnsmasqOptionsOptionArrayOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsOptionArrayOutput) ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionArrayOutput {
+	return o
+}
+
+func (o NetworkDnsmasqOptionsOptionArrayOutput) Index(i pulumi.IntInput) NetworkDnsmasqOptionsOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkDnsmasqOptionsOption {
+		return vs[0].([]NetworkDnsmasqOptionsOption)[vs[1].(int)]
+	}).(NetworkDnsmasqOptionsOptionOutput)
+}
+
 type NetworkRoute struct {
 	Cidr    string `pulumi:"cidr"`
 	Gateway string `pulumi:"gateway"`
@@ -2658,6 +2893,10 @@ func init() {
 	pulumi.RegisterOutputType(NetworkDnsHostArrayOutput{})
 	pulumi.RegisterOutputType(NetworkDnsSrvOutput{})
 	pulumi.RegisterOutputType(NetworkDnsSrvArrayOutput{})
+	pulumi.RegisterOutputType(NetworkDnsmasqOptionsOutput{})
+	pulumi.RegisterOutputType(NetworkDnsmasqOptionsPtrOutput{})
+	pulumi.RegisterOutputType(NetworkDnsmasqOptionsOptionOutput{})
+	pulumi.RegisterOutputType(NetworkDnsmasqOptionsOptionArrayOutput{})
 	pulumi.RegisterOutputType(NetworkRouteOutput{})
 	pulumi.RegisterOutputType(NetworkRouteArrayOutput{})
 	pulumi.RegisterOutputType(NetworkXmlOutput{})

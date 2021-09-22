@@ -19,6 +19,7 @@
         "domain.ts",
         "getNetworkDnsHostTemplate.ts",
         "getNetworkDnsSrvTemplate.ts",
+        "getNetworkDnsmasqOptionsTemplate.ts",
         "ignition.ts",
         "index.ts",
         "network.ts",
