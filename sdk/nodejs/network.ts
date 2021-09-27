@@ -67,6 +67,11 @@ export class Network extends pulumi.CustomResource {
      */
     public readonly dns!: pulumi.Output<outputs.NetworkDns | undefined>;
     /**
+     * configuration of Dnsmasq options for the network
+     * You need to provide a list of option name and value pairs.
+     */
+    public readonly dnsmasqOptions!: pulumi.Output<outputs.NetworkDnsmasqOptions | undefined>;
+    /**
      * The domain used by the DNS server.
      */
     public readonly domain!: pulumi.Output<string | undefined>;
@@ -126,6 +131,7 @@ export class Network extends pulumi.CustomResource {
             inputs["bridge"] = state ? state.bridge : undefined;
             inputs["dhcp"] = state ? state.dhcp : undefined;
             inputs["dns"] = state ? state.dns : undefined;
+            inputs["dnsmasqOptions"] = state ? state.dnsmasqOptions : undefined;
             inputs["domain"] = state ? state.domain : undefined;
             inputs["mode"] = state ? state.mode : undefined;
             inputs["mtu"] = state ? state.mtu : undefined;
@@ -139,6 +145,7 @@ export class Network extends pulumi.CustomResource {
             inputs["bridge"] = args ? args.bridge : undefined;
             inputs["dhcp"] = args ? args.dhcp : undefined;
             inputs["dns"] = args ? args.dns : undefined;
+            inputs["dnsmasqOptions"] = args ? args.dnsmasqOptions : undefined;
             inputs["domain"] = args ? args.domain : undefined;
             inputs["mode"] = args ? args.mode : undefined;
             inputs["mtu"] = args ? args.mtu : undefined;
@@ -186,6 +193,11 @@ export interface NetworkState {
      * configuration of DNS specific settings for the network
      */
     readonly dns?: pulumi.Input<inputs.NetworkDns>;
+    /**
+     * configuration of Dnsmasq options for the network
+     * You need to provide a list of option name and value pairs.
+     */
+    readonly dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
     /**
      * The domain used by the DNS server.
      */
@@ -262,6 +274,11 @@ export interface NetworkArgs {
      * configuration of DNS specific settings for the network
      */
     readonly dns?: pulumi.Input<inputs.NetworkDns>;
+    /**
+     * configuration of Dnsmasq options for the network
+     * You need to provide a list of option name and value pairs.
+     */
+    readonly dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
     /**
      * The domain used by the DNS server.
      */

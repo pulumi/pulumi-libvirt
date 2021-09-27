@@ -233,6 +233,19 @@ export interface NetworkDnsSrv {
     weight?: pulumi.Input<string>;
 }
 
+export interface NetworkDnsmasqOptions {
+    /**
+     * a Dnsmasq option entry block. You can have one or more of these
+     * blocks in your definition. You must specify both `optionName` and `optionValue`.
+     */
+    options?: pulumi.Input<pulumi.Input<inputs.NetworkDnsmasqOptionsOption>[]>;
+}
+
+export interface NetworkDnsmasqOptionsOption {
+    optionName?: pulumi.Input<string>;
+    optionValue?: pulumi.Input<string>;
+}
+
 export interface NetworkRoute {
     cidr: pulumi.Input<string>;
     gateway: pulumi.Input<string>;

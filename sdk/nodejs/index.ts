@@ -9,6 +9,7 @@ export * from "./cloudInitDisk";
 export * from "./domain";
 export * from "./getNetworkDnsHostTemplate";
 export * from "./getNetworkDnsSrvTemplate";
+export * from "./getNetworkDnsmasqOptionsTemplate";
 export * from "./ignition";
 export * from "./network";
 export * from "./pool";

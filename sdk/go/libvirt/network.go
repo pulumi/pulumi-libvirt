@@ -34,6 +34,9 @@ type Network struct {
 	Dhcp NetworkDhcpPtrOutput `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
 	Dns NetworkDnsPtrOutput `pulumi:"dns"`
+	// configuration of Dnsmasq options for the network
+	// You need to provide a list of option name and value pairs.
+	DnsmasqOptions NetworkDnsmasqOptionsPtrOutput `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrOutput `pulumi:"domain"`
 	// One of:
@@ -115,6 +118,9 @@ type networkState struct {
 	Dhcp *NetworkDhcp `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
 	Dns *NetworkDns `pulumi:"dns"`
+	// configuration of Dnsmasq options for the network
+	// You need to provide a list of option name and value pairs.
+	DnsmasqOptions *NetworkDnsmasqOptions `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain *string `pulumi:"domain"`
 	// One of:
@@ -168,6 +174,9 @@ type NetworkState struct {
 	Dhcp NetworkDhcpPtrInput
 	// configuration of DNS specific settings for the network
 	Dns NetworkDnsPtrInput
+	// configuration of Dnsmasq options for the network
+	// You need to provide a list of option name and value pairs.
+	DnsmasqOptions NetworkDnsmasqOptionsPtrInput
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrInput
 	// One of:
@@ -225,6 +234,9 @@ type networkArgs struct {
 	Dhcp *NetworkDhcp `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
 	Dns *NetworkDns `pulumi:"dns"`
+	// configuration of Dnsmasq options for the network
+	// You need to provide a list of option name and value pairs.
+	DnsmasqOptions *NetworkDnsmasqOptions `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain *string `pulumi:"domain"`
 	// One of:
@@ -279,6 +291,9 @@ type NetworkArgs struct {
 	Dhcp NetworkDhcpPtrInput
 	// configuration of DNS specific settings for the network
 	Dns NetworkDnsPtrInput
+	// configuration of Dnsmasq options for the network
+	// You need to provide a list of option name and value pairs.
+	DnsmasqOptions NetworkDnsmasqOptionsPtrInput
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrInput
 	// One of:

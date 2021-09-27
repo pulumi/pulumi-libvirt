@@ -25,6 +25,8 @@ __all__ = [
     'NetworkDnsForwarder',
     'NetworkDnsHost',
     'NetworkDnsSrv',
+    'NetworkDnsmasqOptions',
+    'NetworkDnsmasqOptionsOption',
     'NetworkRoute',
     'NetworkXml',
     'PoolXml',
@@ -835,6 +837,67 @@ class NetworkDnsSrv(dict):
     @pulumi.getter
     def weight(self) -> Optional[str]:
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class NetworkDnsmasqOptions(dict):
+    def __init__(__self__, *,
+                 options: Optional[Sequence['outputs.NetworkDnsmasqOptionsOption']] = None):
+        """
+        :param Sequence['NetworkDnsmasqOptionsOptionArgs'] options: a Dnsmasq option entry block. You can have one or more of these
+               blocks in your definition. You must specify both `option_name` and `option_value`.
+        """
+        if options is not None:
+            pulumi.set(__self__, "options", options)
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional[Sequence['outputs.NetworkDnsmasqOptionsOption']]:
+        """
+        a Dnsmasq option entry block. You can have one or more of these
+        blocks in your definition. You must specify both `option_name` and `option_value`.
+        """
+        return pulumi.get(self, "options")
+
+
+@pulumi.output_type
+class NetworkDnsmasqOptionsOption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "optionName":
+            suggest = "option_name"
+        elif key == "optionValue":
+            suggest = "option_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NetworkDnsmasqOptionsOption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NetworkDnsmasqOptionsOption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NetworkDnsmasqOptionsOption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 option_name: Optional[str] = None,
+                 option_value: Optional[str] = None):
+        if option_name is not None:
+            pulumi.set(__self__, "option_name", option_name)
+        if option_value is not None:
+            pulumi.set(__self__, "option_value", option_value)
+
+    @property
+    @pulumi.getter(name="optionName")
+    def option_name(self) -> Optional[str]:
+        return pulumi.get(self, "option_name")
+
+    @property
+    @pulumi.getter(name="optionValue")
+    def option_value(self) -> Optional[str]:
+        return pulumi.get(self, "option_value")
 
 
 @pulumi.output_type

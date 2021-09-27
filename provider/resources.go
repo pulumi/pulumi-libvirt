@@ -94,8 +94,9 @@ func Provider() tfbridge.ProviderInfo {
 			"libvirt_volume":   {Tok: makeResource(mainMod, "Volume")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"libvirt_network_dns_host_template": {Tok: makeDataSource(mainMod, "getNetworkDnsHostTemplate")},
-			"libvirt_network_dns_srv_template":  {Tok: makeDataSource(mainMod, "getNetworkDnsSrvTemplate")},
+			"libvirt_network_dns_host_template":        {Tok: makeDataSource(mainMod, "getNetworkDnsHostTemplate")},
+			"libvirt_network_dns_srv_template":         {Tok: makeDataSource(mainMod, "getNetworkDnsSrvTemplate")},
+			"libvirt_network_dnsmasq_options_template": {Tok: makeDataSource(mainMod, "getNetworkDnsmasqOptionsTemplate")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
@@ -123,8 +124,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "3.*",
-				"System.Collections.Immutable": "1.6.0",
+				"Pulumi": "3.*",
 			},
 		},
 	}

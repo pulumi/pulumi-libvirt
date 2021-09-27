@@ -56,6 +56,13 @@ namespace Pulumi.Libvirt
         public Output<Outputs.NetworkDns?> Dns { get; private set; } = null!;
 
         /// <summary>
+        /// configuration of Dnsmasq options for the network
+        /// You need to provide a list of option name and value pairs.
+        /// </summary>
+        [Output("dnsmasqOptions")]
+        public Output<Outputs.NetworkDnsmasqOptions?> DnsmasqOptions { get; private set; } = null!;
+
+        /// <summary>
         /// The domain used by the DNS server.
         /// </summary>
         [Output("domain")]
@@ -200,6 +207,13 @@ namespace Pulumi.Libvirt
         public Input<Inputs.NetworkDnsArgs>? Dns { get; set; }
 
         /// <summary>
+        /// configuration of Dnsmasq options for the network
+        /// You need to provide a list of option name and value pairs.
+        /// </summary>
+        [Input("dnsmasqOptions")]
+        public Input<Inputs.NetworkDnsmasqOptionsArgs>? DnsmasqOptions { get; set; }
+
+        /// <summary>
         /// The domain used by the DNS server.
         /// </summary>
         [Input("domain")]
@@ -309,6 +323,13 @@ namespace Pulumi.Libvirt
         /// </summary>
         [Input("dns")]
         public Input<Inputs.NetworkDnsGetArgs>? Dns { get; set; }
+
+        /// <summary>
+        /// configuration of Dnsmasq options for the network
+        /// You need to provide a list of option name and value pairs.
+        /// </summary>
+        [Input("dnsmasqOptions")]
+        public Input<Inputs.NetworkDnsmasqOptionsGetArgs>? DnsmasqOptions { get; set; }
 
         /// <summary>
         /// The domain used by the DNS server.

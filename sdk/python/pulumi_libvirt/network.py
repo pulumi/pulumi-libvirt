@@ -20,6 +20,7 @@ class NetworkArgs:
                  bridge: Optional[pulumi.Input[str]] = None,
                  dhcp: Optional[pulumi.Input['NetworkDhcpArgs']] = None,
                  dns: Optional[pulumi.Input['NetworkDnsArgs']] = None,
+                 dnsmasq_options: Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mtu: Optional[pulumi.Input[int]] = None,
@@ -42,6 +43,8 @@ class NetworkArgs:
         :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input['NetworkDnsmasqOptionsArgs'] dnsmasq_options: configuration of Dnsmasq options for the network
+               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
                - `none`: the guests can talk to each other and the host OS, but cannot reach
@@ -78,6 +81,8 @@ class NetworkArgs:
             pulumi.set(__self__, "dhcp", dhcp)
         if dns is not None:
             pulumi.set(__self__, "dns", dns)
+        if dnsmasq_options is not None:
+            pulumi.set(__self__, "dnsmasq_options", dnsmasq_options)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
         if mode is not None:
@@ -159,6 +164,19 @@ class NetworkArgs:
     @dns.setter
     def dns(self, value: Optional[pulumi.Input['NetworkDnsArgs']]):
         pulumi.set(self, "dns", value)
+
+    @property
+    @pulumi.getter(name="dnsmasqOptions")
+    def dnsmasq_options(self) -> Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']]:
+        """
+        configuration of Dnsmasq options for the network
+        You need to provide a list of option name and value pairs.
+        """
+        return pulumi.get(self, "dnsmasq_options")
+
+    @dnsmasq_options.setter
+    def dnsmasq_options(self, value: Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']]):
+        pulumi.set(self, "dnsmasq_options", value)
 
     @property
     @pulumi.getter
@@ -258,6 +276,7 @@ class _NetworkState:
                  bridge: Optional[pulumi.Input[str]] = None,
                  dhcp: Optional[pulumi.Input['NetworkDhcpArgs']] = None,
                  dns: Optional[pulumi.Input['NetworkDnsArgs']] = None,
+                 dnsmasq_options: Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mtu: Optional[pulumi.Input[int]] = None,
@@ -280,6 +299,8 @@ class _NetworkState:
         :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input['NetworkDnsmasqOptionsArgs'] dnsmasq_options: configuration of Dnsmasq options for the network
+               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
                - `none`: the guests can talk to each other and the host OS, but cannot reach
@@ -316,6 +337,8 @@ class _NetworkState:
             pulumi.set(__self__, "dhcp", dhcp)
         if dns is not None:
             pulumi.set(__self__, "dns", dns)
+        if dnsmasq_options is not None:
+            pulumi.set(__self__, "dnsmasq_options", dnsmasq_options)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
         if mode is not None:
@@ -397,6 +420,19 @@ class _NetworkState:
     @dns.setter
     def dns(self, value: Optional[pulumi.Input['NetworkDnsArgs']]):
         pulumi.set(self, "dns", value)
+
+    @property
+    @pulumi.getter(name="dnsmasqOptions")
+    def dnsmasq_options(self) -> Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']]:
+        """
+        configuration of Dnsmasq options for the network
+        You need to provide a list of option name and value pairs.
+        """
+        return pulumi.get(self, "dnsmasq_options")
+
+    @dnsmasq_options.setter
+    def dnsmasq_options(self, value: Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']]):
+        pulumi.set(self, "dnsmasq_options", value)
 
     @property
     @pulumi.getter
@@ -498,6 +534,7 @@ class Network(pulumi.CustomResource):
                  bridge: Optional[pulumi.Input[str]] = None,
                  dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
                  dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
+                 dnsmasq_options: Optional[pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mtu: Optional[pulumi.Input[int]] = None,
@@ -525,6 +562,8 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']] dnsmasq_options: configuration of Dnsmasq options for the network
+               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
                - `none`: the guests can talk to each other and the host OS, but cannot reach
@@ -581,6 +620,7 @@ class Network(pulumi.CustomResource):
                  bridge: Optional[pulumi.Input[str]] = None,
                  dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
                  dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
+                 dnsmasq_options: Optional[pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mtu: Optional[pulumi.Input[int]] = None,
@@ -604,6 +644,7 @@ class Network(pulumi.CustomResource):
             __props__.__dict__["bridge"] = bridge
             __props__.__dict__["dhcp"] = dhcp
             __props__.__dict__["dns"] = dns
+            __props__.__dict__["dnsmasq_options"] = dnsmasq_options
             __props__.__dict__["domain"] = domain
             __props__.__dict__["mode"] = mode
             __props__.__dict__["mtu"] = mtu
@@ -625,6 +666,7 @@ class Network(pulumi.CustomResource):
             bridge: Optional[pulumi.Input[str]] = None,
             dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
             dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
+            dnsmasq_options: Optional[pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             mtu: Optional[pulumi.Input[int]] = None,
@@ -652,6 +694,8 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']] dnsmasq_options: configuration of Dnsmasq options for the network
+               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
                - `none`: the guests can talk to each other and the host OS, but cannot reach
@@ -687,6 +731,7 @@ class Network(pulumi.CustomResource):
         __props__.__dict__["bridge"] = bridge
         __props__.__dict__["dhcp"] = dhcp
         __props__.__dict__["dns"] = dns
+        __props__.__dict__["dnsmasq_options"] = dnsmasq_options
         __props__.__dict__["domain"] = domain
         __props__.__dict__["mode"] = mode
         __props__.__dict__["mtu"] = mtu
@@ -743,6 +788,15 @@ class Network(pulumi.CustomResource):
         configuration of DNS specific settings for the network
         """
         return pulumi.get(self, "dns")
+
+    @property
+    @pulumi.getter(name="dnsmasqOptions")
+    def dnsmasq_options(self) -> pulumi.Output[Optional['outputs.NetworkDnsmasqOptions']]:
+        """
+        configuration of Dnsmasq options for the network
+        You need to provide a list of option name and value pairs.
+        """
+        return pulumi.get(self, "dnsmasq_options")
 
     @property
     @pulumi.getter

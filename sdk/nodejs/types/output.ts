@@ -233,6 +233,19 @@ export interface NetworkDnsSrv {
     weight?: string;
 }
 
+export interface NetworkDnsmasqOptions {
+    /**
+     * a Dnsmasq option entry block. You can have one or more of these
+     * blocks in your definition. You must specify both `optionName` and `optionValue`.
+     */
+    options?: outputs.NetworkDnsmasqOptionsOption[];
+}
+
+export interface NetworkDnsmasqOptionsOption {
+    optionName?: string;
+    optionValue?: string;
+}
+
 export interface NetworkRoute {
     cidr: string;
     gateway: string;
