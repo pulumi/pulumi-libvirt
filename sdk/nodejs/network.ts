@@ -172,36 +172,36 @@ export interface NetworkState {
      * the DHCP server.
      * No DHCP server will be started if `addresses` is omitted.
      */
-    readonly addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Set to `true` to start the network on host boot up.
      * If not specified `false` is assumed.
      */
-    readonly autostart?: pulumi.Input<boolean>;
+    autostart?: pulumi.Input<boolean>;
     /**
      * The bridge device defines the name of a bridge
      * device which will be used to construct the virtual network (when not provided,
      * it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
      */
-    readonly bridge?: pulumi.Input<string>;
+    bridge?: pulumi.Input<string>;
     /**
      * DHCP configuration. 
      * You need to use it in conjuction with the adresses variable.
      */
-    readonly dhcp?: pulumi.Input<inputs.NetworkDhcp>;
+    dhcp?: pulumi.Input<inputs.NetworkDhcp>;
     /**
      * configuration of DNS specific settings for the network
      */
-    readonly dns?: pulumi.Input<inputs.NetworkDns>;
+    dns?: pulumi.Input<inputs.NetworkDns>;
     /**
      * configuration of Dnsmasq options for the network
      * You need to provide a list of option name and value pairs.
      */
-    readonly dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
+    dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
     /**
      * The domain used by the DNS server.
      */
-    readonly domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string>;
     /**
      * One of:
      * - `none`: the guests can talk to each other and the host OS, but cannot reach
@@ -221,24 +221,24 @@ export interface NetworkState {
      * restrictions on inbound or outbound connections). The `bridge` network
      * attribute is mandatory in this case.
      */
-    readonly mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
     /**
      * The MTU to set for the underlying network interfaces. When
      * not supplied, libvirt will use the default for the interface, usually 1500.
      * Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
      */
-    readonly mtu?: pulumi.Input<number>;
+    mtu?: pulumi.Input<number>;
     /**
      * A unique name for the resource, required by libvirt.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * a list of static routes. A `cidr` and a `gateway` must
      * be provided. The `gateway` must be reachable via the bridge interface.
      */
-    readonly routes?: pulumi.Input<pulumi.Input<inputs.NetworkRoute>[]>;
-    readonly xml?: pulumi.Input<inputs.NetworkXml>;
+    routes?: pulumi.Input<pulumi.Input<inputs.NetworkRoute>[]>;
+    xml?: pulumi.Input<inputs.NetworkXml>;
 }
 
 /**
@@ -253,36 +253,36 @@ export interface NetworkArgs {
      * the DHCP server.
      * No DHCP server will be started if `addresses` is omitted.
      */
-    readonly addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Set to `true` to start the network on host boot up.
      * If not specified `false` is assumed.
      */
-    readonly autostart?: pulumi.Input<boolean>;
+    autostart?: pulumi.Input<boolean>;
     /**
      * The bridge device defines the name of a bridge
      * device which will be used to construct the virtual network (when not provided,
      * it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
      */
-    readonly bridge?: pulumi.Input<string>;
+    bridge?: pulumi.Input<string>;
     /**
      * DHCP configuration. 
      * You need to use it in conjuction with the adresses variable.
      */
-    readonly dhcp?: pulumi.Input<inputs.NetworkDhcp>;
+    dhcp?: pulumi.Input<inputs.NetworkDhcp>;
     /**
      * configuration of DNS specific settings for the network
      */
-    readonly dns?: pulumi.Input<inputs.NetworkDns>;
+    dns?: pulumi.Input<inputs.NetworkDns>;
     /**
      * configuration of Dnsmasq options for the network
      * You need to provide a list of option name and value pairs.
      */
-    readonly dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
+    dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
     /**
      * The domain used by the DNS server.
      */
-    readonly domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string>;
     /**
      * One of:
      * - `none`: the guests can talk to each other and the host OS, but cannot reach
@@ -302,22 +302,22 @@ export interface NetworkArgs {
      * restrictions on inbound or outbound connections). The `bridge` network
      * attribute is mandatory in this case.
      */
-    readonly mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
     /**
      * The MTU to set for the underlying network interfaces. When
      * not supplied, libvirt will use the default for the interface, usually 1500.
      * Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
      */
-    readonly mtu?: pulumi.Input<number>;
+    mtu?: pulumi.Input<number>;
     /**
      * A unique name for the resource, required by libvirt.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * a list of static routes. A `cidr` and a `gateway` must
      * be provided. The `gateway` must be reachable via the bridge interface.
      */
-    readonly routes?: pulumi.Input<pulumi.Input<inputs.NetworkRoute>[]>;
-    readonly xml?: pulumi.Input<inputs.NetworkXml>;
+    routes?: pulumi.Input<pulumi.Input<inputs.NetworkRoute>[]>;
+    xml?: pulumi.Input<inputs.NetworkXml>;
 }

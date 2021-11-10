@@ -12,6 +12,7 @@ __all__ = [
     'GetNetworkDnsHostTemplateResult',
     'AwaitableGetNetworkDnsHostTemplateResult',
     'get_network_dns_host_template',
+    'get_network_dns_host_template_output',
 ]
 
 @pulumi.output_type
@@ -89,3 +90,13 @@ def get_network_dns_host_template(hostname: Optional[str] = None,
         id=__ret__.id,
         ip=__ret__.ip,
         rendered=__ret__.rendered)
+
+
+@_utilities.lift_output_func(get_network_dns_host_template)
+def get_network_dns_host_template_output(hostname: Optional[pulumi.Input[str]] = None,
+                                         ip: Optional[pulumi.Input[str]] = None,
+                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsHostTemplateResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

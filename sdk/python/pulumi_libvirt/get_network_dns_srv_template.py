@@ -12,6 +12,7 @@ __all__ = [
     'GetNetworkDnsSrvTemplateResult',
     'AwaitableGetNetworkDnsSrvTemplateResult',
     'get_network_dns_srv_template',
+    'get_network_dns_srv_template_output',
 ]
 
 @pulumi.output_type
@@ -149,3 +150,18 @@ def get_network_dns_srv_template(domain: Optional[str] = None,
         service=__ret__.service,
         target=__ret__.target,
         weight=__ret__.weight)
+
+
+@_utilities.lift_output_func(get_network_dns_srv_template)
+def get_network_dns_srv_template_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
+                                        port: Optional[pulumi.Input[Optional[str]]] = None,
+                                        priority: Optional[pulumi.Input[Optional[str]]] = None,
+                                        protocol: Optional[pulumi.Input[str]] = None,
+                                        service: Optional[pulumi.Input[str]] = None,
+                                        target: Optional[pulumi.Input[Optional[str]]] = None,
+                                        weight: Optional[pulumi.Input[Optional[str]]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsSrvTemplateResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

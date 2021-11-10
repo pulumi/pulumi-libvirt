@@ -12,6 +12,7 @@ __all__ = [
     'GetNetworkDnsmasqOptionsTemplateResult',
     'AwaitableGetNetworkDnsmasqOptionsTemplateResult',
     'get_network_dnsmasq_options_template',
+    'get_network_dnsmasq_options_template_output',
 ]
 
 @pulumi.output_type
@@ -89,3 +90,13 @@ def get_network_dnsmasq_options_template(option_name: Optional[str] = None,
         option_name=__ret__.option_name,
         option_value=__ret__.option_value,
         rendered=__ret__.rendered)
+
+
+@_utilities.lift_output_func(get_network_dnsmasq_options_template)
+def get_network_dnsmasq_options_template_output(option_name: Optional[pulumi.Input[str]] = None,
+                                                option_value: Optional[pulumi.Input[str]] = None,
+                                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsmasqOptionsTemplateResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

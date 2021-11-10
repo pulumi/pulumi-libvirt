@@ -4,9 +4,17 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("libvirt");
+declare var exports: any;
+const __config = new pulumi.Config("libvirt");
 
 /**
  * libvirt connection URI for operations. See https://libvirt.org/uri.html
  */
-export let uri: string | undefined = __config.get("uri") || utilities.getEnv("LIBVIRT_DEFAULT_URI");
+export declare const uri: string | undefined;
+Object.defineProperty(exports, "uri", {
+    get() {
+        return __config.get("uri") ?? utilities.getEnv("LIBVIRT_DEFAULT_URI");
+    },
+    enumerable: true,
+});
+

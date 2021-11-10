@@ -708,6 +708,12 @@
     },
     "provider": {
         "description": "The provider type for the libvirt package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "uri": {
+                "type": "string",
+                "description": "libvirt connection URI for operations. See https://libvirt.org/uri.html\n"
+            }
+        },
         "inputProperties": {
             "uri": {
                 "type": "string",

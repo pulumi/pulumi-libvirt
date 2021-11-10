@@ -138,32 +138,32 @@ export interface VolumeState {
     /**
      * The backing volume (CoW) to use for this volume.
      */
-    readonly baseVolumeId?: pulumi.Input<string>;
+    baseVolumeId?: pulumi.Input<string>;
     /**
      * The name of the backing volume (CoW) to use
      * for this volume. Note well: when `baseVolumePool` is not specified the
      * volume is going to be searched inside of `pool`.
      */
-    readonly baseVolumeName?: pulumi.Input<string>;
+    baseVolumeName?: pulumi.Input<string>;
     /**
      * The name of the storage pool containing the
      * volume defined by `baseVolumeName`.
      */
-    readonly baseVolumePool?: pulumi.Input<string>;
-    readonly format?: pulumi.Input<string>;
+    baseVolumePool?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
      * A unique name for the resource, required by libvirt.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The storage pool where the resource will be created.
      * If not given, the `default` storage pool will be used.
      */
-    readonly pool?: pulumi.Input<string>;
-    readonly size?: pulumi.Input<number>;
-    readonly source?: pulumi.Input<string>;
-    readonly xml?: pulumi.Input<inputs.VolumeXml>;
+    pool?: pulumi.Input<string>;
+    size?: pulumi.Input<number>;
+    source?: pulumi.Input<string>;
+    xml?: pulumi.Input<inputs.VolumeXml>;
 }
 
 /**
@@ -173,30 +173,30 @@ export interface VolumeArgs {
     /**
      * The backing volume (CoW) to use for this volume.
      */
-    readonly baseVolumeId?: pulumi.Input<string>;
+    baseVolumeId?: pulumi.Input<string>;
     /**
      * The name of the backing volume (CoW) to use
      * for this volume. Note well: when `baseVolumePool` is not specified the
      * volume is going to be searched inside of `pool`.
      */
-    readonly baseVolumeName?: pulumi.Input<string>;
+    baseVolumeName?: pulumi.Input<string>;
     /**
      * The name of the storage pool containing the
      * volume defined by `baseVolumeName`.
      */
-    readonly baseVolumePool?: pulumi.Input<string>;
-    readonly format?: pulumi.Input<string>;
+    baseVolumePool?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
      * A unique name for the resource, required by libvirt.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The storage pool where the resource will be created.
      * If not given, the `default` storage pool will be used.
      */
-    readonly pool?: pulumi.Input<string>;
-    readonly size?: pulumi.Input<number>;
-    readonly source?: pulumi.Input<string>;
-    readonly xml?: pulumi.Input<inputs.VolumeXml>;
+    pool?: pulumi.Input<string>;
+    size?: pulumi.Input<number>;
+    source?: pulumi.Input<string>;
+    xml?: pulumi.Input<inputs.VolumeXml>;
 }

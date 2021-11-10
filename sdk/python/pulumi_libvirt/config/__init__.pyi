@@ -8,16 +8,8 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-import types
-
-__config__ = pulumi.Config('libvirt')
-
-
-class _ExportableConfig(types.ModuleType):
-    @property
-    def uri(self) -> Optional[str]:
-        """
-        libvirt connection URI for operations. See https://libvirt.org/uri.html
-        """
-        return __config__.get('uri') or _utilities.get_env('LIBVIRT_DEFAULT_URI')
+uri: Optional[str]
+"""
+libvirt connection URI for operations. See https://libvirt.org/uri.html
+"""
 

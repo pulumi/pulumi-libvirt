@@ -191,7 +191,7 @@ type CloudInitDiskArrayInput interface {
 type CloudInitDiskArray []CloudInitDiskInput
 
 func (CloudInitDiskArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CloudInitDisk)(nil))
+	return reflect.TypeOf((*[]*CloudInitDisk)(nil)).Elem()
 }
 
 func (i CloudInitDiskArray) ToCloudInitDiskArrayOutput() CloudInitDiskArrayOutput {
@@ -216,7 +216,7 @@ type CloudInitDiskMapInput interface {
 type CloudInitDiskMap map[string]CloudInitDiskInput
 
 func (CloudInitDiskMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CloudInitDisk)(nil))
+	return reflect.TypeOf((*map[string]*CloudInitDisk)(nil)).Elem()
 }
 
 func (i CloudInitDiskMap) ToCloudInitDiskMapOutput() CloudInitDiskMapOutput {
@@ -227,9 +227,7 @@ func (i CloudInitDiskMap) ToCloudInitDiskMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(CloudInitDiskMapOutput)
 }
 
-type CloudInitDiskOutput struct {
-	*pulumi.OutputState
-}
+type CloudInitDiskOutput struct{ *pulumi.OutputState }
 
 func (CloudInitDiskOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*CloudInitDisk)(nil))
@@ -248,14 +246,12 @@ func (o CloudInitDiskOutput) ToCloudInitDiskPtrOutput() CloudInitDiskPtrOutput {
 }
 
 func (o CloudInitDiskOutput) ToCloudInitDiskPtrOutputWithContext(ctx context.Context) CloudInitDiskPtrOutput {
-	return o.ApplyT(func(v CloudInitDisk) *CloudInitDisk {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudInitDisk) *CloudInitDisk {
 		return &v
 	}).(CloudInitDiskPtrOutput)
 }
 
-type CloudInitDiskPtrOutput struct {
-	*pulumi.OutputState
-}
+type CloudInitDiskPtrOutput struct{ *pulumi.OutputState }
 
 func (CloudInitDiskPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**CloudInitDisk)(nil))
@@ -267,6 +263,16 @@ func (o CloudInitDiskPtrOutput) ToCloudInitDiskPtrOutput() CloudInitDiskPtrOutpu
 
 func (o CloudInitDiskPtrOutput) ToCloudInitDiskPtrOutputWithContext(ctx context.Context) CloudInitDiskPtrOutput {
 	return o
+}
+
+func (o CloudInitDiskPtrOutput) Elem() CloudInitDiskOutput {
+	return o.ApplyT(func(v *CloudInitDisk) CloudInitDisk {
+		if v != nil {
+			return *v
+		}
+		var ret CloudInitDisk
+		return ret
+	}).(CloudInitDiskOutput)
 }
 
 type CloudInitDiskArrayOutput struct{ *pulumi.OutputState }
@@ -310,6 +316,10 @@ func (o CloudInitDiskMapOutput) MapIndex(k pulumi.StringInput) CloudInitDiskOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudInitDiskInput)(nil)).Elem(), &CloudInitDisk{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudInitDiskPtrInput)(nil)).Elem(), &CloudInitDisk{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudInitDiskArrayInput)(nil)).Elem(), CloudInitDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudInitDiskMapInput)(nil)).Elem(), CloudInitDiskMap{})
 	pulumi.RegisterOutputType(CloudInitDiskOutput{})
 	pulumi.RegisterOutputType(CloudInitDiskPtrOutput{})
 	pulumi.RegisterOutputType(CloudInitDiskArrayOutput{})

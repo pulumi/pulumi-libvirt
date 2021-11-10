@@ -4,6 +4,9 @@
 package libvirt
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,4 +32,59 @@ type GetNetworkDnsmasqOptionsTemplateResult struct {
 	OptionName  string            `pulumi:"optionName"`
 	OptionValue string            `pulumi:"optionValue"`
 	Rendered    map[string]string `pulumi:"rendered"`
+}
+
+func GetNetworkDnsmasqOptionsTemplateOutput(ctx *pulumi.Context, args GetNetworkDnsmasqOptionsTemplateOutputArgs, opts ...pulumi.InvokeOption) GetNetworkDnsmasqOptionsTemplateResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetNetworkDnsmasqOptionsTemplateResult, error) {
+			args := v.(GetNetworkDnsmasqOptionsTemplateArgs)
+			r, err := GetNetworkDnsmasqOptionsTemplate(ctx, &args, opts...)
+			return *r, err
+		}).(GetNetworkDnsmasqOptionsTemplateResultOutput)
+}
+
+// A collection of arguments for invoking getNetworkDnsmasqOptionsTemplate.
+type GetNetworkDnsmasqOptionsTemplateOutputArgs struct {
+	OptionName  pulumi.StringInput `pulumi:"optionName"`
+	OptionValue pulumi.StringInput `pulumi:"optionValue"`
+}
+
+func (GetNetworkDnsmasqOptionsTemplateOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNetworkDnsmasqOptionsTemplateArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNetworkDnsmasqOptionsTemplate.
+type GetNetworkDnsmasqOptionsTemplateResultOutput struct{ *pulumi.OutputState }
+
+func (GetNetworkDnsmasqOptionsTemplateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNetworkDnsmasqOptionsTemplateResult)(nil)).Elem()
+}
+
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) ToGetNetworkDnsmasqOptionsTemplateResultOutput() GetNetworkDnsmasqOptionsTemplateResultOutput {
+	return o
+}
+
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) ToGetNetworkDnsmasqOptionsTemplateResultOutputWithContext(ctx context.Context) GetNetworkDnsmasqOptionsTemplateResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) OptionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) string { return v.OptionName }).(pulumi.StringOutput)
+}
+
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) OptionValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) string { return v.OptionValue }).(pulumi.StringOutput)
+}
+
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) Rendered() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) map[string]string { return v.Rendered }).(pulumi.StringMapOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetNetworkDnsmasqOptionsTemplateResultOutput{})
 }

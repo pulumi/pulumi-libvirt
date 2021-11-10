@@ -102,3 +102,11 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter
+    def uri(self) -> pulumi.Output[Optional[str]]:
+        """
+        libvirt connection URI for operations. See https://libvirt.org/uri.html
+        """
+        return pulumi.get(self, "uri")
+

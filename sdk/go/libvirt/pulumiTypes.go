@@ -343,10 +343,11 @@ func (o DomainCpuOutput) ToDomainCpuPtrOutput() DomainCpuPtrOutput {
 }
 
 func (o DomainCpuOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context) DomainCpuPtrOutput {
-	return o.ApplyT(func(v DomainCpu) *DomainCpu {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainCpu) *DomainCpu {
 		return &v
 	}).(DomainCpuPtrOutput)
 }
+
 func (o DomainCpuOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainCpu) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -366,7 +367,13 @@ func (o DomainCpuPtrOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context)
 }
 
 func (o DomainCpuPtrOutput) Elem() DomainCpuOutput {
-	return o.ApplyT(func(v *DomainCpu) DomainCpu { return *v }).(DomainCpuOutput)
+	return o.ApplyT(func(v *DomainCpu) DomainCpu {
+		if v != nil {
+			return *v
+		}
+		var ret DomainCpu
+		return ret
+	}).(DomainCpuOutput)
 }
 
 func (o DomainCpuPtrOutput) Mode() pulumi.StringPtrOutput {
@@ -745,7 +752,7 @@ func (o DomainGraphicsOutput) ToDomainGraphicsPtrOutput() DomainGraphicsPtrOutpu
 }
 
 func (o DomainGraphicsOutput) ToDomainGraphicsPtrOutputWithContext(ctx context.Context) DomainGraphicsPtrOutput {
-	return o.ApplyT(func(v DomainGraphics) *DomainGraphics {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainGraphics) *DomainGraphics {
 		return &v
 	}).(DomainGraphicsPtrOutput)
 }
@@ -786,7 +793,13 @@ func (o DomainGraphicsPtrOutput) ToDomainGraphicsPtrOutputWithContext(ctx contex
 }
 
 func (o DomainGraphicsPtrOutput) Elem() DomainGraphicsOutput {
-	return o.ApplyT(func(v *DomainGraphics) DomainGraphics { return *v }).(DomainGraphicsOutput)
+	return o.ApplyT(func(v *DomainGraphics) DomainGraphics {
+		if v != nil {
+			return *v
+		}
+		var ret DomainGraphics
+		return ret
+	}).(DomainGraphicsOutput)
 }
 
 // defaults to "yes"
@@ -1155,7 +1168,7 @@ func (o DomainNvramOutput) ToDomainNvramPtrOutput() DomainNvramPtrOutput {
 }
 
 func (o DomainNvramOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context) DomainNvramPtrOutput {
-	return o.ApplyT(func(v DomainNvram) *DomainNvram {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainNvram) *DomainNvram {
 		return &v
 	}).(DomainNvramPtrOutput)
 }
@@ -1186,7 +1199,13 @@ func (o DomainNvramPtrOutput) ToDomainNvramPtrOutputWithContext(ctx context.Cont
 }
 
 func (o DomainNvramPtrOutput) Elem() DomainNvramOutput {
-	return o.ApplyT(func(v *DomainNvram) DomainNvram { return *v }).(DomainNvramOutput)
+	return o.ApplyT(func(v *DomainNvram) DomainNvram {
+		if v != nil {
+			return *v
+		}
+		var ret DomainNvram
+		return ret
+	}).(DomainNvramOutput)
 }
 
 // The filename to use as the block device for this disk (read-only)
@@ -1303,7 +1322,7 @@ func (o DomainVideoOutput) ToDomainVideoPtrOutput() DomainVideoPtrOutput {
 }
 
 func (o DomainVideoOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context) DomainVideoPtrOutput {
-	return o.ApplyT(func(v DomainVideo) *DomainVideo {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainVideo) *DomainVideo {
 		return &v
 	}).(DomainVideoPtrOutput)
 }
@@ -1328,7 +1347,13 @@ func (o DomainVideoPtrOutput) ToDomainVideoPtrOutputWithContext(ctx context.Cont
 }
 
 func (o DomainVideoPtrOutput) Elem() DomainVideoOutput {
-	return o.ApplyT(func(v *DomainVideo) DomainVideo { return *v }).(DomainVideoOutput)
+	return o.ApplyT(func(v *DomainVideo) DomainVideo {
+		if v != nil {
+			return *v
+		}
+		var ret DomainVideo
+		return ret
+	}).(DomainVideoOutput)
 }
 
 // Console device type. Valid values are "pty" and "tcp".
@@ -1432,10 +1457,11 @@ func (o DomainXmlOutput) ToDomainXmlPtrOutput() DomainXmlPtrOutput {
 }
 
 func (o DomainXmlOutput) ToDomainXmlPtrOutputWithContext(ctx context.Context) DomainXmlPtrOutput {
-	return o.ApplyT(func(v DomainXml) *DomainXml {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainXml) *DomainXml {
 		return &v
 	}).(DomainXmlPtrOutput)
 }
+
 func (o DomainXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -1455,7 +1481,13 @@ func (o DomainXmlPtrOutput) ToDomainXmlPtrOutputWithContext(ctx context.Context)
 }
 
 func (o DomainXmlPtrOutput) Elem() DomainXmlOutput {
-	return o.ApplyT(func(v *DomainXml) DomainXml { return *v }).(DomainXmlOutput)
+	return o.ApplyT(func(v *DomainXml) DomainXml {
+		if v != nil {
+			return *v
+		}
+		var ret DomainXml
+		return ret
+	}).(DomainXmlOutput)
 }
 
 func (o DomainXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
@@ -1560,7 +1592,7 @@ func (o NetworkDhcpOutput) ToNetworkDhcpPtrOutput() NetworkDhcpPtrOutput {
 }
 
 func (o NetworkDhcpOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Context) NetworkDhcpPtrOutput {
-	return o.ApplyT(func(v NetworkDhcp) *NetworkDhcp {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkDhcp) *NetworkDhcp {
 		return &v
 	}).(NetworkDhcpPtrOutput)
 }
@@ -1585,7 +1617,13 @@ func (o NetworkDhcpPtrOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Cont
 }
 
 func (o NetworkDhcpPtrOutput) Elem() NetworkDhcpOutput {
-	return o.ApplyT(func(v *NetworkDhcp) NetworkDhcp { return *v }).(NetworkDhcpOutput)
+	return o.ApplyT(func(v *NetworkDhcp) NetworkDhcp {
+		if v != nil {
+			return *v
+		}
+		var ret NetworkDhcp
+		return ret
+	}).(NetworkDhcpOutput)
 }
 
 // when false, disable the DHCP server
@@ -1711,7 +1749,7 @@ func (o NetworkDnsOutput) ToNetworkDnsPtrOutput() NetworkDnsPtrOutput {
 }
 
 func (o NetworkDnsOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Context) NetworkDnsPtrOutput {
-	return o.ApplyT(func(v NetworkDns) *NetworkDns {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkDns) *NetworkDns {
 		return &v
 	}).(NetworkDnsPtrOutput)
 }
@@ -1758,7 +1796,13 @@ func (o NetworkDnsPtrOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Contex
 }
 
 func (o NetworkDnsPtrOutput) Elem() NetworkDnsOutput {
-	return o.ApplyT(func(v *NetworkDns) NetworkDns { return *v }).(NetworkDnsOutput)
+	return o.ApplyT(func(v *NetworkDns) NetworkDns {
+		if v != nil {
+			return *v
+		}
+		var ret NetworkDns
+		return ret
+	}).(NetworkDnsOutput)
 }
 
 // when false, disable the DHCP server
@@ -2244,7 +2288,7 @@ func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutput() NetworkD
 }
 
 func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsPtrOutput {
-	return o.ApplyT(func(v NetworkDnsmasqOptions) *NetworkDnsmasqOptions {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkDnsmasqOptions) *NetworkDnsmasqOptions {
 		return &v
 	}).(NetworkDnsmasqOptionsPtrOutput)
 }
@@ -2270,7 +2314,13 @@ func (o NetworkDnsmasqOptionsPtrOutput) ToNetworkDnsmasqOptionsPtrOutputWithCont
 }
 
 func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
-	return o.ApplyT(func(v *NetworkDnsmasqOptions) NetworkDnsmasqOptions { return *v }).(NetworkDnsmasqOptionsOutput)
+	return o.ApplyT(func(v *NetworkDnsmasqOptions) NetworkDnsmasqOptions {
+		if v != nil {
+			return *v
+		}
+		var ret NetworkDnsmasqOptions
+		return ret
+	}).(NetworkDnsmasqOptionsOutput)
 }
 
 // a Dnsmasq option entry block. You can have one or more of these
@@ -2575,10 +2625,11 @@ func (o NetworkXmlOutput) ToNetworkXmlPtrOutput() NetworkXmlPtrOutput {
 }
 
 func (o NetworkXmlOutput) ToNetworkXmlPtrOutputWithContext(ctx context.Context) NetworkXmlPtrOutput {
-	return o.ApplyT(func(v NetworkXml) *NetworkXml {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkXml) *NetworkXml {
 		return &v
 	}).(NetworkXmlPtrOutput)
 }
+
 func (o NetworkXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -2598,7 +2649,13 @@ func (o NetworkXmlPtrOutput) ToNetworkXmlPtrOutputWithContext(ctx context.Contex
 }
 
 func (o NetworkXmlPtrOutput) Elem() NetworkXmlOutput {
-	return o.ApplyT(func(v *NetworkXml) NetworkXml { return *v }).(NetworkXmlOutput)
+	return o.ApplyT(func(v *NetworkXml) NetworkXml {
+		if v != nil {
+			return *v
+		}
+		var ret NetworkXml
+		return ret
+	}).(NetworkXmlOutput)
 }
 
 func (o NetworkXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
@@ -2701,10 +2758,11 @@ func (o PoolXmlOutput) ToPoolXmlPtrOutput() PoolXmlPtrOutput {
 }
 
 func (o PoolXmlOutput) ToPoolXmlPtrOutputWithContext(ctx context.Context) PoolXmlPtrOutput {
-	return o.ApplyT(func(v PoolXml) *PoolXml {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PoolXml) *PoolXml {
 		return &v
 	}).(PoolXmlPtrOutput)
 }
+
 func (o PoolXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -2724,7 +2782,13 @@ func (o PoolXmlPtrOutput) ToPoolXmlPtrOutputWithContext(ctx context.Context) Poo
 }
 
 func (o PoolXmlPtrOutput) Elem() PoolXmlOutput {
-	return o.ApplyT(func(v *PoolXml) PoolXml { return *v }).(PoolXmlOutput)
+	return o.ApplyT(func(v *PoolXml) PoolXml {
+		if v != nil {
+			return *v
+		}
+		var ret PoolXml
+		return ret
+	}).(PoolXmlOutput)
 }
 
 func (o PoolXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
@@ -2827,10 +2891,11 @@ func (o VolumeXmlOutput) ToVolumeXmlPtrOutput() VolumeXmlPtrOutput {
 }
 
 func (o VolumeXmlOutput) ToVolumeXmlPtrOutputWithContext(ctx context.Context) VolumeXmlPtrOutput {
-	return o.ApplyT(func(v VolumeXml) *VolumeXml {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VolumeXml) *VolumeXml {
 		return &v
 	}).(VolumeXmlPtrOutput)
 }
+
 func (o VolumeXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -2850,7 +2915,13 @@ func (o VolumeXmlPtrOutput) ToVolumeXmlPtrOutputWithContext(ctx context.Context)
 }
 
 func (o VolumeXmlPtrOutput) Elem() VolumeXmlOutput {
-	return o.ApplyT(func(v *VolumeXml) VolumeXml { return *v }).(VolumeXmlOutput)
+	return o.ApplyT(func(v *VolumeXml) VolumeXml {
+		if v != nil {
+			return *v
+		}
+		var ret VolumeXml
+		return ret
+	}).(VolumeXmlOutput)
 }
 
 func (o VolumeXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
@@ -2863,6 +2934,48 @@ func (o VolumeXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainBootDeviceInput)(nil)).Elem(), DomainBootDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainBootDeviceArrayInput)(nil)).Elem(), DomainBootDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainConsoleInput)(nil)).Elem(), DomainConsoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainConsoleArrayInput)(nil)).Elem(), DomainConsoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainCpuInput)(nil)).Elem(), DomainCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainCpuPtrInput)(nil)).Elem(), DomainCpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainDiskInput)(nil)).Elem(), DomainDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainDiskArrayInput)(nil)).Elem(), DomainDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainFilesystemInput)(nil)).Elem(), DomainFilesystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainFilesystemArrayInput)(nil)).Elem(), DomainFilesystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainGraphicsInput)(nil)).Elem(), DomainGraphicsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainGraphicsPtrInput)(nil)).Elem(), DomainGraphicsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainNetworkInterfaceInput)(nil)).Elem(), DomainNetworkInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainNetworkInterfaceArrayInput)(nil)).Elem(), DomainNetworkInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainNvramInput)(nil)).Elem(), DomainNvramArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainNvramPtrInput)(nil)).Elem(), DomainNvramArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainVideoInput)(nil)).Elem(), DomainVideoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainVideoPtrInput)(nil)).Elem(), DomainVideoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainXmlInput)(nil)).Elem(), DomainXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainXmlPtrInput)(nil)).Elem(), DomainXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDhcpInput)(nil)).Elem(), NetworkDhcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDhcpPtrInput)(nil)).Elem(), NetworkDhcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsInput)(nil)).Elem(), NetworkDnsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsPtrInput)(nil)).Elem(), NetworkDnsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsForwarderInput)(nil)).Elem(), NetworkDnsForwarderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsForwarderArrayInput)(nil)).Elem(), NetworkDnsForwarderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsHostInput)(nil)).Elem(), NetworkDnsHostArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsHostArrayInput)(nil)).Elem(), NetworkDnsHostArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsSrvInput)(nil)).Elem(), NetworkDnsSrvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsSrvArrayInput)(nil)).Elem(), NetworkDnsSrvArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsmasqOptionsInput)(nil)).Elem(), NetworkDnsmasqOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsmasqOptionsPtrInput)(nil)).Elem(), NetworkDnsmasqOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsmasqOptionsOptionInput)(nil)).Elem(), NetworkDnsmasqOptionsOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkDnsmasqOptionsOptionArrayInput)(nil)).Elem(), NetworkDnsmasqOptionsOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkRouteInput)(nil)).Elem(), NetworkRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkRouteArrayInput)(nil)).Elem(), NetworkRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkXmlInput)(nil)).Elem(), NetworkXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkXmlPtrInput)(nil)).Elem(), NetworkXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolXmlInput)(nil)).Elem(), PoolXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolXmlPtrInput)(nil)).Elem(), PoolXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeXmlInput)(nil)).Elem(), VolumeXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeXmlPtrInput)(nil)).Elem(), VolumeXmlArgs{})
 	pulumi.RegisterOutputType(DomainBootDeviceOutput{})
 	pulumi.RegisterOutputType(DomainBootDeviceArrayOutput{})
 	pulumi.RegisterOutputType(DomainConsoleOutput{})
