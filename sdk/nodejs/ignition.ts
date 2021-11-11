@@ -72,16 +72,16 @@ export class Ignition extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Ignition resources.
  */
 export interface IgnitionState {
-    readonly content?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly pool?: pulumi.Input<string>;
+    content?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    pool?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Ignition resource.
  */
 export interface IgnitionArgs {
-    readonly content: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly pool?: pulumi.Input<string>;
+    content: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    pool?: pulumi.Input<string>;
 }

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export function getNetworkDnsHostTemplate(args: GetNetworkDnsHostTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkDnsHostTemplateResult> {
@@ -23,8 +22,8 @@ export function getNetworkDnsHostTemplate(args: GetNetworkDnsHostTemplateArgs, o
  * A collection of arguments for invoking getNetworkDnsHostTemplate.
  */
 export interface GetNetworkDnsHostTemplateArgs {
-    readonly hostname: string;
-    readonly ip: string;
+    hostname: string;
+    ip: string;
 }
 
 /**
@@ -38,4 +37,16 @@ export interface GetNetworkDnsHostTemplateResult {
     readonly id: string;
     readonly ip: string;
     readonly rendered: {[key: string]: string};
+}
+
+export function getNetworkDnsHostTemplateOutput(args: GetNetworkDnsHostTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsHostTemplateResult> {
+    return pulumi.output(args).apply(a => getNetworkDnsHostTemplate(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkDnsHostTemplate.
+ */
+export interface GetNetworkDnsHostTemplateOutputArgs {
+    hostname: pulumi.Input<string>;
+    ip: pulumi.Input<string>;
 }

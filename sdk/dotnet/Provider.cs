@@ -19,6 +19,13 @@ namespace Pulumi.Libvirt
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// libvirt connection URI for operations. See https://libvirt.org/uri.html
+        /// </summary>
+        [Output("uri")]
+        public Output<string?> Uri { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
         ///

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Libvirt
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Libvirt
     {
         public static Task<GetNetworkDnsmasqOptionsTemplateResult> InvokeAsync(GetNetworkDnsmasqOptionsTemplateArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateArgs(), options.WithVersion());
+
+        public static Output<GetNetworkDnsmasqOptionsTemplateResult> Invoke(GetNetworkDnsmasqOptionsTemplateInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateInvokeArgs(), options.WithVersion());
     }
 
 
@@ -25,6 +29,19 @@ namespace Pulumi.Libvirt
         public string OptionValue { get; set; } = null!;
 
         public GetNetworkDnsmasqOptionsTemplateArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkDnsmasqOptionsTemplateInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("optionName", required: true)]
+        public Input<string> OptionName { get; set; } = null!;
+
+        [Input("optionValue", required: true)]
+        public Input<string> OptionValue { get; set; } = null!;
+
+        public GetNetworkDnsmasqOptionsTemplateInvokeArgs()
         {
         }
     }

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export function getNetworkDnsSrvTemplate(args: GetNetworkDnsSrvTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkDnsSrvTemplateResult> {
@@ -28,13 +27,13 @@ export function getNetworkDnsSrvTemplate(args: GetNetworkDnsSrvTemplateArgs, opt
  * A collection of arguments for invoking getNetworkDnsSrvTemplate.
  */
 export interface GetNetworkDnsSrvTemplateArgs {
-    readonly domain?: string;
-    readonly port?: string;
-    readonly priority?: string;
-    readonly protocol: string;
-    readonly service: string;
-    readonly target?: string;
-    readonly weight?: string;
+    domain?: string;
+    port?: string;
+    priority?: string;
+    protocol: string;
+    service: string;
+    target?: string;
+    weight?: string;
 }
 
 /**
@@ -53,4 +52,21 @@ export interface GetNetworkDnsSrvTemplateResult {
     readonly service: string;
     readonly target?: string;
     readonly weight?: string;
+}
+
+export function getNetworkDnsSrvTemplateOutput(args: GetNetworkDnsSrvTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsSrvTemplateResult> {
+    return pulumi.output(args).apply(a => getNetworkDnsSrvTemplate(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkDnsSrvTemplate.
+ */
+export interface GetNetworkDnsSrvTemplateOutputArgs {
+    domain?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    priority?: pulumi.Input<string>;
+    protocol: pulumi.Input<string>;
+    service: pulumi.Input<string>;
+    target?: pulumi.Input<string>;
+    weight?: pulumi.Input<string>;
 }

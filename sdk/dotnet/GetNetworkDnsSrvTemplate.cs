@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Libvirt
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Libvirt
     {
         public static Task<GetNetworkDnsSrvTemplateResult> InvokeAsync(GetNetworkDnsSrvTemplateArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkDnsSrvTemplateResult>("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", args ?? new GetNetworkDnsSrvTemplateArgs(), options.WithVersion());
+
+        public static Output<GetNetworkDnsSrvTemplateResult> Invoke(GetNetworkDnsSrvTemplateInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkDnsSrvTemplateResult>("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", args ?? new GetNetworkDnsSrvTemplateInvokeArgs(), options.WithVersion());
     }
 
 
@@ -40,6 +44,34 @@ namespace Pulumi.Libvirt
         public string? Weight { get; set; }
 
         public GetNetworkDnsSrvTemplateArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkDnsSrvTemplateInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("domain")]
+        public Input<string>? Domain { get; set; }
+
+        [Input("port")]
+        public Input<string>? Port { get; set; }
+
+        [Input("priority")]
+        public Input<string>? Priority { get; set; }
+
+        [Input("protocol", required: true)]
+        public Input<string> Protocol { get; set; } = null!;
+
+        [Input("service", required: true)]
+        public Input<string> Service { get; set; } = null!;
+
+        [Input("target")]
+        public Input<string>? Target { get; set; }
+
+        [Input("weight")]
+        public Input<string>? Weight { get; set; }
+
+        public GetNetworkDnsSrvTemplateInvokeArgs()
         {
         }
     }

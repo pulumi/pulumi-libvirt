@@ -118,44 +118,44 @@ export class Pool extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Pool resources.
  */
 export interface PoolState {
-    readonly allocation?: pulumi.Input<number>;
-    readonly available?: pulumi.Input<string>;
-    readonly capacity?: pulumi.Input<number>;
+    allocation?: pulumi.Input<number>;
+    available?: pulumi.Input<string>;
+    capacity?: pulumi.Input<number>;
     /**
      * A unique name for the resource, required by libvirt.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
      * the "dir" type pools.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The type of the pool. Currently, only "dir" supported.
      */
-    readonly type?: pulumi.Input<string>;
-    readonly xml?: pulumi.Input<inputs.PoolXml>;
+    type?: pulumi.Input<string>;
+    xml?: pulumi.Input<inputs.PoolXml>;
 }
 
 /**
  * The set of arguments for constructing a Pool resource.
  */
 export interface PoolArgs {
-    readonly allocation?: pulumi.Input<number>;
-    readonly available?: pulumi.Input<string>;
-    readonly capacity?: pulumi.Input<number>;
+    allocation?: pulumi.Input<number>;
+    available?: pulumi.Input<string>;
+    capacity?: pulumi.Input<number>;
     /**
      * A unique name for the resource, required by libvirt.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
      * the "dir" type pools.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The type of the pool. Currently, only "dir" supported.
      */
-    readonly type: pulumi.Input<string>;
-    readonly xml?: pulumi.Input<inputs.PoolXml>;
+    type: pulumi.Input<string>;
+    xml?: pulumi.Input<inputs.PoolXml>;
 }

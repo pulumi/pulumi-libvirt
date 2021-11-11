@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export function getNetworkDnsmasqOptionsTemplate(args: GetNetworkDnsmasqOptionsTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkDnsmasqOptionsTemplateResult> {
@@ -23,8 +22,8 @@ export function getNetworkDnsmasqOptionsTemplate(args: GetNetworkDnsmasqOptionsT
  * A collection of arguments for invoking getNetworkDnsmasqOptionsTemplate.
  */
 export interface GetNetworkDnsmasqOptionsTemplateArgs {
-    readonly optionName: string;
-    readonly optionValue: string;
+    optionName: string;
+    optionValue: string;
 }
 
 /**
@@ -38,4 +37,16 @@ export interface GetNetworkDnsmasqOptionsTemplateResult {
     readonly optionName: string;
     readonly optionValue: string;
     readonly rendered: {[key: string]: string};
+}
+
+export function getNetworkDnsmasqOptionsTemplateOutput(args: GetNetworkDnsmasqOptionsTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsmasqOptionsTemplateResult> {
+    return pulumi.output(args).apply(a => getNetworkDnsmasqOptionsTemplate(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkDnsmasqOptionsTemplate.
+ */
+export interface GetNetworkDnsmasqOptionsTemplateOutputArgs {
+    optionName: pulumi.Input<string>;
+    optionValue: pulumi.Input<string>;
 }

@@ -25,6 +25,10 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * libvirt connection URI for operations. See https://libvirt.org/uri.html
+     */
+    public readonly uri!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -53,5 +57,5 @@ export interface ProviderArgs {
     /**
      * libvirt connection URI for operations. See https://libvirt.org/uri.html
      */
-    readonly uri?: pulumi.Input<string>;
+    uri?: pulumi.Input<string>;
 }

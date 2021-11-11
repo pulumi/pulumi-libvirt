@@ -96,26 +96,26 @@ export interface CloudInitDiskState {
     /**
      * cloud-init user data.
      */
-    readonly metaData?: pulumi.Input<string>;
+    metaData?: pulumi.Input<string>;
     /**
      * A unique name for the resource, required by libvirt.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * cloud-init network-config data.
      */
-    readonly networkConfig?: pulumi.Input<string>;
+    networkConfig?: pulumi.Input<string>;
     /**
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, networkConfig and metaData parameters have a look at upstream doc:
      * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
      */
-    readonly pool?: pulumi.Input<string>;
+    pool?: pulumi.Input<string>;
     /**
      * cloud-init user data.
      */
-    readonly userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string>;
 }
 
 /**
@@ -125,24 +125,24 @@ export interface CloudInitDiskArgs {
     /**
      * cloud-init user data.
      */
-    readonly metaData?: pulumi.Input<string>;
+    metaData?: pulumi.Input<string>;
     /**
      * A unique name for the resource, required by libvirt.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * cloud-init network-config data.
      */
-    readonly networkConfig?: pulumi.Input<string>;
+    networkConfig?: pulumi.Input<string>;
     /**
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, networkConfig and metaData parameters have a look at upstream doc:
      * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
      */
-    readonly pool?: pulumi.Input<string>;
+    pool?: pulumi.Input<string>;
     /**
      * cloud-init user data.
      */
-    readonly userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string>;
 }

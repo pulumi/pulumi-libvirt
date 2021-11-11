@@ -256,124 +256,124 @@ export interface DomainState {
      * The architecture for the VM (probably x8664 or i686),
      * you normally won't need to set this unless you are building a special VM
      */
-    readonly arch?: pulumi.Input<string>;
+    arch?: pulumi.Input<string>;
     /**
      * Set to `true` to start the domain on host boot up.
      * If not specified `false` is assumed.
      */
-    readonly autostart?: pulumi.Input<boolean>;
+    autostart?: pulumi.Input<boolean>;
     /**
      * A list of devices (dev) which defines boot order. Example
      * below.
      */
-    readonly bootDevices?: pulumi.Input<pulumi.Input<inputs.DomainBootDevice>[]>;
+    bootDevices?: pulumi.Input<pulumi.Input<inputs.DomainBootDevice>[]>;
     /**
      * The `libvirt.CloudInitDisk` disk that has to be used by
      * the domain. This is going to be attached as a CDROM ISO. Changing the
      * cloud-init won't cause the domain to be recreated, however the change will
      * have effect on the next reboot.
      */
-    readonly cloudinit?: pulumi.Input<string>;
+    cloudinit?: pulumi.Input<string>;
     /**
      * Arguments to the kernel
      */
-    readonly cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
-    readonly consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
+    cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
     /**
      * The
      * [libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
      * that is to be used by the CoreOS domain.
      */
-    readonly coreosIgnition?: pulumi.Input<string>;
+    coreosIgnition?: pulumi.Input<string>;
     /**
      * Configures CPU mode. See below for more
      * details.
      */
-    readonly cpu?: pulumi.Input<inputs.DomainCpu>;
+    cpu?: pulumi.Input<inputs.DomainCpu>;
     /**
      * The description for domain.
      * Changing this forces a new resource to be created.
      * This data is not used by libvirt in any way, it can contain any information the user wants.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * An array of one or more disks to attach to the domain. The
      * `disk` object structure is documented below.
      */
-    readonly disks?: pulumi.Input<pulumi.Input<inputs.DomainDisk>[]>;
+    disks?: pulumi.Input<pulumi.Input<inputs.DomainDisk>[]>;
     /**
      * The path of the emulator to use
      */
-    readonly emulator?: pulumi.Input<string>;
+    emulator?: pulumi.Input<string>;
     /**
      * An array of one or more host filesystems to attach to
      * the domain. The `filesystem` object structure is documented
      * below.
      */
-    readonly filesystems?: pulumi.Input<pulumi.Input<inputs.DomainFilesystem>[]>;
+    filesystems?: pulumi.Input<pulumi.Input<inputs.DomainFilesystem>[]>;
     /**
      * The UEFI rom images for exercising UEFI secure boot in a qemu
      * environment. Users should usually specify one of the standard _Open Virtual Machine
      * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
      * read-only.
      */
-    readonly firmware?: pulumi.Input<string>;
+    firmware?: pulumi.Input<string>;
     /**
      * The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
      */
-    readonly fwCfgName?: pulumi.Input<string>;
-    readonly graphics?: pulumi.Input<inputs.DomainGraphics>;
+    fwCfgName?: pulumi.Input<string>;
+    graphics?: pulumi.Input<inputs.DomainGraphics>;
     /**
      * The path of the initrd to boot.
      */
-    readonly initrd?: pulumi.Input<string>;
+    initrd?: pulumi.Input<string>;
     /**
      * The path of the kernel to boot
      */
-    readonly kernel?: pulumi.Input<string>;
+    kernel?: pulumi.Input<string>;
     /**
      * The machine type,
      * you normally won't need to set this unless you are running on a platform that
      * defaults to the wrong machine type for your template
      */
-    readonly machine?: pulumi.Input<string>;
+    machine?: pulumi.Input<string>;
     /**
      * The amount of memory in MiB. If not specified the domain
      * will be created with 512 MiB of memory be used.
      */
-    readonly memory?: pulumi.Input<number>;
-    readonly metadata?: pulumi.Input<string>;
+    memory?: pulumi.Input<number>;
+    metadata?: pulumi.Input<string>;
     /**
      * A unique name for the resource, required by libvirt.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * An array of one or more network interfaces to
      * attach to the domain. The `networkInterface` object structure is documented
      * below.
      */
-    readonly networkInterfaces?: pulumi.Input<pulumi.Input<inputs.DomainNetworkInterface>[]>;
+    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.DomainNetworkInterface>[]>;
     /**
      * this block allows specifying the following attributes related to the _nvram_:
      */
-    readonly nvram?: pulumi.Input<inputs.DomainNvram>;
+    nvram?: pulumi.Input<inputs.DomainNvram>;
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
      */
-    readonly qemuAgent?: pulumi.Input<boolean>;
+    qemuAgent?: pulumi.Input<boolean>;
     /**
      * Use `false` to turn off the instance. If not specified,
      * true is assumed and the instance, if stopped, will be started at next apply.
      */
-    readonly running?: pulumi.Input<boolean>;
+    running?: pulumi.Input<boolean>;
     /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      */
-    readonly vcpu?: pulumi.Input<number>;
-    readonly video?: pulumi.Input<inputs.DomainVideo>;
-    readonly xml?: pulumi.Input<inputs.DomainXml>;
+    vcpu?: pulumi.Input<number>;
+    video?: pulumi.Input<inputs.DomainVideo>;
+    xml?: pulumi.Input<inputs.DomainXml>;
 }
 
 /**
@@ -384,122 +384,122 @@ export interface DomainArgs {
      * The architecture for the VM (probably x8664 or i686),
      * you normally won't need to set this unless you are building a special VM
      */
-    readonly arch?: pulumi.Input<string>;
+    arch?: pulumi.Input<string>;
     /**
      * Set to `true` to start the domain on host boot up.
      * If not specified `false` is assumed.
      */
-    readonly autostart?: pulumi.Input<boolean>;
+    autostart?: pulumi.Input<boolean>;
     /**
      * A list of devices (dev) which defines boot order. Example
      * below.
      */
-    readonly bootDevices?: pulumi.Input<pulumi.Input<inputs.DomainBootDevice>[]>;
+    bootDevices?: pulumi.Input<pulumi.Input<inputs.DomainBootDevice>[]>;
     /**
      * The `libvirt.CloudInitDisk` disk that has to be used by
      * the domain. This is going to be attached as a CDROM ISO. Changing the
      * cloud-init won't cause the domain to be recreated, however the change will
      * have effect on the next reboot.
      */
-    readonly cloudinit?: pulumi.Input<string>;
+    cloudinit?: pulumi.Input<string>;
     /**
      * Arguments to the kernel
      */
-    readonly cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
-    readonly consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
+    cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
     /**
      * The
      * [libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
      * that is to be used by the CoreOS domain.
      */
-    readonly coreosIgnition?: pulumi.Input<string>;
+    coreosIgnition?: pulumi.Input<string>;
     /**
      * Configures CPU mode. See below for more
      * details.
      */
-    readonly cpu?: pulumi.Input<inputs.DomainCpu>;
+    cpu?: pulumi.Input<inputs.DomainCpu>;
     /**
      * The description for domain.
      * Changing this forces a new resource to be created.
      * This data is not used by libvirt in any way, it can contain any information the user wants.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * An array of one or more disks to attach to the domain. The
      * `disk` object structure is documented below.
      */
-    readonly disks?: pulumi.Input<pulumi.Input<inputs.DomainDisk>[]>;
+    disks?: pulumi.Input<pulumi.Input<inputs.DomainDisk>[]>;
     /**
      * The path of the emulator to use
      */
-    readonly emulator?: pulumi.Input<string>;
+    emulator?: pulumi.Input<string>;
     /**
      * An array of one or more host filesystems to attach to
      * the domain. The `filesystem` object structure is documented
      * below.
      */
-    readonly filesystems?: pulumi.Input<pulumi.Input<inputs.DomainFilesystem>[]>;
+    filesystems?: pulumi.Input<pulumi.Input<inputs.DomainFilesystem>[]>;
     /**
      * The UEFI rom images for exercising UEFI secure boot in a qemu
      * environment. Users should usually specify one of the standard _Open Virtual Machine
      * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
      * read-only.
      */
-    readonly firmware?: pulumi.Input<string>;
+    firmware?: pulumi.Input<string>;
     /**
      * The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
      */
-    readonly fwCfgName?: pulumi.Input<string>;
-    readonly graphics?: pulumi.Input<inputs.DomainGraphics>;
+    fwCfgName?: pulumi.Input<string>;
+    graphics?: pulumi.Input<inputs.DomainGraphics>;
     /**
      * The path of the initrd to boot.
      */
-    readonly initrd?: pulumi.Input<string>;
+    initrd?: pulumi.Input<string>;
     /**
      * The path of the kernel to boot
      */
-    readonly kernel?: pulumi.Input<string>;
+    kernel?: pulumi.Input<string>;
     /**
      * The machine type,
      * you normally won't need to set this unless you are running on a platform that
      * defaults to the wrong machine type for your template
      */
-    readonly machine?: pulumi.Input<string>;
+    machine?: pulumi.Input<string>;
     /**
      * The amount of memory in MiB. If not specified the domain
      * will be created with 512 MiB of memory be used.
      */
-    readonly memory?: pulumi.Input<number>;
-    readonly metadata?: pulumi.Input<string>;
+    memory?: pulumi.Input<number>;
+    metadata?: pulumi.Input<string>;
     /**
      * A unique name for the resource, required by libvirt.
      * Changing this forces a new resource to be created.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * An array of one or more network interfaces to
      * attach to the domain. The `networkInterface` object structure is documented
      * below.
      */
-    readonly networkInterfaces?: pulumi.Input<pulumi.Input<inputs.DomainNetworkInterface>[]>;
+    networkInterfaces?: pulumi.Input<pulumi.Input<inputs.DomainNetworkInterface>[]>;
     /**
      * this block allows specifying the following attributes related to the _nvram_:
      */
-    readonly nvram?: pulumi.Input<inputs.DomainNvram>;
+    nvram?: pulumi.Input<inputs.DomainNvram>;
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
      */
-    readonly qemuAgent?: pulumi.Input<boolean>;
+    qemuAgent?: pulumi.Input<boolean>;
     /**
      * Use `false` to turn off the instance. If not specified,
      * true is assumed and the instance, if stopped, will be started at next apply.
      */
-    readonly running?: pulumi.Input<boolean>;
+    running?: pulumi.Input<boolean>;
     /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      */
-    readonly vcpu?: pulumi.Input<number>;
-    readonly video?: pulumi.Input<inputs.DomainVideo>;
-    readonly xml?: pulumi.Input<inputs.DomainXml>;
+    vcpu?: pulumi.Input<number>;
+    video?: pulumi.Input<inputs.DomainVideo>;
+    xml?: pulumi.Input<inputs.DomainXml>;
 }
