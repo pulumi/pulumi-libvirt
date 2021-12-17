@@ -655,6 +655,8 @@ type DomainGraphics struct {
 	ListenType *string `pulumi:"listenType"`
 	// Console device type. Valid values are "pty" and "tcp".
 	Type *string `pulumi:"type"`
+	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+	Websocket *int `pulumi:"websocket"`
 }
 
 // DomainGraphicsInput is an input type that accepts DomainGraphicsArgs and DomainGraphicsOutput values.
@@ -678,6 +680,8 @@ type DomainGraphicsArgs struct {
 	ListenType pulumi.StringPtrInput `pulumi:"listenType"`
 	// Console device type. Valid values are "pty" and "tcp".
 	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+	Websocket pulumi.IntPtrInput `pulumi:"websocket"`
 }
 
 func (DomainGraphicsArgs) ElementType() reflect.Type {
@@ -778,6 +782,11 @@ func (o DomainGraphicsOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+func (o DomainGraphicsOutput) Websocket() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DomainGraphics) *int { return v.Websocket }).(pulumi.IntPtrOutput)
+}
+
 type DomainGraphicsPtrOutput struct{ *pulumi.OutputState }
 
 func (DomainGraphicsPtrOutput) ElementType() reflect.Type {
@@ -841,6 +850,16 @@ func (o DomainGraphicsPtrOutput) Type() pulumi.StringPtrOutput {
 		}
 		return v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+func (o DomainGraphicsPtrOutput) Websocket() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DomainGraphics) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Websocket
+	}).(pulumi.IntPtrOutput)
 }
 
 type DomainNetworkInterface struct {
@@ -1226,6 +1245,238 @@ func (o DomainNvramPtrOutput) Template() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Template
+	}).(pulumi.StringPtrOutput)
+}
+
+type DomainTpm struct {
+	// Path to TPM device on the host, ex: `/dev/tpm0`
+	BackendDevicePath *string `pulumi:"backendDevicePath"`
+	// [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+	BackendEncryptionSecret *string `pulumi:"backendEncryptionSecret"`
+	// Keep the TPM state when a transient domain is powered off or undefined
+	BackendPersistentState *bool `pulumi:"backendPersistentState"`
+	// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+	BackendType *string `pulumi:"backendType"`
+	// TPM version
+	BackendVersion *string `pulumi:"backendVersion"`
+	// TPM model provided to the guest
+	Model *string `pulumi:"model"`
+}
+
+// DomainTpmInput is an input type that accepts DomainTpmArgs and DomainTpmOutput values.
+// You can construct a concrete instance of `DomainTpmInput` via:
+//
+//          DomainTpmArgs{...}
+type DomainTpmInput interface {
+	pulumi.Input
+
+	ToDomainTpmOutput() DomainTpmOutput
+	ToDomainTpmOutputWithContext(context.Context) DomainTpmOutput
+}
+
+type DomainTpmArgs struct {
+	// Path to TPM device on the host, ex: `/dev/tpm0`
+	BackendDevicePath pulumi.StringPtrInput `pulumi:"backendDevicePath"`
+	// [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+	BackendEncryptionSecret pulumi.StringPtrInput `pulumi:"backendEncryptionSecret"`
+	// Keep the TPM state when a transient domain is powered off or undefined
+	BackendPersistentState pulumi.BoolPtrInput `pulumi:"backendPersistentState"`
+	// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+	BackendType pulumi.StringPtrInput `pulumi:"backendType"`
+	// TPM version
+	BackendVersion pulumi.StringPtrInput `pulumi:"backendVersion"`
+	// TPM model provided to the guest
+	Model pulumi.StringPtrInput `pulumi:"model"`
+}
+
+func (DomainTpmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTpm)(nil)).Elem()
+}
+
+func (i DomainTpmArgs) ToDomainTpmOutput() DomainTpmOutput {
+	return i.ToDomainTpmOutputWithContext(context.Background())
+}
+
+func (i DomainTpmArgs) ToDomainTpmOutputWithContext(ctx context.Context) DomainTpmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmOutput)
+}
+
+func (i DomainTpmArgs) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
+	return i.ToDomainTpmPtrOutputWithContext(context.Background())
+}
+
+func (i DomainTpmArgs) ToDomainTpmPtrOutputWithContext(ctx context.Context) DomainTpmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmOutput).ToDomainTpmPtrOutputWithContext(ctx)
+}
+
+// DomainTpmPtrInput is an input type that accepts DomainTpmArgs, DomainTpmPtr and DomainTpmPtrOutput values.
+// You can construct a concrete instance of `DomainTpmPtrInput` via:
+//
+//          DomainTpmArgs{...}
+//
+//  or:
+//
+//          nil
+type DomainTpmPtrInput interface {
+	pulumi.Input
+
+	ToDomainTpmPtrOutput() DomainTpmPtrOutput
+	ToDomainTpmPtrOutputWithContext(context.Context) DomainTpmPtrOutput
+}
+
+type domainTpmPtrType DomainTpmArgs
+
+func DomainTpmPtr(v *DomainTpmArgs) DomainTpmPtrInput {
+	return (*domainTpmPtrType)(v)
+}
+
+func (*domainTpmPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainTpm)(nil)).Elem()
+}
+
+func (i *domainTpmPtrType) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
+	return i.ToDomainTpmPtrOutputWithContext(context.Background())
+}
+
+func (i *domainTpmPtrType) ToDomainTpmPtrOutputWithContext(ctx context.Context) DomainTpmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmPtrOutput)
+}
+
+type DomainTpmOutput struct{ *pulumi.OutputState }
+
+func (DomainTpmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DomainTpm)(nil)).Elem()
+}
+
+func (o DomainTpmOutput) ToDomainTpmOutput() DomainTpmOutput {
+	return o
+}
+
+func (o DomainTpmOutput) ToDomainTpmOutputWithContext(ctx context.Context) DomainTpmOutput {
+	return o
+}
+
+func (o DomainTpmOutput) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
+	return o.ToDomainTpmPtrOutputWithContext(context.Background())
+}
+
+func (o DomainTpmOutput) ToDomainTpmPtrOutputWithContext(ctx context.Context) DomainTpmPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainTpm) *DomainTpm {
+		return &v
+	}).(DomainTpmPtrOutput)
+}
+
+// Path to TPM device on the host, ex: `/dev/tpm0`
+func (o DomainTpmOutput) BackendDevicePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainTpm) *string { return v.BackendDevicePath }).(pulumi.StringPtrOutput)
+}
+
+// [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+func (o DomainTpmOutput) BackendEncryptionSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainTpm) *string { return v.BackendEncryptionSecret }).(pulumi.StringPtrOutput)
+}
+
+// Keep the TPM state when a transient domain is powered off or undefined
+func (o DomainTpmOutput) BackendPersistentState() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DomainTpm) *bool { return v.BackendPersistentState }).(pulumi.BoolPtrOutput)
+}
+
+// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+func (o DomainTpmOutput) BackendType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainTpm) *string { return v.BackendType }).(pulumi.StringPtrOutput)
+}
+
+// TPM version
+func (o DomainTpmOutput) BackendVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainTpm) *string { return v.BackendVersion }).(pulumi.StringPtrOutput)
+}
+
+// TPM model provided to the guest
+func (o DomainTpmOutput) Model() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainTpm) *string { return v.Model }).(pulumi.StringPtrOutput)
+}
+
+type DomainTpmPtrOutput struct{ *pulumi.OutputState }
+
+func (DomainTpmPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DomainTpm)(nil)).Elem()
+}
+
+func (o DomainTpmPtrOutput) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
+	return o
+}
+
+func (o DomainTpmPtrOutput) ToDomainTpmPtrOutputWithContext(ctx context.Context) DomainTpmPtrOutput {
+	return o
+}
+
+func (o DomainTpmPtrOutput) Elem() DomainTpmOutput {
+	return o.ApplyT(func(v *DomainTpm) DomainTpm {
+		if v != nil {
+			return *v
+		}
+		var ret DomainTpm
+		return ret
+	}).(DomainTpmOutput)
+}
+
+// Path to TPM device on the host, ex: `/dev/tpm0`
+func (o DomainTpmPtrOutput) BackendDevicePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DomainTpm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackendDevicePath
+	}).(pulumi.StringPtrOutput)
+}
+
+// [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+func (o DomainTpmPtrOutput) BackendEncryptionSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DomainTpm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackendEncryptionSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Keep the TPM state when a transient domain is powered off or undefined
+func (o DomainTpmPtrOutput) BackendPersistentState() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DomainTpm) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.BackendPersistentState
+	}).(pulumi.BoolPtrOutput)
+}
+
+// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+func (o DomainTpmPtrOutput) BackendType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DomainTpm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackendType
+	}).(pulumi.StringPtrOutput)
+}
+
+// TPM version
+func (o DomainTpmPtrOutput) BackendVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DomainTpm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackendVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// TPM model provided to the guest
+func (o DomainTpmPtrOutput) Model() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DomainTpm) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Model
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2950,6 +3201,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainNetworkInterfaceArrayInput)(nil)).Elem(), DomainNetworkInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainNvramInput)(nil)).Elem(), DomainNvramArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainNvramPtrInput)(nil)).Elem(), DomainNvramArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainTpmInput)(nil)).Elem(), DomainTpmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DomainTpmPtrInput)(nil)).Elem(), DomainTpmArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainVideoInput)(nil)).Elem(), DomainVideoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainVideoPtrInput)(nil)).Elem(), DomainVideoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainXmlInput)(nil)).Elem(), DomainXmlArgs{})
@@ -2992,6 +3245,8 @@ func init() {
 	pulumi.RegisterOutputType(DomainNetworkInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(DomainNvramOutput{})
 	pulumi.RegisterOutputType(DomainNvramPtrOutput{})
+	pulumi.RegisterOutputType(DomainTpmOutput{})
+	pulumi.RegisterOutputType(DomainTpmPtrOutput{})
 	pulumi.RegisterOutputType(DomainVideoOutput{})
 	pulumi.RegisterOutputType(DomainVideoPtrOutput{})
 	pulumi.RegisterOutputType(DomainXmlOutput{})

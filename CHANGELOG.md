@@ -2,8 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
-
+* Upgrade to v0.6.12 of the libvirt Terraform Provider
 ---
 
 ## 0.2.0 (2021-11-11)

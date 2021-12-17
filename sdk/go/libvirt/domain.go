@@ -107,6 +107,8 @@ type Domain struct {
 	// Use `false` to turn off the instance. If not specified,
 	// true is assumed and the instance, if stopped, will be started at next apply.
 	Running pulumi.BoolPtrOutput `pulumi:"running"`
+	// TPM device to attach to the domain. The `tpm` object structure is documented below.
+	Tpm DomainTpmPtrOutput `pulumi:"tpm"`
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  pulumi.IntPtrOutput  `pulumi:"vcpu"`
@@ -214,6 +216,8 @@ type domainState struct {
 	// Use `false` to turn off the instance. If not specified,
 	// true is assumed and the instance, if stopped, will be started at next apply.
 	Running *bool `pulumi:"running"`
+	// TPM device to attach to the domain. The `tpm` object structure is documented below.
+	Tpm *DomainTpm `pulumi:"tpm"`
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  *int         `pulumi:"vcpu"`
@@ -293,6 +297,8 @@ type DomainState struct {
 	// Use `false` to turn off the instance. If not specified,
 	// true is assumed and the instance, if stopped, will be started at next apply.
 	Running pulumi.BoolPtrInput
+	// TPM device to attach to the domain. The `tpm` object structure is documented below.
+	Tpm DomainTpmPtrInput
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  pulumi.IntPtrInput
@@ -376,6 +382,8 @@ type domainArgs struct {
 	// Use `false` to turn off the instance. If not specified,
 	// true is assumed and the instance, if stopped, will be started at next apply.
 	Running *bool `pulumi:"running"`
+	// TPM device to attach to the domain. The `tpm` object structure is documented below.
+	Tpm *DomainTpm `pulumi:"tpm"`
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  *int         `pulumi:"vcpu"`
@@ -456,6 +464,8 @@ type DomainArgs struct {
 	// Use `false` to turn off the instance. If not specified,
 	// true is assumed and the instance, if stopped, will be started at next apply.
 	Running pulumi.BoolPtrInput
+	// TPM device to attach to the domain. The `tpm` object structure is documented below.
+	Tpm DomainTpmPtrInput
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  pulumi.IntPtrInput

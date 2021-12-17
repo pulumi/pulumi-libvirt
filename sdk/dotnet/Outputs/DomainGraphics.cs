@@ -30,6 +30,10 @@ namespace Pulumi.Libvirt.Outputs
         /// Console device type. Valid values are "pty" and "tcp".
         /// </summary>
         public readonly string? Type;
+        /// <summary>
+        /// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+        /// </summary>
+        public readonly int? Websocket;
 
         [OutputConstructor]
         private DomainGraphics(
@@ -39,12 +43,15 @@ namespace Pulumi.Libvirt.Outputs
 
             string? listenType,
 
-            string? type)
+            string? type,
+
+            int? websocket)
         {
             Autoport = autoport;
             ListenAddress = listenAddress;
             ListenType = listenType;
             Type = type;
+            Websocket = websocket;
         }
     }
 }

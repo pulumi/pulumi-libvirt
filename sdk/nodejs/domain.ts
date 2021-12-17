@@ -162,6 +162,10 @@ export class Domain extends pulumi.CustomResource {
      */
     public readonly running!: pulumi.Output<boolean | undefined>;
     /**
+     * TPM device to attach to the domain. The `tpm` object structure is documented below.
+     */
+    public readonly tpm!: pulumi.Output<outputs.DomainTpm | undefined>;
+    /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      */
@@ -207,6 +211,7 @@ export class Domain extends pulumi.CustomResource {
             inputs["nvram"] = state ? state.nvram : undefined;
             inputs["qemuAgent"] = state ? state.qemuAgent : undefined;
             inputs["running"] = state ? state.running : undefined;
+            inputs["tpm"] = state ? state.tpm : undefined;
             inputs["vcpu"] = state ? state.vcpu : undefined;
             inputs["video"] = state ? state.video : undefined;
             inputs["xml"] = state ? state.xml : undefined;
@@ -237,6 +242,7 @@ export class Domain extends pulumi.CustomResource {
             inputs["nvram"] = args ? args.nvram : undefined;
             inputs["qemuAgent"] = args ? args.qemuAgent : undefined;
             inputs["running"] = args ? args.running : undefined;
+            inputs["tpm"] = args ? args.tpm : undefined;
             inputs["vcpu"] = args ? args.vcpu : undefined;
             inputs["video"] = args ? args.video : undefined;
             inputs["xml"] = args ? args.xml : undefined;
@@ -368,6 +374,10 @@ export interface DomainState {
      */
     running?: pulumi.Input<boolean>;
     /**
+     * TPM device to attach to the domain. The `tpm` object structure is documented below.
+     */
+    tpm?: pulumi.Input<inputs.DomainTpm>;
+    /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      */
@@ -495,6 +505,10 @@ export interface DomainArgs {
      * true is assumed and the instance, if stopped, will be started at next apply.
      */
     running?: pulumi.Input<boolean>;
+    /**
+     * TPM device to attach to the domain. The `tpm` object structure is documented below.
+     */
+    tpm?: pulumi.Input<inputs.DomainTpm>;
     /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.

@@ -37,6 +37,12 @@ namespace Pulumi.Libvirt.Inputs
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+        /// </summary>
+        [Input("websocket")]
+        public Input<int>? Websocket { get; set; }
+
         public DomainGraphicsArgs()
         {
         }

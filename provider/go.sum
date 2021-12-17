@@ -230,8 +230,8 @@ github.com/dimchansky/utfbom v1.1.1 h1:vV6w1AhK4VMnhBno/TPVCoK9U/LP0PkLCS9tbxHdi
 github.com/dimchansky/utfbom v1.1.1/go.mod h1:SxdoEBH5qIqFocHMyGOXVAybYJdr71b1Q/j0mACtrfE=
 github.com/djherbis/times v1.2.0 h1:xANXjsC/iBqbO00vkWlYwPWgBgEVU6m6AFYg0Pic+Mc=
 github.com/djherbis/times v1.2.0/go.mod h1:CGMZlo255K5r4Yw0b9RRfFQpM2y7uOmxg4jm9HsaVf8=
-github.com/dmacvicar/terraform-provider-libvirt v0.6.11 h1:rSspUX9wH8gwkHpxU/2ZmTkfNbpHN1jTO0Bk8WIohpM=
-github.com/dmacvicar/terraform-provider-libvirt v0.6.11/go.mod h1:DUytXRC5l1GX/AqJV6gyOFn8TWUMuzHnAUhs8MngHUI=
+github.com/dmacvicar/terraform-provider-libvirt v0.6.12 h1:d7jrUmJTe5yJo6WpsGdh/m2NKfRg73U0Vaj6fcNspMk=
+github.com/dmacvicar/terraform-provider-libvirt v0.6.12/go.mod h1:3PQecanB9shr7n4aWpKScRfS+cZoYielsyli2ynrRR0=
 github.com/docker/distribution v2.7.1+incompatible/go.mod h1:J2gT2udsDAN96Uj4KfcMRqY0/ypR+oyYUYmja8H+y+w=
 github.com/docker/docker v1.4.2-0.20200319182547-c7ad2b866182 h1:Caj/qGJ9KyulC1WSksyPgp7r8+DKgTGfU39lmb2C5MQ=
 github.com/docker/docker v1.4.2-0.20200319182547-c7ad2b866182/go.mod h1:eEKB0N0r5NX/I1kEveEz05bcu8tLC/8azJZsviup8Sk=
@@ -590,8 +590,8 @@ github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+
 github.com/leodido/go-urn v1.2.0/go.mod h1:+8+nEpDfqqsY+g338gtMEUOtuK+4dEMhiQEgxpxOKII=
 github.com/lib/pq v1.10.0/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
 github.com/lib/pq v1.10.1/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
-github.com/libvirt/libvirt-go-xml v5.10.0+incompatible h1:kcgVynR4a9cuh/kc7Ywl8XRBUxbqe05seR2qgN+yTno=
-github.com/libvirt/libvirt-go-xml v5.10.0+incompatible/go.mod h1:oBlgD3xOA01ihiK5stbhFzvieyW+jVS6kbbsMVF623A=
+github.com/libvirt/libvirt-go-xml v7.4.0+incompatible h1:+BBo2XjlT8pAK4pm+aSX8mC/6nc/rdRac10ZukpW31U=
+github.com/libvirt/libvirt-go-xml v7.4.0+incompatible/go.mod h1:oBlgD3xOA01ihiK5stbhFzvieyW+jVS6kbbsMVF623A=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
 github.com/matryer/is v1.2.0/go.mod h1:2fLPjFQM9rhQ15aVEtbuwhJinnOqrmgXPNdZsdwlWXA=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
@@ -814,8 +814,9 @@ github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVM
 github.com/ugorji/go/codec v1.1.7/go.mod h1:Ax+UKWsSmolVDwsd+7N3ZtXu+yMGCf907BLYF3GoBXY=
 github.com/ulikunitz/xz v0.5.5/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4ABRW8=
 github.com/ulikunitz/xz v0.5.6/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4ABRW8=
-github.com/ulikunitz/xz v0.5.7 h1:YvTNdFzX6+W5m9msiYg/zpkSURPPtOlzbqYjrFn7Yt4=
 github.com/ulikunitz/xz v0.5.7/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
+github.com/ulikunitz/xz v0.5.8 h1:ERv8V6GKqVi23rgu5cj9pVfVzJbOqAY2Ntl88O6c2nQ=
+github.com/ulikunitz/xz v0.5.8/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
 github.com/urfave/cli v0.0.0-20171014202726-7bc6a0acffa5/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
 github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb h1:lyL3z7vYwTWXf4/bI+A01+cCSnfhKIBhy+SQ46Z/ml8=
 github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb/go.mod h1:FHafX5vmDzyP+1CQATJn7WFKc9CvnvxyvZy6I1MrG/U=

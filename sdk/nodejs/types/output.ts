@@ -95,6 +95,10 @@ export interface DomainGraphics {
      * Console device type. Valid values are "pty" and "tcp".
      */
     type?: string;
+    /**
+     * Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+     */
+    websocket?: number;
 }
 
 export interface DomainNetworkInterface {
@@ -162,6 +166,33 @@ export interface DomainNvram {
      * store.
      */
     template?: string;
+}
+
+export interface DomainTpm {
+    /**
+     * Path to TPM device on the host, ex: `/dev/tpm0`
+     */
+    backendDevicePath?: string;
+    /**
+     * [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+     */
+    backendEncryptionSecret?: string;
+    /**
+     * Keep the TPM state when a transient domain is powered off or undefined
+     */
+    backendPersistentState?: boolean;
+    /**
+     * TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+     */
+    backendType?: string;
+    /**
+     * TPM version
+     */
+    backendVersion?: string;
+    /**
+     * TPM model provided to the guest
+     */
+    model?: string;
 }
 
 export interface DomainVideo {
