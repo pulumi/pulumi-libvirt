@@ -39,7 +39,7 @@ class NetworkArgs:
                If not specified `false` is assumed.
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
-               it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+               it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
@@ -58,6 +58,7 @@ class NetworkArgs:
                the virtual network to the LAN **without applying any NAT**. It requires that
                the IP address range be pre-configured in the routing tables of the router
                on the host network.
+               - `open`: similar to `route`, but no firewall rules are added.
                - `bridge`: use a pre-existing host bridge. The guests will effectively be
                directly connected to the physical network (i.e. their IP addresses will
                all be on the subnet of the physical network, and there will be no
@@ -132,7 +133,7 @@ class NetworkArgs:
         """
         The bridge device defines the name of a bridge
         device which will be used to construct the virtual network (when not provided,
-        it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         """
         return pulumi.get(self, "bridge")
 
@@ -206,6 +207,7 @@ class NetworkArgs:
         the virtual network to the LAN **without applying any NAT**. It requires that
         the IP address range be pre-configured in the routing tables of the router
         on the host network.
+        - `open`: similar to `route`, but no firewall rules are added.
         - `bridge`: use a pre-existing host bridge. The guests will effectively be
         directly connected to the physical network (i.e. their IP addresses will
         all be on the subnet of the physical network, and there will be no
@@ -295,7 +297,7 @@ class _NetworkState:
                If not specified `false` is assumed.
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
-               it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+               it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
@@ -314,6 +316,7 @@ class _NetworkState:
                the virtual network to the LAN **without applying any NAT**. It requires that
                the IP address range be pre-configured in the routing tables of the router
                on the host network.
+               - `open`: similar to `route`, but no firewall rules are added.
                - `bridge`: use a pre-existing host bridge. The guests will effectively be
                directly connected to the physical network (i.e. their IP addresses will
                all be on the subnet of the physical network, and there will be no
@@ -388,7 +391,7 @@ class _NetworkState:
         """
         The bridge device defines the name of a bridge
         device which will be used to construct the virtual network (when not provided,
-        it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         """
         return pulumi.get(self, "bridge")
 
@@ -462,6 +465,7 @@ class _NetworkState:
         the virtual network to the LAN **without applying any NAT**. It requires that
         the IP address range be pre-configured in the routing tables of the router
         on the host network.
+        - `open`: similar to `route`, but no firewall rules are added.
         - `bridge`: use a pre-existing host bridge. The guests will effectively be
         directly connected to the physical network (i.e. their IP addresses will
         all be on the subnet of the physical network, and there will be no
@@ -558,7 +562,7 @@ class Network(pulumi.CustomResource):
                If not specified `false` is assumed.
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
-               it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+               it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
@@ -577,6 +581,7 @@ class Network(pulumi.CustomResource):
                the virtual network to the LAN **without applying any NAT**. It requires that
                the IP address range be pre-configured in the routing tables of the router
                on the host network.
+               - `open`: similar to `route`, but no firewall rules are added.
                - `bridge`: use a pre-existing host bridge. The guests will effectively be
                directly connected to the physical network (i.e. their IP addresses will
                all be on the subnet of the physical network, and there will be no
@@ -690,7 +695,7 @@ class Network(pulumi.CustomResource):
                If not specified `false` is assumed.
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
-               it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+               it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
@@ -709,6 +714,7 @@ class Network(pulumi.CustomResource):
                the virtual network to the LAN **without applying any NAT**. It requires that
                the IP address range be pre-configured in the routing tables of the router
                on the host network.
+               - `open`: similar to `route`, but no firewall rules are added.
                - `bridge`: use a pre-existing host bridge. The guests will effectively be
                directly connected to the physical network (i.e. their IP addresses will
                all be on the subnet of the physical network, and there will be no
@@ -768,7 +774,7 @@ class Network(pulumi.CustomResource):
         """
         The bridge device defines the name of a bridge
         device which will be used to construct the virtual network (when not provided,
-        it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+        it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
         """
         return pulumi.get(self, "bridge")
 
@@ -822,6 +828,7 @@ class Network(pulumi.CustomResource):
         the virtual network to the LAN **without applying any NAT**. It requires that
         the IP address range be pre-configured in the routing tables of the router
         on the host network.
+        - `open`: similar to `route`, but no firewall rules are added.
         - `bridge`: use a pre-existing host bridge. The guests will effectively be
         directly connected to the physical network (i.e. their IP addresses will
         all be on the subnet of the physical network, and there will be no

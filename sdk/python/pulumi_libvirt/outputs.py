@@ -18,6 +18,7 @@ __all__ = [
     'DomainGraphics',
     'DomainNetworkInterface',
     'DomainNvram',
+    'DomainTpm',
     'DomainVideo',
     'DomainXml',
     'NetworkDhcp',
@@ -326,13 +327,15 @@ class DomainGraphics(dict):
                  autoport: Optional[bool] = None,
                  listen_address: Optional[str] = None,
                  listen_type: Optional[str] = None,
-                 type: Optional[str] = None):
+                 type: Optional[str] = None,
+                 websocket: Optional[int] = None):
         """
         :param bool autoport: defaults to "yes"
         :param str listen_address: IP Address where the VNC listener should be started if
                `listen_type` is set to `address`. Defaults to 127.0.0.1
         :param str listen_type: "listen type", defaults to "none"
         :param str type: Console device type. Valid values are "pty" and "tcp".
+        :param int websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
         """
         if autoport is not None:
             pulumi.set(__self__, "autoport", autoport)
@@ -342,6 +345,8 @@ class DomainGraphics(dict):
             pulumi.set(__self__, "listen_type", listen_type)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if websocket is not None:
+            pulumi.set(__self__, "websocket", websocket)
 
     @property
     @pulumi.getter
@@ -375,6 +380,14 @@ class DomainGraphics(dict):
         Console device type. Valid values are "pty" and "tcp".
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def websocket(self) -> Optional[int]:
+        """
+        Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+        """
+        return pulumi.get(self, "websocket")
 
 
 @pulumi.output_type
@@ -583,6 +596,110 @@ class DomainNvram(dict):
         store.
         """
         return pulumi.get(self, "template")
+
+
+@pulumi.output_type
+class DomainTpm(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "backendDevicePath":
+            suggest = "backend_device_path"
+        elif key == "backendEncryptionSecret":
+            suggest = "backend_encryption_secret"
+        elif key == "backendPersistentState":
+            suggest = "backend_persistent_state"
+        elif key == "backendType":
+            suggest = "backend_type"
+        elif key == "backendVersion":
+            suggest = "backend_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainTpm. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainTpm.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainTpm.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 backend_device_path: Optional[str] = None,
+                 backend_encryption_secret: Optional[str] = None,
+                 backend_persistent_state: Optional[bool] = None,
+                 backend_type: Optional[str] = None,
+                 backend_version: Optional[str] = None,
+                 model: Optional[str] = None):
+        """
+        :param str backend_device_path: Path to TPM device on the host, ex: `/dev/tpm0`
+        :param str backend_encryption_secret: [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+        :param bool backend_persistent_state: Keep the TPM state when a transient domain is powered off or undefined
+        :param str backend_type: TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+        :param str backend_version: TPM version
+        :param str model: TPM model provided to the guest
+        """
+        if backend_device_path is not None:
+            pulumi.set(__self__, "backend_device_path", backend_device_path)
+        if backend_encryption_secret is not None:
+            pulumi.set(__self__, "backend_encryption_secret", backend_encryption_secret)
+        if backend_persistent_state is not None:
+            pulumi.set(__self__, "backend_persistent_state", backend_persistent_state)
+        if backend_type is not None:
+            pulumi.set(__self__, "backend_type", backend_type)
+        if backend_version is not None:
+            pulumi.set(__self__, "backend_version", backend_version)
+        if model is not None:
+            pulumi.set(__self__, "model", model)
+
+    @property
+    @pulumi.getter(name="backendDevicePath")
+    def backend_device_path(self) -> Optional[str]:
+        """
+        Path to TPM device on the host, ex: `/dev/tpm0`
+        """
+        return pulumi.get(self, "backend_device_path")
+
+    @property
+    @pulumi.getter(name="backendEncryptionSecret")
+    def backend_encryption_secret(self) -> Optional[str]:
+        """
+        [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+        """
+        return pulumi.get(self, "backend_encryption_secret")
+
+    @property
+    @pulumi.getter(name="backendPersistentState")
+    def backend_persistent_state(self) -> Optional[bool]:
+        """
+        Keep the TPM state when a transient domain is powered off or undefined
+        """
+        return pulumi.get(self, "backend_persistent_state")
+
+    @property
+    @pulumi.getter(name="backendType")
+    def backend_type(self) -> Optional[str]:
+        """
+        TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+        """
+        return pulumi.get(self, "backend_type")
+
+    @property
+    @pulumi.getter(name="backendVersion")
+    def backend_version(self) -> Optional[str]:
+        """
+        TPM version
+        """
+        return pulumi.get(self, "backend_version")
+
+    @property
+    @pulumi.getter
+    def model(self) -> Optional[str]:
+        """
+        TPM model provided to the guest
+        """
+        return pulumi.get(self, "model")
 
 
 @pulumi.output_type

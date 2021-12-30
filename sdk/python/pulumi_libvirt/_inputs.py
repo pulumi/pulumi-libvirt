@@ -17,6 +17,7 @@ __all__ = [
     'DomainGraphicsArgs',
     'DomainNetworkInterfaceArgs',
     'DomainNvramArgs',
+    'DomainTpmArgs',
     'DomainVideoArgs',
     'DomainXmlArgs',
     'NetworkDhcpArgs',
@@ -334,13 +335,15 @@ class DomainGraphicsArgs:
                  autoport: Optional[pulumi.Input[bool]] = None,
                  listen_address: Optional[pulumi.Input[str]] = None,
                  listen_type: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input[str]] = None):
+                 type: Optional[pulumi.Input[str]] = None,
+                 websocket: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] autoport: defaults to "yes"
         :param pulumi.Input[str] listen_address: IP Address where the VNC listener should be started if
                `listen_type` is set to `address`. Defaults to 127.0.0.1
         :param pulumi.Input[str] listen_type: "listen type", defaults to "none"
         :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[int] websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
         """
         if autoport is not None:
             pulumi.set(__self__, "autoport", autoport)
@@ -350,6 +353,8 @@ class DomainGraphicsArgs:
             pulumi.set(__self__, "listen_type", listen_type)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if websocket is not None:
+            pulumi.set(__self__, "websocket", websocket)
 
     @property
     @pulumi.getter
@@ -399,6 +404,18 @@ class DomainGraphicsArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def websocket(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+        """
+        return pulumi.get(self, "websocket")
+
+    @websocket.setter
+    def websocket(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "websocket", value)
 
 
 @pulumi.input_type
@@ -634,6 +651,109 @@ class DomainNvramArgs:
     @template.setter
     def template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "template", value)
+
+
+@pulumi.input_type
+class DomainTpmArgs:
+    def __init__(__self__, *,
+                 backend_device_path: Optional[pulumi.Input[str]] = None,
+                 backend_encryption_secret: Optional[pulumi.Input[str]] = None,
+                 backend_persistent_state: Optional[pulumi.Input[bool]] = None,
+                 backend_type: Optional[pulumi.Input[str]] = None,
+                 backend_version: Optional[pulumi.Input[str]] = None,
+                 model: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backend_device_path: Path to TPM device on the host, ex: `/dev/tpm0`
+        :param pulumi.Input[str] backend_encryption_secret: [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+        :param pulumi.Input[bool] backend_persistent_state: Keep the TPM state when a transient domain is powered off or undefined
+        :param pulumi.Input[str] backend_type: TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+        :param pulumi.Input[str] backend_version: TPM version
+        :param pulumi.Input[str] model: TPM model provided to the guest
+        """
+        if backend_device_path is not None:
+            pulumi.set(__self__, "backend_device_path", backend_device_path)
+        if backend_encryption_secret is not None:
+            pulumi.set(__self__, "backend_encryption_secret", backend_encryption_secret)
+        if backend_persistent_state is not None:
+            pulumi.set(__self__, "backend_persistent_state", backend_persistent_state)
+        if backend_type is not None:
+            pulumi.set(__self__, "backend_type", backend_type)
+        if backend_version is not None:
+            pulumi.set(__self__, "backend_version", backend_version)
+        if model is not None:
+            pulumi.set(__self__, "model", model)
+
+    @property
+    @pulumi.getter(name="backendDevicePath")
+    def backend_device_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to TPM device on the host, ex: `/dev/tpm0`
+        """
+        return pulumi.get(self, "backend_device_path")
+
+    @backend_device_path.setter
+    def backend_device_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend_device_path", value)
+
+    @property
+    @pulumi.getter(name="backendEncryptionSecret")
+    def backend_encryption_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+        """
+        return pulumi.get(self, "backend_encryption_secret")
+
+    @backend_encryption_secret.setter
+    def backend_encryption_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend_encryption_secret", value)
+
+    @property
+    @pulumi.getter(name="backendPersistentState")
+    def backend_persistent_state(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Keep the TPM state when a transient domain is powered off or undefined
+        """
+        return pulumi.get(self, "backend_persistent_state")
+
+    @backend_persistent_state.setter
+    def backend_persistent_state(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backend_persistent_state", value)
+
+    @property
+    @pulumi.getter(name="backendType")
+    def backend_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+        """
+        return pulumi.get(self, "backend_type")
+
+    @backend_type.setter
+    def backend_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend_type", value)
+
+    @property
+    @pulumi.getter(name="backendVersion")
+    def backend_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        TPM version
+        """
+        return pulumi.get(self, "backend_version")
+
+    @backend_version.setter
+    def backend_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend_version", value)
+
+    @property
+    @pulumi.getter
+    def model(self) -> Optional[pulumi.Input[str]]:
+        """
+        TPM model provided to the guest
+        """
+        return pulumi.get(self, "model")
+
+    @model.setter
+    def model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "model", value)
 
 
 @pulumi.input_type

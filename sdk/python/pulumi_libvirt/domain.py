@@ -40,6 +40,7 @@ class DomainArgs:
                  nvram: Optional[pulumi.Input['DomainNvramArgs']] = None,
                  qemu_agent: Optional[pulumi.Input[bool]] = None,
                  running: Optional[pulumi.Input[bool]] = None,
+                 tpm: Optional[pulumi.Input['DomainTpmArgs']] = None,
                  vcpu: Optional[pulumi.Input[int]] = None,
                  video: Optional[pulumi.Input['DomainVideoArgs']] = None,
                  xml: Optional[pulumi.Input['DomainXmlArgs']] = None):
@@ -91,6 +92,7 @@ class DomainArgs:
         :param pulumi.Input[bool] qemu_agent: By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
         :param pulumi.Input[bool] running: Use `false` to turn off the instance. If not specified,
                true is assumed and the instance, if stopped, will be started at next apply.
+        :param pulumi.Input['DomainTpmArgs'] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
         """
@@ -144,6 +146,8 @@ class DomainArgs:
             pulumi.set(__self__, "qemu_agent", qemu_agent)
         if running is not None:
             pulumi.set(__self__, "running", running)
+        if tpm is not None:
+            pulumi.set(__self__, "tpm", tpm)
         if vcpu is not None:
             pulumi.set(__self__, "vcpu", vcpu)
         if video is not None:
@@ -465,6 +469,18 @@ class DomainArgs:
     @running.setter
     def running(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "running", value)
+
+    @property
+    @pulumi.getter
+    def tpm(self) -> Optional[pulumi.Input['DomainTpmArgs']]:
+        """
+        TPM device to attach to the domain. The `tpm` object structure is documented below.
+        """
+        return pulumi.get(self, "tpm")
+
+    @tpm.setter
+    def tpm(self, value: Optional[pulumi.Input['DomainTpmArgs']]):
+        pulumi.set(self, "tpm", value)
 
     @property
     @pulumi.getter
@@ -526,6 +542,7 @@ class _DomainState:
                  nvram: Optional[pulumi.Input['DomainNvramArgs']] = None,
                  qemu_agent: Optional[pulumi.Input[bool]] = None,
                  running: Optional[pulumi.Input[bool]] = None,
+                 tpm: Optional[pulumi.Input['DomainTpmArgs']] = None,
                  vcpu: Optional[pulumi.Input[int]] = None,
                  video: Optional[pulumi.Input['DomainVideoArgs']] = None,
                  xml: Optional[pulumi.Input['DomainXmlArgs']] = None):
@@ -577,6 +594,7 @@ class _DomainState:
         :param pulumi.Input[bool] qemu_agent: By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
         :param pulumi.Input[bool] running: Use `false` to turn off the instance. If not specified,
                true is assumed and the instance, if stopped, will be started at next apply.
+        :param pulumi.Input['DomainTpmArgs'] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
         """
@@ -630,6 +648,8 @@ class _DomainState:
             pulumi.set(__self__, "qemu_agent", qemu_agent)
         if running is not None:
             pulumi.set(__self__, "running", running)
+        if tpm is not None:
+            pulumi.set(__self__, "tpm", tpm)
         if vcpu is not None:
             pulumi.set(__self__, "vcpu", vcpu)
         if video is not None:
@@ -951,6 +971,18 @@ class _DomainState:
     @running.setter
     def running(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "running", value)
+
+    @property
+    @pulumi.getter
+    def tpm(self) -> Optional[pulumi.Input['DomainTpmArgs']]:
+        """
+        TPM device to attach to the domain. The `tpm` object structure is documented below.
+        """
+        return pulumi.get(self, "tpm")
+
+    @tpm.setter
+    def tpm(self, value: Optional[pulumi.Input['DomainTpmArgs']]):
+        pulumi.set(self, "tpm", value)
 
     @property
     @pulumi.getter
@@ -1014,6 +1046,7 @@ class Domain(pulumi.CustomResource):
                  nvram: Optional[pulumi.Input[pulumi.InputType['DomainNvramArgs']]] = None,
                  qemu_agent: Optional[pulumi.Input[bool]] = None,
                  running: Optional[pulumi.Input[bool]] = None,
+                 tpm: Optional[pulumi.Input[pulumi.InputType['DomainTpmArgs']]] = None,
                  vcpu: Optional[pulumi.Input[int]] = None,
                  video: Optional[pulumi.Input[pulumi.InputType['DomainVideoArgs']]] = None,
                  xml: Optional[pulumi.Input[pulumi.InputType['DomainXmlArgs']]] = None,
@@ -1079,6 +1112,7 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[bool] qemu_agent: By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
         :param pulumi.Input[bool] running: Use `false` to turn off the instance. If not specified,
                true is assumed and the instance, if stopped, will be started at next apply.
+        :param pulumi.Input[pulumi.InputType['DomainTpmArgs']] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
         """
@@ -1141,6 +1175,7 @@ class Domain(pulumi.CustomResource):
                  nvram: Optional[pulumi.Input[pulumi.InputType['DomainNvramArgs']]] = None,
                  qemu_agent: Optional[pulumi.Input[bool]] = None,
                  running: Optional[pulumi.Input[bool]] = None,
+                 tpm: Optional[pulumi.Input[pulumi.InputType['DomainTpmArgs']]] = None,
                  vcpu: Optional[pulumi.Input[int]] = None,
                  video: Optional[pulumi.Input[pulumi.InputType['DomainVideoArgs']]] = None,
                  xml: Optional[pulumi.Input[pulumi.InputType['DomainXmlArgs']]] = None,
@@ -1181,6 +1216,7 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["nvram"] = nvram
             __props__.__dict__["qemu_agent"] = qemu_agent
             __props__.__dict__["running"] = running
+            __props__.__dict__["tpm"] = tpm
             __props__.__dict__["vcpu"] = vcpu
             __props__.__dict__["video"] = video
             __props__.__dict__["xml"] = xml
@@ -1219,6 +1255,7 @@ class Domain(pulumi.CustomResource):
             nvram: Optional[pulumi.Input[pulumi.InputType['DomainNvramArgs']]] = None,
             qemu_agent: Optional[pulumi.Input[bool]] = None,
             running: Optional[pulumi.Input[bool]] = None,
+            tpm: Optional[pulumi.Input[pulumi.InputType['DomainTpmArgs']]] = None,
             vcpu: Optional[pulumi.Input[int]] = None,
             video: Optional[pulumi.Input[pulumi.InputType['DomainVideoArgs']]] = None,
             xml: Optional[pulumi.Input[pulumi.InputType['DomainXmlArgs']]] = None) -> 'Domain':
@@ -1275,6 +1312,7 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[bool] qemu_agent: By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
         :param pulumi.Input[bool] running: Use `false` to turn off the instance. If not specified,
                true is assumed and the instance, if stopped, will be started at next apply.
+        :param pulumi.Input[pulumi.InputType['DomainTpmArgs']] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
         """
@@ -1307,6 +1345,7 @@ class Domain(pulumi.CustomResource):
         __props__.__dict__["nvram"] = nvram
         __props__.__dict__["qemu_agent"] = qemu_agent
         __props__.__dict__["running"] = running
+        __props__.__dict__["tpm"] = tpm
         __props__.__dict__["vcpu"] = vcpu
         __props__.__dict__["video"] = video
         __props__.__dict__["xml"] = xml
@@ -1526,6 +1565,14 @@ class Domain(pulumi.CustomResource):
         true is assumed and the instance, if stopped, will be started at next apply.
         """
         return pulumi.get(self, "running")
+
+    @property
+    @pulumi.getter
+    def tpm(self) -> pulumi.Output[Optional['outputs.DomainTpm']]:
+        """
+        TPM device to attach to the domain. The `tpm` object structure is documented below.
+        """
+        return pulumi.get(self, "tpm")
 
     @property
     @pulumi.getter

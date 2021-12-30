@@ -200,6 +200,12 @@ namespace Pulumi.Libvirt
         public Output<bool?> Running { get; private set; } = null!;
 
         /// <summary>
+        /// TPM device to attach to the domain. The `tpm` object structure is documented below.
+        /// </summary>
+        [Output("tpm")]
+        public Output<Outputs.DomainTpm?> Tpm { get; private set; } = null!;
+
+        /// <summary>
         /// The amount of virtual CPUs. If not specified, a single CPU
         /// will be created.
         /// </summary>
@@ -459,6 +465,12 @@ namespace Pulumi.Libvirt
         public Input<bool>? Running { get; set; }
 
         /// <summary>
+        /// TPM device to attach to the domain. The `tpm` object structure is documented below.
+        /// </summary>
+        [Input("tpm")]
+        public Input<Inputs.DomainTpmArgs>? Tpm { get; set; }
+
+        /// <summary>
         /// The amount of virtual CPUs. If not specified, a single CPU
         /// will be created.
         /// </summary>
@@ -677,6 +689,12 @@ namespace Pulumi.Libvirt
         /// </summary>
         [Input("running")]
         public Input<bool>? Running { get; set; }
+
+        /// <summary>
+        /// TPM device to attach to the domain. The `tpm` object structure is documented below.
+        /// </summary>
+        [Input("tpm")]
+        public Input<Inputs.DomainTpmGetArgs>? Tpm { get; set; }
 
         /// <summary>
         /// The amount of virtual CPUs. If not specified, a single CPU

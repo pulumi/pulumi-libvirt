@@ -54,7 +54,7 @@ export class Network extends pulumi.CustomResource {
     /**
      * The bridge device defines the name of a bridge
      * device which will be used to construct the virtual network (when not provided,
-     * it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+     * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      */
     public readonly bridge!: pulumi.Output<string>;
     /**
@@ -88,6 +88,7 @@ export class Network extends pulumi.CustomResource {
      * the virtual network to the LAN **without applying any NAT**. It requires that
      * the IP address range be pre-configured in the routing tables of the router
      * on the host network.
+     * - `open`: similar to `route`, but no firewall rules are added.
      * - `bridge`: use a pre-existing host bridge. The guests will effectively be
      * directly connected to the physical network (i.e. their IP addresses will
      * all be on the subnet of the physical network, and there will be no
@@ -181,7 +182,7 @@ export interface NetworkState {
     /**
      * The bridge device defines the name of a bridge
      * device which will be used to construct the virtual network (when not provided,
-     * it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+     * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      */
     bridge?: pulumi.Input<string>;
     /**
@@ -215,6 +216,7 @@ export interface NetworkState {
      * the virtual network to the LAN **without applying any NAT**. It requires that
      * the IP address range be pre-configured in the routing tables of the router
      * on the host network.
+     * - `open`: similar to `route`, but no firewall rules are added.
      * - `bridge`: use a pre-existing host bridge. The guests will effectively be
      * directly connected to the physical network (i.e. their IP addresses will
      * all be on the subnet of the physical network, and there will be no
@@ -262,7 +264,7 @@ export interface NetworkArgs {
     /**
      * The bridge device defines the name of a bridge
      * device which will be used to construct the virtual network (when not provided,
-     * it will be automatically obtained by libvirt in `none`, `nat` and `route` modes).
+     * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      */
     bridge?: pulumi.Input<string>;
     /**
@@ -296,6 +298,7 @@ export interface NetworkArgs {
      * the virtual network to the LAN **without applying any NAT**. It requires that
      * the IP address range be pre-configured in the routing tables of the router
      * on the host network.
+     * - `open`: similar to `route`, but no firewall rules are added.
      * - `bridge`: use a pre-existing host bridge. The guests will effectively be
      * directly connected to the physical network (i.e. their IP addresses will
      * all be on the subnet of the physical network, and there will be no

@@ -261,6 +261,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "websocket": {
+                    "type": "integer",
+                    "description": "Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -397,6 +406,65 @@
             "required": [
                 "file"
             ]
+        },
+        "libvirt:index/DomainTpm:DomainTpm": {
+            "properties": {
+                "backendDevicePath": {
+                    "type": "string",
+                    "description": "Path to TPM device on the host, ex: `/dev/tpm0`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "backendEncryptionSecret": {
+                    "type": "string",
+                    "description": "[Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "backendPersistentState": {
+                    "type": "boolean",
+                    "description": "Keep the TPM state when a transient domain is powered off or undefined\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "backendType": {
+                    "type": "string",
+                    "description": "TPM backend, either `passthrough` or `emulator` (default: `emulator`)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "backendVersion": {
+                    "type": "string",
+                    "description": "TPM version\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "model": {
+                    "type": "string",
+                    "description": "TPM model provided to the guest\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
         },
         "libvirt:index/DomainVideo:DomainVideo": {
             "properties": {
@@ -923,6 +991,10 @@
                     "type": "boolean",
                     "description": "Use `false` to turn off the instance. If not specified,\ntrue is assumed and the instance, if stopped, will be started at next apply.\n"
                 },
+                "tpm": {
+                    "$ref": "#/types/libvirt:index/DomainTpm:DomainTpm",
+                    "description": "TPM device to attach to the domain. The `tpm` object structure is documented below.\n"
+                },
                 "vcpu": {
                     "type": "integer",
                     "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
@@ -1059,6 +1131,10 @@
                     "type": "boolean",
                     "description": "Use `false` to turn off the instance. If not specified,\ntrue is assumed and the instance, if stopped, will be started at next apply.\n"
                 },
+                "tpm": {
+                    "$ref": "#/types/libvirt:index/DomainTpm:DomainTpm",
+                    "description": "TPM device to attach to the domain. The `tpm` object structure is documented below.\n"
+                },
                 "vcpu": {
                     "type": "integer",
                     "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
@@ -1191,6 +1267,10 @@
                         "type": "boolean",
                         "description": "Use `false` to turn off the instance. If not specified,\ntrue is assumed and the instance, if stopped, will be started at next apply.\n"
                     },
+                    "tpm": {
+                        "$ref": "#/types/libvirt:index/DomainTpm:DomainTpm",
+                        "description": "TPM device to attach to the domain. The `tpm` object structure is documented below.\n"
+                    },
                     "vcpu": {
                         "type": "integer",
                         "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
@@ -1267,7 +1347,7 @@
                 },
                 "bridge": {
                     "type": "string",
-                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat` and `route` modes).\n"
+                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n"
                 },
                 "dhcp": {
                     "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
@@ -1287,7 +1367,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
                 },
                 "mtu": {
                     "type": "integer",
@@ -1326,7 +1406,7 @@
                 },
                 "bridge": {
                     "type": "string",
-                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat` and `route` modes).\n"
+                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n"
                 },
                 "dhcp": {
                     "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
@@ -1346,7 +1426,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
                 },
                 "mtu": {
                     "type": "integer",
@@ -1383,7 +1463,7 @@
                     },
                     "bridge": {
                         "type": "string",
-                        "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat` and `route` modes).\n"
+                        "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n"
                     },
                     "dhcp": {
                         "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
@@ -1403,7 +1483,7 @@
                     },
                     "mode": {
                         "type": "string",
-                        "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                        "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
                     },
                     "mtu": {
                         "type": "integer",

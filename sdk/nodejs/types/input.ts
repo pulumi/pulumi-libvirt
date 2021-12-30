@@ -95,6 +95,10 @@ export interface DomainGraphics {
      * Console device type. Valid values are "pty" and "tcp".
      */
     type?: pulumi.Input<string>;
+    /**
+     * Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+     */
+    websocket?: pulumi.Input<number>;
 }
 
 export interface DomainNetworkInterface {
@@ -162,6 +166,33 @@ export interface DomainNvram {
      * store.
      */
     template?: pulumi.Input<string>;
+}
+
+export interface DomainTpm {
+    /**
+     * Path to TPM device on the host, ex: `/dev/tpm0`
+     */
+    backendDevicePath?: pulumi.Input<string>;
+    /**
+     * [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
+     */
+    backendEncryptionSecret?: pulumi.Input<string>;
+    /**
+     * Keep the TPM state when a transient domain is powered off or undefined
+     */
+    backendPersistentState?: pulumi.Input<boolean>;
+    /**
+     * TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+     */
+    backendType?: pulumi.Input<string>;
+    /**
+     * TPM version
+     */
+    backendVersion?: pulumi.Input<string>;
+    /**
+     * TPM model provided to the guest
+     */
+    model?: pulumi.Input<string>;
 }
 
 export interface DomainVideo {
