@@ -28,7 +28,8 @@ builds:
   - -X github.com/pulumi/pulumi-libvirt/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-libvirt/
 changelog:
-  skip: true
+  use: git
+  sort: asc
 release:
   disable: false
 snapshot:
