@@ -6,17 +6,16 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Libvirt
 {
     public static class GetNetworkDnsHostTemplate
     {
         public static Task<GetNetworkDnsHostTemplateResult> InvokeAsync(GetNetworkDnsHostTemplateArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkDnsHostTemplateResult>("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args ?? new GetNetworkDnsHostTemplateArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkDnsHostTemplateResult>("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args ?? new GetNetworkDnsHostTemplateArgs(), options.WithDefaults());
 
         public static Output<GetNetworkDnsHostTemplateResult> Invoke(GetNetworkDnsHostTemplateInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNetworkDnsHostTemplateResult>("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args ?? new GetNetworkDnsHostTemplateInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkDnsHostTemplateResult>("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args ?? new GetNetworkDnsHostTemplateInvokeArgs(), options.WithDefaults());
     }
 
 

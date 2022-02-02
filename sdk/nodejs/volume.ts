@@ -99,35 +99,33 @@ export class Volume extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VolumeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VolumeArgs | VolumeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
-            inputs["baseVolumeId"] = state ? state.baseVolumeId : undefined;
-            inputs["baseVolumeName"] = state ? state.baseVolumeName : undefined;
-            inputs["baseVolumePool"] = state ? state.baseVolumePool : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pool"] = state ? state.pool : undefined;
-            inputs["size"] = state ? state.size : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["xml"] = state ? state.xml : undefined;
+            resourceInputs["baseVolumeId"] = state ? state.baseVolumeId : undefined;
+            resourceInputs["baseVolumeName"] = state ? state.baseVolumeName : undefined;
+            resourceInputs["baseVolumePool"] = state ? state.baseVolumePool : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pool"] = state ? state.pool : undefined;
+            resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["xml"] = state ? state.xml : undefined;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
-            inputs["baseVolumeId"] = args ? args.baseVolumeId : undefined;
-            inputs["baseVolumeName"] = args ? args.baseVolumeName : undefined;
-            inputs["baseVolumePool"] = args ? args.baseVolumePool : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pool"] = args ? args.pool : undefined;
-            inputs["size"] = args ? args.size : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["xml"] = args ? args.xml : undefined;
+            resourceInputs["baseVolumeId"] = args ? args.baseVolumeId : undefined;
+            resourceInputs["baseVolumeName"] = args ? args.baseVolumeName : undefined;
+            resourceInputs["baseVolumePool"] = args ? args.baseVolumePool : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pool"] = args ? args.pool : undefined;
+            resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["xml"] = args ? args.xml : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Volume.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Volume.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -45,26 +45,24 @@ export class Ignition extends pulumi.CustomResource {
      */
     constructor(name: string, args: IgnitionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IgnitionArgs | IgnitionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IgnitionState | undefined;
-            inputs["content"] = state ? state.content : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pool"] = state ? state.pool : undefined;
+            resourceInputs["content"] = state ? state.content : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pool"] = state ? state.pool : undefined;
         } else {
             const args = argsOrState as IgnitionArgs | undefined;
             if ((!args || args.content === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'content'");
             }
-            inputs["content"] = args ? args.content : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pool"] = args ? args.pool : undefined;
+            resourceInputs["content"] = args ? args.content : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pool"] = args ? args.pool : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Ignition.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Ignition.__pulumiType, name, resourceInputs, opts);
     }
 }
 

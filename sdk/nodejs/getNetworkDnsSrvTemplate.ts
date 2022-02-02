@@ -9,9 +9,7 @@ export function getNetworkDnsSrvTemplate(args: GetNetworkDnsSrvTemplateArgs, opt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", {
         "domain": args.domain,
         "port": args.port,

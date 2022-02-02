@@ -123,41 +123,39 @@ export class Network extends pulumi.CustomResource {
      */
     constructor(name: string, args?: NetworkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkArgs | NetworkState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkState | undefined;
-            inputs["addresses"] = state ? state.addresses : undefined;
-            inputs["autostart"] = state ? state.autostart : undefined;
-            inputs["bridge"] = state ? state.bridge : undefined;
-            inputs["dhcp"] = state ? state.dhcp : undefined;
-            inputs["dns"] = state ? state.dns : undefined;
-            inputs["dnsmasqOptions"] = state ? state.dnsmasqOptions : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["mtu"] = state ? state.mtu : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["routes"] = state ? state.routes : undefined;
-            inputs["xml"] = state ? state.xml : undefined;
+            resourceInputs["addresses"] = state ? state.addresses : undefined;
+            resourceInputs["autostart"] = state ? state.autostart : undefined;
+            resourceInputs["bridge"] = state ? state.bridge : undefined;
+            resourceInputs["dhcp"] = state ? state.dhcp : undefined;
+            resourceInputs["dns"] = state ? state.dns : undefined;
+            resourceInputs["dnsmasqOptions"] = state ? state.dnsmasqOptions : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["mtu"] = state ? state.mtu : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["routes"] = state ? state.routes : undefined;
+            resourceInputs["xml"] = state ? state.xml : undefined;
         } else {
             const args = argsOrState as NetworkArgs | undefined;
-            inputs["addresses"] = args ? args.addresses : undefined;
-            inputs["autostart"] = args ? args.autostart : undefined;
-            inputs["bridge"] = args ? args.bridge : undefined;
-            inputs["dhcp"] = args ? args.dhcp : undefined;
-            inputs["dns"] = args ? args.dns : undefined;
-            inputs["dnsmasqOptions"] = args ? args.dnsmasqOptions : undefined;
-            inputs["domain"] = args ? args.domain : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["mtu"] = args ? args.mtu : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["routes"] = args ? args.routes : undefined;
-            inputs["xml"] = args ? args.xml : undefined;
+            resourceInputs["addresses"] = args ? args.addresses : undefined;
+            resourceInputs["autostart"] = args ? args.autostart : undefined;
+            resourceInputs["bridge"] = args ? args.bridge : undefined;
+            resourceInputs["dhcp"] = args ? args.dhcp : undefined;
+            resourceInputs["dns"] = args ? args.dns : undefined;
+            resourceInputs["dnsmasqOptions"] = args ? args.dnsmasqOptions : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["mtu"] = args ? args.mtu : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["xml"] = args ? args.xml : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Network.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Network.__pulumiType, name, resourceInputs, opts);
     }
 }
 
