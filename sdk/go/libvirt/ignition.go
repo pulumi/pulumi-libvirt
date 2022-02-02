@@ -91,7 +91,7 @@ type IgnitionInput interface {
 }
 
 func (*Ignition) ElementType() reflect.Type {
-	return reflect.TypeOf((*Ignition)(nil))
+	return reflect.TypeOf((**Ignition)(nil)).Elem()
 }
 
 func (i *Ignition) ToIgnitionOutput() IgnitionOutput {
@@ -100,35 +100,6 @@ func (i *Ignition) ToIgnitionOutput() IgnitionOutput {
 
 func (i *Ignition) ToIgnitionOutputWithContext(ctx context.Context) IgnitionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IgnitionOutput)
-}
-
-func (i *Ignition) ToIgnitionPtrOutput() IgnitionPtrOutput {
-	return i.ToIgnitionPtrOutputWithContext(context.Background())
-}
-
-func (i *Ignition) ToIgnitionPtrOutputWithContext(ctx context.Context) IgnitionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IgnitionPtrOutput)
-}
-
-type IgnitionPtrInput interface {
-	pulumi.Input
-
-	ToIgnitionPtrOutput() IgnitionPtrOutput
-	ToIgnitionPtrOutputWithContext(ctx context.Context) IgnitionPtrOutput
-}
-
-type ignitionPtrType IgnitionArgs
-
-func (*ignitionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Ignition)(nil))
-}
-
-func (i *ignitionPtrType) ToIgnitionPtrOutput() IgnitionPtrOutput {
-	return i.ToIgnitionPtrOutputWithContext(context.Background())
-}
-
-func (i *ignitionPtrType) ToIgnitionPtrOutputWithContext(ctx context.Context) IgnitionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IgnitionPtrOutput)
 }
 
 // IgnitionArrayInput is an input type that accepts IgnitionArray and IgnitionArrayOutput values.
@@ -184,7 +155,7 @@ func (i IgnitionMap) ToIgnitionMapOutputWithContext(ctx context.Context) Ignitio
 type IgnitionOutput struct{ *pulumi.OutputState }
 
 func (IgnitionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Ignition)(nil))
+	return reflect.TypeOf((**Ignition)(nil)).Elem()
 }
 
 func (o IgnitionOutput) ToIgnitionOutput() IgnitionOutput {
@@ -195,44 +166,10 @@ func (o IgnitionOutput) ToIgnitionOutputWithContext(ctx context.Context) Ignitio
 	return o
 }
 
-func (o IgnitionOutput) ToIgnitionPtrOutput() IgnitionPtrOutput {
-	return o.ToIgnitionPtrOutputWithContext(context.Background())
-}
-
-func (o IgnitionOutput) ToIgnitionPtrOutputWithContext(ctx context.Context) IgnitionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Ignition) *Ignition {
-		return &v
-	}).(IgnitionPtrOutput)
-}
-
-type IgnitionPtrOutput struct{ *pulumi.OutputState }
-
-func (IgnitionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Ignition)(nil))
-}
-
-func (o IgnitionPtrOutput) ToIgnitionPtrOutput() IgnitionPtrOutput {
-	return o
-}
-
-func (o IgnitionPtrOutput) ToIgnitionPtrOutputWithContext(ctx context.Context) IgnitionPtrOutput {
-	return o
-}
-
-func (o IgnitionPtrOutput) Elem() IgnitionOutput {
-	return o.ApplyT(func(v *Ignition) Ignition {
-		if v != nil {
-			return *v
-		}
-		var ret Ignition
-		return ret
-	}).(IgnitionOutput)
-}
-
 type IgnitionArrayOutput struct{ *pulumi.OutputState }
 
 func (IgnitionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Ignition)(nil))
+	return reflect.TypeOf((*[]*Ignition)(nil)).Elem()
 }
 
 func (o IgnitionArrayOutput) ToIgnitionArrayOutput() IgnitionArrayOutput {
@@ -244,15 +181,15 @@ func (o IgnitionArrayOutput) ToIgnitionArrayOutputWithContext(ctx context.Contex
 }
 
 func (o IgnitionArrayOutput) Index(i pulumi.IntInput) IgnitionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ignition {
-		return vs[0].([]Ignition)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Ignition {
+		return vs[0].([]*Ignition)[vs[1].(int)]
 	}).(IgnitionOutput)
 }
 
 type IgnitionMapOutput struct{ *pulumi.OutputState }
 
 func (IgnitionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Ignition)(nil))
+	return reflect.TypeOf((*map[string]*Ignition)(nil)).Elem()
 }
 
 func (o IgnitionMapOutput) ToIgnitionMapOutput() IgnitionMapOutput {
@@ -264,18 +201,16 @@ func (o IgnitionMapOutput) ToIgnitionMapOutputWithContext(ctx context.Context) I
 }
 
 func (o IgnitionMapOutput) MapIndex(k pulumi.StringInput) IgnitionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Ignition {
-		return vs[0].(map[string]Ignition)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Ignition {
+		return vs[0].(map[string]*Ignition)[vs[1].(string)]
 	}).(IgnitionOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IgnitionInput)(nil)).Elem(), &Ignition{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IgnitionPtrInput)(nil)).Elem(), &Ignition{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IgnitionArrayInput)(nil)).Elem(), IgnitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IgnitionMapInput)(nil)).Elem(), IgnitionMap{})
 	pulumi.RegisterOutputType(IgnitionOutput{})
-	pulumi.RegisterOutputType(IgnitionPtrOutput{})
 	pulumi.RegisterOutputType(IgnitionArrayOutput{})
 	pulumi.RegisterOutputType(IgnitionMapOutput{})
 }

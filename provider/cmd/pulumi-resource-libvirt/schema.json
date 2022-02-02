@@ -871,7 +871,7 @@
             }
         },
         "libvirt:index/domain:Domain": {
-            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst defaultDomain = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Libvirt.Domain(\"default\", new Libvirt.DomainArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"_default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst defaultDomain = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Libvirt.Domain(\"default\", new Libvirt.DomainArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "arch": {
                     "type": "string",
@@ -1896,6 +1896,7 @@
             }
         },
         "go": {
+            "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
         },

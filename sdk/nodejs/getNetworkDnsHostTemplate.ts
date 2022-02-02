@@ -9,9 +9,7 @@ export function getNetworkDnsHostTemplate(args: GetNetworkDnsHostTemplateArgs, o
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", {
         "hostname": args.hostname,
         "ip": args.ip,

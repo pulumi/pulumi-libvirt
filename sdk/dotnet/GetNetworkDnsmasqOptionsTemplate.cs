@@ -6,17 +6,16 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Libvirt
 {
     public static class GetNetworkDnsmasqOptionsTemplate
     {
         public static Task<GetNetworkDnsmasqOptionsTemplateResult> InvokeAsync(GetNetworkDnsmasqOptionsTemplateArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateArgs(), options.WithDefaults());
 
         public static Output<GetNetworkDnsmasqOptionsTemplateResult> Invoke(GetNetworkDnsmasqOptionsTemplateInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -83,34 +83,32 @@ export class Pool extends pulumi.CustomResource {
      */
     constructor(name: string, args: PoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PoolArgs | PoolState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PoolState | undefined;
-            inputs["allocation"] = state ? state.allocation : undefined;
-            inputs["available"] = state ? state.available : undefined;
-            inputs["capacity"] = state ? state.capacity : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["xml"] = state ? state.xml : undefined;
+            resourceInputs["allocation"] = state ? state.allocation : undefined;
+            resourceInputs["available"] = state ? state.available : undefined;
+            resourceInputs["capacity"] = state ? state.capacity : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["xml"] = state ? state.xml : undefined;
         } else {
             const args = argsOrState as PoolArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["allocation"] = args ? args.allocation : undefined;
-            inputs["available"] = args ? args.available : undefined;
-            inputs["capacity"] = args ? args.capacity : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["xml"] = args ? args.xml : undefined;
+            resourceInputs["allocation"] = args ? args.allocation : undefined;
+            resourceInputs["available"] = args ? args.available : undefined;
+            resourceInputs["capacity"] = args ? args.capacity : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["xml"] = args ? args.xml : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Pool.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Pool.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -55,6 +55,7 @@ setup(name='pulumi_libvirt',
       package_data={
           'pulumi_libvirt': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

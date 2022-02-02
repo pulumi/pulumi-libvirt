@@ -65,27 +65,25 @@ export class CloudInitDisk extends pulumi.CustomResource {
      */
     constructor(name: string, args?: CloudInitDiskArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudInitDiskArgs | CloudInitDiskState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudInitDiskState | undefined;
-            inputs["metaData"] = state ? state.metaData : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["networkConfig"] = state ? state.networkConfig : undefined;
-            inputs["pool"] = state ? state.pool : undefined;
-            inputs["userData"] = state ? state.userData : undefined;
+            resourceInputs["metaData"] = state ? state.metaData : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["networkConfig"] = state ? state.networkConfig : undefined;
+            resourceInputs["pool"] = state ? state.pool : undefined;
+            resourceInputs["userData"] = state ? state.userData : undefined;
         } else {
             const args = argsOrState as CloudInitDiskArgs | undefined;
-            inputs["metaData"] = args ? args.metaData : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["networkConfig"] = args ? args.networkConfig : undefined;
-            inputs["pool"] = args ? args.pool : undefined;
-            inputs["userData"] = args ? args.userData : undefined;
+            resourceInputs["metaData"] = args ? args.metaData : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["networkConfig"] = args ? args.networkConfig : undefined;
+            resourceInputs["pool"] = args ? args.pool : undefined;
+            resourceInputs["userData"] = args ? args.userData : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CloudInitDisk.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CloudInitDisk.__pulumiType, name, resourceInputs, opts);
     }
 }
 

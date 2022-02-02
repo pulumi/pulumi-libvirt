@@ -9,9 +9,7 @@ export function getNetworkDnsmasqOptionsTemplate(args: GetNetworkDnsmasqOptionsT
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", {
         "optionName": args.optionName,
         "optionValue": args.optionValue,
