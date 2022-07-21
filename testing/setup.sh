@@ -24,6 +24,6 @@ lxc.idmap = u 0 165536 65536
 lxc.idmap = g 0 165536 65536
 EOF
 
-lxc-create -t download -n foo -- --dist ubuntu --release bionic --arch amd64 --no-validate
+lxc-create -t download -n foo -- --dist ubuntu --release bionic --arch amd64
 
 virsh -c lxc:// list
