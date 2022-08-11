@@ -14,9 +14,12 @@ import (
 type Ignition struct {
 	pulumi.CustomResourceState
 
-	Content pulumi.StringOutput    `pulumi:"content"`
-	Name    pulumi.StringOutput    `pulumi:"name"`
-	Pool    pulumi.StringPtrOutput `pulumi:"pool"`
+	Content pulumi.StringOutput `pulumi:"content"`
+	// A unique name for the resource, required by libvirt.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The pool where the resource will be created.
+	// If not given, the `default` pool will be used.
+	Pool pulumi.StringPtrOutput `pulumi:"pool"`
 }
 
 // NewIgnition registers a new resource with the given unique name, arguments, and options.
@@ -52,14 +55,20 @@ func GetIgnition(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Ignition resources.
 type ignitionState struct {
 	Content *string `pulumi:"content"`
-	Name    *string `pulumi:"name"`
-	Pool    *string `pulumi:"pool"`
+	// A unique name for the resource, required by libvirt.
+	Name *string `pulumi:"name"`
+	// The pool where the resource will be created.
+	// If not given, the `default` pool will be used.
+	Pool *string `pulumi:"pool"`
 }
 
 type IgnitionState struct {
 	Content pulumi.StringPtrInput
-	Name    pulumi.StringPtrInput
-	Pool    pulumi.StringPtrInput
+	// A unique name for the resource, required by libvirt.
+	Name pulumi.StringPtrInput
+	// The pool where the resource will be created.
+	// If not given, the `default` pool will be used.
+	Pool pulumi.StringPtrInput
 }
 
 func (IgnitionState) ElementType() reflect.Type {
@@ -67,16 +76,22 @@ func (IgnitionState) ElementType() reflect.Type {
 }
 
 type ignitionArgs struct {
-	Content string  `pulumi:"content"`
-	Name    *string `pulumi:"name"`
-	Pool    *string `pulumi:"pool"`
+	Content string `pulumi:"content"`
+	// A unique name for the resource, required by libvirt.
+	Name *string `pulumi:"name"`
+	// The pool where the resource will be created.
+	// If not given, the `default` pool will be used.
+	Pool *string `pulumi:"pool"`
 }
 
 // The set of arguments for constructing a Ignition resource.
 type IgnitionArgs struct {
 	Content pulumi.StringInput
-	Name    pulumi.StringPtrInput
-	Pool    pulumi.StringPtrInput
+	// A unique name for the resource, required by libvirt.
+	Name pulumi.StringPtrInput
+	// The pool where the resource will be created.
+	// If not given, the `default` pool will be used.
+	Pool pulumi.StringPtrInput
 }
 
 func (IgnitionArgs) ElementType() reflect.Type {
@@ -105,7 +120,7 @@ func (i *Ignition) ToIgnitionOutputWithContext(ctx context.Context) IgnitionOutp
 // IgnitionArrayInput is an input type that accepts IgnitionArray and IgnitionArrayOutput values.
 // You can construct a concrete instance of `IgnitionArrayInput` via:
 //
-//          IgnitionArray{ IgnitionArgs{...} }
+//	IgnitionArray{ IgnitionArgs{...} }
 type IgnitionArrayInput interface {
 	pulumi.Input
 
@@ -130,7 +145,7 @@ func (i IgnitionArray) ToIgnitionArrayOutputWithContext(ctx context.Context) Ign
 // IgnitionMapInput is an input type that accepts IgnitionMap and IgnitionMapOutput values.
 // You can construct a concrete instance of `IgnitionMapInput` via:
 //
-//          IgnitionMap{ "key": IgnitionArgs{...} }
+//	IgnitionMap{ "key": IgnitionArgs{...} }
 type IgnitionMapInput interface {
 	pulumi.Input
 
@@ -164,6 +179,21 @@ func (o IgnitionOutput) ToIgnitionOutput() IgnitionOutput {
 
 func (o IgnitionOutput) ToIgnitionOutputWithContext(ctx context.Context) IgnitionOutput {
 	return o
+}
+
+func (o IgnitionOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ignition) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+func (o IgnitionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ignition) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The pool where the resource will be created.
+// If not given, the `default` pool will be used.
+func (o IgnitionOutput) Pool() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ignition) pulumi.StringPtrOutput { return v.Pool }).(pulumi.StringPtrOutput)
 }
 
 type IgnitionArrayOutput struct{ *pulumi.OutputState }

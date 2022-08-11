@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainNvramArgs : Pulumi.ResourceArgs
+    public sealed class DomainNvramArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The filename to use as the block device for this disk (read-only)
@@ -28,5 +28,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainNvramArgs()
         {
         }
+        public static new DomainNvramArgs Empty => new DomainNvramArgs();
     }
 }

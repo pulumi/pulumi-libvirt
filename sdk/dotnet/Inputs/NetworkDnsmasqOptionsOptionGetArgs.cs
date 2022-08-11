@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class NetworkDnsmasqOptionsOptionGetArgs : Pulumi.ResourceArgs
+    public sealed class NetworkDnsmasqOptionsOptionGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("optionName")]
         public Input<string>? OptionName { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Libvirt.Inputs
         public NetworkDnsmasqOptionsOptionGetArgs()
         {
         }
+        public static new NetworkDnsmasqOptionsOptionGetArgs Empty => new NetworkDnsmasqOptionsOptionGetArgs();
     }
 }

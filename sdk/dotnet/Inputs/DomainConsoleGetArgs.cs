@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainConsoleGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainConsoleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// IP address to listen on. Defaults to 127.0.0.1.
@@ -53,5 +53,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainConsoleGetArgs()
         {
         }
+        public static new DomainConsoleGetArgs Empty => new DomainConsoleGetArgs();
     }
 }

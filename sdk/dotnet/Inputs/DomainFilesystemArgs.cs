@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainFilesystemArgs : Pulumi.ResourceArgs
+    public sealed class DomainFilesystemArgs : global::Pulumi.ResourceArgs
     {
         [Input("accessmode")]
         public Input<string>? Accessmode { get; set; }
@@ -27,5 +27,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainFilesystemArgs()
         {
         }
+        public static new DomainFilesystemArgs Empty => new DomainFilesystemArgs();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainXmlArgs : Pulumi.ResourceArgs
+    public sealed class DomainXmlArgs : global::Pulumi.ResourceArgs
     {
         [Input("xslt")]
         public Input<string>? Xslt { get; set; }
@@ -18,5 +18,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainXmlArgs()
         {
         }
+        public static new DomainXmlArgs Empty => new DomainXmlArgs();
     }
 }

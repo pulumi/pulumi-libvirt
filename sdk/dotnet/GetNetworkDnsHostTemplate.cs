@@ -19,7 +19,7 @@ namespace Pulumi.Libvirt
     }
 
 
-    public sealed class GetNetworkDnsHostTemplateArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkDnsHostTemplateArgs : global::Pulumi.InvokeArgs
     {
         [Input("hostname", required: true)]
         public string Hostname { get; set; } = null!;
@@ -30,9 +30,10 @@ namespace Pulumi.Libvirt
         public GetNetworkDnsHostTemplateArgs()
         {
         }
+        public static new GetNetworkDnsHostTemplateArgs Empty => new GetNetworkDnsHostTemplateArgs();
     }
 
-    public sealed class GetNetworkDnsHostTemplateInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkDnsHostTemplateInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("hostname", required: true)]
         public Input<string> Hostname { get; set; } = null!;
@@ -43,6 +44,7 @@ namespace Pulumi.Libvirt
         public GetNetworkDnsHostTemplateInvokeArgs()
         {
         }
+        public static new GetNetworkDnsHostTemplateInvokeArgs Empty => new GetNetworkDnsHostTemplateInvokeArgs();
     }
 
 

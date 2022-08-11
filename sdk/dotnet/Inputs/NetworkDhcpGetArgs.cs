@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class NetworkDhcpGetArgs : Pulumi.ResourceArgs
+    public sealed class NetworkDhcpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// when false, disable the DHCP server
@@ -21,5 +21,6 @@ namespace Pulumi.Libvirt.Inputs
         public NetworkDhcpGetArgs()
         {
         }
+        public static new NetworkDhcpGetArgs Empty => new NetworkDhcpGetArgs();
     }
 }

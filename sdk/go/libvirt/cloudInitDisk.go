@@ -151,7 +151,7 @@ func (i *CloudInitDisk) ToCloudInitDiskOutputWithContext(ctx context.Context) Cl
 // CloudInitDiskArrayInput is an input type that accepts CloudInitDiskArray and CloudInitDiskArrayOutput values.
 // You can construct a concrete instance of `CloudInitDiskArrayInput` via:
 //
-//          CloudInitDiskArray{ CloudInitDiskArgs{...} }
+//	CloudInitDiskArray{ CloudInitDiskArgs{...} }
 type CloudInitDiskArrayInput interface {
 	pulumi.Input
 
@@ -176,7 +176,7 @@ func (i CloudInitDiskArray) ToCloudInitDiskArrayOutputWithContext(ctx context.Co
 // CloudInitDiskMapInput is an input type that accepts CloudInitDiskMap and CloudInitDiskMapOutput values.
 // You can construct a concrete instance of `CloudInitDiskMapInput` via:
 //
-//          CloudInitDiskMap{ "key": CloudInitDiskArgs{...} }
+//	CloudInitDiskMap{ "key": CloudInitDiskArgs{...} }
 type CloudInitDiskMapInput interface {
 	pulumi.Input
 
@@ -210,6 +210,34 @@ func (o CloudInitDiskOutput) ToCloudInitDiskOutput() CloudInitDiskOutput {
 
 func (o CloudInitDiskOutput) ToCloudInitDiskOutputWithContext(ctx context.Context) CloudInitDiskOutput {
 	return o
+}
+
+// cloud-init user data.
+func (o CloudInitDiskOutput) MetaData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudInitDisk) pulumi.StringPtrOutput { return v.MetaData }).(pulumi.StringPtrOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+func (o CloudInitDiskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudInitDisk) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// cloud-init network-config data.
+func (o CloudInitDiskOutput) NetworkConfig() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudInitDisk) pulumi.StringPtrOutput { return v.NetworkConfig }).(pulumi.StringPtrOutput)
+}
+
+// The pool where the resource will be created.
+// If not given, the `default` pool will be used.
+// For user_data, networkConfig and metaData parameters have a look at upstream doc:
+// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+func (o CloudInitDiskOutput) Pool() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudInitDisk) pulumi.StringPtrOutput { return v.Pool }).(pulumi.StringPtrOutput)
+}
+
+// cloud-init user data.
+func (o CloudInitDiskOutput) UserData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudInitDisk) pulumi.StringPtrOutput { return v.UserData }).(pulumi.StringPtrOutput)
 }
 
 type CloudInitDiskArrayOutput struct{ *pulumi.OutputState }

@@ -20,34 +20,32 @@ namespace Pulumi.Libvirt
     /// using Pulumi;
     /// using Libvirt = Pulumi.Libvirt;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Base OS image to use to create a cluster of different
+    ///     // nodes
+    ///     var opensuseLeap = new Libvirt.Volume("opensuseLeap", new()
     ///     {
-    ///         // Base OS image to use to create a cluster of different
-    ///         // nodes
-    ///         var opensuseLeap = new Libvirt.Volume("opensuseLeap", new Libvirt.VolumeArgs
-    ///         {
-    ///             Source = "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
-    ///         });
-    ///         // volume to attach to the "master" domain as main disk
-    ///         var master = new Libvirt.Volume("master", new Libvirt.VolumeArgs
+    ///         Source = "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
+    ///     });
+    /// 
+    ///     // volume to attach to the "master" domain as main disk
+    ///     var master = new Libvirt.Volume("master", new()
+    ///     {
+    ///         BaseVolumeId = opensuseLeap.Id,
+    ///     });
+    /// 
+    ///     // volumes to attach to the "workers" domains as main disk
+    ///     var worker = new List&lt;Libvirt.Volume&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; @var.Workers_count; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         worker.Add(new Libvirt.Volume($"worker-{range.Value}", new()
     ///         {
     ///             BaseVolumeId = opensuseLeap.Id,
-    ///         });
-    ///         // volumes to attach to the "workers" domains as main disk
-    ///         var worker = new List&lt;Libvirt.Volume&gt;();
-    ///         for (var rangeIndex = 0; rangeIndex &lt; @var.Workers_count; rangeIndex++)
-    ///         {
-    ///             var range = new { Value = rangeIndex };
-    ///             worker.Add(new Libvirt.Volume($"worker-{range.Value}", new Libvirt.VolumeArgs
-    ///             {
-    ///                 BaseVolumeId = opensuseLeap.Id,
-    ///             }));
-    ///         }
+    ///         }));
     ///     }
-    /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// &gt; **Tip:** when provisioning multiple domains using the same base image, create
@@ -56,7 +54,7 @@ namespace Pulumi.Libvirt
     /// is going to be used for the base image.
     /// </summary>
     [LibvirtResourceType("libvirt:index/volume:Volume")]
-    public partial class Volume : Pulumi.CustomResource
+    public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The backing volume (CoW) to use for this volume.
@@ -149,7 +147,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class VolumeArgs : Pulumi.ResourceArgs
+    public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The backing volume (CoW) to use for this volume.
@@ -201,9 +199,10 @@ namespace Pulumi.Libvirt
         public VolumeArgs()
         {
         }
+        public static new VolumeArgs Empty => new VolumeArgs();
     }
 
-    public sealed class VolumeState : Pulumi.ResourceArgs
+    public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The backing volume (CoW) to use for this volume.
@@ -255,5 +254,6 @@ namespace Pulumi.Libvirt
         public VolumeState()
         {
         }
+        public static new VolumeState Empty => new VolumeState();
     }
 }

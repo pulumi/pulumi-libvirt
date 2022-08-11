@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainVideoGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainVideoGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Console device type. Valid values are "pty" and "tcp".
@@ -21,5 +21,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainVideoGetArgs()
         {
         }
+        public static new DomainVideoGetArgs Empty => new DomainVideoGetArgs();
     }
 }

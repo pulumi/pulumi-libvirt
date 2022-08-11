@@ -19,7 +19,7 @@ namespace Pulumi.Libvirt
     }
 
 
-    public sealed class GetNetworkDnsmasqOptionsTemplateArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkDnsmasqOptionsTemplateArgs : global::Pulumi.InvokeArgs
     {
         [Input("optionName", required: true)]
         public string OptionName { get; set; } = null!;
@@ -30,9 +30,10 @@ namespace Pulumi.Libvirt
         public GetNetworkDnsmasqOptionsTemplateArgs()
         {
         }
+        public static new GetNetworkDnsmasqOptionsTemplateArgs Empty => new GetNetworkDnsmasqOptionsTemplateArgs();
     }
 
-    public sealed class GetNetworkDnsmasqOptionsTemplateInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkDnsmasqOptionsTemplateInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("optionName", required: true)]
         public Input<string> OptionName { get; set; } = null!;
@@ -43,6 +44,7 @@ namespace Pulumi.Libvirt
         public GetNetworkDnsmasqOptionsTemplateInvokeArgs()
         {
         }
+        public static new GetNetworkDnsmasqOptionsTemplateInvokeArgs Empty => new GetNetworkDnsmasqOptionsTemplateInvokeArgs();
     }
 
 

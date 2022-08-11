@@ -19,19 +19,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := libvirt.NewDomain(ctx, "default", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := libvirt.NewDomain(ctx, "default", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Domain struct {
 	pulumi.CustomResourceState
@@ -499,7 +502,7 @@ func (i *Domain) ToDomainOutputWithContext(ctx context.Context) DomainOutput {
 // DomainArrayInput is an input type that accepts DomainArray and DomainArrayOutput values.
 // You can construct a concrete instance of `DomainArrayInput` via:
 //
-//          DomainArray{ DomainArgs{...} }
+//	DomainArray{ DomainArgs{...} }
 type DomainArrayInput interface {
 	pulumi.Input
 
@@ -524,7 +527,7 @@ func (i DomainArray) ToDomainArrayOutputWithContext(ctx context.Context) DomainA
 // DomainMapInput is an input type that accepts DomainMap and DomainMapOutput values.
 // You can construct a concrete instance of `DomainMapInput` via:
 //
-//          DomainMap{ "key": DomainArgs{...} }
+//	DomainMap{ "key": DomainArgs{...} }
 type DomainMapInput interface {
 	pulumi.Input
 
@@ -558,6 +561,171 @@ func (o DomainOutput) ToDomainOutput() DomainOutput {
 
 func (o DomainOutput) ToDomainOutputWithContext(ctx context.Context) DomainOutput {
 	return o
+}
+
+// The architecture for the VM (probably x8664 or i686),
+// you normally won't need to set this unless you are building a special VM
+func (o DomainOutput) Arch() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Arch }).(pulumi.StringOutput)
+}
+
+// Set to `true` to start the domain on host boot up.
+// If not specified `false` is assumed.
+func (o DomainOutput) Autostart() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.BoolPtrOutput { return v.Autostart }).(pulumi.BoolPtrOutput)
+}
+
+// A list of devices (dev) which defines boot order. Example
+// below.
+func (o DomainOutput) BootDevices() DomainBootDeviceArrayOutput {
+	return o.ApplyT(func(v *Domain) DomainBootDeviceArrayOutput { return v.BootDevices }).(DomainBootDeviceArrayOutput)
+}
+
+// The `CloudInitDisk` disk that has to be used by
+// the domain. This is going to be attached as a CDROM ISO. Changing the
+// cloud-init won't cause the domain to be recreated, however the change will
+// have effect on the next reboot.
+func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Cloudinit }).(pulumi.StringPtrOutput)
+}
+
+// Arguments to the kernel
+func (o DomainOutput) Cmdlines() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v *Domain) pulumi.MapArrayOutput { return v.Cmdlines }).(pulumi.MapArrayOutput)
+}
+
+func (o DomainOutput) Consoles() DomainConsoleArrayOutput {
+	return o.ApplyT(func(v *Domain) DomainConsoleArrayOutput { return v.Consoles }).(DomainConsoleArrayOutput)
+}
+
+// The
+// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
+// that is to be used by the CoreOS domain.
+func (o DomainOutput) CoreosIgnition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.CoreosIgnition }).(pulumi.StringPtrOutput)
+}
+
+// Configures CPU mode. See below for more
+// details.
+func (o DomainOutput) Cpu() DomainCpuPtrOutput {
+	return o.ApplyT(func(v *Domain) DomainCpuPtrOutput { return v.Cpu }).(DomainCpuPtrOutput)
+}
+
+// The description for domain.
+// Changing this forces a new resource to be created.
+// This data is not used by libvirt in any way, it can contain any information the user wants.
+func (o DomainOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// An array of one or more disks to attach to the domain. The
+// `disk` object structure is documented below.
+func (o DomainOutput) Disks() DomainDiskArrayOutput {
+	return o.ApplyT(func(v *Domain) DomainDiskArrayOutput { return v.Disks }).(DomainDiskArrayOutput)
+}
+
+// The path of the emulator to use
+func (o DomainOutput) Emulator() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Emulator }).(pulumi.StringOutput)
+}
+
+// An array of one or more host filesystems to attach to
+// the domain. The `filesystem` object structure is documented
+// below.
+func (o DomainOutput) Filesystems() DomainFilesystemArrayOutput {
+	return o.ApplyT(func(v *Domain) DomainFilesystemArrayOutput { return v.Filesystems }).(DomainFilesystemArrayOutput)
+}
+
+// The UEFI rom images for exercising UEFI secure boot in a qemu
+// environment. Users should usually specify one of the standard _Open Virtual Machine
+// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
+// read-only.
+func (o DomainOutput) Firmware() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Firmware }).(pulumi.StringPtrOutput)
+}
+
+// The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
+func (o DomainOutput) FwCfgName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.FwCfgName }).(pulumi.StringPtrOutput)
+}
+
+func (o DomainOutput) Graphics() DomainGraphicsPtrOutput {
+	return o.ApplyT(func(v *Domain) DomainGraphicsPtrOutput { return v.Graphics }).(DomainGraphicsPtrOutput)
+}
+
+// The path of the initrd to boot.
+func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Initrd }).(pulumi.StringPtrOutput)
+}
+
+// The path of the kernel to boot
+func (o DomainOutput) Kernel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Kernel }).(pulumi.StringPtrOutput)
+}
+
+// The machine type,
+// you normally won't need to set this unless you are running on a platform that
+// defaults to the wrong machine type for your template
+func (o DomainOutput) Machine() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Machine }).(pulumi.StringOutput)
+}
+
+// The amount of memory in MiB. If not specified the domain
+// will be created with 512 MiB of memory be used.
+func (o DomainOutput) Memory() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.IntPtrOutput { return v.Memory }).(pulumi.IntPtrOutput)
+}
+
+func (o DomainOutput) Metadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+// Changing this forces a new resource to be created.
+func (o DomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// An array of one or more network interfaces to
+// attach to the domain. The `networkInterface` object structure is documented
+// below.
+func (o DomainOutput) NetworkInterfaces() DomainNetworkInterfaceArrayOutput {
+	return o.ApplyT(func(v *Domain) DomainNetworkInterfaceArrayOutput { return v.NetworkInterfaces }).(DomainNetworkInterfaceArrayOutput)
+}
+
+// this block allows specifying the following attributes related to the _nvram_:
+func (o DomainOutput) Nvram() DomainNvramPtrOutput {
+	return o.ApplyT(func(v *Domain) DomainNvramPtrOutput { return v.Nvram }).(DomainNvramPtrOutput)
+}
+
+// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
+func (o DomainOutput) QemuAgent() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.BoolPtrOutput { return v.QemuAgent }).(pulumi.BoolPtrOutput)
+}
+
+// Use `false` to turn off the instance. If not specified,
+// true is assumed and the instance, if stopped, will be started at next apply.
+func (o DomainOutput) Running() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.BoolPtrOutput { return v.Running }).(pulumi.BoolPtrOutput)
+}
+
+// TPM device to attach to the domain. The `tpm` object structure is documented below.
+func (o DomainOutput) Tpm() DomainTpmPtrOutput {
+	return o.ApplyT(func(v *Domain) DomainTpmPtrOutput { return v.Tpm }).(DomainTpmPtrOutput)
+}
+
+// The amount of virtual CPUs. If not specified, a single CPU
+// will be created.
+func (o DomainOutput) Vcpu() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.IntPtrOutput { return v.Vcpu }).(pulumi.IntPtrOutput)
+}
+
+func (o DomainOutput) Video() DomainVideoPtrOutput {
+	return o.ApplyT(func(v *Domain) DomainVideoPtrOutput { return v.Video }).(DomainVideoPtrOutput)
+}
+
+func (o DomainOutput) Xml() DomainXmlPtrOutput {
+	return o.ApplyT(func(v *Domain) DomainXmlPtrOutput { return v.Xml }).(DomainXmlPtrOutput)
 }
 
 type DomainArrayOutput struct{ *pulumi.OutputState }

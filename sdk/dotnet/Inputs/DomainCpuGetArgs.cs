@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainCpuGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainCpuGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("mode", required: true)]
         public Input<string> Mode { get; set; } = null!;
@@ -18,5 +18,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainCpuGetArgs()
         {
         }
+        public static new DomainCpuGetArgs Empty => new DomainCpuGetArgs();
     }
 }

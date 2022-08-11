@@ -18,31 +18,30 @@ namespace Pulumi.Libvirt
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Libvirt = Pulumi.Libvirt;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // A pool for all cluster volumes
+    ///     var cluster = new Libvirt.Pool("cluster", new()
     ///     {
-    ///         // A pool for all cluster volumes
-    ///         var cluster = new Libvirt.Pool("cluster", new Libvirt.PoolArgs
-    ///         {
-    ///             Type = "dir",
-    ///             Path = "/home/user/cluster_storage",
-    ///         });
-    ///         var opensuseLeap = new Libvirt.Volume("opensuseLeap", new Libvirt.VolumeArgs
-    ///         {
-    ///             Pool = cluster.Name,
-    ///             Source = "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
-    ///         });
-    ///     }
+    ///         Type = "dir",
+    ///         Path = "/home/user/cluster_storage",
+    ///     });
     /// 
-    /// }
+    ///     var opensuseLeap = new Libvirt.Volume("opensuseLeap", new()
+    ///     {
+    ///         Pool = cluster.Name,
+    ///         Source = "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [LibvirtResourceType("libvirt:index/pool:Pool")]
-    public partial class Pool : Pulumi.CustomResource
+    public partial class Pool : global::Pulumi.CustomResource
     {
         [Output("allocation")]
         public Output<int> Allocation { get; private set; } = null!;
@@ -119,7 +118,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class PoolArgs : Pulumi.ResourceArgs
+    public sealed class PoolArgs : global::Pulumi.ResourceArgs
     {
         [Input("allocation")]
         public Input<int>? Allocation { get; set; }
@@ -155,9 +154,10 @@ namespace Pulumi.Libvirt
         public PoolArgs()
         {
         }
+        public static new PoolArgs Empty => new PoolArgs();
     }
 
-    public sealed class PoolState : Pulumi.ResourceArgs
+    public sealed class PoolState : global::Pulumi.ResourceArgs
     {
         [Input("allocation")]
         public Input<int>? Allocation { get; set; }
@@ -193,5 +193,6 @@ namespace Pulumi.Libvirt
         public PoolState()
         {
         }
+        public static new PoolState Empty => new PoolState();
     }
 }

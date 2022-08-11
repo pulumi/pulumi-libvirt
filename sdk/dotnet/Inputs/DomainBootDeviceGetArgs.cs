@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainBootDeviceGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainBootDeviceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("devs")]
         private InputList<string>? _devs;
@@ -23,5 +23,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainBootDeviceGetArgs()
         {
         }
+        public static new DomainBootDeviceGetArgs Empty => new DomainBootDeviceGetArgs();
     }
 }

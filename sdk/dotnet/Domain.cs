@@ -16,23 +16,19 @@ namespace Pulumi.Libvirt
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Libvirt = Pulumi.Libvirt;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @default = new Libvirt.Domain("default", new Libvirt.DomainArgs
-    ///         {
-    ///         });
-    ///     }
+    ///     var @default = new Libvirt.Domain("default");
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [LibvirtResourceType("libvirt:index/domain:Domain")]
-    public partial class Domain : Pulumi.CustomResource
+    public partial class Domain : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The architecture for the VM (probably x86_64 or i686),
@@ -262,7 +258,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class DomainArgs : Pulumi.ResourceArgs
+    public sealed class DomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The architecture for the VM (probably x86_64 or i686),
@@ -486,9 +482,10 @@ namespace Pulumi.Libvirt
         public DomainArgs()
         {
         }
+        public static new DomainArgs Empty => new DomainArgs();
     }
 
-    public sealed class DomainState : Pulumi.ResourceArgs
+    public sealed class DomainState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The architecture for the VM (probably x86_64 or i686),
@@ -712,5 +709,6 @@ namespace Pulumi.Libvirt
         public DomainState()
         {
         }
+        public static new DomainState Empty => new DomainState();
     }
 }

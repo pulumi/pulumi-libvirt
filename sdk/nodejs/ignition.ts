@@ -33,7 +33,14 @@ export class Ignition extends pulumi.CustomResource {
     }
 
     public readonly content!: pulumi.Output<string>;
+    /**
+     * A unique name for the resource, required by libvirt.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The pool where the resource will be created.
+     * If not given, the `default` pool will be used.
+     */
     public readonly pool!: pulumi.Output<string | undefined>;
 
     /**
@@ -71,7 +78,14 @@ export class Ignition extends pulumi.CustomResource {
  */
 export interface IgnitionState {
     content?: pulumi.Input<string>;
+    /**
+     * A unique name for the resource, required by libvirt.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The pool where the resource will be created.
+     * If not given, the `default` pool will be used.
+     */
     pool?: pulumi.Input<string>;
 }
 
@@ -80,6 +94,13 @@ export interface IgnitionState {
  */
 export interface IgnitionArgs {
     content: pulumi.Input<string>;
+    /**
+     * A unique name for the resource, required by libvirt.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The pool where the resource will be created.
+     * If not given, the `default` pool will be used.
+     */
     pool?: pulumi.Input<string>;
 }

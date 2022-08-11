@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class NetworkDnsHostArgs : Pulumi.ResourceArgs
+    public sealed class NetworkDnsHostArgs : global::Pulumi.ResourceArgs
     {
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Libvirt.Inputs
         public NetworkDnsHostArgs()
         {
         }
+        public static new NetworkDnsHostArgs Empty => new NetworkDnsHostArgs();
     }
 }

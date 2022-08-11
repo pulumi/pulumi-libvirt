@@ -293,4 +293,3 @@ export interface PoolXml {
 export interface VolumeXml {
     xslt?: pulumi.Input<string>;
 }
-

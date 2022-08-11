@@ -12,6 +12,42 @@
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateExtraInputTypes": true,
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing libvirt cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    },
     "config": {
         "variables": {
             "uri": {
@@ -54,7 +90,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "sourcePath": {
                     "type": "string",
@@ -63,7 +100,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "sourceService": {
                     "type": "string",
@@ -72,7 +110,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "targetPort": {
                     "type": "string",
@@ -81,7 +120,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "targetType": {
                     "type": "string",
@@ -90,7 +130,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
@@ -99,7 +140,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object",
@@ -233,7 +275,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "listenAddress": {
                     "type": "string",
@@ -242,7 +285,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "listenType": {
                     "type": "string",
@@ -251,7 +295,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
@@ -260,7 +305,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "websocket": {
                     "type": "integer",
@@ -390,7 +436,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "template": {
                     "type": "string",
@@ -399,7 +446,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object",
@@ -416,7 +464,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "backendEncryptionSecret": {
                     "type": "string",
@@ -425,7 +474,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "backendPersistentState": {
                     "type": "boolean",
@@ -434,7 +484,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "backendType": {
                     "type": "string",
@@ -443,7 +494,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "backendVersion": {
                     "type": "string",
@@ -452,7 +504,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "model": {
                     "type": "string",
@@ -461,7 +514,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -488,7 +542,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -528,7 +583,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "hosts": {
                     "type": "array",
@@ -561,7 +617,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -574,7 +631,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "domain": {
                     "type": "string",
@@ -583,7 +641,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -618,7 +677,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "port": {
                     "type": "string",
@@ -626,7 +686,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "priority": {
                     "type": "string",
@@ -634,7 +695,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "protocol": {
                     "type": "string",
@@ -642,7 +704,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "service": {
                     "type": "string",
@@ -650,7 +713,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "target": {
                     "type": "string",
@@ -658,7 +722,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "weight": {
                     "type": "string",
@@ -666,7 +731,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -742,7 +808,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -755,7 +822,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -768,7 +836,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object"
@@ -824,23 +893,28 @@
             "inputProperties": {
                 "metaData": {
                     "type": "string",
-                    "description": "cloud-init user data.\n"
+                    "description": "cloud-init user data.\n",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "A unique name for the resource, required by libvirt.\n"
+                    "description": "A unique name for the resource, required by libvirt.\n",
+                    "willReplaceOnChanges": true
                 },
                 "networkConfig": {
                     "type": "string",
-                    "description": "cloud-init network-config data.\n"
+                    "description": "cloud-init network-config data.\n",
+                    "willReplaceOnChanges": true
                 },
                 "pool": {
                     "type": "string",
-                    "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n"
+                    "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n",
+                    "willReplaceOnChanges": true
                 },
                 "userData": {
                     "type": "string",
-                    "description": "cloud-init user data.\n"
+                    "description": "cloud-init user data.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
@@ -848,30 +922,35 @@
                 "properties": {
                     "metaData": {
                         "type": "string",
-                        "description": "cloud-init user data.\n"
+                        "description": "cloud-init user data.\n",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "A unique name for the resource, required by libvirt.\n"
+                        "description": "A unique name for the resource, required by libvirt.\n",
+                        "willReplaceOnChanges": true
                     },
                     "networkConfig": {
                         "type": "string",
-                        "description": "cloud-init network-config data.\n"
+                        "description": "cloud-init network-config data.\n",
+                        "willReplaceOnChanges": true
                     },
                     "pool": {
                         "type": "string",
-                        "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n"
+                        "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\nFor user_data, network_config and meta_data parameters have a look at upstream doc:\nhttp://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud\n",
+                        "willReplaceOnChanges": true
                     },
                     "userData": {
                         "type": "string",
-                        "description": "cloud-init user data.\n"
+                        "description": "cloud-init user data.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
             }
         },
         "libvirt:index/domain:Domain": {
-            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst defaultDomain = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Libvirt.Domain(\"default\", new Libvirt.DomainArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst defaultDomain = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Libvirt.Domain(\"default\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new Domain(\"default\");\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: libvirt:Domain\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "arch": {
                     "type": "string",
@@ -1040,7 +1119,8 @@
                             "$ref": "pulumi.json#/Any"
                         }
                     },
-                    "description": "Arguments to the kernel\n"
+                    "description": "Arguments to the kernel\n",
+                    "willReplaceOnChanges": true
                 },
                 "consoles": {
                     "type": "array",
@@ -1050,22 +1130,26 @@
                 },
                 "coreosIgnition": {
                     "type": "string",
-                    "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n"
+                    "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n",
+                    "willReplaceOnChanges": true
                 },
                 "cpu": {
                     "$ref": "#/types/libvirt:index/DomainCpu:DomainCpu",
-                    "description": "Configures CPU mode. See below for more\ndetails.\n"
+                    "description": "Configures CPU mode. See below for more\ndetails.\n",
+                    "willReplaceOnChanges": true
                 },
                 "description": {
                     "type": "string",
-                    "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n"
+                    "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n",
+                    "willReplaceOnChanges": true
                 },
                 "disks": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/libvirt:index/DomainDisk:DomainDisk"
                     },
-                    "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n"
+                    "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n",
+                    "willReplaceOnChanges": true
                 },
                 "emulator": {
                     "type": "string",
@@ -1076,18 +1160,22 @@
                     "items": {
                         "$ref": "#/types/libvirt:index/DomainFilesystem:DomainFilesystem"
                     },
-                    "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n"
+                    "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n",
+                    "willReplaceOnChanges": true
                 },
                 "firmware": {
                     "type": "string",
-                    "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n"
+                    "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n",
+                    "willReplaceOnChanges": true
                 },
                 "fwCfgName": {
                     "type": "string",
-                    "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n"
+                    "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n",
+                    "willReplaceOnChanges": true
                 },
                 "graphics": {
-                    "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics"
+                    "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics",
+                    "willReplaceOnChanges": true
                 },
                 "initrd": {
                     "type": "string",
@@ -1103,14 +1191,16 @@
                 },
                 "memory": {
                     "type": "integer",
-                    "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n"
+                    "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "metadata": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string",
-                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n",
+                    "willReplaceOnChanges": true
                 },
                 "networkInterfaces": {
                     "type": "array",
@@ -1121,7 +1211,8 @@
                 },
                 "nvram": {
                     "$ref": "#/types/libvirt:index/DomainNvram:DomainNvram",
-                    "description": "this block allows specifying the following attributes related to the _nvram_:\n"
+                    "description": "this block allows specifying the following attributes related to the _nvram_:\n",
+                    "willReplaceOnChanges": true
                 },
                 "qemuAgent": {
                     "type": "boolean",
@@ -1137,7 +1228,8 @@
                 },
                 "vcpu": {
                     "type": "integer",
-                    "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
+                    "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n",
+                    "willReplaceOnChanges": true
                 },
                 "video": {
                     "$ref": "#/types/libvirt:index/DomainVideo:DomainVideo"
@@ -1176,7 +1268,8 @@
                                 "$ref": "pulumi.json#/Any"
                             }
                         },
-                        "description": "Arguments to the kernel\n"
+                        "description": "Arguments to the kernel\n",
+                        "willReplaceOnChanges": true
                     },
                     "consoles": {
                         "type": "array",
@@ -1186,22 +1279,26 @@
                     },
                     "coreosIgnition": {
                         "type": "string",
-                        "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n"
+                        "description": "The\n[libvirt.Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource\nthat is to be used by the CoreOS domain.\n",
+                        "willReplaceOnChanges": true
                     },
                     "cpu": {
                         "$ref": "#/types/libvirt:index/DomainCpu:DomainCpu",
-                        "description": "Configures CPU mode. See below for more\ndetails.\n"
+                        "description": "Configures CPU mode. See below for more\ndetails.\n",
+                        "willReplaceOnChanges": true
                     },
                     "description": {
                         "type": "string",
-                        "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n"
+                        "description": "The description for domain.\nChanging this forces a new resource to be created.\nThis data is not used by libvirt in any way, it can contain any information the user wants.\n",
+                        "willReplaceOnChanges": true
                     },
                     "disks": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/libvirt:index/DomainDisk:DomainDisk"
                         },
-                        "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n"
+                        "description": "An array of one or more disks to attach to the domain. The\n`disk` object structure is documented below.\n",
+                        "willReplaceOnChanges": true
                     },
                     "emulator": {
                         "type": "string",
@@ -1212,18 +1309,22 @@
                         "items": {
                             "$ref": "#/types/libvirt:index/DomainFilesystem:DomainFilesystem"
                         },
-                        "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n"
+                        "description": "An array of one or more host filesystems to attach to\nthe domain. The `filesystem` object structure is documented\nbelow.\n",
+                        "willReplaceOnChanges": true
                     },
                     "firmware": {
                         "type": "string",
-                        "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n"
+                        "description": "The UEFI rom images for exercising UEFI secure boot in a qemu\nenvironment. Users should usually specify one of the standard _Open Virtual Machine\nFirmware_ (_OVMF_) images available for their distributions. The file will be opened\nread-only.\n",
+                        "willReplaceOnChanges": true
                     },
                     "fwCfgName": {
                         "type": "string",
-                        "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n"
+                        "description": "The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "graphics": {
-                        "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics"
+                        "$ref": "#/types/libvirt:index/DomainGraphics:DomainGraphics",
+                        "willReplaceOnChanges": true
                     },
                     "initrd": {
                         "type": "string",
@@ -1239,14 +1340,16 @@
                     },
                     "memory": {
                         "type": "integer",
-                        "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n"
+                        "description": "The amount of memory in MiB. If not specified the domain\nwill be created with 512 MiB of memory be used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "metadata": {
                         "type": "string"
                     },
                     "name": {
                         "type": "string",
-                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n",
+                        "willReplaceOnChanges": true
                     },
                     "networkInterfaces": {
                         "type": "array",
@@ -1257,7 +1360,8 @@
                     },
                     "nvram": {
                         "$ref": "#/types/libvirt:index/DomainNvram:DomainNvram",
-                        "description": "this block allows specifying the following attributes related to the _nvram_:\n"
+                        "description": "this block allows specifying the following attributes related to the _nvram_:\n",
+                        "willReplaceOnChanges": true
                     },
                     "qemuAgent": {
                         "type": "boolean",
@@ -1273,7 +1377,8 @@
                     },
                     "vcpu": {
                         "type": "integer",
-                        "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
+                        "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n",
+                        "willReplaceOnChanges": true
                     },
                     "video": {
                         "$ref": "#/types/libvirt:index/DomainVideo:DomainVideo"
@@ -1291,10 +1396,12 @@
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n"
                 },
                 "pool": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\n"
                 }
             },
             "required": [
@@ -1303,13 +1410,18 @@
             ],
             "inputProperties": {
                 "content": {
-                    "type": "string"
+                    "type": "string",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n",
+                    "willReplaceOnChanges": true
                 },
                 "pool": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "requiredInputs": [
@@ -1319,13 +1431,18 @@
                 "description": "Input properties used for looking up and filtering Ignition resources.\n",
                 "properties": {
                     "content": {
-                        "type": "string"
+                        "type": "string",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A unique name for the resource, required by libvirt.\n",
+                        "willReplaceOnChanges": true
                     },
                     "pool": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The pool where the resource will be created.\nIf not given, the `default` pool will be used.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -1398,7 +1515,8 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n"
+                    "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n",
+                    "willReplaceOnChanges": true
                 },
                 "autostart": {
                     "type": "boolean",
@@ -1406,11 +1524,13 @@
                 },
                 "bridge": {
                     "type": "string",
-                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n"
+                    "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n",
+                    "willReplaceOnChanges": true
                 },
                 "dhcp": {
                     "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
-                    "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n"
+                    "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n",
+                    "willReplaceOnChanges": true
                 },
                 "dns": {
                     "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
@@ -1422,11 +1542,13 @@
                 },
                 "domain": {
                     "type": "string",
-                    "description": "The domain used by the DNS server.\n"
+                    "description": "The domain used by the DNS server.\n",
+                    "willReplaceOnChanges": true
                 },
                 "mode": {
                     "type": "string",
-                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n",
+                    "willReplaceOnChanges": true
                 },
                 "mtu": {
                     "type": "integer",
@@ -1434,17 +1556,20 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n",
+                    "willReplaceOnChanges": true
                 },
                 "routes": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkRoute:NetworkRoute"
                     },
-                    "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n"
+                    "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n",
+                    "willReplaceOnChanges": true
                 },
                 "xml": {
-                    "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml"
+                    "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml",
+                    "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
@@ -1455,7 +1580,8 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n"
+                        "description": "A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in\nCIDR notation.  This defines the subnets associated to that network.\nThis argument is also used to define the address on the real host.\nIf `dhcp {  enabled = true }` addresses is also used to define the address range served by\nthe DHCP server.\nNo DHCP server will be started if `addresses` is omitted.\n",
+                        "willReplaceOnChanges": true
                     },
                     "autostart": {
                         "type": "boolean",
@@ -1463,11 +1589,13 @@
                     },
                     "bridge": {
                         "type": "string",
-                        "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n"
+                        "description": "The bridge device defines the name of a bridge\ndevice which will be used to construct the virtual network (when not provided,\nit will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).\n",
+                        "willReplaceOnChanges": true
                     },
                     "dhcp": {
                         "$ref": "#/types/libvirt:index/NetworkDhcp:NetworkDhcp",
-                        "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n"
+                        "description": "DHCP configuration. \nYou need to use it in conjuction with the adresses variable.\n",
+                        "willReplaceOnChanges": true
                     },
                     "dns": {
                         "$ref": "#/types/libvirt:index/NetworkDns:NetworkDns",
@@ -1479,11 +1607,13 @@
                     },
                     "domain": {
                         "type": "string",
-                        "description": "The domain used by the DNS server.\n"
+                        "description": "The domain used by the DNS server.\n",
+                        "willReplaceOnChanges": true
                     },
                     "mode": {
                         "type": "string",
-                        "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                        "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n",
+                        "willReplaceOnChanges": true
                     },
                     "mtu": {
                         "type": "integer",
@@ -1491,24 +1621,27 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n",
+                        "willReplaceOnChanges": true
                     },
                     "routes": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/libvirt:index/NetworkRoute:NetworkRoute"
                         },
-                        "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n"
+                        "description": "a list of static routes. A `cidr` and a `gateway` must\nbe provided. The `gateway` must be reachable via the bridge interface.\n",
+                        "willReplaceOnChanges": true
                     },
                     "xml": {
-                        "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml"
+                        "$ref": "#/types/libvirt:index/NetworkXml:NetworkXml",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
             }
         },
         "libvirt:index/pool:Pool": {
-            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    type: \"dir\",\n    path: \"/home/user/cluster_storage\",\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    type=\"dir\",\n    path=\"/home/user/cluster_storage\")\nopensuse_leap = libvirt.Volume(\"opensuseLeap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // A pool for all cluster volumes\n        var cluster = new Libvirt.Pool(\"cluster\", new Libvirt.PoolArgs\n        {\n            Type = \"dir\",\n            Path = \"/home/user/cluster_storage\",\n        });\n        var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new Libvirt.VolumeArgs\n        {\n            Pool = cluster.Name,\n            Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    type: \"dir\",\n    path: \"/home/user/cluster_storage\",\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    type=\"dir\",\n    path=\"/home/user/cluster_storage\")\nopensuse_leap = libvirt.Volume(\"opensuseLeap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // A pool for all cluster volumes\n    var cluster = new Libvirt.Pool(\"cluster\", new()\n    {\n        Type = \"dir\",\n        Path = \"/home/user/cluster_storage\",\n    });\n\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Pool = cluster.Name,\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Pool;\nimport com.pulumi.libvirt.PoolArgs;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cluster = new Pool(\"cluster\", PoolArgs.builder()        \n            .type(\"dir\")\n            .path(\"/home/user/cluster_storage\")\n            .build());\n\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .pool(cluster.name())\n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # A pool for all cluster volumes\n  cluster:\n    type: libvirt:Pool\n    properties:\n      type: dir\n      path: /home/user/cluster_storage\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      pool: ${cluster.name}\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "allocation": {
                     "type": "integer"
@@ -1544,28 +1677,35 @@
             ],
             "inputProperties": {
                 "allocation": {
-                    "type": "integer"
+                    "type": "integer",
+                    "willReplaceOnChanges": true
                 },
                 "available": {
-                    "type": "string"
+                    "type": "string",
+                    "willReplaceOnChanges": true
                 },
                 "capacity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "A unique name for the resource, required by libvirt.\n"
+                    "description": "A unique name for the resource, required by libvirt.\n",
+                    "willReplaceOnChanges": true
                 },
                 "path": {
                     "type": "string",
-                    "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n"
+                    "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n",
+                    "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of the pool. Currently, only \"dir\" supported.\n"
+                    "description": "The type of the pool. Currently, only \"dir\" supported.\n",
+                    "willReplaceOnChanges": true
                 },
                 "xml": {
-                    "$ref": "#/types/libvirt:index/PoolXml:PoolXml"
+                    "$ref": "#/types/libvirt:index/PoolXml:PoolXml",
+                    "willReplaceOnChanges": true
                 }
             },
             "requiredInputs": [
@@ -1575,35 +1715,42 @@
                 "description": "Input properties used for looking up and filtering Pool resources.\n",
                 "properties": {
                     "allocation": {
-                        "type": "integer"
+                        "type": "integer",
+                        "willReplaceOnChanges": true
                     },
                     "available": {
-                        "type": "string"
+                        "type": "string",
+                        "willReplaceOnChanges": true
                     },
                     "capacity": {
-                        "type": "integer"
+                        "type": "integer",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "A unique name for the resource, required by libvirt.\n"
+                        "description": "A unique name for the resource, required by libvirt.\n",
+                        "willReplaceOnChanges": true
                     },
                     "path": {
                         "type": "string",
-                        "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n"
+                        "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n",
+                        "willReplaceOnChanges": true
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the pool. Currently, only \"dir\" supported.\n"
+                        "description": "The type of the pool. Currently, only \"dir\" supported.\n",
+                        "willReplaceOnChanges": true
                     },
                     "xml": {
-                        "$ref": "#/types/libvirt:index/PoolXml:PoolXml"
+                        "$ref": "#/types/libvirt:index/PoolXml:PoolXml",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
             }
         },
         "libvirt:index/volume:Volume": {
-            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Base OS image to use to create a cluster of different\n        // nodes\n        var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new Libvirt.VolumeArgs\n        {\n            Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n        });\n        // volume to attach to the \"master\" domain as main disk\n        var master = new Libvirt.Volume(\"master\", new Libvirt.VolumeArgs\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        });\n        // volumes to attach to the \"workers\" domains as main disk\n        var worker = new List\u003cLibvirt.Volume\u003e();\n        for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n        {\n            var range = new { Value = rangeIndex };\n            worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new Libvirt.VolumeArgs\n            {\n                BaseVolumeId = opensuseLeap.Id,\n            }));\n        }\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor key0, _ := range _var.Workers_count {\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Base OS image to use to create a cluster of different\n    // nodes\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n    // volume to attach to the \"master\" domain as main disk\n    var master = new Libvirt.Volume(\"master\", new()\n    {\n        BaseVolumeId = opensuseLeap.Id,\n    });\n\n    // volumes to attach to the \"workers\" domains as main disk\n    var worker = new List\u003cLibvirt.Volume\u003e();\n    for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n    {\n        var range = new { Value = rangeIndex };\n        worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new()\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        }));\n    }\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor key0, _ := range _var.Workers_count {\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n        var master = new Volume(\"master\", VolumeArgs.builder()        \n            .baseVolumeId(opensuseLeap.id())\n            .build());\n\n        for (var i = 0; i \u003c var_.workers_count(); i++) {\n            new Volume(\"worker-\" + i, VolumeArgs.builder()            \n                .baseVolumeId(opensuseLeap.id())\n                .build());\n\n        \n}\n    }\n}\n```\n```yaml\nresources:\n  # Base OS image to use to create a cluster of different\n  # nodes\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n  # volume to attach to the \"master\" domain as main disk\n  master:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n  # volumes to attach to the \"workers\" domains as main disk\n  worker:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n    options: {}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "baseVolumeId": {
                     "type": "string",
@@ -1646,35 +1793,44 @@
             "inputProperties": {
                 "baseVolumeId": {
                     "type": "string",
-                    "description": "The backing volume (CoW) to use for this volume.\n"
+                    "description": "The backing volume (CoW) to use for this volume.\n",
+                    "willReplaceOnChanges": true
                 },
                 "baseVolumeName": {
                     "type": "string",
-                    "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n"
+                    "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n",
+                    "willReplaceOnChanges": true
                 },
                 "baseVolumePool": {
                     "type": "string",
-                    "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n"
+                    "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n",
+                    "willReplaceOnChanges": true
                 },
                 "format": {
-                    "type": "string"
+                    "type": "string",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                    "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n",
+                    "willReplaceOnChanges": true
                 },
                 "pool": {
                     "type": "string",
-                    "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n"
+                    "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n",
+                    "willReplaceOnChanges": true
                 },
                 "size": {
-                    "type": "integer"
+                    "type": "integer",
+                    "willReplaceOnChanges": true
                 },
                 "source": {
-                    "type": "string"
+                    "type": "string",
+                    "willReplaceOnChanges": true
                 },
                 "xml": {
-                    "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml"
+                    "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml",
+                    "willReplaceOnChanges": true
                 }
             },
             "stateInputs": {
@@ -1682,35 +1838,44 @@
                 "properties": {
                     "baseVolumeId": {
                         "type": "string",
-                        "description": "The backing volume (CoW) to use for this volume.\n"
+                        "description": "The backing volume (CoW) to use for this volume.\n",
+                        "willReplaceOnChanges": true
                     },
                     "baseVolumeName": {
                         "type": "string",
-                        "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n"
+                        "description": "The name of the backing volume (CoW) to use\nfor this volume. Note well: when `base_volume_pool` is not specified the\nvolume is going to be searched inside of `pool`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "baseVolumePool": {
                         "type": "string",
-                        "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n"
+                        "description": "The name of the storage pool containing the\nvolume defined by `base_volume_name`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "format": {
-                        "type": "string"
+                        "type": "string",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n"
+                        "description": "A unique name for the resource, required by libvirt.\nChanging this forces a new resource to be created.\n",
+                        "willReplaceOnChanges": true
                     },
                     "pool": {
                         "type": "string",
-                        "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n"
+                        "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n",
+                        "willReplaceOnChanges": true
                     },
                     "size": {
-                        "type": "integer"
+                        "type": "integer",
+                        "willReplaceOnChanges": true
                     },
                     "source": {
-                        "type": "string"
+                        "type": "string",
+                        "willReplaceOnChanges": true
                     },
                     "xml": {
-                        "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml"
+                        "$ref": "#/types/libvirt:index/VolumeXml:VolumeXml",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -1884,42 +2049,6 @@
                     "rendered",
                     "id"
                 ]
-            }
-        }
-    },
-    "language": {
-        "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
-            "packageReferences": {
-                "Pulumi": "3.*"
-            }
-        },
-        "go": {
-            "generateExtraInputTypes": true,
-            "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-        },
-        "nodejs": {
-            "compatibility": "tfbridge20",
-            "dependencies": {
-                "@pulumi/pulumi": "^3.0.0"
-            },
-            "devDependencies": {
-                "@types/mime": "^2.0.0",
-                "@types/node": "^10.0.0"
-            },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing libvirt cloud resources.",
-            "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`dmacvicar/terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
-            "typescriptVersion": ""
-        },
-        "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`dmacvicar/terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
-            "requires": {
-                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }
