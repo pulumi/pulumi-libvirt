@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainNetworkInterfaceGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainNetworkInterfaceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("addresses")]
         private InputList<string>? _addresses;
@@ -93,5 +93,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainNetworkInterfaceGetArgs()
         {
         }
+        public static new DomainNetworkInterfaceGetArgs Empty => new DomainNetworkInterfaceGetArgs();
     }
 }

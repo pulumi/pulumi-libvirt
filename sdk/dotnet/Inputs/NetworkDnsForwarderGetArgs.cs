@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class NetworkDnsForwarderGetArgs : Pulumi.ResourceArgs
+    public sealed class NetworkDnsForwarderGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -24,5 +24,6 @@ namespace Pulumi.Libvirt.Inputs
         public NetworkDnsForwarderGetArgs()
         {
         }
+        public static new NetworkDnsForwarderGetArgs Empty => new NetworkDnsForwarderGetArgs();
     }
 }

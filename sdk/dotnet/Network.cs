@@ -14,7 +14,7 @@ namespace Pulumi.Libvirt
     /// [the official documentation](https://libvirt.org/formatnetwork.html).
     /// </summary>
     [LibvirtResourceType("libvirt:index/network:Network")]
-    public partial class Network : Pulumi.CustomResource
+    public partial class Network : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
@@ -160,7 +160,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class NetworkArgs : Pulumi.ResourceArgs
+    public sealed class NetworkArgs : global::Pulumi.ResourceArgs
     {
         [Input("addresses")]
         private InputList<string>? _addresses;
@@ -277,9 +277,10 @@ namespace Pulumi.Libvirt
         public NetworkArgs()
         {
         }
+        public static new NetworkArgs Empty => new NetworkArgs();
     }
 
-    public sealed class NetworkState : Pulumi.ResourceArgs
+    public sealed class NetworkState : global::Pulumi.ResourceArgs
     {
         [Input("addresses")]
         private InputList<string>? _addresses;
@@ -396,5 +397,6 @@ namespace Pulumi.Libvirt
         public NetworkState()
         {
         }
+        public static new NetworkState Empty => new NetworkState();
     }
 }

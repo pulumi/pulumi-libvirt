@@ -358,7 +358,7 @@ func (i *Network) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput 
 // NetworkArrayInput is an input type that accepts NetworkArray and NetworkArrayOutput values.
 // You can construct a concrete instance of `NetworkArrayInput` via:
 //
-//          NetworkArray{ NetworkArgs{...} }
+//	NetworkArray{ NetworkArgs{...} }
 type NetworkArrayInput interface {
 	pulumi.Input
 
@@ -383,7 +383,7 @@ func (i NetworkArray) ToNetworkArrayOutputWithContext(ctx context.Context) Netwo
 // NetworkMapInput is an input type that accepts NetworkMap and NetworkMapOutput values.
 // You can construct a concrete instance of `NetworkMapInput` via:
 //
-//          NetworkMap{ "key": NetworkArgs{...} }
+//	NetworkMap{ "key": NetworkArgs{...} }
 type NetworkMapInput interface {
 	pulumi.Input
 
@@ -417,6 +417,96 @@ func (o NetworkOutput) ToNetworkOutput() NetworkOutput {
 
 func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
 	return o
+}
+
+// A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
+// CIDR notation.  This defines the subnets associated to that network.
+// This argument is also used to define the address on the real host.
+// If `dhcp {  enabled = true }` addresses is also used to define the address range served by
+// the DHCP server.
+// No DHCP server will be started if `addresses` is omitted.
+func (o NetworkOutput) Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringArrayOutput { return v.Addresses }).(pulumi.StringArrayOutput)
+}
+
+// Set to `true` to start the network on host boot up.
+// If not specified `false` is assumed.
+func (o NetworkOutput) Autostart() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.BoolPtrOutput { return v.Autostart }).(pulumi.BoolPtrOutput)
+}
+
+// The bridge device defines the name of a bridge
+// device which will be used to construct the virtual network (when not provided,
+// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
+func (o NetworkOutput) Bridge() pulumi.StringOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Bridge }).(pulumi.StringOutput)
+}
+
+// DHCP configuration.
+// You need to use it in conjuction with the adresses variable.
+func (o NetworkOutput) Dhcp() NetworkDhcpPtrOutput {
+	return o.ApplyT(func(v *Network) NetworkDhcpPtrOutput { return v.Dhcp }).(NetworkDhcpPtrOutput)
+}
+
+// configuration of DNS specific settings for the network
+func (o NetworkOutput) Dns() NetworkDnsPtrOutput {
+	return o.ApplyT(func(v *Network) NetworkDnsPtrOutput { return v.Dns }).(NetworkDnsPtrOutput)
+}
+
+// configuration of Dnsmasq options for the network
+// You need to provide a list of option name and value pairs.
+func (o NetworkOutput) DnsmasqOptions() NetworkDnsmasqOptionsPtrOutput {
+	return o.ApplyT(func(v *Network) NetworkDnsmasqOptionsPtrOutput { return v.DnsmasqOptions }).(NetworkDnsmasqOptionsPtrOutput)
+}
+
+// The domain used by the DNS server.
+func (o NetworkOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// One of:
+//   - `none`: the guests can talk to each other and the host OS, but cannot reach
+//     any other machines on the LAN.
+//   - `nat`: it is the default network mode. This is a configuration that
+//     allows guest OS to get outbound connectivity regardless of whether the host
+//     uses ethernet, wireless, dialup, or VPN networking without requiring any
+//     specific admin configuration. In the absence of host networking, it at
+//     least allows guests to talk directly to each other.
+//   - `route`: this is a variant on the default network which routes traffic from
+//     the virtual network to the LAN **without applying any NAT**. It requires that
+//     the IP address range be pre-configured in the routing tables of the router
+//     on the host network.
+//   - `open`: similar to `route`, but no firewall rules are added.
+//   - `bridge`: use a pre-existing host bridge. The guests will effectively be
+//     directly connected to the physical network (i.e. their IP addresses will
+//     all be on the subnet of the physical network, and there will be no
+//     restrictions on inbound or outbound connections). The `bridge` network
+//     attribute is mandatory in this case.
+func (o NetworkOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+// The MTU to set for the underlying network interfaces. When
+// not supplied, libvirt will use the default for the interface, usually 1500.
+// Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
+func (o NetworkOutput) Mtu() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.IntPtrOutput { return v.Mtu }).(pulumi.IntPtrOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+// Changing this forces a new resource to be created.
+func (o NetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// a list of static routes. A `cidr` and a `gateway` must
+// be provided. The `gateway` must be reachable via the bridge interface.
+func (o NetworkOutput) Routes() NetworkRouteArrayOutput {
+	return o.ApplyT(func(v *Network) NetworkRouteArrayOutput { return v.Routes }).(NetworkRouteArrayOutput)
+}
+
+func (o NetworkOutput) Xml() NetworkXmlPtrOutput {
+	return o.ApplyT(func(v *Network) NetworkXmlPtrOutput { return v.Xml }).(NetworkXmlPtrOutput)
 }
 
 type NetworkArrayOutput struct{ *pulumi.OutputState }

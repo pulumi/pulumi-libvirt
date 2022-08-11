@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainGraphicsArgs : Pulumi.ResourceArgs
+    public sealed class DomainGraphicsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// defaults to "yes"
@@ -46,5 +46,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainGraphicsArgs()
         {
         }
+        public static new DomainGraphicsArgs Empty => new DomainGraphicsArgs();
     }
 }

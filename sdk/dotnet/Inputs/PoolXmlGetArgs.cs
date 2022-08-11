@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class PoolXmlGetArgs : Pulumi.ResourceArgs
+    public sealed class PoolXmlGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("xslt")]
         public Input<string>? Xslt { get; set; }
@@ -18,5 +18,6 @@ namespace Pulumi.Libvirt.Inputs
         public PoolXmlGetArgs()
         {
         }
+        public static new PoolXmlGetArgs Empty => new PoolXmlGetArgs();
     }
 }

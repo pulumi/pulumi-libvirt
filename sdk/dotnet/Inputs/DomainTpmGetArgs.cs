@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainTpmGetArgs : Pulumi.ResourceArgs
+    public sealed class DomainTpmGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path to TPM device on the host, ex: `/dev/tpm0`
@@ -51,5 +51,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainTpmGetArgs()
         {
         }
+        public static new DomainTpmGetArgs Empty => new DomainTpmGetArgs();
     }
 }

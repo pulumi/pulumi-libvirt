@@ -10,14 +10,21 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt
 {
     [LibvirtResourceType("libvirt:index/ignition:Ignition")]
-    public partial class Ignition : Pulumi.CustomResource
+    public partial class Ignition : global::Pulumi.CustomResource
     {
         [Output("content")]
         public Output<string> Content { get; private set; } = null!;
 
+        /// <summary>
+        /// A unique name for the resource, required by libvirt.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The pool where the resource will be created.
+        /// If not given, the `default` pool will be used.
+        /// </summary>
         [Output("pool")]
         public Output<string?> Pool { get; private set; } = null!;
 
@@ -65,35 +72,51 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class IgnitionArgs : Pulumi.ResourceArgs
+    public sealed class IgnitionArgs : global::Pulumi.ResourceArgs
     {
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
+        /// <summary>
+        /// A unique name for the resource, required by libvirt.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The pool where the resource will be created.
+        /// If not given, the `default` pool will be used.
+        /// </summary>
         [Input("pool")]
         public Input<string>? Pool { get; set; }
 
         public IgnitionArgs()
         {
         }
+        public static new IgnitionArgs Empty => new IgnitionArgs();
     }
 
-    public sealed class IgnitionState : Pulumi.ResourceArgs
+    public sealed class IgnitionState : global::Pulumi.ResourceArgs
     {
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// A unique name for the resource, required by libvirt.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The pool where the resource will be created.
+        /// If not given, the `default` pool will be used.
+        /// </summary>
         [Input("pool")]
         public Input<string>? Pool { get; set; }
 
         public IgnitionState()
         {
         }
+        public static new IgnitionState Empty => new IgnitionState();
     }
 }

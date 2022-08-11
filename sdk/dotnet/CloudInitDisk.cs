@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt
 {
     [LibvirtResourceType("libvirt:index/cloudInitDisk:CloudInitDisk")]
-    public partial class CloudInitDisk : Pulumi.CustomResource
+    public partial class CloudInitDisk : global::Pulumi.CustomResource
     {
         /// <summary>
         /// cloud-init user data.
@@ -89,7 +89,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class CloudInitDiskArgs : Pulumi.ResourceArgs
+    public sealed class CloudInitDiskArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// cloud-init user data.
@@ -127,9 +127,10 @@ namespace Pulumi.Libvirt
         public CloudInitDiskArgs()
         {
         }
+        public static new CloudInitDiskArgs Empty => new CloudInitDiskArgs();
     }
 
-    public sealed class CloudInitDiskState : Pulumi.ResourceArgs
+    public sealed class CloudInitDiskState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// cloud-init user data.
@@ -167,5 +168,6 @@ namespace Pulumi.Libvirt
         public CloudInitDiskState()
         {
         }
+        public static new CloudInitDiskState Empty => new CloudInitDiskState();
     }
 }

@@ -19,7 +19,7 @@ namespace Pulumi.Libvirt
     }
 
 
-    public sealed class GetNetworkDnsSrvTemplateArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkDnsSrvTemplateArgs : global::Pulumi.InvokeArgs
     {
         [Input("domain")]
         public string? Domain { get; set; }
@@ -45,9 +45,10 @@ namespace Pulumi.Libvirt
         public GetNetworkDnsSrvTemplateArgs()
         {
         }
+        public static new GetNetworkDnsSrvTemplateArgs Empty => new GetNetworkDnsSrvTemplateArgs();
     }
 
-    public sealed class GetNetworkDnsSrvTemplateInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkDnsSrvTemplateInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("domain")]
         public Input<string>? Domain { get; set; }
@@ -73,6 +74,7 @@ namespace Pulumi.Libvirt
         public GetNetworkDnsSrvTemplateInvokeArgs()
         {
         }
+        public static new GetNetworkDnsSrvTemplateInvokeArgs Empty => new GetNetworkDnsSrvTemplateInvokeArgs();
     }
 
 

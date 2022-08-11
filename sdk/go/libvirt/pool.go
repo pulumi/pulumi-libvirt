@@ -22,29 +22,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		cluster, err := libvirt.NewPool(ctx, "cluster", &libvirt.PoolArgs{
-// 			Type: pulumi.String("dir"),
-// 			Path: pulumi.String("/home/user/cluster_storage"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
-// 			Pool:   cluster.Name,
-// 			Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cluster, err := libvirt.NewPool(ctx, "cluster", &libvirt.PoolArgs{
+//				Type: pulumi.String("dir"),
+//				Path: pulumi.String("/home/user/cluster_storage"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
+//				Pool:   cluster.Name,
+//				Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Pool struct {
 	pulumi.CustomResourceState
@@ -180,7 +183,7 @@ func (i *Pool) ToPoolOutputWithContext(ctx context.Context) PoolOutput {
 // PoolArrayInput is an input type that accepts PoolArray and PoolArrayOutput values.
 // You can construct a concrete instance of `PoolArrayInput` via:
 //
-//          PoolArray{ PoolArgs{...} }
+//	PoolArray{ PoolArgs{...} }
 type PoolArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +208,7 @@ func (i PoolArray) ToPoolArrayOutputWithContext(ctx context.Context) PoolArrayOu
 // PoolMapInput is an input type that accepts PoolMap and PoolMapOutput values.
 // You can construct a concrete instance of `PoolMapInput` via:
 //
-//          PoolMap{ "key": PoolArgs{...} }
+//	PoolMap{ "key": PoolArgs{...} }
 type PoolMapInput interface {
 	pulumi.Input
 
@@ -239,6 +242,38 @@ func (o PoolOutput) ToPoolOutput() PoolOutput {
 
 func (o PoolOutput) ToPoolOutputWithContext(ctx context.Context) PoolOutput {
 	return o
+}
+
+func (o PoolOutput) Allocation() pulumi.IntOutput {
+	return o.ApplyT(func(v *Pool) pulumi.IntOutput { return v.Allocation }).(pulumi.IntOutput)
+}
+
+func (o PoolOutput) Available() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Available }).(pulumi.StringOutput)
+}
+
+func (o PoolOutput) Capacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *Pool) pulumi.IntOutput { return v.Capacity }).(pulumi.IntOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+func (o PoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
+// the "dir" type pools.
+func (o PoolOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The type of the pool. Currently, only "dir" supported.
+func (o PoolOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o PoolOutput) Xml() PoolXmlPtrOutput {
+	return o.ApplyT(func(v *Pool) PoolXmlPtrOutput { return v.Xml }).(PoolXmlPtrOutput)
 }
 
 type PoolArrayOutput struct{ *pulumi.OutputState }

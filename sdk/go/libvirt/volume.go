@@ -19,37 +19,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opensuseLeap, err := libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
-// 			Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = libvirt.NewVolume(ctx, "master", &libvirt.VolumeArgs{
-// 			BaseVolumeId: opensuseLeap.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		var worker []*libvirt.Volume
-// 		for key0, _ := range _var.Workers_count {
-// 			__res, err := libvirt.NewVolume(ctx, fmt.Sprintf("worker-%v", key0), &libvirt.VolumeArgs{
-// 				BaseVolumeId: opensuseLeap.ID(),
-// 			})
-// 			if err != nil {
-// 				return err
-// 			}
-// 			worker = append(worker, __res)
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			opensuseLeap, err := libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
+//				Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = libvirt.NewVolume(ctx, "master", &libvirt.VolumeArgs{
+//				BaseVolumeId: opensuseLeap.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var worker []*libvirt.Volume
+//			for key0, _ := range _var.Workers_count {
+//				__res, err := libvirt.NewVolume(ctx, fmt.Sprintf("worker-%v", key0), &libvirt.VolumeArgs{
+//					BaseVolumeId: opensuseLeap.ID(),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				worker = append(worker, __res)
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // > **Tip:** when provisioning multiple domains using the same base image, create
@@ -227,7 +230,7 @@ func (i *Volume) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 // VolumeArrayInput is an input type that accepts VolumeArray and VolumeArrayOutput values.
 // You can construct a concrete instance of `VolumeArrayInput` via:
 //
-//          VolumeArray{ VolumeArgs{...} }
+//	VolumeArray{ VolumeArgs{...} }
 type VolumeArrayInput interface {
 	pulumi.Input
 
@@ -252,7 +255,7 @@ func (i VolumeArray) ToVolumeArrayOutputWithContext(ctx context.Context) VolumeA
 // VolumeMapInput is an input type that accepts VolumeMap and VolumeMapOutput values.
 // You can construct a concrete instance of `VolumeMapInput` via:
 //
-//          VolumeMap{ "key": VolumeArgs{...} }
+//	VolumeMap{ "key": VolumeArgs{...} }
 type VolumeMapInput interface {
 	pulumi.Input
 
@@ -286,6 +289,52 @@ func (o VolumeOutput) ToVolumeOutput() VolumeOutput {
 
 func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 	return o
+}
+
+// The backing volume (CoW) to use for this volume.
+func (o VolumeOutput) BaseVolumeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.BaseVolumeId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the backing volume (CoW) to use
+// for this volume. Note well: when `baseVolumePool` is not specified the
+// volume is going to be searched inside of `pool`.
+func (o VolumeOutput) BaseVolumeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.BaseVolumeName }).(pulumi.StringPtrOutput)
+}
+
+// The name of the storage pool containing the
+// volume defined by `baseVolumeName`.
+func (o VolumeOutput) BaseVolumePool() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.BaseVolumePool }).(pulumi.StringPtrOutput)
+}
+
+func (o VolumeOutput) Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+// Changing this forces a new resource to be created.
+func (o VolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The storage pool where the resource will be created.
+// If not given, the `default` storage pool will be used.
+func (o VolumeOutput) Pool() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Pool }).(pulumi.StringPtrOutput)
+}
+
+func (o VolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o VolumeOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Source }).(pulumi.StringPtrOutput)
+}
+
+func (o VolumeOutput) Xml() VolumeXmlPtrOutput {
+	return o.ApplyT(func(v *Volume) VolumeXmlPtrOutput { return v.Xml }).(VolumeXmlPtrOutput)
 }
 
 type VolumeArrayOutput struct{ *pulumi.OutputState }

@@ -87,16 +87,36 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "cloudinit.html.markdown",
 				},
 			},
-			"libvirt_domain":   {Tok: makeResource(mainMod, "Domain")},
-			"libvirt_ignition": {Tok: makeResource(mainMod, "Ignition")},
-			"libvirt_network":  {Tok: makeResource(mainMod, "Network")},
-			"libvirt_pool":     {Tok: makeResource(mainMod, "Pool")},
-			"libvirt_volume":   {Tok: makeResource(mainMod, "Volume")},
+			"libvirt_domain": {Tok: makeResource(mainMod, "Domain")},
+			"libvirt_ignition": {
+				Tok: makeResource(mainMod, "Ignition"),
+				Docs: &tfbridge.DocInfo{
+					Source: "coreos_ignition.html.markdown",
+				},
+			},
+			"libvirt_network": {Tok: makeResource(mainMod, "Network")},
+			"libvirt_pool":    {Tok: makeResource(mainMod, "Pool")},
+			"libvirt_volume":  {Tok: makeResource(mainMod, "Volume")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"libvirt_network_dns_host_template":        {Tok: makeDataSource(mainMod, "getNetworkDnsHostTemplate")},
-			"libvirt_network_dns_srv_template":         {Tok: makeDataSource(mainMod, "getNetworkDnsSrvTemplate")},
-			"libvirt_network_dnsmasq_options_template": {Tok: makeDataSource(mainMod, "getNetworkDnsmasqOptionsTemplate")},
+			"libvirt_network_dns_host_template": {
+				Tok: makeDataSource(mainMod, "getNetworkDnsHostTemplate"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"libvirt_network_dns_srv_template": {
+				Tok: makeDataSource(mainMod, "getNetworkDnsSrvTemplate"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
+			"libvirt_network_dnsmasq_options_template": {
+				Tok: makeDataSource(mainMod, "getNetworkDnsmasqOptionsTemplate"),
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

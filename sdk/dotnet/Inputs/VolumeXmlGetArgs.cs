@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class VolumeXmlGetArgs : Pulumi.ResourceArgs
+    public sealed class VolumeXmlGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("xslt")]
         public Input<string>? Xslt { get; set; }
@@ -18,5 +18,6 @@ namespace Pulumi.Libvirt.Inputs
         public VolumeXmlGetArgs()
         {
         }
+        public static new VolumeXmlGetArgs Empty => new VolumeXmlGetArgs();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class DomainDiskArgs : Pulumi.ResourceArgs
+    public sealed class DomainDiskArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path to the host device to use as the block device for this disk.
@@ -53,5 +53,6 @@ namespace Pulumi.Libvirt.Inputs
         public DomainDiskArgs()
         {
         }
+        public static new DomainDiskArgs Empty => new DomainDiskArgs();
     }
 }

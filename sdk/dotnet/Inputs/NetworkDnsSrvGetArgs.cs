@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class NetworkDnsSrvGetArgs : Pulumi.ResourceArgs
+    public sealed class NetworkDnsSrvGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The domain used by the DNS server.
@@ -39,5 +39,6 @@ namespace Pulumi.Libvirt.Inputs
         public NetworkDnsSrvGetArgs()
         {
         }
+        public static new NetworkDnsSrvGetArgs Empty => new NetworkDnsSrvGetArgs();
     }
 }

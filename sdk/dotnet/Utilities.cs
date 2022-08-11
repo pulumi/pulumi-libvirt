@@ -74,7 +74,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    internal sealed class LibvirtResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class LibvirtResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public LibvirtResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

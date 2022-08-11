@@ -16,7 +16,7 @@ namespace Pulumi.Libvirt
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [LibvirtResourceType("pulumi:providers:libvirt")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// libvirt connection URI for operations. See https://libvirt.org/uri.html
@@ -50,7 +50,7 @@ namespace Pulumi.Libvirt
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// libvirt connection URI for operations. See https://libvirt.org/uri.html
@@ -62,5 +62,6 @@ namespace Pulumi.Libvirt
         {
             Uri = Utilities.GetEnv("LIBVIRT_DEFAULT_URI");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

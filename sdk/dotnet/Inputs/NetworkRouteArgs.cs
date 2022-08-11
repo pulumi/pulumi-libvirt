@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Libvirt.Inputs
 {
 
-    public sealed class NetworkRouteArgs : Pulumi.ResourceArgs
+    public sealed class NetworkRouteArgs : global::Pulumi.ResourceArgs
     {
         [Input("cidr", required: true)]
         public Input<string> Cidr { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Libvirt.Inputs
         public NetworkRouteArgs()
         {
         }
+        public static new NetworkRouteArgs Empty => new NetworkRouteArgs();
     }
 }

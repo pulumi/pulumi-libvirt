@@ -17,7 +17,7 @@ type DomainBootDevice struct {
 // DomainBootDeviceInput is an input type that accepts DomainBootDeviceArgs and DomainBootDeviceOutput values.
 // You can construct a concrete instance of `DomainBootDeviceInput` via:
 //
-//          DomainBootDeviceArgs{...}
+//	DomainBootDeviceArgs{...}
 type DomainBootDeviceInput interface {
 	pulumi.Input
 
@@ -44,7 +44,7 @@ func (i DomainBootDeviceArgs) ToDomainBootDeviceOutputWithContext(ctx context.Co
 // DomainBootDeviceArrayInput is an input type that accepts DomainBootDeviceArray and DomainBootDeviceArrayOutput values.
 // You can construct a concrete instance of `DomainBootDeviceArrayInput` via:
 //
-//          DomainBootDeviceArray{ DomainBootDeviceArgs{...} }
+//	DomainBootDeviceArray{ DomainBootDeviceArgs{...} }
 type DomainBootDeviceArrayInput interface {
 	pulumi.Input
 
@@ -124,7 +124,7 @@ type DomainConsole struct {
 // DomainConsoleInput is an input type that accepts DomainConsoleArgs and DomainConsoleOutput values.
 // You can construct a concrete instance of `DomainConsoleInput` via:
 //
-//          DomainConsoleArgs{...}
+//	DomainConsoleArgs{...}
 type DomainConsoleInput interface {
 	pulumi.Input
 
@@ -164,7 +164,7 @@ func (i DomainConsoleArgs) ToDomainConsoleOutputWithContext(ctx context.Context)
 // DomainConsoleArrayInput is an input type that accepts DomainConsoleArray and DomainConsoleArrayOutput values.
 // You can construct a concrete instance of `DomainConsoleArrayInput` via:
 //
-//          DomainConsoleArray{ DomainConsoleArgs{...} }
+//	DomainConsoleArray{ DomainConsoleArgs{...} }
 type DomainConsoleArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +259,7 @@ type DomainCpu struct {
 // DomainCpuInput is an input type that accepts DomainCpuArgs and DomainCpuOutput values.
 // You can construct a concrete instance of `DomainCpuInput` via:
 //
-//          DomainCpuArgs{...}
+//	DomainCpuArgs{...}
 type DomainCpuInput interface {
 	pulumi.Input
 
@@ -294,11 +294,11 @@ func (i DomainCpuArgs) ToDomainCpuPtrOutputWithContext(ctx context.Context) Doma
 // DomainCpuPtrInput is an input type that accepts DomainCpuArgs, DomainCpuPtr and DomainCpuPtrOutput values.
 // You can construct a concrete instance of `DomainCpuPtrInput` via:
 //
-//          DomainCpuArgs{...}
+//	        DomainCpuArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DomainCpuPtrInput interface {
 	pulumi.Input
 
@@ -405,7 +405,7 @@ type DomainDisk struct {
 // DomainDiskInput is an input type that accepts DomainDiskArgs and DomainDiskOutput values.
 // You can construct a concrete instance of `DomainDiskInput` via:
 //
-//          DomainDiskArgs{...}
+//	DomainDiskArgs{...}
 type DomainDiskInput interface {
 	pulumi.Input
 
@@ -445,7 +445,7 @@ func (i DomainDiskArgs) ToDomainDiskOutputWithContext(ctx context.Context) Domai
 // DomainDiskArrayInput is an input type that accepts DomainDiskArray and DomainDiskArrayOutput values.
 // You can construct a concrete instance of `DomainDiskArrayInput` via:
 //
-//          DomainDiskArray{ DomainDiskArgs{...} }
+//	DomainDiskArray{ DomainDiskArgs{...} }
 type DomainDiskArrayInput interface {
 	pulumi.Input
 
@@ -543,7 +543,7 @@ type DomainFilesystem struct {
 // DomainFilesystemInput is an input type that accepts DomainFilesystemArgs and DomainFilesystemOutput values.
 // You can construct a concrete instance of `DomainFilesystemInput` via:
 //
-//          DomainFilesystemArgs{...}
+//	DomainFilesystemArgs{...}
 type DomainFilesystemInput interface {
 	pulumi.Input
 
@@ -573,7 +573,7 @@ func (i DomainFilesystemArgs) ToDomainFilesystemOutputWithContext(ctx context.Co
 // DomainFilesystemArrayInput is an input type that accepts DomainFilesystemArray and DomainFilesystemArrayOutput values.
 // You can construct a concrete instance of `DomainFilesystemArrayInput` via:
 //
-//          DomainFilesystemArray{ DomainFilesystemArgs{...} }
+//	DomainFilesystemArray{ DomainFilesystemArgs{...} }
 type DomainFilesystemArrayInput interface {
 	pulumi.Input
 
@@ -662,7 +662,7 @@ type DomainGraphics struct {
 // DomainGraphicsInput is an input type that accepts DomainGraphicsArgs and DomainGraphicsOutput values.
 // You can construct a concrete instance of `DomainGraphicsInput` via:
 //
-//          DomainGraphicsArgs{...}
+//	DomainGraphicsArgs{...}
 type DomainGraphicsInput interface {
 	pulumi.Input
 
@@ -707,11 +707,11 @@ func (i DomainGraphicsArgs) ToDomainGraphicsPtrOutputWithContext(ctx context.Con
 // DomainGraphicsPtrInput is an input type that accepts DomainGraphicsArgs, DomainGraphicsPtr and DomainGraphicsPtrOutput values.
 // You can construct a concrete instance of `DomainGraphicsPtrInput` via:
 //
-//          DomainGraphicsArgs{...}
+//	        DomainGraphicsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DomainGraphicsPtrInput interface {
 	pulumi.Input
 
@@ -904,7 +904,7 @@ type DomainNetworkInterface struct {
 // DomainNetworkInterfaceInput is an input type that accepts DomainNetworkInterfaceArgs and DomainNetworkInterfaceOutput values.
 // You can construct a concrete instance of `DomainNetworkInterfaceInput` via:
 //
-//          DomainNetworkInterfaceArgs{...}
+//	DomainNetworkInterfaceArgs{...}
 type DomainNetworkInterfaceInput interface {
 	pulumi.Input
 
@@ -966,7 +966,7 @@ func (i DomainNetworkInterfaceArgs) ToDomainNetworkInterfaceOutputWithContext(ct
 // DomainNetworkInterfaceArrayInput is an input type that accepts DomainNetworkInterfaceArray and DomainNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `DomainNetworkInterfaceArrayInput` via:
 //
-//          DomainNetworkInterfaceArray{ DomainNetworkInterfaceArgs{...} }
+//	DomainNetworkInterfaceArray{ DomainNetworkInterfaceArgs{...} }
 type DomainNetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -1099,7 +1099,7 @@ type DomainNvram struct {
 // DomainNvramInput is an input type that accepts DomainNvramArgs and DomainNvramOutput values.
 // You can construct a concrete instance of `DomainNvramInput` via:
 //
-//          DomainNvramArgs{...}
+//	DomainNvramArgs{...}
 type DomainNvramInput interface {
 	pulumi.Input
 
@@ -1138,11 +1138,11 @@ func (i DomainNvramArgs) ToDomainNvramPtrOutputWithContext(ctx context.Context) 
 // DomainNvramPtrInput is an input type that accepts DomainNvramArgs, DomainNvramPtr and DomainNvramPtrOutput values.
 // You can construct a concrete instance of `DomainNvramPtrInput` via:
 //
-//          DomainNvramArgs{...}
+//	        DomainNvramArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DomainNvramPtrInput interface {
 	pulumi.Input
 
@@ -1266,7 +1266,7 @@ type DomainTpm struct {
 // DomainTpmInput is an input type that accepts DomainTpmArgs and DomainTpmOutput values.
 // You can construct a concrete instance of `DomainTpmInput` via:
 //
-//          DomainTpmArgs{...}
+//	DomainTpmArgs{...}
 type DomainTpmInput interface {
 	pulumi.Input
 
@@ -1312,11 +1312,11 @@ func (i DomainTpmArgs) ToDomainTpmPtrOutputWithContext(ctx context.Context) Doma
 // DomainTpmPtrInput is an input type that accepts DomainTpmArgs, DomainTpmPtr and DomainTpmPtrOutput values.
 // You can construct a concrete instance of `DomainTpmPtrInput` via:
 //
-//          DomainTpmArgs{...}
+//	        DomainTpmArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DomainTpmPtrInput interface {
 	pulumi.Input
 
@@ -1488,7 +1488,7 @@ type DomainVideo struct {
 // DomainVideoInput is an input type that accepts DomainVideoArgs and DomainVideoOutput values.
 // You can construct a concrete instance of `DomainVideoInput` via:
 //
-//          DomainVideoArgs{...}
+//	DomainVideoArgs{...}
 type DomainVideoInput interface {
 	pulumi.Input
 
@@ -1524,11 +1524,11 @@ func (i DomainVideoArgs) ToDomainVideoPtrOutputWithContext(ctx context.Context) 
 // DomainVideoPtrInput is an input type that accepts DomainVideoArgs, DomainVideoPtr and DomainVideoPtrOutput values.
 // You can construct a concrete instance of `DomainVideoPtrInput` via:
 //
-//          DomainVideoArgs{...}
+//	        DomainVideoArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DomainVideoPtrInput interface {
 	pulumi.Input
 
@@ -1624,7 +1624,7 @@ type DomainXml struct {
 // DomainXmlInput is an input type that accepts DomainXmlArgs and DomainXmlOutput values.
 // You can construct a concrete instance of `DomainXmlInput` via:
 //
-//          DomainXmlArgs{...}
+//	DomainXmlArgs{...}
 type DomainXmlInput interface {
 	pulumi.Input
 
@@ -1659,11 +1659,11 @@ func (i DomainXmlArgs) ToDomainXmlPtrOutputWithContext(ctx context.Context) Doma
 // DomainXmlPtrInput is an input type that accepts DomainXmlArgs, DomainXmlPtr and DomainXmlPtrOutput values.
 // You can construct a concrete instance of `DomainXmlPtrInput` via:
 //
-//          DomainXmlArgs{...}
+//	        DomainXmlArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DomainXmlPtrInput interface {
 	pulumi.Input
 
@@ -1758,7 +1758,7 @@ type NetworkDhcp struct {
 // NetworkDhcpInput is an input type that accepts NetworkDhcpArgs and NetworkDhcpOutput values.
 // You can construct a concrete instance of `NetworkDhcpInput` via:
 //
-//          NetworkDhcpArgs{...}
+//	NetworkDhcpArgs{...}
 type NetworkDhcpInput interface {
 	pulumi.Input
 
@@ -1794,11 +1794,11 @@ func (i NetworkDhcpArgs) ToNetworkDhcpPtrOutputWithContext(ctx context.Context) 
 // NetworkDhcpPtrInput is an input type that accepts NetworkDhcpArgs, NetworkDhcpPtr and NetworkDhcpPtrOutput values.
 // You can construct a concrete instance of `NetworkDhcpPtrInput` via:
 //
-//          NetworkDhcpArgs{...}
+//	        NetworkDhcpArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NetworkDhcpPtrInput interface {
 	pulumi.Input
 
@@ -1905,7 +1905,7 @@ type NetworkDns struct {
 // NetworkDnsInput is an input type that accepts NetworkDnsArgs and NetworkDnsOutput values.
 // You can construct a concrete instance of `NetworkDnsInput` via:
 //
-//          NetworkDnsArgs{...}
+//	NetworkDnsArgs{...}
 type NetworkDnsInput interface {
 	pulumi.Input
 
@@ -1951,11 +1951,11 @@ func (i NetworkDnsArgs) ToNetworkDnsPtrOutputWithContext(ctx context.Context) Ne
 // NetworkDnsPtrInput is an input type that accepts NetworkDnsArgs, NetworkDnsPtr and NetworkDnsPtrOutput values.
 // You can construct a concrete instance of `NetworkDnsPtrInput` via:
 //
-//          NetworkDnsArgs{...}
+//	        NetworkDnsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NetworkDnsPtrInput interface {
 	pulumi.Input
 
@@ -2117,7 +2117,7 @@ type NetworkDnsForwarder struct {
 // NetworkDnsForwarderInput is an input type that accepts NetworkDnsForwarderArgs and NetworkDnsForwarderOutput values.
 // You can construct a concrete instance of `NetworkDnsForwarderInput` via:
 //
-//          NetworkDnsForwarderArgs{...}
+//	NetworkDnsForwarderArgs{...}
 type NetworkDnsForwarderInput interface {
 	pulumi.Input
 
@@ -2146,7 +2146,7 @@ func (i NetworkDnsForwarderArgs) ToNetworkDnsForwarderOutputWithContext(ctx cont
 // NetworkDnsForwarderArrayInput is an input type that accepts NetworkDnsForwarderArray and NetworkDnsForwarderArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsForwarderArrayInput` via:
 //
-//          NetworkDnsForwarderArray{ NetworkDnsForwarderArgs{...} }
+//	NetworkDnsForwarderArray{ NetworkDnsForwarderArgs{...} }
 type NetworkDnsForwarderArrayInput interface {
 	pulumi.Input
 
@@ -2219,7 +2219,7 @@ type NetworkDnsHost struct {
 // NetworkDnsHostInput is an input type that accepts NetworkDnsHostArgs and NetworkDnsHostOutput values.
 // You can construct a concrete instance of `NetworkDnsHostInput` via:
 //
-//          NetworkDnsHostArgs{...}
+//	NetworkDnsHostArgs{...}
 type NetworkDnsHostInput interface {
 	pulumi.Input
 
@@ -2247,7 +2247,7 @@ func (i NetworkDnsHostArgs) ToNetworkDnsHostOutputWithContext(ctx context.Contex
 // NetworkDnsHostArrayInput is an input type that accepts NetworkDnsHostArray and NetworkDnsHostArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsHostArrayInput` via:
 //
-//          NetworkDnsHostArray{ NetworkDnsHostArgs{...} }
+//	NetworkDnsHostArray{ NetworkDnsHostArgs{...} }
 type NetworkDnsHostArrayInput interface {
 	pulumi.Input
 
@@ -2325,7 +2325,7 @@ type NetworkDnsSrv struct {
 // NetworkDnsSrvInput is an input type that accepts NetworkDnsSrvArgs and NetworkDnsSrvOutput values.
 // You can construct a concrete instance of `NetworkDnsSrvInput` via:
 //
-//          NetworkDnsSrvArgs{...}
+//	NetworkDnsSrvArgs{...}
 type NetworkDnsSrvInput interface {
 	pulumi.Input
 
@@ -2359,7 +2359,7 @@ func (i NetworkDnsSrvArgs) ToNetworkDnsSrvOutputWithContext(ctx context.Context)
 // NetworkDnsSrvArrayInput is an input type that accepts NetworkDnsSrvArray and NetworkDnsSrvArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsSrvArrayInput` via:
 //
-//          NetworkDnsSrvArray{ NetworkDnsSrvArgs{...} }
+//	NetworkDnsSrvArray{ NetworkDnsSrvArgs{...} }
 type NetworkDnsSrvArrayInput interface {
 	pulumi.Input
 
@@ -2453,7 +2453,7 @@ type NetworkDnsmasqOptions struct {
 // NetworkDnsmasqOptionsInput is an input type that accepts NetworkDnsmasqOptionsArgs and NetworkDnsmasqOptionsOutput values.
 // You can construct a concrete instance of `NetworkDnsmasqOptionsInput` via:
 //
-//          NetworkDnsmasqOptionsArgs{...}
+//	NetworkDnsmasqOptionsArgs{...}
 type NetworkDnsmasqOptionsInput interface {
 	pulumi.Input
 
@@ -2490,11 +2490,11 @@ func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsPtrOutputWithContext(c
 // NetworkDnsmasqOptionsPtrInput is an input type that accepts NetworkDnsmasqOptionsArgs, NetworkDnsmasqOptionsPtr and NetworkDnsmasqOptionsPtrOutput values.
 // You can construct a concrete instance of `NetworkDnsmasqOptionsPtrInput` via:
 //
-//          NetworkDnsmasqOptionsArgs{...}
+//	        NetworkDnsmasqOptionsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NetworkDnsmasqOptionsPtrInput interface {
 	pulumi.Input
 
@@ -2593,7 +2593,7 @@ type NetworkDnsmasqOptionsOption struct {
 // NetworkDnsmasqOptionsOptionInput is an input type that accepts NetworkDnsmasqOptionsOptionArgs and NetworkDnsmasqOptionsOptionOutput values.
 // You can construct a concrete instance of `NetworkDnsmasqOptionsOptionInput` via:
 //
-//          NetworkDnsmasqOptionsOptionArgs{...}
+//	NetworkDnsmasqOptionsOptionArgs{...}
 type NetworkDnsmasqOptionsOptionInput interface {
 	pulumi.Input
 
@@ -2621,7 +2621,7 @@ func (i NetworkDnsmasqOptionsOptionArgs) ToNetworkDnsmasqOptionsOptionOutputWith
 // NetworkDnsmasqOptionsOptionArrayInput is an input type that accepts NetworkDnsmasqOptionsOptionArray and NetworkDnsmasqOptionsOptionArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsmasqOptionsOptionArrayInput` via:
 //
-//          NetworkDnsmasqOptionsOptionArray{ NetworkDnsmasqOptionsOptionArgs{...} }
+//	NetworkDnsmasqOptionsOptionArray{ NetworkDnsmasqOptionsOptionArgs{...} }
 type NetworkDnsmasqOptionsOptionArrayInput interface {
 	pulumi.Input
 
@@ -2693,7 +2693,7 @@ type NetworkRoute struct {
 // NetworkRouteInput is an input type that accepts NetworkRouteArgs and NetworkRouteOutput values.
 // You can construct a concrete instance of `NetworkRouteInput` via:
 //
-//          NetworkRouteArgs{...}
+//	NetworkRouteArgs{...}
 type NetworkRouteInput interface {
 	pulumi.Input
 
@@ -2721,7 +2721,7 @@ func (i NetworkRouteArgs) ToNetworkRouteOutputWithContext(ctx context.Context) N
 // NetworkRouteArrayInput is an input type that accepts NetworkRouteArray and NetworkRouteArrayOutput values.
 // You can construct a concrete instance of `NetworkRouteArrayInput` via:
 //
-//          NetworkRouteArray{ NetworkRouteArgs{...} }
+//	NetworkRouteArray{ NetworkRouteArgs{...} }
 type NetworkRouteArrayInput interface {
 	pulumi.Input
 
@@ -2792,7 +2792,7 @@ type NetworkXml struct {
 // NetworkXmlInput is an input type that accepts NetworkXmlArgs and NetworkXmlOutput values.
 // You can construct a concrete instance of `NetworkXmlInput` via:
 //
-//          NetworkXmlArgs{...}
+//	NetworkXmlArgs{...}
 type NetworkXmlInput interface {
 	pulumi.Input
 
@@ -2827,11 +2827,11 @@ func (i NetworkXmlArgs) ToNetworkXmlPtrOutputWithContext(ctx context.Context) Ne
 // NetworkXmlPtrInput is an input type that accepts NetworkXmlArgs, NetworkXmlPtr and NetworkXmlPtrOutput values.
 // You can construct a concrete instance of `NetworkXmlPtrInput` via:
 //
-//          NetworkXmlArgs{...}
+//	        NetworkXmlArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NetworkXmlPtrInput interface {
 	pulumi.Input
 
@@ -2925,7 +2925,7 @@ type PoolXml struct {
 // PoolXmlInput is an input type that accepts PoolXmlArgs and PoolXmlOutput values.
 // You can construct a concrete instance of `PoolXmlInput` via:
 //
-//          PoolXmlArgs{...}
+//	PoolXmlArgs{...}
 type PoolXmlInput interface {
 	pulumi.Input
 
@@ -2960,11 +2960,11 @@ func (i PoolXmlArgs) ToPoolXmlPtrOutputWithContext(ctx context.Context) PoolXmlP
 // PoolXmlPtrInput is an input type that accepts PoolXmlArgs, PoolXmlPtr and PoolXmlPtrOutput values.
 // You can construct a concrete instance of `PoolXmlPtrInput` via:
 //
-//          PoolXmlArgs{...}
+//	        PoolXmlArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PoolXmlPtrInput interface {
 	pulumi.Input
 
@@ -3058,7 +3058,7 @@ type VolumeXml struct {
 // VolumeXmlInput is an input type that accepts VolumeXmlArgs and VolumeXmlOutput values.
 // You can construct a concrete instance of `VolumeXmlInput` via:
 //
-//          VolumeXmlArgs{...}
+//	VolumeXmlArgs{...}
 type VolumeXmlInput interface {
 	pulumi.Input
 
@@ -3093,11 +3093,11 @@ func (i VolumeXmlArgs) ToVolumeXmlPtrOutputWithContext(ctx context.Context) Volu
 // VolumeXmlPtrInput is an input type that accepts VolumeXmlArgs, VolumeXmlPtr and VolumeXmlPtrOutput values.
 // You can construct a concrete instance of `VolumeXmlPtrInput` via:
 //
-//          VolumeXmlArgs{...}
+//	        VolumeXmlArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type VolumeXmlPtrInput interface {
 	pulumi.Input
 
