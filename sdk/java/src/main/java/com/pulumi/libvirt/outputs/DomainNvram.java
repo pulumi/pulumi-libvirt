@@ -15,22 +15,15 @@ public final class DomainNvram {
      * @return The filename to use as the block device for this disk (read-only)
      * 
      */
-    private final String file;
+    private String file;
     /**
      * @return path to the file used to override variables from the master NVRAM
      * store.
      * 
      */
-    private final @Nullable String template;
+    private @Nullable String template;
 
-    @CustomType.Constructor
-    private DomainNvram(
-        @CustomType.Parameter("file") String file,
-        @CustomType.Parameter("template") @Nullable String template) {
-        this.file = file;
-        this.template = template;
-    }
-
+    private DomainNvram() {}
     /**
      * @return The filename to use as the block device for this disk (read-only)
      * 
@@ -54,30 +47,32 @@ public final class DomainNvram {
     public static Builder builder(DomainNvram defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String file;
         private @Nullable String template;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainNvram defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.file = defaults.file;
     	      this.template = defaults.template;
         }
 
+        @CustomType.Setter
         public Builder file(String file) {
             this.file = Objects.requireNonNull(file);
             return this;
         }
+        @CustomType.Setter
         public Builder template(@Nullable String template) {
             this.template = template;
             return this;
-        }        public DomainNvram build() {
-            return new DomainNvram(file, template);
+        }
+        public DomainNvram build() {
+            final var o = new DomainNvram();
+            o.file = file;
+            o.template = template;
+            return o;
         }
     }
 }

@@ -14,23 +14,12 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String optionName;
-    private final String optionValue;
-    private final Map<String,String> rendered;
+    private String id;
+    private String optionName;
+    private String optionValue;
+    private Map<String,String> rendered;
 
-    @CustomType.Constructor
-    private GetNetworkDnsmasqOptionsTemplateResult(
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("optionName") String optionName,
-        @CustomType.Parameter("optionValue") String optionValue,
-        @CustomType.Parameter("rendered") Map<String,String> rendered) {
-        this.id = id;
-        this.optionName = optionName;
-        this.optionValue = optionValue;
-        this.rendered = rendered;
-    }
-
+    private GetNetworkDnsmasqOptionsTemplateResult() {}
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -55,17 +44,13 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
     public static Builder builder(GetNetworkDnsmasqOptionsTemplateResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String id;
         private String optionName;
         private String optionValue;
         private Map<String,String> rendered;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetNetworkDnsmasqOptionsTemplateResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
@@ -74,23 +59,33 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
     	      this.rendered = defaults.rendered;
         }
 
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder optionName(String optionName) {
             this.optionName = Objects.requireNonNull(optionName);
             return this;
         }
+        @CustomType.Setter
         public Builder optionValue(String optionValue) {
             this.optionValue = Objects.requireNonNull(optionValue);
             return this;
         }
+        @CustomType.Setter
         public Builder rendered(Map<String,String> rendered) {
             this.rendered = Objects.requireNonNull(rendered);
             return this;
-        }        public GetNetworkDnsmasqOptionsTemplateResult build() {
-            return new GetNetworkDnsmasqOptionsTemplateResult(id, optionName, optionValue, rendered);
+        }
+        public GetNetworkDnsmasqOptionsTemplateResult build() {
+            final var o = new GetNetworkDnsmasqOptionsTemplateResult();
+            o.id = id;
+            o.optionName = optionName;
+            o.optionValue = optionValue;
+            o.rendered = rendered;
+            return o;
         }
     }
 }

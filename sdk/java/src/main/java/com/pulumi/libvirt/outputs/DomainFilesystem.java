@@ -12,23 +12,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainFilesystem {
-    private final @Nullable String accessmode;
-    private final @Nullable Boolean readonly;
-    private final String source;
-    private final String target;
+    private @Nullable String accessmode;
+    private @Nullable Boolean readonly;
+    private String source;
+    private String target;
 
-    @CustomType.Constructor
-    private DomainFilesystem(
-        @CustomType.Parameter("accessmode") @Nullable String accessmode,
-        @CustomType.Parameter("readonly") @Nullable Boolean readonly,
-        @CustomType.Parameter("source") String source,
-        @CustomType.Parameter("target") String target) {
-        this.accessmode = accessmode;
-        this.readonly = readonly;
-        this.source = source;
-        this.target = target;
-    }
-
+    private DomainFilesystem() {}
     public Optional<String> accessmode() {
         return Optional.ofNullable(this.accessmode);
     }
@@ -49,17 +38,13 @@ public final class DomainFilesystem {
     public static Builder builder(DomainFilesystem defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String accessmode;
         private @Nullable Boolean readonly;
         private String source;
         private String target;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainFilesystem defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessmode = defaults.accessmode;
@@ -68,23 +53,33 @@ public final class DomainFilesystem {
     	      this.target = defaults.target;
         }
 
+        @CustomType.Setter
         public Builder accessmode(@Nullable String accessmode) {
             this.accessmode = accessmode;
             return this;
         }
+        @CustomType.Setter
         public Builder readonly(@Nullable Boolean readonly) {
             this.readonly = readonly;
             return this;
         }
+        @CustomType.Setter
         public Builder source(String source) {
             this.source = Objects.requireNonNull(source);
             return this;
         }
+        @CustomType.Setter
         public Builder target(String target) {
             this.target = Objects.requireNonNull(target);
             return this;
-        }        public DomainFilesystem build() {
-            return new DomainFilesystem(accessmode, readonly, source, target);
+        }
+        public DomainFilesystem build() {
+            final var o = new DomainFilesystem();
+            o.accessmode = accessmode;
+            o.readonly = readonly;
+            o.source = source;
+            o.target = target;
+            return o;
         }
     }
 }

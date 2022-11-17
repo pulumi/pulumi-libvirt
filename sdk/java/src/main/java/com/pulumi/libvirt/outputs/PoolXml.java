@@ -11,13 +11,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class PoolXml {
-    private final @Nullable String xslt;
+    private @Nullable String xslt;
 
-    @CustomType.Constructor
-    private PoolXml(@CustomType.Parameter("xslt") @Nullable String xslt) {
-        this.xslt = xslt;
-    }
-
+    private PoolXml() {}
     public Optional<String> xslt() {
         return Optional.ofNullable(this.xslt);
     }
@@ -29,24 +25,24 @@ public final class PoolXml {
     public static Builder builder(PoolXml defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String xslt;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(PoolXml defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.xslt = defaults.xslt;
         }
 
+        @CustomType.Setter
         public Builder xslt(@Nullable String xslt) {
             this.xslt = xslt;
             return this;
-        }        public PoolXml build() {
-            return new PoolXml(xslt);
+        }
+        public PoolXml build() {
+            final var o = new PoolXml();
+            o.xslt = xslt;
+            return o;
         }
     }
 }

@@ -11,21 +11,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkDnsForwarder {
-    private final @Nullable String address;
+    private @Nullable String address;
     /**
      * @return The domain used by the DNS server.
      * 
      */
-    private final @Nullable String domain;
+    private @Nullable String domain;
 
-    @CustomType.Constructor
-    private NetworkDnsForwarder(
-        @CustomType.Parameter("address") @Nullable String address,
-        @CustomType.Parameter("domain") @Nullable String domain) {
-        this.address = address;
-        this.domain = domain;
-    }
-
+    private NetworkDnsForwarder() {}
     public Optional<String> address() {
         return Optional.ofNullable(this.address);
     }
@@ -44,30 +37,32 @@ public final class NetworkDnsForwarder {
     public static Builder builder(NetworkDnsForwarder defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String address;
         private @Nullable String domain;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDnsForwarder defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.address = defaults.address;
     	      this.domain = defaults.domain;
         }
 
+        @CustomType.Setter
         public Builder address(@Nullable String address) {
             this.address = address;
             return this;
         }
+        @CustomType.Setter
         public Builder domain(@Nullable String domain) {
             this.domain = domain;
             return this;
-        }        public NetworkDnsForwarder build() {
-            return new NetworkDnsForwarder(address, domain);
+        }
+        public NetworkDnsForwarder build() {
+            final var o = new NetworkDnsForwarder();
+            o.address = address;
+            o.domain = domain;
+            return o;
         }
     }
 }

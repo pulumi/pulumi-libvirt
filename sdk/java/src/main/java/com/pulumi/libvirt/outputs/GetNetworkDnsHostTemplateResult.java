@@ -10,27 +10,16 @@ import java.util.Objects;
 
 @CustomType
 public final class GetNetworkDnsHostTemplateResult {
-    private final String hostname;
+    private String hostname;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String ip;
-    private final Map<String,String> rendered;
+    private String id;
+    private String ip;
+    private Map<String,String> rendered;
 
-    @CustomType.Constructor
-    private GetNetworkDnsHostTemplateResult(
-        @CustomType.Parameter("hostname") String hostname,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("ip") String ip,
-        @CustomType.Parameter("rendered") Map<String,String> rendered) {
-        this.hostname = hostname;
-        this.id = id;
-        this.ip = ip;
-        this.rendered = rendered;
-    }
-
+    private GetNetworkDnsHostTemplateResult() {}
     public String hostname() {
         return this.hostname;
     }
@@ -55,17 +44,13 @@ public final class GetNetworkDnsHostTemplateResult {
     public static Builder builder(GetNetworkDnsHostTemplateResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String hostname;
         private String id;
         private String ip;
         private Map<String,String> rendered;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetNetworkDnsHostTemplateResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.hostname = defaults.hostname;
@@ -74,23 +59,33 @@ public final class GetNetworkDnsHostTemplateResult {
     	      this.rendered = defaults.rendered;
         }
 
+        @CustomType.Setter
         public Builder hostname(String hostname) {
             this.hostname = Objects.requireNonNull(hostname);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder ip(String ip) {
             this.ip = Objects.requireNonNull(ip);
             return this;
         }
+        @CustomType.Setter
         public Builder rendered(Map<String,String> rendered) {
             this.rendered = Objects.requireNonNull(rendered);
             return this;
-        }        public GetNetworkDnsHostTemplateResult build() {
-            return new GetNetworkDnsHostTemplateResult(hostname, id, ip, rendered);
+        }
+        public GetNetworkDnsHostTemplateResult build() {
+            final var o = new GetNetworkDnsHostTemplateResult();
+            o.hostname = hostname;
+            o.id = id;
+            o.ip = ip;
+            o.rendered = rendered;
+            return o;
         }
     }
 }

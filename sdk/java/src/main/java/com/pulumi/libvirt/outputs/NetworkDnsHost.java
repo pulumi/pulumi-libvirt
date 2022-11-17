@@ -11,17 +11,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkDnsHost {
-    private final @Nullable String hostname;
-    private final @Nullable String ip;
+    private @Nullable String hostname;
+    private @Nullable String ip;
 
-    @CustomType.Constructor
-    private NetworkDnsHost(
-        @CustomType.Parameter("hostname") @Nullable String hostname,
-        @CustomType.Parameter("ip") @Nullable String ip) {
-        this.hostname = hostname;
-        this.ip = ip;
-    }
-
+    private NetworkDnsHost() {}
     public Optional<String> hostname() {
         return Optional.ofNullable(this.hostname);
     }
@@ -36,30 +29,32 @@ public final class NetworkDnsHost {
     public static Builder builder(NetworkDnsHost defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String hostname;
         private @Nullable String ip;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDnsHost defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.hostname = defaults.hostname;
     	      this.ip = defaults.ip;
         }
 
+        @CustomType.Setter
         public Builder hostname(@Nullable String hostname) {
             this.hostname = hostname;
             return this;
         }
+        @CustomType.Setter
         public Builder ip(@Nullable String ip) {
             this.ip = ip;
             return this;
-        }        public NetworkDnsHost build() {
-            return new NetworkDnsHost(hostname, ip);
+        }
+        public NetworkDnsHost build() {
+            final var o = new NetworkDnsHost();
+            o.hostname = hostname;
+            o.ip = ip;
+            return o;
         }
     }
 }

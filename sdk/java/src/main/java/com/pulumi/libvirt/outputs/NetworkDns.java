@@ -19,44 +19,31 @@ public final class NetworkDns {
      * @return when false, disable the DHCP server
      * 
      */
-    private final @Nullable Boolean enabled;
+    private @Nullable Boolean enabled;
     /**
      * @return Either `address`, `domain`, or both must be set
      * 
      */
-    private final @Nullable List<NetworkDnsForwarder> forwarders;
+    private @Nullable List<NetworkDnsForwarder> forwarders;
     /**
      * @return a DNS host entry block. You can have one or more of these
      * blocks in your DNS definition. You must specify both `ip` and `hostname`.
      * 
      */
-    private final @Nullable List<NetworkDnsHost> hosts;
+    private @Nullable List<NetworkDnsHost> hosts;
     /**
      * @return true/false: true means &#39;do not forward unresolved requests for this domain to the part DNS server
      * 
      */
-    private final @Nullable Boolean localOnly;
+    private @Nullable Boolean localOnly;
     /**
      * @return a DNS SRV entry block. You can have one or more of these blocks
      * in your DNS definition. You must specify `service` and `protocol`.
      * 
      */
-    private final @Nullable List<NetworkDnsSrv> srvs;
+    private @Nullable List<NetworkDnsSrv> srvs;
 
-    @CustomType.Constructor
-    private NetworkDns(
-        @CustomType.Parameter("enabled") @Nullable Boolean enabled,
-        @CustomType.Parameter("forwarders") @Nullable List<NetworkDnsForwarder> forwarders,
-        @CustomType.Parameter("hosts") @Nullable List<NetworkDnsHost> hosts,
-        @CustomType.Parameter("localOnly") @Nullable Boolean localOnly,
-        @CustomType.Parameter("srvs") @Nullable List<NetworkDnsSrv> srvs) {
-        this.enabled = enabled;
-        this.forwarders = forwarders;
-        this.hosts = hosts;
-        this.localOnly = localOnly;
-        this.srvs = srvs;
-    }
-
+    private NetworkDns() {}
     /**
      * @return when false, disable the DHCP server
      * 
@@ -102,18 +89,14 @@ public final class NetworkDns {
     public static Builder builder(NetworkDns defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean enabled;
         private @Nullable List<NetworkDnsForwarder> forwarders;
         private @Nullable List<NetworkDnsHost> hosts;
         private @Nullable Boolean localOnly;
         private @Nullable List<NetworkDnsSrv> srvs;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDns defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
@@ -123,10 +106,12 @@ public final class NetworkDns {
     	      this.srvs = defaults.srvs;
         }
 
+        @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
             this.enabled = enabled;
             return this;
         }
+        @CustomType.Setter
         public Builder forwarders(@Nullable List<NetworkDnsForwarder> forwarders) {
             this.forwarders = forwarders;
             return this;
@@ -134,6 +119,7 @@ public final class NetworkDns {
         public Builder forwarders(NetworkDnsForwarder... forwarders) {
             return forwarders(List.of(forwarders));
         }
+        @CustomType.Setter
         public Builder hosts(@Nullable List<NetworkDnsHost> hosts) {
             this.hosts = hosts;
             return this;
@@ -141,18 +127,27 @@ public final class NetworkDns {
         public Builder hosts(NetworkDnsHost... hosts) {
             return hosts(List.of(hosts));
         }
+        @CustomType.Setter
         public Builder localOnly(@Nullable Boolean localOnly) {
             this.localOnly = localOnly;
             return this;
         }
+        @CustomType.Setter
         public Builder srvs(@Nullable List<NetworkDnsSrv> srvs) {
             this.srvs = srvs;
             return this;
         }
         public Builder srvs(NetworkDnsSrv... srvs) {
             return srvs(List.of(srvs));
-        }        public NetworkDns build() {
-            return new NetworkDns(enabled, forwarders, hosts, localOnly, srvs);
+        }
+        public NetworkDns build() {
+            final var o = new NetworkDns();
+            o.enabled = enabled;
+            o.forwarders = forwarders;
+            o.hosts = hosts;
+            o.localOnly = localOnly;
+            o.srvs = srvs;
+            return o;
         }
     }
 }

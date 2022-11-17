@@ -11,13 +11,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkXml {
-    private final @Nullable String xslt;
+    private @Nullable String xslt;
 
-    @CustomType.Constructor
-    private NetworkXml(@CustomType.Parameter("xslt") @Nullable String xslt) {
-        this.xslt = xslt;
-    }
-
+    private NetworkXml() {}
     public Optional<String> xslt() {
         return Optional.ofNullable(this.xslt);
     }
@@ -29,24 +25,24 @@ public final class NetworkXml {
     public static Builder builder(NetworkXml defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String xslt;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkXml defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.xslt = defaults.xslt;
         }
 
+        @CustomType.Setter
         public Builder xslt(@Nullable String xslt) {
             this.xslt = xslt;
             return this;
-        }        public NetworkXml build() {
-            return new NetworkXml(xslt);
+        }
+        public NetworkXml build() {
+            final var o = new NetworkXml();
+            o.xslt = xslt;
+            return o;
         }
     }
 }

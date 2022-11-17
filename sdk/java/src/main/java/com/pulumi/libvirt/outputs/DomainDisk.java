@@ -16,51 +16,36 @@ public final class DomainDisk {
      * @return The path to the host device to use as the block device for this disk.
      * 
      */
-    private final @Nullable String blockDevice;
+    private @Nullable String blockDevice;
     /**
      * @return The filename to use as the block device for this disk (read-only)
      * 
      */
-    private final @Nullable String file;
+    private @Nullable String file;
     /**
      * @return Use a scsi controller for this disk.  The controller
      * model is set to `virtio-scsi`
      * 
      */
-    private final @Nullable Boolean scsi;
+    private @Nullable Boolean scsi;
     /**
      * @return The http url to use as the block device for this disk (read-only)
      * 
      */
-    private final @Nullable String url;
+    private @Nullable String url;
     /**
      * @return The volume id to use for this disk.
      * 
      */
-    private final @Nullable String volumeId;
+    private @Nullable String volumeId;
     /**
      * @return Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
      * 
      */
-    private final @Nullable String wwn;
+    private @Nullable String wwn;
 
-    @CustomType.Constructor
-    private DomainDisk(
-        @CustomType.Parameter("blockDevice") @Nullable String blockDevice,
-        @CustomType.Parameter("file") @Nullable String file,
-        @CustomType.Parameter("scsi") @Nullable Boolean scsi,
-        @CustomType.Parameter("url") @Nullable String url,
-        @CustomType.Parameter("volumeId") @Nullable String volumeId,
-        @CustomType.Parameter("wwn") @Nullable String wwn) {
-        this.blockDevice = blockDevice;
-        this.file = file;
-        this.scsi = scsi;
-        this.url = url;
-        this.volumeId = volumeId;
-        this.wwn = wwn;
-    }
-
+    private DomainDisk() {}
     /**
      * @return The path to the host device to use as the block device for this disk.
      * 
@@ -113,7 +98,7 @@ public final class DomainDisk {
     public static Builder builder(DomainDisk defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String blockDevice;
         private @Nullable String file;
@@ -121,11 +106,7 @@ public final class DomainDisk {
         private @Nullable String url;
         private @Nullable String volumeId;
         private @Nullable String wwn;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainDisk defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.blockDevice = defaults.blockDevice;
@@ -136,31 +117,45 @@ public final class DomainDisk {
     	      this.wwn = defaults.wwn;
         }
 
+        @CustomType.Setter
         public Builder blockDevice(@Nullable String blockDevice) {
             this.blockDevice = blockDevice;
             return this;
         }
+        @CustomType.Setter
         public Builder file(@Nullable String file) {
             this.file = file;
             return this;
         }
+        @CustomType.Setter
         public Builder scsi(@Nullable Boolean scsi) {
             this.scsi = scsi;
             return this;
         }
+        @CustomType.Setter
         public Builder url(@Nullable String url) {
             this.url = url;
             return this;
         }
+        @CustomType.Setter
         public Builder volumeId(@Nullable String volumeId) {
             this.volumeId = volumeId;
             return this;
         }
+        @CustomType.Setter
         public Builder wwn(@Nullable String wwn) {
             this.wwn = wwn;
             return this;
-        }        public DomainDisk build() {
-            return new DomainDisk(blockDevice, file, scsi, url, volumeId, wwn);
+        }
+        public DomainDisk build() {
+            final var o = new DomainDisk();
+            o.blockDevice = blockDevice;
+            o.file = file;
+            o.scsi = scsi;
+            o.url = url;
+            o.volumeId = volumeId;
+            o.wwn = wwn;
+            return o;
         }
     }
 }

@@ -11,13 +11,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class VolumeXml {
-    private final @Nullable String xslt;
+    private @Nullable String xslt;
 
-    @CustomType.Constructor
-    private VolumeXml(@CustomType.Parameter("xslt") @Nullable String xslt) {
-        this.xslt = xslt;
-    }
-
+    private VolumeXml() {}
     public Optional<String> xslt() {
         return Optional.ofNullable(this.xslt);
     }
@@ -29,24 +25,24 @@ public final class VolumeXml {
     public static Builder builder(VolumeXml defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String xslt;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(VolumeXml defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.xslt = defaults.xslt;
         }
 
+        @CustomType.Setter
         public Builder xslt(@Nullable String xslt) {
             this.xslt = xslt;
             return this;
-        }        public VolumeXml build() {
-            return new VolumeXml(xslt);
+        }
+        public VolumeXml build() {
+            final var o = new VolumeXml();
+            o.xslt = xslt;
+            return o;
         }
     }
 }
