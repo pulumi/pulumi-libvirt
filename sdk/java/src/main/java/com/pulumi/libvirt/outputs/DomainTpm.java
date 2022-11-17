@@ -16,49 +16,34 @@ public final class DomainTpm {
      * @return Path to TPM device on the host, ex: `/dev/tpm0`
      * 
      */
-    private final @Nullable String backendDevicePath;
+    private @Nullable String backendDevicePath;
     /**
      * @return [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
      * 
      */
-    private final @Nullable String backendEncryptionSecret;
+    private @Nullable String backendEncryptionSecret;
     /**
      * @return Keep the TPM state when a transient domain is powered off or undefined
      * 
      */
-    private final @Nullable Boolean backendPersistentState;
+    private @Nullable Boolean backendPersistentState;
     /**
      * @return TPM backend, either `passthrough` or `emulator` (default: `emulator`)
      * 
      */
-    private final @Nullable String backendType;
+    private @Nullable String backendType;
     /**
      * @return TPM version
      * 
      */
-    private final @Nullable String backendVersion;
+    private @Nullable String backendVersion;
     /**
      * @return TPM model provided to the guest
      * 
      */
-    private final @Nullable String model;
+    private @Nullable String model;
 
-    @CustomType.Constructor
-    private DomainTpm(
-        @CustomType.Parameter("backendDevicePath") @Nullable String backendDevicePath,
-        @CustomType.Parameter("backendEncryptionSecret") @Nullable String backendEncryptionSecret,
-        @CustomType.Parameter("backendPersistentState") @Nullable Boolean backendPersistentState,
-        @CustomType.Parameter("backendType") @Nullable String backendType,
-        @CustomType.Parameter("backendVersion") @Nullable String backendVersion,
-        @CustomType.Parameter("model") @Nullable String model) {
-        this.backendDevicePath = backendDevicePath;
-        this.backendEncryptionSecret = backendEncryptionSecret;
-        this.backendPersistentState = backendPersistentState;
-        this.backendType = backendType;
-        this.backendVersion = backendVersion;
-        this.model = model;
-    }
-
+    private DomainTpm() {}
     /**
      * @return Path to TPM device on the host, ex: `/dev/tpm0`
      * 
@@ -109,7 +94,7 @@ public final class DomainTpm {
     public static Builder builder(DomainTpm defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String backendDevicePath;
         private @Nullable String backendEncryptionSecret;
@@ -117,11 +102,7 @@ public final class DomainTpm {
         private @Nullable String backendType;
         private @Nullable String backendVersion;
         private @Nullable String model;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainTpm defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backendDevicePath = defaults.backendDevicePath;
@@ -132,31 +113,45 @@ public final class DomainTpm {
     	      this.model = defaults.model;
         }
 
+        @CustomType.Setter
         public Builder backendDevicePath(@Nullable String backendDevicePath) {
             this.backendDevicePath = backendDevicePath;
             return this;
         }
+        @CustomType.Setter
         public Builder backendEncryptionSecret(@Nullable String backendEncryptionSecret) {
             this.backendEncryptionSecret = backendEncryptionSecret;
             return this;
         }
+        @CustomType.Setter
         public Builder backendPersistentState(@Nullable Boolean backendPersistentState) {
             this.backendPersistentState = backendPersistentState;
             return this;
         }
+        @CustomType.Setter
         public Builder backendType(@Nullable String backendType) {
             this.backendType = backendType;
             return this;
         }
+        @CustomType.Setter
         public Builder backendVersion(@Nullable String backendVersion) {
             this.backendVersion = backendVersion;
             return this;
         }
+        @CustomType.Setter
         public Builder model(@Nullable String model) {
             this.model = model;
             return this;
-        }        public DomainTpm build() {
-            return new DomainTpm(backendDevicePath, backendEncryptionSecret, backendPersistentState, backendType, backendVersion, model);
+        }
+        public DomainTpm build() {
+            final var o = new DomainTpm();
+            o.backendDevicePath = backendDevicePath;
+            o.backendEncryptionSecret = backendEncryptionSecret;
+            o.backendPersistentState = backendPersistentState;
+            o.backendType = backendType;
+            o.backendVersion = backendVersion;
+            o.model = model;
+            return o;
         }
     }
 }

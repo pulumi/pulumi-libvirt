@@ -15,13 +15,9 @@ public final class NetworkDhcp {
      * @return when false, disable the DHCP server
      * 
      */
-    private final @Nullable Boolean enabled;
+    private @Nullable Boolean enabled;
 
-    @CustomType.Constructor
-    private NetworkDhcp(@CustomType.Parameter("enabled") @Nullable Boolean enabled) {
-        this.enabled = enabled;
-    }
-
+    private NetworkDhcp() {}
     /**
      * @return when false, disable the DHCP server
      * 
@@ -37,24 +33,24 @@ public final class NetworkDhcp {
     public static Builder builder(NetworkDhcp defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean enabled;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDhcp defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
         }
 
+        @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
             this.enabled = enabled;
             return this;
-        }        public NetworkDhcp build() {
-            return new NetworkDhcp(enabled);
+        }
+        public NetworkDhcp build() {
+            final var o = new NetworkDhcp();
+            o.enabled = enabled;
+            return o;
         }
     }
 }

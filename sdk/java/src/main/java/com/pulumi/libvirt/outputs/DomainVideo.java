@@ -15,13 +15,9 @@ public final class DomainVideo {
      * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
-    private final @Nullable String type;
+    private @Nullable String type;
 
-    @CustomType.Constructor
-    private DomainVideo(@CustomType.Parameter("type") @Nullable String type) {
-        this.type = type;
-    }
-
+    private DomainVideo() {}
     /**
      * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
@@ -37,24 +33,24 @@ public final class DomainVideo {
     public static Builder builder(DomainVideo defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainVideo defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder type(@Nullable String type) {
             this.type = type;
             return this;
-        }        public DomainVideo build() {
-            return new DomainVideo(type);
+        }
+        public DomainVideo build() {
+            final var o = new DomainVideo();
+            o.type = type;
+            return o;
         }
     }
 }

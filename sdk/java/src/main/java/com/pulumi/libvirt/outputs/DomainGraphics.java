@@ -17,43 +17,30 @@ public final class DomainGraphics {
      * @return defaults to &#34;yes&#34;
      * 
      */
-    private final @Nullable Boolean autoport;
+    private @Nullable Boolean autoport;
     /**
      * @return IP Address where the VNC listener should be started if
      * `listen_type` is set to `address`. Defaults to 127.0.0.1
      * 
      */
-    private final @Nullable String listenAddress;
+    private @Nullable String listenAddress;
     /**
      * @return &#34;listen type&#34;, defaults to &#34;none&#34;
      * 
      */
-    private final @Nullable String listenType;
+    private @Nullable String listenType;
     /**
      * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
-    private final @Nullable String type;
+    private @Nullable String type;
     /**
      * @return Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
      * 
      */
-    private final @Nullable Integer websocket;
+    private @Nullable Integer websocket;
 
-    @CustomType.Constructor
-    private DomainGraphics(
-        @CustomType.Parameter("autoport") @Nullable Boolean autoport,
-        @CustomType.Parameter("listenAddress") @Nullable String listenAddress,
-        @CustomType.Parameter("listenType") @Nullable String listenType,
-        @CustomType.Parameter("type") @Nullable String type,
-        @CustomType.Parameter("websocket") @Nullable Integer websocket) {
-        this.autoport = autoport;
-        this.listenAddress = listenAddress;
-        this.listenType = listenType;
-        this.type = type;
-        this.websocket = websocket;
-    }
-
+    private DomainGraphics() {}
     /**
      * @return defaults to &#34;yes&#34;
      * 
@@ -98,18 +85,14 @@ public final class DomainGraphics {
     public static Builder builder(DomainGraphics defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean autoport;
         private @Nullable String listenAddress;
         private @Nullable String listenType;
         private @Nullable String type;
         private @Nullable Integer websocket;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainGraphics defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.autoport = defaults.autoport;
@@ -119,27 +102,39 @@ public final class DomainGraphics {
     	      this.websocket = defaults.websocket;
         }
 
+        @CustomType.Setter
         public Builder autoport(@Nullable Boolean autoport) {
             this.autoport = autoport;
             return this;
         }
+        @CustomType.Setter
         public Builder listenAddress(@Nullable String listenAddress) {
             this.listenAddress = listenAddress;
             return this;
         }
+        @CustomType.Setter
         public Builder listenType(@Nullable String listenType) {
             this.listenType = listenType;
             return this;
         }
+        @CustomType.Setter
         public Builder type(@Nullable String type) {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
         public Builder websocket(@Nullable Integer websocket) {
             this.websocket = websocket;
             return this;
-        }        public DomainGraphics build() {
-            return new DomainGraphics(autoport, listenAddress, listenType, type, websocket);
+        }
+        public DomainGraphics build() {
+            final var o = new DomainGraphics();
+            o.autoport = autoport;
+            o.listenAddress = listenAddress;
+            o.listenType = listenType;
+            o.type = type;
+            o.websocket = websocket;
+            return o;
         }
     }
 }

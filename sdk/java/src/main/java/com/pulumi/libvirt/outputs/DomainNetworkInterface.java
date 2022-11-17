@@ -17,7 +17,7 @@ public final class DomainNetworkInterface {
      * @return An IP address for this domain in this network.
      * 
      */
-    private final @Nullable List<String> addresses;
+    private @Nullable List<String> addresses;
     /**
      * @return Provides a bridge from the VM directly to the LAN. This assumes
      * there is a bridge device on the host which has one or more of the hosts
@@ -27,18 +27,18 @@ public final class DomainNetworkInterface {
      * outgoing net access just like a physical machine.
      * 
      */
-    private final @Nullable String bridge;
+    private @Nullable String bridge;
     /**
      * @return A hostname that will be assigned to this domain
      * resource in this network.
      * 
      */
-    private final @Nullable String hostname;
+    private @Nullable String hostname;
     /**
      * @return The specific MAC address to use for this interface.
      * 
      */
-    private final @Nullable String mac;
+    private @Nullable String mac;
     /**
      * @return Packets whose destination is on the same host as where they
      * originate from are directly delivered to the target macvtap device. Both
@@ -46,9 +46,9 @@ public final class DomainNetworkInterface {
      * If either one of them is in vepa mode, a VEPA capable bridge is required.
      * 
      */
-    private final @Nullable String macvtap;
-    private final @Nullable String networkId;
-    private final @Nullable String networkName;
+    private @Nullable String macvtap;
+    private @Nullable String networkId;
+    private @Nullable String networkName;
     /**
      * @return This feature attaches a virtual function of a SRIOV capable
      * NIC directly to a VM without losing the migration capability. All packets are
@@ -57,7 +57,7 @@ public final class DomainNetworkInterface {
      * for example, on Linux this requires kernel 2.6.38 or newer.
      * 
      */
-    private final @Nullable String passthrough;
+    private @Nullable String passthrough;
     /**
      * @return All VMs&#39; packets are sent to the external bridge. Packets whose
      * destination is a VM on the same host as where the packet originates from are
@@ -65,39 +65,16 @@ public final class DomainNetworkInterface {
      * typically not VEPA capable).
      * 
      */
-    private final @Nullable String vepa;
+    private @Nullable String vepa;
     /**
      * @return When creating the domain resource, wait until the
      * network interface gets a DHCP lease from libvirt, so that the computed IP
      * addresses will be available when the domain is up and the plan applied.
      * 
      */
-    private final @Nullable Boolean waitForLease;
+    private @Nullable Boolean waitForLease;
 
-    @CustomType.Constructor
-    private DomainNetworkInterface(
-        @CustomType.Parameter("addresses") @Nullable List<String> addresses,
-        @CustomType.Parameter("bridge") @Nullable String bridge,
-        @CustomType.Parameter("hostname") @Nullable String hostname,
-        @CustomType.Parameter("mac") @Nullable String mac,
-        @CustomType.Parameter("macvtap") @Nullable String macvtap,
-        @CustomType.Parameter("networkId") @Nullable String networkId,
-        @CustomType.Parameter("networkName") @Nullable String networkName,
-        @CustomType.Parameter("passthrough") @Nullable String passthrough,
-        @CustomType.Parameter("vepa") @Nullable String vepa,
-        @CustomType.Parameter("waitForLease") @Nullable Boolean waitForLease) {
-        this.addresses = addresses;
-        this.bridge = bridge;
-        this.hostname = hostname;
-        this.mac = mac;
-        this.macvtap = macvtap;
-        this.networkId = networkId;
-        this.networkName = networkName;
-        this.passthrough = passthrough;
-        this.vepa = vepa;
-        this.waitForLease = waitForLease;
-    }
-
+    private DomainNetworkInterface() {}
     /**
      * @return An IP address for this domain in this network.
      * 
@@ -186,7 +163,7 @@ public final class DomainNetworkInterface {
     public static Builder builder(DomainNetworkInterface defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> addresses;
         private @Nullable String bridge;
@@ -198,11 +175,7 @@ public final class DomainNetworkInterface {
         private @Nullable String passthrough;
         private @Nullable String vepa;
         private @Nullable Boolean waitForLease;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainNetworkInterface defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.addresses = defaults.addresses;
@@ -217,6 +190,7 @@ public final class DomainNetworkInterface {
     	      this.waitForLease = defaults.waitForLease;
         }
 
+        @CustomType.Setter
         public Builder addresses(@Nullable List<String> addresses) {
             this.addresses = addresses;
             return this;
@@ -224,43 +198,64 @@ public final class DomainNetworkInterface {
         public Builder addresses(String... addresses) {
             return addresses(List.of(addresses));
         }
+        @CustomType.Setter
         public Builder bridge(@Nullable String bridge) {
             this.bridge = bridge;
             return this;
         }
+        @CustomType.Setter
         public Builder hostname(@Nullable String hostname) {
             this.hostname = hostname;
             return this;
         }
+        @CustomType.Setter
         public Builder mac(@Nullable String mac) {
             this.mac = mac;
             return this;
         }
+        @CustomType.Setter
         public Builder macvtap(@Nullable String macvtap) {
             this.macvtap = macvtap;
             return this;
         }
+        @CustomType.Setter
         public Builder networkId(@Nullable String networkId) {
             this.networkId = networkId;
             return this;
         }
+        @CustomType.Setter
         public Builder networkName(@Nullable String networkName) {
             this.networkName = networkName;
             return this;
         }
+        @CustomType.Setter
         public Builder passthrough(@Nullable String passthrough) {
             this.passthrough = passthrough;
             return this;
         }
+        @CustomType.Setter
         public Builder vepa(@Nullable String vepa) {
             this.vepa = vepa;
             return this;
         }
+        @CustomType.Setter
         public Builder waitForLease(@Nullable Boolean waitForLease) {
             this.waitForLease = waitForLease;
             return this;
-        }        public DomainNetworkInterface build() {
-            return new DomainNetworkInterface(addresses, bridge, hostname, mac, macvtap, networkId, networkName, passthrough, vepa, waitForLease);
+        }
+        public DomainNetworkInterface build() {
+            final var o = new DomainNetworkInterface();
+            o.addresses = addresses;
+            o.bridge = bridge;
+            o.hostname = hostname;
+            o.mac = mac;
+            o.macvtap = macvtap;
+            o.networkId = networkId;
+            o.networkName = networkName;
+            o.passthrough = passthrough;
+            o.vepa = vepa;
+            o.waitForLease = waitForLease;
+            return o;
         }
     }
 }

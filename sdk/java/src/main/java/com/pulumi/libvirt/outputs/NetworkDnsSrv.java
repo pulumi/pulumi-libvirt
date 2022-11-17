@@ -15,32 +15,15 @@ public final class NetworkDnsSrv {
      * @return The domain used by the DNS server.
      * 
      */
-    private final @Nullable String domain;
-    private final @Nullable String port;
-    private final @Nullable String priority;
-    private final @Nullable String protocol;
-    private final @Nullable String service;
-    private final @Nullable String target;
-    private final @Nullable String weight;
+    private @Nullable String domain;
+    private @Nullable String port;
+    private @Nullable String priority;
+    private @Nullable String protocol;
+    private @Nullable String service;
+    private @Nullable String target;
+    private @Nullable String weight;
 
-    @CustomType.Constructor
-    private NetworkDnsSrv(
-        @CustomType.Parameter("domain") @Nullable String domain,
-        @CustomType.Parameter("port") @Nullable String port,
-        @CustomType.Parameter("priority") @Nullable String priority,
-        @CustomType.Parameter("protocol") @Nullable String protocol,
-        @CustomType.Parameter("service") @Nullable String service,
-        @CustomType.Parameter("target") @Nullable String target,
-        @CustomType.Parameter("weight") @Nullable String weight) {
-        this.domain = domain;
-        this.port = port;
-        this.priority = priority;
-        this.protocol = protocol;
-        this.service = service;
-        this.target = target;
-        this.weight = weight;
-    }
-
+    private NetworkDnsSrv() {}
     /**
      * @return The domain used by the DNS server.
      * 
@@ -74,7 +57,7 @@ public final class NetworkDnsSrv {
     public static Builder builder(NetworkDnsSrv defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String domain;
         private @Nullable String port;
@@ -83,11 +66,7 @@ public final class NetworkDnsSrv {
         private @Nullable String service;
         private @Nullable String target;
         private @Nullable String weight;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDnsSrv defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.domain = defaults.domain;
@@ -99,35 +78,51 @@ public final class NetworkDnsSrv {
     	      this.weight = defaults.weight;
         }
 
+        @CustomType.Setter
         public Builder domain(@Nullable String domain) {
             this.domain = domain;
             return this;
         }
+        @CustomType.Setter
         public Builder port(@Nullable String port) {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
         public Builder priority(@Nullable String priority) {
             this.priority = priority;
             return this;
         }
+        @CustomType.Setter
         public Builder protocol(@Nullable String protocol) {
             this.protocol = protocol;
             return this;
         }
+        @CustomType.Setter
         public Builder service(@Nullable String service) {
             this.service = service;
             return this;
         }
+        @CustomType.Setter
         public Builder target(@Nullable String target) {
             this.target = target;
             return this;
         }
+        @CustomType.Setter
         public Builder weight(@Nullable String weight) {
             this.weight = weight;
             return this;
-        }        public NetworkDnsSrv build() {
-            return new NetworkDnsSrv(domain, port, priority, protocol, service, target, weight);
+        }
+        public NetworkDnsSrv build() {
+            final var o = new NetworkDnsSrv();
+            o.domain = domain;
+            o.port = port;
+            o.priority = priority;
+            o.protocol = protocol;
+            o.service = service;
+            o.target = target;
+            o.weight = weight;
+            return o;
         }
     }
 }

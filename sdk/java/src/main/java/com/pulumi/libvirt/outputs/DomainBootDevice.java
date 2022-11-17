@@ -11,13 +11,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainBootDevice {
-    private final @Nullable List<String> devs;
+    private @Nullable List<String> devs;
 
-    @CustomType.Constructor
-    private DomainBootDevice(@CustomType.Parameter("devs") @Nullable List<String> devs) {
-        this.devs = devs;
-    }
-
+    private DomainBootDevice() {}
     public List<String> devs() {
         return this.devs == null ? List.of() : this.devs;
     }
@@ -29,27 +25,27 @@ public final class DomainBootDevice {
     public static Builder builder(DomainBootDevice defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> devs;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainBootDevice defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.devs = defaults.devs;
         }
 
+        @CustomType.Setter
         public Builder devs(@Nullable List<String> devs) {
             this.devs = devs;
             return this;
         }
         public Builder devs(String... devs) {
             return devs(List.of(devs));
-        }        public DomainBootDevice build() {
-            return new DomainBootDevice(devs);
+        }
+        public DomainBootDevice build() {
+            final var o = new DomainBootDevice();
+            o.devs = devs;
+            return o;
         }
     }
 }

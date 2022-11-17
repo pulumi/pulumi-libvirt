@@ -13,42 +13,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNetworkDnsSrvTemplateResult {
-    private final @Nullable String domain;
+    private @Nullable String domain;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final @Nullable String port;
-    private final @Nullable String priority;
-    private final String protocol;
-    private final Map<String,Object> rendered;
-    private final String service;
-    private final @Nullable String target;
-    private final @Nullable String weight;
+    private String id;
+    private @Nullable String port;
+    private @Nullable String priority;
+    private String protocol;
+    private Map<String,Object> rendered;
+    private String service;
+    private @Nullable String target;
+    private @Nullable String weight;
 
-    @CustomType.Constructor
-    private GetNetworkDnsSrvTemplateResult(
-        @CustomType.Parameter("domain") @Nullable String domain,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("port") @Nullable String port,
-        @CustomType.Parameter("priority") @Nullable String priority,
-        @CustomType.Parameter("protocol") String protocol,
-        @CustomType.Parameter("rendered") Map<String,Object> rendered,
-        @CustomType.Parameter("service") String service,
-        @CustomType.Parameter("target") @Nullable String target,
-        @CustomType.Parameter("weight") @Nullable String weight) {
-        this.domain = domain;
-        this.id = id;
-        this.port = port;
-        this.priority = priority;
-        this.protocol = protocol;
-        this.rendered = rendered;
-        this.service = service;
-        this.target = target;
-        this.weight = weight;
-    }
-
+    private GetNetworkDnsSrvTemplateResult() {}
     public Optional<String> domain() {
         return Optional.ofNullable(this.domain);
     }
@@ -88,7 +67,7 @@ public final class GetNetworkDnsSrvTemplateResult {
     public static Builder builder(GetNetworkDnsSrvTemplateResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String domain;
         private String id;
@@ -99,11 +78,7 @@ public final class GetNetworkDnsSrvTemplateResult {
         private String service;
         private @Nullable String target;
         private @Nullable String weight;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetNetworkDnsSrvTemplateResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.domain = defaults.domain;
@@ -117,43 +92,63 @@ public final class GetNetworkDnsSrvTemplateResult {
     	      this.weight = defaults.weight;
         }
 
+        @CustomType.Setter
         public Builder domain(@Nullable String domain) {
             this.domain = domain;
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder port(@Nullable String port) {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
         public Builder priority(@Nullable String priority) {
             this.priority = priority;
             return this;
         }
+        @CustomType.Setter
         public Builder protocol(String protocol) {
             this.protocol = Objects.requireNonNull(protocol);
             return this;
         }
+        @CustomType.Setter
         public Builder rendered(Map<String,Object> rendered) {
             this.rendered = Objects.requireNonNull(rendered);
             return this;
         }
+        @CustomType.Setter
         public Builder service(String service) {
             this.service = Objects.requireNonNull(service);
             return this;
         }
+        @CustomType.Setter
         public Builder target(@Nullable String target) {
             this.target = target;
             return this;
         }
+        @CustomType.Setter
         public Builder weight(@Nullable String weight) {
             this.weight = weight;
             return this;
-        }        public GetNetworkDnsSrvTemplateResult build() {
-            return new GetNetworkDnsSrvTemplateResult(domain, id, port, priority, protocol, rendered, service, target, weight);
+        }
+        public GetNetworkDnsSrvTemplateResult build() {
+            final var o = new GetNetworkDnsSrvTemplateResult();
+            o.domain = domain;
+            o.id = id;
+            o.port = port;
+            o.priority = priority;
+            o.protocol = protocol;
+            o.rendered = rendered;
+            o.service = service;
+            o.target = target;
+            o.weight = weight;
+            return o;
         }
     }
 }

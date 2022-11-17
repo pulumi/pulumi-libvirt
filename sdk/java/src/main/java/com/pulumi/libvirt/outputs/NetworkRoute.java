@@ -9,17 +9,10 @@ import java.util.Objects;
 
 @CustomType
 public final class NetworkRoute {
-    private final String cidr;
-    private final String gateway;
+    private String cidr;
+    private String gateway;
 
-    @CustomType.Constructor
-    private NetworkRoute(
-        @CustomType.Parameter("cidr") String cidr,
-        @CustomType.Parameter("gateway") String gateway) {
-        this.cidr = cidr;
-        this.gateway = gateway;
-    }
-
+    private NetworkRoute() {}
     public String cidr() {
         return this.cidr;
     }
@@ -34,30 +27,32 @@ public final class NetworkRoute {
     public static Builder builder(NetworkRoute defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String cidr;
         private String gateway;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkRoute defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cidr = defaults.cidr;
     	      this.gateway = defaults.gateway;
         }
 
+        @CustomType.Setter
         public Builder cidr(String cidr) {
             this.cidr = Objects.requireNonNull(cidr);
             return this;
         }
+        @CustomType.Setter
         public Builder gateway(String gateway) {
             this.gateway = Objects.requireNonNull(gateway);
             return this;
-        }        public NetworkRoute build() {
-            return new NetworkRoute(cidr, gateway);
+        }
+        public NetworkRoute build() {
+            final var o = new NetworkRoute();
+            o.cidr = cidr;
+            o.gateway = gateway;
+            return o;
         }
     }
 }

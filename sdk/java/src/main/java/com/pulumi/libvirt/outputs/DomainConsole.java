@@ -15,51 +15,36 @@ public final class DomainConsole {
      * @return IP address to listen on. Defaults to 127.0.0.1.
      * 
      */
-    private final @Nullable String sourceHost;
+    private @Nullable String sourceHost;
     /**
      * @return Source path
      * 
      */
-    private final @Nullable String sourcePath;
+    private @Nullable String sourcePath;
     /**
      * @return Port number or a service name. Defaults to a
      * random port.
      * 
      */
-    private final @Nullable String sourceService;
+    private @Nullable String sourceService;
     /**
      * @return Target port
      * 
      */
-    private final String targetPort;
+    private String targetPort;
     /**
      * @return for the first console and defaults to `serial`.
      * Subsequent `console` blocks must have a different type - usually `virtio`.
      * 
      */
-    private final @Nullable String targetType;
+    private @Nullable String targetType;
     /**
      * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private DomainConsole(
-        @CustomType.Parameter("sourceHost") @Nullable String sourceHost,
-        @CustomType.Parameter("sourcePath") @Nullable String sourcePath,
-        @CustomType.Parameter("sourceService") @Nullable String sourceService,
-        @CustomType.Parameter("targetPort") String targetPort,
-        @CustomType.Parameter("targetType") @Nullable String targetType,
-        @CustomType.Parameter("type") String type) {
-        this.sourceHost = sourceHost;
-        this.sourcePath = sourcePath;
-        this.sourceService = sourceService;
-        this.targetPort = targetPort;
-        this.targetType = targetType;
-        this.type = type;
-    }
-
+    private DomainConsole() {}
     /**
      * @return IP address to listen on. Defaults to 127.0.0.1.
      * 
@@ -112,7 +97,7 @@ public final class DomainConsole {
     public static Builder builder(DomainConsole defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String sourceHost;
         private @Nullable String sourcePath;
@@ -120,11 +105,7 @@ public final class DomainConsole {
         private String targetPort;
         private @Nullable String targetType;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainConsole defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.sourceHost = defaults.sourceHost;
@@ -135,31 +116,45 @@ public final class DomainConsole {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder sourceHost(@Nullable String sourceHost) {
             this.sourceHost = sourceHost;
             return this;
         }
+        @CustomType.Setter
         public Builder sourcePath(@Nullable String sourcePath) {
             this.sourcePath = sourcePath;
             return this;
         }
+        @CustomType.Setter
         public Builder sourceService(@Nullable String sourceService) {
             this.sourceService = sourceService;
             return this;
         }
+        @CustomType.Setter
         public Builder targetPort(String targetPort) {
             this.targetPort = Objects.requireNonNull(targetPort);
             return this;
         }
+        @CustomType.Setter
         public Builder targetType(@Nullable String targetType) {
             this.targetType = targetType;
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public DomainConsole build() {
-            return new DomainConsole(sourceHost, sourcePath, sourceService, targetPort, targetType, type);
+        }
+        public DomainConsole build() {
+            final var o = new DomainConsole();
+            o.sourceHost = sourceHost;
+            o.sourcePath = sourcePath;
+            o.sourceService = sourceService;
+            o.targetPort = targetPort;
+            o.targetType = targetType;
+            o.type = type;
+            return o;
         }
     }
 }

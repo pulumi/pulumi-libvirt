@@ -16,13 +16,9 @@ public final class NetworkDnsmasqOptions {
      * blocks in your definition. You must specify both `option_name` and `option_value`.
      * 
      */
-    private final @Nullable List<NetworkDnsmasqOptionsOption> options;
+    private @Nullable List<NetworkDnsmasqOptionsOption> options;
 
-    @CustomType.Constructor
-    private NetworkDnsmasqOptions(@CustomType.Parameter("options") @Nullable List<NetworkDnsmasqOptionsOption> options) {
-        this.options = options;
-    }
-
+    private NetworkDnsmasqOptions() {}
     /**
      * @return a Dnsmasq option entry block. You can have one or more of these
      * blocks in your definition. You must specify both `option_name` and `option_value`.
@@ -39,27 +35,27 @@ public final class NetworkDnsmasqOptions {
     public static Builder builder(NetworkDnsmasqOptions defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<NetworkDnsmasqOptionsOption> options;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDnsmasqOptions defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.options = defaults.options;
         }
 
+        @CustomType.Setter
         public Builder options(@Nullable List<NetworkDnsmasqOptionsOption> options) {
             this.options = options;
             return this;
         }
         public Builder options(NetworkDnsmasqOptionsOption... options) {
             return options(List.of(options));
-        }        public NetworkDnsmasqOptions build() {
-            return new NetworkDnsmasqOptions(options);
+        }
+        public NetworkDnsmasqOptions build() {
+            final var o = new NetworkDnsmasqOptions();
+            o.options = options;
+            return o;
         }
     }
 }

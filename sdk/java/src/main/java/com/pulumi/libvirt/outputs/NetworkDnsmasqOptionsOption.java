@@ -11,17 +11,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkDnsmasqOptionsOption {
-    private final @Nullable String optionName;
-    private final @Nullable String optionValue;
+    private @Nullable String optionName;
+    private @Nullable String optionValue;
 
-    @CustomType.Constructor
-    private NetworkDnsmasqOptionsOption(
-        @CustomType.Parameter("optionName") @Nullable String optionName,
-        @CustomType.Parameter("optionValue") @Nullable String optionValue) {
-        this.optionName = optionName;
-        this.optionValue = optionValue;
-    }
-
+    private NetworkDnsmasqOptionsOption() {}
     public Optional<String> optionName() {
         return Optional.ofNullable(this.optionName);
     }
@@ -36,30 +29,32 @@ public final class NetworkDnsmasqOptionsOption {
     public static Builder builder(NetworkDnsmasqOptionsOption defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String optionName;
         private @Nullable String optionValue;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(NetworkDnsmasqOptionsOption defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.optionName = defaults.optionName;
     	      this.optionValue = defaults.optionValue;
         }
 
+        @CustomType.Setter
         public Builder optionName(@Nullable String optionName) {
             this.optionName = optionName;
             return this;
         }
+        @CustomType.Setter
         public Builder optionValue(@Nullable String optionValue) {
             this.optionValue = optionValue;
             return this;
-        }        public NetworkDnsmasqOptionsOption build() {
-            return new NetworkDnsmasqOptionsOption(optionName, optionValue);
+        }
+        public NetworkDnsmasqOptionsOption build() {
+            final var o = new NetworkDnsmasqOptionsOption();
+            o.optionName = optionName;
+            o.optionValue = optionValue;
+            return o;
         }
     }
 }

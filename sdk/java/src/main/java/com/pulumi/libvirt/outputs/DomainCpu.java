@@ -9,13 +9,9 @@ import java.util.Objects;
 
 @CustomType
 public final class DomainCpu {
-    private final String mode;
+    private String mode;
 
-    @CustomType.Constructor
-    private DomainCpu(@CustomType.Parameter("mode") String mode) {
-        this.mode = mode;
-    }
-
+    private DomainCpu() {}
     public String mode() {
         return this.mode;
     }
@@ -27,24 +23,24 @@ public final class DomainCpu {
     public static Builder builder(DomainCpu defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String mode;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(DomainCpu defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.mode = defaults.mode;
         }
 
+        @CustomType.Setter
         public Builder mode(String mode) {
             this.mode = Objects.requireNonNull(mode);
             return this;
-        }        public DomainCpu build() {
-            return new DomainCpu(mode);
+        }
+        public DomainCpu build() {
+            final var o = new DomainCpu();
+            o.mode = mode;
+            return o;
         }
     }
 }
