@@ -25,9 +25,9 @@ public final class PoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     @Import(name="available")
-    private @Nullable Output<String> available;
+    private @Nullable Output<Integer> available;
 
-    public Optional<Output<String>> available() {
+    public Optional<Output<Integer>> available() {
         return Optional.ofNullable(this.available);
     }
 
@@ -131,12 +131,12 @@ public final class PoolState extends com.pulumi.resources.ResourceArgs {
             return allocation(Output.of(allocation));
         }
 
-        public Builder available(@Nullable Output<String> available) {
+        public Builder available(@Nullable Output<Integer> available) {
             $.available = available;
             return this;
         }
 
-        public Builder available(String available) {
+        public Builder available(Integer available) {
             return available(Output.of(available));
         }
 

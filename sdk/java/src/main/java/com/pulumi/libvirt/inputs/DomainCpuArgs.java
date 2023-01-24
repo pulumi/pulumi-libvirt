@@ -7,17 +7,19 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class DomainCpuArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DomainCpuArgs Empty = new DomainCpuArgs();
 
-    @Import(name="mode", required=true)
-    private Output<String> mode;
+    @Import(name="mode")
+    private @Nullable Output<String> mode;
 
-    public Output<String> mode() {
-        return this.mode;
+    public Optional<Output<String>> mode() {
+        return Optional.ofNullable(this.mode);
     }
 
     private DomainCpuArgs() {}
@@ -44,7 +46,7 @@ public final class DomainCpuArgs extends com.pulumi.resources.ResourceArgs {
             $ = new DomainCpuArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder mode(Output<String> mode) {
+        public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
@@ -54,7 +56,6 @@ public final class DomainCpuArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DomainCpuArgs build() {
-            $.mode = Objects.requireNonNull($.mode, "expected parameter 'mode' to be non-null");
             return $;
         }
     }

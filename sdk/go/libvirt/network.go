@@ -24,39 +24,22 @@ type Network struct {
 	Addresses pulumi.StringArrayOutput `pulumi:"addresses"`
 	// Set to `true` to start the network on host boot up.
 	// If not specified `false` is assumed.
-	Autostart pulumi.BoolPtrOutput `pulumi:"autostart"`
+	Autostart pulumi.BoolOutput `pulumi:"autostart"`
 	// The bridge device defines the name of a bridge
 	// device which will be used to construct the virtual network (when not provided,
 	// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
 	Bridge pulumi.StringOutput `pulumi:"bridge"`
 	// DHCP configuration.
 	// You need to use it in conjuction with the adresses variable.
-	Dhcp NetworkDhcpPtrOutput `pulumi:"dhcp"`
+	Dhcp NetworkDhcpOutput `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
-	Dns NetworkDnsPtrOutput `pulumi:"dns"`
+	Dns NetworkDnsOutput `pulumi:"dns"`
 	// configuration of Dnsmasq options for the network
 	// You need to provide a list of option name and value pairs.
 	DnsmasqOptions NetworkDnsmasqOptionsPtrOutput `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrOutput `pulumi:"domain"`
 	// One of:
-	// - `none`: the guests can talk to each other and the host OS, but cannot reach
-	//   any other machines on the LAN.
-	// - `nat`: it is the default network mode. This is a configuration that
-	//   allows guest OS to get outbound connectivity regardless of whether the host
-	//   uses ethernet, wireless, dialup, or VPN networking without requiring any
-	//   specific admin configuration. In the absence of host networking, it at
-	//   least allows guests to talk directly to each other.
-	// - `route`: this is a variant on the default network which routes traffic from
-	//   the virtual network to the LAN **without applying any NAT**. It requires that
-	//   the IP address range be pre-configured in the routing tables of the router
-	//   on the host network.
-	// - `open`: similar to `route`, but no firewall rules are added.
-	// - `bridge`: use a pre-existing host bridge. The guests will effectively be
-	//   directly connected to the physical network (i.e. their IP addresses will
-	//   all be on the subnet of the physical network, and there will be no
-	//   restrictions on inbound or outbound connections). The `bridge` network
-	//   attribute is mandatory in this case.
 	Mode pulumi.StringPtrOutput `pulumi:"mode"`
 	// The MTU to set for the underlying network interfaces. When
 	// not supplied, libvirt will use the default for the interface, usually 1500.
@@ -125,23 +108,6 @@ type networkState struct {
 	// The domain used by the DNS server.
 	Domain *string `pulumi:"domain"`
 	// One of:
-	// - `none`: the guests can talk to each other and the host OS, but cannot reach
-	//   any other machines on the LAN.
-	// - `nat`: it is the default network mode. This is a configuration that
-	//   allows guest OS to get outbound connectivity regardless of whether the host
-	//   uses ethernet, wireless, dialup, or VPN networking without requiring any
-	//   specific admin configuration. In the absence of host networking, it at
-	//   least allows guests to talk directly to each other.
-	// - `route`: this is a variant on the default network which routes traffic from
-	//   the virtual network to the LAN **without applying any NAT**. It requires that
-	//   the IP address range be pre-configured in the routing tables of the router
-	//   on the host network.
-	// - `open`: similar to `route`, but no firewall rules are added.
-	// - `bridge`: use a pre-existing host bridge. The guests will effectively be
-	//   directly connected to the physical network (i.e. their IP addresses will
-	//   all be on the subnet of the physical network, and there will be no
-	//   restrictions on inbound or outbound connections). The `bridge` network
-	//   attribute is mandatory in this case.
 	Mode *string `pulumi:"mode"`
 	// The MTU to set for the underlying network interfaces. When
 	// not supplied, libvirt will use the default for the interface, usually 1500.
@@ -182,23 +148,6 @@ type NetworkState struct {
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrInput
 	// One of:
-	// - `none`: the guests can talk to each other and the host OS, but cannot reach
-	//   any other machines on the LAN.
-	// - `nat`: it is the default network mode. This is a configuration that
-	//   allows guest OS to get outbound connectivity regardless of whether the host
-	//   uses ethernet, wireless, dialup, or VPN networking without requiring any
-	//   specific admin configuration. In the absence of host networking, it at
-	//   least allows guests to talk directly to each other.
-	// - `route`: this is a variant on the default network which routes traffic from
-	//   the virtual network to the LAN **without applying any NAT**. It requires that
-	//   the IP address range be pre-configured in the routing tables of the router
-	//   on the host network.
-	// - `open`: similar to `route`, but no firewall rules are added.
-	// - `bridge`: use a pre-existing host bridge. The guests will effectively be
-	//   directly connected to the physical network (i.e. their IP addresses will
-	//   all be on the subnet of the physical network, and there will be no
-	//   restrictions on inbound or outbound connections). The `bridge` network
-	//   attribute is mandatory in this case.
 	Mode pulumi.StringPtrInput
 	// The MTU to set for the underlying network interfaces. When
 	// not supplied, libvirt will use the default for the interface, usually 1500.
@@ -243,23 +192,6 @@ type networkArgs struct {
 	// The domain used by the DNS server.
 	Domain *string `pulumi:"domain"`
 	// One of:
-	// - `none`: the guests can talk to each other and the host OS, but cannot reach
-	//   any other machines on the LAN.
-	// - `nat`: it is the default network mode. This is a configuration that
-	//   allows guest OS to get outbound connectivity regardless of whether the host
-	//   uses ethernet, wireless, dialup, or VPN networking without requiring any
-	//   specific admin configuration. In the absence of host networking, it at
-	//   least allows guests to talk directly to each other.
-	// - `route`: this is a variant on the default network which routes traffic from
-	//   the virtual network to the LAN **without applying any NAT**. It requires that
-	//   the IP address range be pre-configured in the routing tables of the router
-	//   on the host network.
-	// - `open`: similar to `route`, but no firewall rules are added.
-	// - `bridge`: use a pre-existing host bridge. The guests will effectively be
-	//   directly connected to the physical network (i.e. their IP addresses will
-	//   all be on the subnet of the physical network, and there will be no
-	//   restrictions on inbound or outbound connections). The `bridge` network
-	//   attribute is mandatory in this case.
 	Mode *string `pulumi:"mode"`
 	// The MTU to set for the underlying network interfaces. When
 	// not supplied, libvirt will use the default for the interface, usually 1500.
@@ -301,23 +233,6 @@ type NetworkArgs struct {
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrInput
 	// One of:
-	// - `none`: the guests can talk to each other and the host OS, but cannot reach
-	//   any other machines on the LAN.
-	// - `nat`: it is the default network mode. This is a configuration that
-	//   allows guest OS to get outbound connectivity regardless of whether the host
-	//   uses ethernet, wireless, dialup, or VPN networking without requiring any
-	//   specific admin configuration. In the absence of host networking, it at
-	//   least allows guests to talk directly to each other.
-	// - `route`: this is a variant on the default network which routes traffic from
-	//   the virtual network to the LAN **without applying any NAT**. It requires that
-	//   the IP address range be pre-configured in the routing tables of the router
-	//   on the host network.
-	// - `open`: similar to `route`, but no firewall rules are added.
-	// - `bridge`: use a pre-existing host bridge. The guests will effectively be
-	//   directly connected to the physical network (i.e. their IP addresses will
-	//   all be on the subnet of the physical network, and there will be no
-	//   restrictions on inbound or outbound connections). The `bridge` network
-	//   attribute is mandatory in this case.
 	Mode pulumi.StringPtrInput
 	// The MTU to set for the underlying network interfaces. When
 	// not supplied, libvirt will use the default for the interface, usually 1500.
@@ -431,8 +346,8 @@ func (o NetworkOutput) Addresses() pulumi.StringArrayOutput {
 
 // Set to `true` to start the network on host boot up.
 // If not specified `false` is assumed.
-func (o NetworkOutput) Autostart() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Network) pulumi.BoolPtrOutput { return v.Autostart }).(pulumi.BoolPtrOutput)
+func (o NetworkOutput) Autostart() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Network) pulumi.BoolOutput { return v.Autostart }).(pulumi.BoolOutput)
 }
 
 // The bridge device defines the name of a bridge
@@ -444,13 +359,13 @@ func (o NetworkOutput) Bridge() pulumi.StringOutput {
 
 // DHCP configuration.
 // You need to use it in conjuction with the adresses variable.
-func (o NetworkOutput) Dhcp() NetworkDhcpPtrOutput {
-	return o.ApplyT(func(v *Network) NetworkDhcpPtrOutput { return v.Dhcp }).(NetworkDhcpPtrOutput)
+func (o NetworkOutput) Dhcp() NetworkDhcpOutput {
+	return o.ApplyT(func(v *Network) NetworkDhcpOutput { return v.Dhcp }).(NetworkDhcpOutput)
 }
 
 // configuration of DNS specific settings for the network
-func (o NetworkOutput) Dns() NetworkDnsPtrOutput {
-	return o.ApplyT(func(v *Network) NetworkDnsPtrOutput { return v.Dns }).(NetworkDnsPtrOutput)
+func (o NetworkOutput) Dns() NetworkDnsOutput {
+	return o.ApplyT(func(v *Network) NetworkDnsOutput { return v.Dns }).(NetworkDnsOutput)
 }
 
 // configuration of Dnsmasq options for the network
@@ -465,23 +380,6 @@ func (o NetworkOutput) Domain() pulumi.StringPtrOutput {
 }
 
 // One of:
-//   - `none`: the guests can talk to each other and the host OS, but cannot reach
-//     any other machines on the LAN.
-//   - `nat`: it is the default network mode. This is a configuration that
-//     allows guest OS to get outbound connectivity regardless of whether the host
-//     uses ethernet, wireless, dialup, or VPN networking without requiring any
-//     specific admin configuration. In the absence of host networking, it at
-//     least allows guests to talk directly to each other.
-//   - `route`: this is a variant on the default network which routes traffic from
-//     the virtual network to the LAN **without applying any NAT**. It requires that
-//     the IP address range be pre-configured in the routing tables of the router
-//     on the host network.
-//   - `open`: similar to `route`, but no firewall rules are added.
-//   - `bridge`: use a pre-existing host bridge. The guests will effectively be
-//     directly connected to the physical network (i.e. their IP addresses will
-//     all be on the subnet of the physical network, and there will be no
-//     restrictions on inbound or outbound connections). The `bridge` network
-//     attribute is mandatory in this case.
 func (o NetworkOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.Mode }).(pulumi.StringPtrOutput)
 }

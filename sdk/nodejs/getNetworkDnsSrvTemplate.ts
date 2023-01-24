@@ -5,11 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getNetworkDnsSrvTemplate(args: GetNetworkDnsSrvTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkDnsSrvTemplateResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", {
         "domain": args.domain,
         "port": args.port,
@@ -51,9 +48,8 @@ export interface GetNetworkDnsSrvTemplateResult {
     readonly target?: string;
     readonly weight?: string;
 }
-
 export function getNetworkDnsSrvTemplateOutput(args: GetNetworkDnsSrvTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsSrvTemplateResult> {
-    return pulumi.output(args).apply(a => getNetworkDnsSrvTemplate(a, opts))
+    return pulumi.output(args).apply((a: any) => getNetworkDnsSrvTemplate(a, opts))
 }
 
 /**

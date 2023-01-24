@@ -117,7 +117,7 @@ type DomainConsole struct {
 	// for the first console and defaults to `serial`.
 	// Subsequent `console` blocks must have a different type - usually `virtio`.
 	TargetType *string `pulumi:"targetType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// the type of graphics emulation (default is "spice")
 	Type string `pulumi:"type"`
 }
 
@@ -145,7 +145,7 @@ type DomainConsoleArgs struct {
 	// for the first console and defaults to `serial`.
 	// Subsequent `console` blocks must have a different type - usually `virtio`.
 	TargetType pulumi.StringPtrInput `pulumi:"targetType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// the type of graphics emulation (default is "spice")
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -227,7 +227,7 @@ func (o DomainConsoleOutput) TargetType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainConsole) *string { return v.TargetType }).(pulumi.StringPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// the type of graphics emulation (default is "spice")
 func (o DomainConsoleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainConsole) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -253,7 +253,7 @@ func (o DomainConsoleArrayOutput) Index(i pulumi.IntInput) DomainConsoleOutput {
 }
 
 type DomainCpu struct {
-	Mode string `pulumi:"mode"`
+	Mode *string `pulumi:"mode"`
 }
 
 // DomainCpuInput is an input type that accepts DomainCpuArgs and DomainCpuOutput values.
@@ -268,7 +268,7 @@ type DomainCpuInput interface {
 }
 
 type DomainCpuArgs struct {
-	Mode pulumi.StringInput `pulumi:"mode"`
+	Mode pulumi.StringPtrInput `pulumi:"mode"`
 }
 
 func (DomainCpuArgs) ElementType() reflect.Type {
@@ -348,8 +348,8 @@ func (o DomainCpuOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context) Do
 	}).(DomainCpuPtrOutput)
 }
 
-func (o DomainCpuOutput) Mode() pulumi.StringOutput {
-	return o.ApplyT(func(v DomainCpu) string { return v.Mode }).(pulumi.StringOutput)
+func (o DomainCpuOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainCpu) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
 type DomainCpuPtrOutput struct{ *pulumi.OutputState }
@@ -381,7 +381,7 @@ func (o DomainCpuPtrOutput) Mode() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Mode
+		return v.Mode
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -534,10 +534,17 @@ func (o DomainDiskArrayOutput) Index(i pulumi.IntInput) DomainDiskOutput {
 }
 
 type DomainFilesystem struct {
+	// specifies the security mode for accessing the source. By default
+	// the `mapped` mode is chosen.
 	Accessmode *string `pulumi:"accessmode"`
-	Readonly   *bool   `pulumi:"readonly"`
-	Source     string  `pulumi:"source"`
-	Target     string  `pulumi:"target"`
+	// enables exporting filesystem as a readonly mount for guest, by
+	// default read-only access is given.
+	Readonly *bool `pulumi:"readonly"`
+	// the directory of the host to be shared with the guest.
+	Source string `pulumi:"source"`
+	// an arbitrary string tag that is exported to the guest as a hint for
+	// where to mount the source.
+	Target string `pulumi:"target"`
 }
 
 // DomainFilesystemInput is an input type that accepts DomainFilesystemArgs and DomainFilesystemOutput values.
@@ -552,10 +559,17 @@ type DomainFilesystemInput interface {
 }
 
 type DomainFilesystemArgs struct {
+	// specifies the security mode for accessing the source. By default
+	// the `mapped` mode is chosen.
 	Accessmode pulumi.StringPtrInput `pulumi:"accessmode"`
-	Readonly   pulumi.BoolPtrInput   `pulumi:"readonly"`
-	Source     pulumi.StringInput    `pulumi:"source"`
-	Target     pulumi.StringInput    `pulumi:"target"`
+	// enables exporting filesystem as a readonly mount for guest, by
+	// default read-only access is given.
+	Readonly pulumi.BoolPtrInput `pulumi:"readonly"`
+	// the directory of the host to be shared with the guest.
+	Source pulumi.StringInput `pulumi:"source"`
+	// an arbitrary string tag that is exported to the guest as a hint for
+	// where to mount the source.
+	Target pulumi.StringInput `pulumi:"target"`
 }
 
 func (DomainFilesystemArgs) ElementType() reflect.Type {
@@ -609,18 +623,25 @@ func (o DomainFilesystemOutput) ToDomainFilesystemOutputWithContext(ctx context.
 	return o
 }
 
+// specifies the security mode for accessing the source. By default
+// the `mapped` mode is chosen.
 func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *string { return v.Accessmode }).(pulumi.StringPtrOutput)
 }
 
+// enables exporting filesystem as a readonly mount for guest, by
+// default read-only access is given.
 func (o DomainFilesystemOutput) Readonly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *bool { return v.Readonly }).(pulumi.BoolPtrOutput)
 }
 
+// the directory of the host to be shared with the guest.
 func (o DomainFilesystemOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainFilesystem) string { return v.Source }).(pulumi.StringOutput)
 }
 
+// an arbitrary string tag that is exported to the guest as a hint for
+// where to mount the source.
 func (o DomainFilesystemOutput) Target() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainFilesystem) string { return v.Target }).(pulumi.StringOutput)
 }
@@ -653,7 +674,7 @@ type DomainGraphics struct {
 	ListenAddress *string `pulumi:"listenAddress"`
 	// "listen type", defaults to "none"
 	ListenType *string `pulumi:"listenType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// the type of graphics emulation (default is "spice")
 	Type *string `pulumi:"type"`
 	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
 	Websocket *int `pulumi:"websocket"`
@@ -678,7 +699,7 @@ type DomainGraphicsArgs struct {
 	ListenAddress pulumi.StringPtrInput `pulumi:"listenAddress"`
 	// "listen type", defaults to "none"
 	ListenType pulumi.StringPtrInput `pulumi:"listenType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// the type of graphics emulation (default is "spice")
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
 	Websocket pulumi.IntPtrInput `pulumi:"websocket"`
@@ -777,7 +798,7 @@ func (o DomainGraphicsOutput) ListenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *string { return v.ListenType }).(pulumi.StringPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// the type of graphics emulation (default is "spice")
 func (o DomainGraphicsOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -842,7 +863,7 @@ func (o DomainGraphicsPtrOutput) ListenType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// the type of graphics emulation (default is "spice")
 func (o DomainGraphicsPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainGraphics) *string {
 		if v == nil {
@@ -1089,7 +1110,11 @@ func (o DomainNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) DomainNetwor
 }
 
 type DomainNvram struct {
-	// The filename to use as the block device for this disk (read-only)
+	// path to the file backing the NVRAM store for non-volatile variables. When provided,
+	// this file must be writable and specific to this domain, as it will be updated when running the
+	// domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+	// if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+	// In that case, `libvirt` will copy that variables file into a file specific for this domain.
 	File string `pulumi:"file"`
 	// path to the file used to override variables from the master NVRAM
 	// store.
@@ -1108,7 +1133,11 @@ type DomainNvramInput interface {
 }
 
 type DomainNvramArgs struct {
-	// The filename to use as the block device for this disk (read-only)
+	// path to the file backing the NVRAM store for non-volatile variables. When provided,
+	// this file must be writable and specific to this domain, as it will be updated when running the
+	// domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+	// if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+	// In that case, `libvirt` will copy that variables file into a file specific for this domain.
 	File pulumi.StringInput `pulumi:"file"`
 	// path to the file used to override variables from the master NVRAM
 	// store.
@@ -1192,7 +1221,11 @@ func (o DomainNvramOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context
 	}).(DomainNvramPtrOutput)
 }
 
-// The filename to use as the block device for this disk (read-only)
+// path to the file backing the NVRAM store for non-volatile variables. When provided,
+// this file must be writable and specific to this domain, as it will be updated when running the
+// domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+// if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+// In that case, `libvirt` will copy that variables file into a file specific for this domain.
 func (o DomainNvramOutput) File() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainNvram) string { return v.File }).(pulumi.StringOutput)
 }
@@ -1227,7 +1260,11 @@ func (o DomainNvramPtrOutput) Elem() DomainNvramOutput {
 	}).(DomainNvramOutput)
 }
 
-// The filename to use as the block device for this disk (read-only)
+// path to the file backing the NVRAM store for non-volatile variables. When provided,
+// this file must be writable and specific to this domain, as it will be updated when running the
+// domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+// if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+// In that case, `libvirt` will copy that variables file into a file specific for this domain.
 func (o DomainNvramPtrOutput) File() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainNvram) *string {
 		if v == nil {
@@ -1481,7 +1518,7 @@ func (o DomainTpmPtrOutput) Model() pulumi.StringPtrOutput {
 }
 
 type DomainVideo struct {
-	// Console device type. Valid values are "pty" and "tcp".
+	// the type of graphics emulation (default is "spice")
 	Type *string `pulumi:"type"`
 }
 
@@ -1497,7 +1534,7 @@ type DomainVideoInput interface {
 }
 
 type DomainVideoArgs struct {
-	// Console device type. Valid values are "pty" and "tcp".
+	// the type of graphics emulation (default is "spice")
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -1578,7 +1615,7 @@ func (o DomainVideoOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context
 	}).(DomainVideoPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// the type of graphics emulation (default is "spice")
 func (o DomainVideoOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainVideo) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -1607,7 +1644,7 @@ func (o DomainVideoPtrOutput) Elem() DomainVideoOutput {
 	}).(DomainVideoOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// the type of graphics emulation (default is "spice")
 func (o DomainVideoPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainVideo) *string {
 		if v == nil {

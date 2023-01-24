@@ -1360,7 +1360,7 @@ class Domain(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def autostart(self) -> pulumi.Output[Optional[bool]]:
+    def autostart(self) -> pulumi.Output[bool]:
         """
         Set to `true` to start the domain on host boot up.
         If not specified `false` is assumed.
@@ -1412,7 +1412,7 @@ class Domain(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cpu(self) -> pulumi.Output[Optional['outputs.DomainCpu']]:
+    def cpu(self) -> pulumi.Output['outputs.DomainCpu']:
         """
         Configures CPU mode. See below for more
         details.

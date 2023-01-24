@@ -5,11 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getNetworkDnsmasqOptionsTemplate(args: GetNetworkDnsmasqOptionsTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkDnsmasqOptionsTemplateResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", {
         "optionName": args.optionName,
         "optionValue": args.optionValue,
@@ -36,9 +33,8 @@ export interface GetNetworkDnsmasqOptionsTemplateResult {
     readonly optionValue: string;
     readonly rendered: {[key: string]: string};
 }
-
 export function getNetworkDnsmasqOptionsTemplateOutput(args: GetNetworkDnsmasqOptionsTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsmasqOptionsTemplateResult> {
-    return pulumi.output(args).apply(a => getNetworkDnsmasqOptionsTemplate(a, opts))
+    return pulumi.output(args).apply((a: any) => getNetworkDnsmasqOptionsTemplate(a, opts))
 }
 
 /**

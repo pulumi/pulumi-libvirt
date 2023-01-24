@@ -12,15 +12,30 @@ namespace Pulumi.Libvirt.Inputs
 
     public sealed class DomainFilesystemArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// specifies the security mode for accessing the source. By default
+        /// the `mapped` mode is chosen.
+        /// </summary>
         [Input("accessmode")]
         public Input<string>? Accessmode { get; set; }
 
+        /// <summary>
+        /// enables exporting filesystem as a readonly mount for guest, by
+        /// default read-only access is given.
+        /// </summary>
         [Input("readonly")]
         public Input<bool>? Readonly { get; set; }
 
+        /// <summary>
+        /// the directory of the host to be shared with the guest.
+        /// </summary>
         [Input("source", required: true)]
         public Input<string> Source { get; set; } = null!;
 
+        /// <summary>
+        /// an arbitrary string tag that is exported to the guest as a hint for
+        /// where to mount the source.
+        /// </summary>
         [Input("target", required: true)]
         public Input<string> Target { get; set; } = null!;
 

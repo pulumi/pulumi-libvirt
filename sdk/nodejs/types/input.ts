@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface DomainBootDevice {
     devs?: pulumi.Input<pulumi.Input<string>[]>;
@@ -32,13 +33,13 @@ export interface DomainConsole {
      */
     targetType?: pulumi.Input<string>;
     /**
-     * Console device type. Valid values are "pty" and "tcp".
+     * the type of graphics emulation (default is "spice")
      */
     type: pulumi.Input<string>;
 }
 
 export interface DomainCpu {
-    mode: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
 }
 
 export interface DomainDisk {
@@ -71,9 +72,24 @@ export interface DomainDisk {
 }
 
 export interface DomainFilesystem {
+    /**
+     * specifies the security mode for accessing the source. By default
+     * the `mapped` mode is chosen.
+     */
     accessmode?: pulumi.Input<string>;
+    /**
+     * enables exporting filesystem as a readonly mount for guest, by
+     * default read-only access is given.
+     */
     readonly?: pulumi.Input<boolean>;
+    /**
+     * the directory of the host to be shared with the guest.
+     */
     source: pulumi.Input<string>;
+    /**
+     * an arbitrary string tag that is exported to the guest as a hint for
+     * where to mount the source.
+     */
     target: pulumi.Input<string>;
 }
 
@@ -92,7 +108,7 @@ export interface DomainGraphics {
      */
     listenType?: pulumi.Input<string>;
     /**
-     * Console device type. Valid values are "pty" and "tcp".
+     * the type of graphics emulation (default is "spice")
      */
     type?: pulumi.Input<string>;
     /**
@@ -158,7 +174,11 @@ export interface DomainNetworkInterface {
 
 export interface DomainNvram {
     /**
-     * The filename to use as the block device for this disk (read-only)
+     * path to the file backing the NVRAM store for non-volatile variables. When provided,
+     * this file must be writable and specific to this domain, as it will be updated when running the
+     * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+     * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+     * In that case, `libvirt` will copy that variables file into a file specific for this domain.
      */
     file: pulumi.Input<string>;
     /**
@@ -197,7 +217,7 @@ export interface DomainTpm {
 
 export interface DomainVideo {
     /**
-     * Console device type. Valid values are "pty" and "tcp".
+     * the type of graphics emulation (default is "spice")
      */
     type?: pulumi.Input<string>;
 }

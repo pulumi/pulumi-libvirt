@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -15,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as libvirt from "@pulumi/libvirt";
  *
- * const defaultDomain = new libvirt.Domain("default", {});
+ * const _default = new libvirt.Domain("default", {});
  * ```
  */
 export class Domain extends pulumi.CustomResource {
@@ -55,7 +56,7 @@ export class Domain extends pulumi.CustomResource {
      * Set to `true` to start the domain on host boot up.
      * If not specified `false` is assumed.
      */
-    public readonly autostart!: pulumi.Output<boolean | undefined>;
+    public readonly autostart!: pulumi.Output<boolean>;
     /**
      * A list of devices (dev) which defines boot order. Example
      * below.
@@ -83,7 +84,7 @@ export class Domain extends pulumi.CustomResource {
      * Configures CPU mode. See below for more
      * details.
      */
-    public readonly cpu!: pulumi.Output<outputs.DomainCpu | undefined>;
+    public readonly cpu!: pulumi.Output<outputs.DomainCpu>;
     /**
      * The description for domain.
      * Changing this forces a new resource to be created.

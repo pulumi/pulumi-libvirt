@@ -84,7 +84,7 @@ class DomainConsole(dict):
                  target_type: Optional[str] = None):
         """
         :param str target_port: Target port
-        :param str type: Console device type. Valid values are "pty" and "tcp".
+        :param str type: the type of graphics emulation (default is "spice")
         :param str source_host: IP address to listen on. Defaults to 127.0.0.1.
         :param str source_path: Source path
         :param str source_service: Port number or a service name. Defaults to a
@@ -115,7 +115,7 @@ class DomainConsole(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 
@@ -157,12 +157,13 @@ class DomainConsole(dict):
 @pulumi.output_type
 class DomainCpu(dict):
     def __init__(__self__, *,
-                 mode: str):
-        pulumi.set(__self__, "mode", mode)
+                 mode: Optional[str] = None):
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
 
     @property
     @pulumi.getter
-    def mode(self) -> str:
+    def mode(self) -> Optional[str]:
         return pulumi.get(self, "mode")
 
 
@@ -275,6 +276,15 @@ class DomainFilesystem(dict):
                  target: str,
                  accessmode: Optional[str] = None,
                  readonly: Optional[bool] = None):
+        """
+        :param str source: the directory of the host to be shared with the guest.
+        :param str target: an arbitrary string tag that is exported to the guest as a hint for
+               where to mount the source.
+        :param str accessmode: specifies the security mode for accessing the source. By default
+               the `mapped` mode is chosen.
+        :param bool readonly: enables exporting filesystem as a readonly mount for guest, by
+               default read-only access is given.
+        """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
         if accessmode is not None:
@@ -285,21 +295,36 @@ class DomainFilesystem(dict):
     @property
     @pulumi.getter
     def source(self) -> str:
+        """
+        the directory of the host to be shared with the guest.
+        """
         return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
     def target(self) -> str:
+        """
+        an arbitrary string tag that is exported to the guest as a hint for
+        where to mount the source.
+        """
         return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
     def accessmode(self) -> Optional[str]:
+        """
+        specifies the security mode for accessing the source. By default
+        the `mapped` mode is chosen.
+        """
         return pulumi.get(self, "accessmode")
 
     @property
     @pulumi.getter
     def readonly(self) -> Optional[bool]:
+        """
+        enables exporting filesystem as a readonly mount for guest, by
+        default read-only access is given.
+        """
         return pulumi.get(self, "readonly")
 
 
@@ -335,7 +360,7 @@ class DomainGraphics(dict):
         :param str listen_address: IP Address where the VNC listener should be started if
                `listen_type` is set to `address`. Defaults to 127.0.0.1
         :param str listen_type: "listen type", defaults to "none"
-        :param str type: Console device type. Valid values are "pty" and "tcp".
+        :param str type: the type of graphics emulation (default is "spice")
         :param int websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
         """
         if autoport is not None:
@@ -378,7 +403,7 @@ class DomainGraphics(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 
@@ -573,7 +598,11 @@ class DomainNvram(dict):
                  file: str,
                  template: Optional[str] = None):
         """
-        :param str file: The filename to use as the block device for this disk (read-only)
+        :param str file: path to the file backing the NVRAM store for non-volatile variables. When provided,
+               this file must be writable and specific to this domain, as it will be updated when running the
+               domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+               if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+               In that case, `libvirt` will copy that variables file into a file specific for this domain.
         :param str template: path to the file used to override variables from the master NVRAM
                store.
         """
@@ -585,7 +614,11 @@ class DomainNvram(dict):
     @pulumi.getter
     def file(self) -> str:
         """
-        The filename to use as the block device for this disk (read-only)
+        path to the file backing the NVRAM store for non-volatile variables. When provided,
+        this file must be writable and specific to this domain, as it will be updated when running the
+        domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+        if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+        In that case, `libvirt` will copy that variables file into a file specific for this domain.
         """
         return pulumi.get(self, "file")
 
@@ -708,7 +741,7 @@ class DomainVideo(dict):
     def __init__(__self__, *,
                  type: Optional[str] = None):
         """
-        :param str type: Console device type. Valid values are "pty" and "tcp".
+        :param str type: the type of graphics emulation (default is "spice")
         """
         if type is not None:
             pulumi.set(__self__, "type", type)
@@ -717,7 +750,7 @@ class DomainVideo(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 

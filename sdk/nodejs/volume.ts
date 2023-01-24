@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -21,7 +22,7 @@ import * as utilities from "./utilities";
  * // volume to attach to the "master" domain as main disk
  * const master = new libvirt.Volume("master", {baseVolumeId: opensuseLeap.id});
  * // volumes to attach to the "workers" domains as main disk
- * const worker: libvirt.Volume[];
+ * const worker: libvirt.Volume[] = [];
  * for (const range = {value: 0}; range.value < _var.workers_count; range.value++) {
  *     worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));
  * }

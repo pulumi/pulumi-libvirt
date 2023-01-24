@@ -12,8 +12,8 @@ namespace Pulumi.Libvirt.Inputs
 
     public sealed class DomainCpuGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("mode", required: true)]
-        public Input<string> Mode { get; set; } = null!;
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
 
         public DomainCpuGetArgs()
         {

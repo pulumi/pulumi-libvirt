@@ -69,10 +69,10 @@ public class Pool extends com.pulumi.resources.CustomResource {
     public Output<Integer> allocation() {
         return this.allocation;
     }
-    @Export(name="available", type=String.class, parameters={})
-    private Output<String> available;
+    @Export(name="available", type=Integer.class, parameters={})
+    private Output<Integer> available;
 
-    public Output<String> available() {
+    public Output<Integer> available() {
         return this.available;
     }
     @Export(name="capacity", type=Integer.class, parameters={})
