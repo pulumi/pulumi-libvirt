@@ -13,10 +13,10 @@ namespace Pulumi.Libvirt.Outputs
     [OutputType]
     public sealed class DomainCpu
     {
-        public readonly string Mode;
+        public readonly string? Mode;
 
         [OutputConstructor]
-        private DomainCpu(string mode)
+        private DomainCpu(string? mode)
         {
             Mode = mode;
         }

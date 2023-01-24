@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DomainVideo {
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     private @Nullable String type;
 
     private DomainVideo() {}
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     public Optional<String> type() {

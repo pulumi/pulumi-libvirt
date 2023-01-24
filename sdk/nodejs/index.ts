@@ -5,16 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./cloudInitDisk";
-export * from "./domain";
-export * from "./getNetworkDnsHostTemplate";
-export * from "./getNetworkDnsSrvTemplate";
-export * from "./getNetworkDnsmasqOptionsTemplate";
-export * from "./ignition";
-export * from "./network";
-export * from "./pool";
-export * from "./provider";
-export * from "./volume";
+export { CloudInitDiskArgs, CloudInitDiskState } from "./cloudInitDisk";
+export type CloudInitDisk = import("./cloudInitDisk").CloudInitDisk;
+export const CloudInitDisk: typeof import("./cloudInitDisk").CloudInitDisk = null as any;
+utilities.lazyLoad(exports, ["CloudInitDisk"], () => require("./cloudInitDisk"));
+
+export { DomainArgs, DomainState } from "./domain";
+export type Domain = import("./domain").Domain;
+export const Domain: typeof import("./domain").Domain = null as any;
+utilities.lazyLoad(exports, ["Domain"], () => require("./domain"));
+
+export { GetNetworkDnsHostTemplateArgs, GetNetworkDnsHostTemplateResult, GetNetworkDnsHostTemplateOutputArgs } from "./getNetworkDnsHostTemplate";
+export const getNetworkDnsHostTemplate: typeof import("./getNetworkDnsHostTemplate").getNetworkDnsHostTemplate = null as any;
+export const getNetworkDnsHostTemplateOutput: typeof import("./getNetworkDnsHostTemplate").getNetworkDnsHostTemplateOutput = null as any;
+utilities.lazyLoad(exports, ["getNetworkDnsHostTemplate","getNetworkDnsHostTemplateOutput"], () => require("./getNetworkDnsHostTemplate"));
+
+export { GetNetworkDnsSrvTemplateArgs, GetNetworkDnsSrvTemplateResult, GetNetworkDnsSrvTemplateOutputArgs } from "./getNetworkDnsSrvTemplate";
+export const getNetworkDnsSrvTemplate: typeof import("./getNetworkDnsSrvTemplate").getNetworkDnsSrvTemplate = null as any;
+export const getNetworkDnsSrvTemplateOutput: typeof import("./getNetworkDnsSrvTemplate").getNetworkDnsSrvTemplateOutput = null as any;
+utilities.lazyLoad(exports, ["getNetworkDnsSrvTemplate","getNetworkDnsSrvTemplateOutput"], () => require("./getNetworkDnsSrvTemplate"));
+
+export { GetNetworkDnsmasqOptionsTemplateArgs, GetNetworkDnsmasqOptionsTemplateResult, GetNetworkDnsmasqOptionsTemplateOutputArgs } from "./getNetworkDnsmasqOptionsTemplate";
+export const getNetworkDnsmasqOptionsTemplate: typeof import("./getNetworkDnsmasqOptionsTemplate").getNetworkDnsmasqOptionsTemplate = null as any;
+export const getNetworkDnsmasqOptionsTemplateOutput: typeof import("./getNetworkDnsmasqOptionsTemplate").getNetworkDnsmasqOptionsTemplateOutput = null as any;
+utilities.lazyLoad(exports, ["getNetworkDnsmasqOptionsTemplate","getNetworkDnsmasqOptionsTemplateOutput"], () => require("./getNetworkDnsmasqOptionsTemplate"));
+
+export { IgnitionArgs, IgnitionState } from "./ignition";
+export type Ignition = import("./ignition").Ignition;
+export const Ignition: typeof import("./ignition").Ignition = null as any;
+utilities.lazyLoad(exports, ["Ignition"], () => require("./ignition"));
+
+export { NetworkArgs, NetworkState } from "./network";
+export type Network = import("./network").Network;
+export const Network: typeof import("./network").Network = null as any;
+utilities.lazyLoad(exports, ["Network"], () => require("./network"));
+
+export { PoolArgs, PoolState } from "./pool";
+export type Pool = import("./pool").Pool;
+export const Pool: typeof import("./pool").Pool = null as any;
+utilities.lazyLoad(exports, ["Pool"], () => require("./pool"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { VolumeArgs, VolumeState } from "./volume";
+export type Volume = import("./volume").Volume;
+export const Volume: typeof import("./volume").Volume = null as any;
+utilities.lazyLoad(exports, ["Volume"], () => require("./volume"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -24,14 +64,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { CloudInitDisk } from "./cloudInitDisk";
-import { Domain } from "./domain";
-import { Ignition } from "./ignition";
-import { Network } from "./network";
-import { Pool } from "./pool";
-import { Volume } from "./volume";
 
 const _module = {
     version: utilities.getVersion(),
@@ -60,9 +92,6 @@ pulumi.runtime.registerResourceModule("libvirt", "index/ignition", _module)
 pulumi.runtime.registerResourceModule("libvirt", "index/network", _module)
 pulumi.runtime.registerResourceModule("libvirt", "index/pool", _module)
 pulumi.runtime.registerResourceModule("libvirt", "index/volume", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("libvirt", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

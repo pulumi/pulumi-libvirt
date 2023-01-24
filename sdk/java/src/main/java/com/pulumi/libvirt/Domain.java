@@ -86,15 +86,15 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="autostart", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> autostart;
+    private Output<Boolean> autostart;
 
     /**
      * @return Set to `true` to start the domain on host boot up.
      * If not specified `false` is assumed.
      * 
      */
-    public Output<Optional<Boolean>> autostart() {
-        return Codegen.optional(this.autostart);
+    public Output<Boolean> autostart() {
+        return this.autostart;
     }
     /**
      * A list of devices (dev) which defines boot order. Example
@@ -176,15 +176,15 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="cpu", type=DomainCpu.class, parameters={})
-    private Output</* @Nullable */ DomainCpu> cpu;
+    private Output<DomainCpu> cpu;
 
     /**
      * @return Configures CPU mode. See below for more
      * details.
      * 
      */
-    public Output<Optional<DomainCpu>> cpu() {
-        return Codegen.optional(this.cpu);
+    public Output<DomainCpu> cpu() {
+        return this.cpu;
     }
     /**
      * The description for domain.

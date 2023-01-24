@@ -44,7 +44,7 @@ type Domain struct {
 	Arch pulumi.StringOutput `pulumi:"arch"`
 	// Set to `true` to start the domain on host boot up.
 	// If not specified `false` is assumed.
-	Autostart pulumi.BoolPtrOutput `pulumi:"autostart"`
+	Autostart pulumi.BoolOutput `pulumi:"autostart"`
 	// A list of devices (dev) which defines boot order. Example
 	// below.
 	BootDevices DomainBootDeviceArrayOutput `pulumi:"bootDevices"`
@@ -62,7 +62,7 @@ type Domain struct {
 	CoreosIgnition pulumi.StringPtrOutput `pulumi:"coreosIgnition"`
 	// Configures CPU mode. See below for more
 	// details.
-	Cpu DomainCpuPtrOutput `pulumi:"cpu"`
+	Cpu DomainCpuOutput `pulumi:"cpu"`
 	// The description for domain.
 	// Changing this forces a new resource to be created.
 	// This data is not used by libvirt in any way, it can contain any information the user wants.
@@ -571,8 +571,8 @@ func (o DomainOutput) Arch() pulumi.StringOutput {
 
 // Set to `true` to start the domain on host boot up.
 // If not specified `false` is assumed.
-func (o DomainOutput) Autostart() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Domain) pulumi.BoolPtrOutput { return v.Autostart }).(pulumi.BoolPtrOutput)
+func (o DomainOutput) Autostart() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Domain) pulumi.BoolOutput { return v.Autostart }).(pulumi.BoolOutput)
 }
 
 // A list of devices (dev) which defines boot order. Example
@@ -607,8 +607,8 @@ func (o DomainOutput) CoreosIgnition() pulumi.StringPtrOutput {
 
 // Configures CPU mode. See below for more
 // details.
-func (o DomainOutput) Cpu() DomainCpuPtrOutput {
-	return o.ApplyT(func(v *Domain) DomainCpuPtrOutput { return v.Cpu }).(DomainCpuPtrOutput)
+func (o DomainOutput) Cpu() DomainCpuOutput {
+	return o.ApplyT(func(v *Domain) DomainCpuOutput { return v.Cpu }).(DomainCpuOutput)
 }
 
 // The description for domain.

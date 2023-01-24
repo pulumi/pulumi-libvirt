@@ -5,11 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getNetworkDnsHostTemplate(args: GetNetworkDnsHostTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkDnsHostTemplateResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", {
         "hostname": args.hostname,
         "ip": args.ip,
@@ -36,9 +33,8 @@ export interface GetNetworkDnsHostTemplateResult {
     readonly ip: string;
     readonly rendered: {[key: string]: string};
 }
-
 export function getNetworkDnsHostTemplateOutput(args: GetNetworkDnsHostTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsHostTemplateResult> {
-    return pulumi.output(args).apply(a => getNetworkDnsHostTemplate(a, opts))
+    return pulumi.output(args).apply((a: any) => getNetworkDnsHostTemplate(a, opts))
 }
 
 /**

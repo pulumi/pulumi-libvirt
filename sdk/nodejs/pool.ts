@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -57,7 +58,7 @@ export class Pool extends pulumi.CustomResource {
     }
 
     public readonly allocation!: pulumi.Output<number>;
-    public readonly available!: pulumi.Output<string>;
+    public readonly available!: pulumi.Output<number>;
     public readonly capacity!: pulumi.Output<number>;
     /**
      * A unique name for the resource, required by libvirt.
@@ -117,7 +118,7 @@ export class Pool extends pulumi.CustomResource {
  */
 export interface PoolState {
     allocation?: pulumi.Input<number>;
-    available?: pulumi.Input<string>;
+    available?: pulumi.Input<number>;
     capacity?: pulumi.Input<number>;
     /**
      * A unique name for the resource, required by libvirt.
@@ -140,7 +141,7 @@ export interface PoolState {
  */
 export interface PoolArgs {
     allocation?: pulumi.Input<number>;
-    available?: pulumi.Input<string>;
+    available?: pulumi.Input<number>;
     capacity?: pulumi.Input<number>;
     /**
      * A unique name for the resource, required by libvirt.

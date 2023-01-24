@@ -6,14 +6,16 @@ package com.pulumi.libvirt.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainCpu {
-    private String mode;
+    private @Nullable String mode;
 
     private DomainCpu() {}
-    public String mode() {
-        return this.mode;
+    public Optional<String> mode() {
+        return Optional.ofNullable(this.mode);
     }
 
     public static Builder builder() {
@@ -25,7 +27,7 @@ public final class DomainCpu {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String mode;
+        private @Nullable String mode;
         public Builder() {}
         public Builder(DomainCpu defaults) {
     	      Objects.requireNonNull(defaults);
@@ -33,8 +35,8 @@ public final class DomainCpu {
         }
 
         @CustomType.Setter
-        public Builder mode(String mode) {
-            this.mode = Objects.requireNonNull(mode);
+        public Builder mode(@Nullable String mode) {
+            this.mode = mode;
             return this;
         }
         public DomainCpu build() {

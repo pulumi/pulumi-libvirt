@@ -40,7 +40,9 @@ import (
 //				return err
 //			}
 //			var worker []*libvirt.Volume
-//			for key0, _ := range _var.Workers_count {
+//			for index := 0; index < _var.Workers_count; index++ {
+//				key0 := index
+//				_ := index
 //				__res, err := libvirt.NewVolume(ctx, fmt.Sprintf("worker-%v", key0), &libvirt.VolumeArgs{
 //					BaseVolumeId: opensuseLeap.ID(),
 //				})

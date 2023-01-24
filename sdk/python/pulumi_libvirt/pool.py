@@ -18,7 +18,7 @@ class PoolArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
                  allocation: Optional[pulumi.Input[int]] = None,
-                 available: Optional[pulumi.Input[str]] = None,
+                 available: Optional[pulumi.Input[int]] = None,
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -67,11 +67,11 @@ class PoolArgs:
 
     @property
     @pulumi.getter
-    def available(self) -> Optional[pulumi.Input[str]]:
+    def available(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "available")
 
     @available.setter
-    def available(self, value: Optional[pulumi.Input[str]]):
+    def available(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "available", value)
 
     @property
@@ -122,7 +122,7 @@ class PoolArgs:
 class _PoolState:
     def __init__(__self__, *,
                  allocation: Optional[pulumi.Input[int]] = None,
-                 available: Optional[pulumi.Input[str]] = None,
+                 available: Optional[pulumi.Input[int]] = None,
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -161,11 +161,11 @@ class _PoolState:
 
     @property
     @pulumi.getter
-    def available(self) -> Optional[pulumi.Input[str]]:
+    def available(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "available")
 
     @available.setter
-    def available(self, value: Optional[pulumi.Input[str]]):
+    def available(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "available", value)
 
     @property
@@ -230,7 +230,7 @@ class Pool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allocation: Optional[pulumi.Input[int]] = None,
-                 available: Optional[pulumi.Input[str]] = None,
+                 available: Optional[pulumi.Input[int]] = None,
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -308,7 +308,7 @@ class Pool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allocation: Optional[pulumi.Input[int]] = None,
-                 available: Optional[pulumi.Input[str]] = None,
+                 available: Optional[pulumi.Input[int]] = None,
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -343,7 +343,7 @@ class Pool(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allocation: Optional[pulumi.Input[int]] = None,
-            available: Optional[pulumi.Input[str]] = None,
+            available: Optional[pulumi.Input[int]] = None,
             capacity: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -381,7 +381,7 @@ class Pool(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def available(self) -> pulumi.Output[str]:
+    def available(self) -> pulumi.Output[int]:
         return pulumi.get(self, "available")
 
     @property

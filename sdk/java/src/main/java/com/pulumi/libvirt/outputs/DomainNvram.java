@@ -12,7 +12,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DomainNvram {
     /**
-     * @return The filename to use as the block device for this disk (read-only)
+     * @return path to the file backing the NVRAM store for non-volatile variables. When provided,
+     * this file must be writable and specific to this domain, as it will be updated when running the
+     * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+     * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+     * In that case, `libvirt` will copy that variables file into a file specific for this domain.
      * 
      */
     private String file;
@@ -25,7 +29,11 @@ public final class DomainNvram {
 
     private DomainNvram() {}
     /**
-     * @return The filename to use as the block device for this disk (read-only)
+     * @return path to the file backing the NVRAM store for non-volatile variables. When provided,
+     * this file must be writable and specific to this domain, as it will be updated when running the
+     * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+     * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+     * In that case, `libvirt` will copy that variables file into a file specific for this domain.
      * 
      */
     public String file() {

@@ -30,7 +30,7 @@ public final class DomainGraphics {
      */
     private @Nullable String listenType;
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     private @Nullable String type;
@@ -64,7 +64,7 @@ public final class DomainGraphics {
         return Optional.ofNullable(this.listenType);
     }
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     public Optional<String> type() {

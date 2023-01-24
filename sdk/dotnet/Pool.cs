@@ -47,7 +47,7 @@ namespace Pulumi.Libvirt
         public Output<int> Allocation { get; private set; } = null!;
 
         [Output("available")]
-        public Output<string> Available { get; private set; } = null!;
+        public Output<int> Available { get; private set; } = null!;
 
         [Output("capacity")]
         public Output<int> Capacity { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumi.Libvirt
         public Input<int>? Allocation { get; set; }
 
         [Input("available")]
-        public Input<string>? Available { get; set; }
+        public Input<int>? Available { get; set; }
 
         [Input("capacity")]
         public Input<int>? Capacity { get; set; }
@@ -163,7 +163,7 @@ namespace Pulumi.Libvirt
         public Input<int>? Allocation { get; set; }
 
         [Input("available")]
-        public Input<string>? Available { get; set; }
+        public Input<int>? Available { get; set; }
 
         [Input("capacity")]
         public Input<int>? Capacity { get; set; }

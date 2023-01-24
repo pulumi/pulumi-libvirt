@@ -30,7 +30,7 @@ namespace Pulumi.Libvirt
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("libvirt");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("libvirt");
 
         private static readonly __Value<string?> _uri = new __Value<string?>(() => __config.Get("uri") ?? Utilities.GetEnv("LIBVIRT_DEFAULT_URI"));
         /// <summary>

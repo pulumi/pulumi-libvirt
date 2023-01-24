@@ -42,7 +42,7 @@ namespace Pulumi.Libvirt
         /// If not specified `false` is assumed.
         /// </summary>
         [Output("autostart")]
-        public Output<bool?> Autostart { get; private set; } = null!;
+        public Output<bool> Autostart { get; private set; } = null!;
 
         /// <summary>
         /// A list of devices (dev) which defines boot order. Example
@@ -82,7 +82,7 @@ namespace Pulumi.Libvirt
         /// details.
         /// </summary>
         [Output("cpu")]
-        public Output<Outputs.DomainCpu?> Cpu { get; private set; } = null!;
+        public Output<Outputs.DomainCpu> Cpu { get; private set; } = null!;
 
         /// <summary>
         /// The description for domain.

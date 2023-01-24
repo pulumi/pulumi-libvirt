@@ -135,7 +135,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "description": "the type of graphics emulation (default is \"spice\")\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -162,9 +162,13 @@
                 }
             },
             "type": "object",
-            "required": [
-                "mode"
-            ]
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "mode"
+                    ]
+                }
+            }
         },
         "libvirt:index/DomainDisk:DomainDisk": {
             "properties": {
@@ -193,7 +197,8 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "willReplaceOnChanges": true
                 },
                 "url": {
                     "type": "string",
@@ -229,6 +234,7 @@
             "properties": {
                 "accessmode": {
                     "type": "string",
+                    "description": "specifies the security mode for accessing the source. By default\nthe `mapped` mode is chosen.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -237,6 +243,7 @@
                 },
                 "readonly": {
                     "type": "boolean",
+                    "description": "enables exporting filesystem as a readonly mount for guest, by\ndefault read-only access is given.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -245,6 +252,7 @@
                 },
                 "source": {
                     "type": "string",
+                    "description": "the directory of the host to be shared with the guest.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -253,6 +261,7 @@
                 },
                 "target": {
                     "type": "string",
+                    "description": "an arbitrary string tag that is exported to the guest as a hint for\nwhere to mount the source.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -300,7 +309,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "description": "the type of graphics emulation (default is \"spice\")\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -431,7 +440,7 @@
             "properties": {
                 "file": {
                     "type": "string",
-                    "description": "The filename to use as the block device for this disk (read-only)\n",
+                    "description": "path to the file backing the NVRAM store for non-volatile variables. When provided,\nthis file must be writable and specific to this domain, as it will be updated when running the\ndomain. However, `libvirt` can  manage this automatically (and this is the recommended solution)\nif a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.\nIn that case, `libvirt` will copy that variables file into a file specific for this domain.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -524,7 +533,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "description": "the type of graphics emulation (default is \"spice\")\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -560,7 +569,14 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "enabled"
+                    ]
+                }
+            }
         },
         "libvirt:index/NetworkDns:NetworkDns": {
             "properties": {
@@ -950,7 +966,7 @@
             }
         },
         "libvirt:index/domain:Domain": {
-            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst defaultDomain = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Libvirt.Domain(\"default\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new Domain(\"default\");\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: libvirt:Domain\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst _default = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Libvirt.Domain(\"default\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new Domain(\"default\");\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: libvirt:Domain\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "arch": {
                     "type": "string",
@@ -1087,6 +1103,8 @@
             },
             "required": [
                 "arch",
+                "autostart",
+                "cpu",
                 "emulator",
                 "machine",
                 "name"
@@ -1484,7 +1502,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n"
+                    "description": "One of:\n"
                 },
                 "mtu": {
                     "type": "integer",
@@ -1506,7 +1524,10 @@
                 }
             },
             "required": [
+                "autostart",
                 "bridge",
+                "dhcp",
+                "dns",
                 "name"
             ],
             "inputProperties": {
@@ -1547,7 +1568,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n",
+                    "description": "One of:\n",
                     "willReplaceOnChanges": true
                 },
                 "mtu": {
@@ -1612,7 +1633,7 @@
                     },
                     "mode": {
                         "type": "string",
-                        "description": "One of:\n- `none`: the guests can talk to each other and the host OS, but cannot reach\nany other machines on the LAN.\n- `nat`: it is the default network mode. This is a configuration that\nallows guest OS to get outbound connectivity regardless of whether the host\nuses ethernet, wireless, dialup, or VPN networking without requiring any\nspecific admin configuration. In the absence of host networking, it at\nleast allows guests to talk directly to each other.\n- `route`: this is a variant on the default network which routes traffic from\nthe virtual network to the LAN **without applying any NAT**. It requires that\nthe IP address range be pre-configured in the routing tables of the router\non the host network.\n- `open`: similar to `route`, but no firewall rules are added.\n- `bridge`: use a pre-existing host bridge. The guests will effectively be\ndirectly connected to the physical network (i.e. their IP addresses will\nall be on the subnet of the physical network, and there will be no\nrestrictions on inbound or outbound connections). The `bridge` network\nattribute is mandatory in this case.\n",
+                        "description": "One of:\n",
                         "willReplaceOnChanges": true
                     },
                     "mtu": {
@@ -1647,7 +1668,7 @@
                     "type": "integer"
                 },
                 "available": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "capacity": {
                     "type": "integer"
@@ -1681,7 +1702,7 @@
                     "willReplaceOnChanges": true
                 },
                 "available": {
-                    "type": "string",
+                    "type": "integer",
                     "willReplaceOnChanges": true
                 },
                 "capacity": {
@@ -1719,7 +1740,7 @@
                         "willReplaceOnChanges": true
                     },
                     "available": {
-                        "type": "string",
+                        "type": "integer",
                         "willReplaceOnChanges": true
                     },
                     "capacity": {
@@ -1750,7 +1771,7 @@
             }
         },
         "libvirt:index/volume:Volume": {
-            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Base OS image to use to create a cluster of different\n    // nodes\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n    // volume to attach to the \"master\" domain as main disk\n    var master = new Libvirt.Volume(\"master\", new()\n    {\n        BaseVolumeId = opensuseLeap.Id,\n    });\n\n    // volumes to attach to the \"workers\" domains as main disk\n    var worker = new List\u003cLibvirt.Volume\u003e();\n    for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n    {\n        var range = new { Value = rangeIndex };\n        worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new()\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        }));\n    }\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor key0, _ := range _var.Workers_count {\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n        var master = new Volume(\"master\", VolumeArgs.builder()        \n            .baseVolumeId(opensuseLeap.id())\n            .build());\n\n        for (var i = 0; i \u003c var_.workers_count(); i++) {\n            new Volume(\"worker-\" + i, VolumeArgs.builder()            \n                .baseVolumeId(opensuseLeap.id())\n                .build());\n\n        \n}\n    }\n}\n```\n```yaml\nresources:\n  # Base OS image to use to create a cluster of different\n  # nodes\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n  # volume to attach to the \"master\" domain as main disk\n  master:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n  # volumes to attach to the \"workers\" domains as main disk\n  worker:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n    options: {}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[] = [];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Base OS image to use to create a cluster of different\n    // nodes\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n    // volume to attach to the \"master\" domain as main disk\n    var master = new Libvirt.Volume(\"master\", new()\n    {\n        BaseVolumeId = opensuseLeap.Id,\n    });\n\n    // volumes to attach to the \"workers\" domains as main disk\n    var worker = new List\u003cLibvirt.Volume\u003e();\n    for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n    {\n        var range = new { Value = rangeIndex };\n        worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new()\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        }));\n    }\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor index := 0; index \u003c _var.Workers_count; index++ {\n\t\t\tkey0 := index\n\t\t\t_ := index\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n        var master = new Volume(\"master\", VolumeArgs.builder()        \n            .baseVolumeId(opensuseLeap.id())\n            .build());\n\n        for (var i = 0; i \u003c var_.workers_count(); i++) {\n            new Volume(\"worker-\" + i, VolumeArgs.builder()            \n                .baseVolumeId(opensuseLeap.id())\n                .build());\n\n        \n}\n    }\n}\n```\n```yaml\nresources:\n  # Base OS image to use to create a cluster of different\n  # nodes\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n  # volume to attach to the \"master\" domain as main disk\n  master:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n  # volumes to attach to the \"workers\" domains as main disk\n  worker:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n    options: {}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "baseVolumeId": {
                     "type": "string",

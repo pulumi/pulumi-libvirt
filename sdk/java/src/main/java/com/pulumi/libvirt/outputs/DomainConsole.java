@@ -39,7 +39,7 @@ public final class DomainConsole {
      */
     private @Nullable String targetType;
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     private String type;
@@ -83,7 +83,7 @@ public final class DomainConsole {
         return Optional.ofNullable(this.targetType);
     }
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     public String type() {

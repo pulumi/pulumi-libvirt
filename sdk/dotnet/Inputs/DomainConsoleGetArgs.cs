@@ -45,7 +45,7 @@ namespace Pulumi.Libvirt.Inputs
         public Input<string>? TargetType { get; set; }
 
         /// <summary>
-        /// Console device type. Valid values are "pty" and "tcp".
+        /// the type of graphics emulation (default is "spice")
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

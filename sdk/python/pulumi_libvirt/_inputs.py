@@ -62,7 +62,7 @@ class DomainConsoleArgs:
                  target_type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] target_port: Target port
-        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[str] type: the type of graphics emulation (default is "spice")
         :param pulumi.Input[str] source_host: IP address to listen on. Defaults to 127.0.0.1.
         :param pulumi.Input[str] source_path: Source path
         :param pulumi.Input[str] source_service: Port number or a service name. Defaults to a
@@ -97,7 +97,7 @@ class DomainConsoleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 
@@ -159,16 +159,17 @@ class DomainConsoleArgs:
 @pulumi.input_type
 class DomainCpuArgs:
     def __init__(__self__, *,
-                 mode: pulumi.Input[str]):
-        pulumi.set(__self__, "mode", mode)
+                 mode: Optional[pulumi.Input[str]] = None):
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
 
     @property
     @pulumi.getter
-    def mode(self) -> pulumi.Input[str]:
+    def mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: pulumi.Input[str]):
+    def mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mode", value)
 
 
@@ -286,6 +287,15 @@ class DomainFilesystemArgs:
                  target: pulumi.Input[str],
                  accessmode: Optional[pulumi.Input[str]] = None,
                  readonly: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] source: the directory of the host to be shared with the guest.
+        :param pulumi.Input[str] target: an arbitrary string tag that is exported to the guest as a hint for
+               where to mount the source.
+        :param pulumi.Input[str] accessmode: specifies the security mode for accessing the source. By default
+               the `mapped` mode is chosen.
+        :param pulumi.Input[bool] readonly: enables exporting filesystem as a readonly mount for guest, by
+               default read-only access is given.
+        """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
         if accessmode is not None:
@@ -296,6 +306,9 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def source(self) -> pulumi.Input[str]:
+        """
+        the directory of the host to be shared with the guest.
+        """
         return pulumi.get(self, "source")
 
     @source.setter
@@ -305,6 +318,10 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def target(self) -> pulumi.Input[str]:
+        """
+        an arbitrary string tag that is exported to the guest as a hint for
+        where to mount the source.
+        """
         return pulumi.get(self, "target")
 
     @target.setter
@@ -314,6 +331,10 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def accessmode(self) -> Optional[pulumi.Input[str]]:
+        """
+        specifies the security mode for accessing the source. By default
+        the `mapped` mode is chosen.
+        """
         return pulumi.get(self, "accessmode")
 
     @accessmode.setter
@@ -323,6 +344,10 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def readonly(self) -> Optional[pulumi.Input[bool]]:
+        """
+        enables exporting filesystem as a readonly mount for guest, by
+        default read-only access is given.
+        """
         return pulumi.get(self, "readonly")
 
     @readonly.setter
@@ -343,7 +368,7 @@ class DomainGraphicsArgs:
         :param pulumi.Input[str] listen_address: IP Address where the VNC listener should be started if
                `listen_type` is set to `address`. Defaults to 127.0.0.1
         :param pulumi.Input[str] listen_type: "listen type", defaults to "none"
-        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[str] type: the type of graphics emulation (default is "spice")
         :param pulumi.Input[int] websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
         """
         if autoport is not None:
@@ -398,7 +423,7 @@ class DomainGraphicsArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 
@@ -620,7 +645,11 @@ class DomainNvramArgs:
                  file: pulumi.Input[str],
                  template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] file: The filename to use as the block device for this disk (read-only)
+        :param pulumi.Input[str] file: path to the file backing the NVRAM store for non-volatile variables. When provided,
+               this file must be writable and specific to this domain, as it will be updated when running the
+               domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+               if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+               In that case, `libvirt` will copy that variables file into a file specific for this domain.
         :param pulumi.Input[str] template: path to the file used to override variables from the master NVRAM
                store.
         """
@@ -632,7 +661,11 @@ class DomainNvramArgs:
     @pulumi.getter
     def file(self) -> pulumi.Input[str]:
         """
-        The filename to use as the block device for this disk (read-only)
+        path to the file backing the NVRAM store for non-volatile variables. When provided,
+        this file must be writable and specific to this domain, as it will be updated when running the
+        domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
+        if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
+        In that case, `libvirt` will copy that variables file into a file specific for this domain.
         """
         return pulumi.get(self, "file")
 
@@ -762,7 +795,7 @@ class DomainVideoArgs:
     def __init__(__self__, *,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[str] type: the type of graphics emulation (default is "spice")
         """
         if type is not None:
             pulumi.set(__self__, "type", type)
@@ -771,7 +804,7 @@ class DomainVideoArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 

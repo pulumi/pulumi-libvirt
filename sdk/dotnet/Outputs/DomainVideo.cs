@@ -14,7 +14,7 @@ namespace Pulumi.Libvirt.Outputs
     public sealed class DomainVideo
     {
         /// <summary>
-        /// Console device type. Valid values are "pty" and "tcp".
+        /// the type of graphics emulation (default is "spice")
         /// </summary>
         public readonly string? Type;
 
