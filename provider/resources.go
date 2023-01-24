@@ -20,10 +20,9 @@ import (
 	"unicode"
 
 	"github.com/dmacvicar/terraform-provider-libvirt/libvirt"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-libvirt/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
 
@@ -62,7 +61,7 @@ func makeResource(mod string, res string) tokens.Type {
 }
 
 func Provider() tfbridge.ProviderInfo {
-	p := shimv1.NewProvider(libvirt.Provider().(*schema.Provider))
+	p := shim.NewProvider(libvirt.Provider())
 
 	prov := tfbridge.ProviderInfo{
 		P:           p,
