@@ -71,11 +71,6 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
                     }
                 }
             },
@@ -86,61 +81,31 @@
                 "sourceHost": {
                     "type": "string",
                     "description": "IP address to listen on. Defaults to 127.0.0.1.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "sourcePath": {
                     "type": "string",
                     "description": "Source path\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "sourceService": {
                     "type": "string",
                     "description": "Port number or a service name. Defaults to a\nrandom port.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "targetPort": {
                     "type": "string",
                     "description": "Target port\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "targetType": {
                     "type": "string",
                     "description": "for the first console and defaults to `serial`.\nSubsequent `console` blocks must have a different type - usually `virtio`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
                     "description": "the type of graphics emulation (default is \"spice\")\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -153,12 +118,7 @@
         "libvirt:index/DomainCpu:DomainCpu": {
             "properties": {
                 "mode": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -174,58 +134,28 @@
             "properties": {
                 "blockDevice": {
                     "type": "string",
-                    "description": "The path to the host device to use as the block device for this disk.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The path to the host device to use as the block device for this disk.\n"
                 },
                 "file": {
                     "type": "string",
-                    "description": "The filename to use as the block device for this disk (read-only)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The filename to use as the block device for this disk (read-only)\n"
                 },
                 "scsi": {
                     "type": "boolean",
                     "description": "Use a scsi controller for this disk.  The controller\nmodel is set to `virtio-scsi`\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "url": {
                     "type": "string",
-                    "description": "The http url to use as the block device for this disk (read-only)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The http url to use as the block device for this disk (read-only)\n"
                 },
                 "volumeId": {
                     "type": "string",
-                    "description": "The volume id to use for this disk.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The volume id to use for this disk.\n"
                 },
                 "wwn": {
                     "type": "string",
-                    "description": "Specify a WWN to use for the disk if the disk is using\na scsi controller, if not specified then a random wwn is generated for the disk\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Specify a WWN to use for the disk if the disk is using\na scsi controller, if not specified then a random wwn is generated for the disk\n"
                 }
             },
             "type": "object"
@@ -234,39 +164,19 @@
             "properties": {
                 "accessmode": {
                     "type": "string",
-                    "description": "specifies the security mode for accessing the source. By default\nthe `mapped` mode is chosen.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "specifies the security mode for accessing the source. By default\nthe `mapped` mode is chosen.\n"
                 },
                 "readonly": {
                     "type": "boolean",
-                    "description": "enables exporting filesystem as a readonly mount for guest, by\ndefault read-only access is given.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "enables exporting filesystem as a readonly mount for guest, by\ndefault read-only access is given.\n"
                 },
                 "source": {
                     "type": "string",
-                    "description": "the directory of the host to be shared with the guest.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "the directory of the host to be shared with the guest.\n"
                 },
                 "target": {
                     "type": "string",
-                    "description": "an arbitrary string tag that is exported to the guest as a hint for\nwhere to mount the source.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "an arbitrary string tag that is exported to the guest as a hint for\nwhere to mount the source.\n"
                 }
             },
             "type": "object",
@@ -280,51 +190,26 @@
                 "autoport": {
                     "type": "boolean",
                     "description": "defaults to \"yes\"\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "listenAddress": {
                     "type": "string",
                     "description": "IP Address where the VNC listener should be started if\n`listen_type` is set to `address`. Defaults to 127.0.0.1\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "listenType": {
                     "type": "string",
                     "description": "\"listen type\", defaults to \"none\"\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
                     "description": "the type of graphics emulation (default is \"spice\")\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "websocket": {
                     "type": "integer",
-                    "description": "Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)\n"
                 }
             },
             "type": "object"
@@ -336,91 +221,41 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "An IP address for this domain in this network.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "An IP address for this domain in this network.\n"
                 },
                 "bridge": {
                     "type": "string",
-                    "description": "Provides a bridge from the VM directly to the LAN. This assumes\nthere is a bridge device on the host which has one or more of the hosts\nphysical NICs enslaved. The guest VM will have an associated _tun_ device\ncreated and enslaved to the bridge. The IP range / network configuration is\nwhatever is used on the LAN. This provides the guest VM full incoming \u0026\noutgoing net access just like a physical machine.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Provides a bridge from the VM directly to the LAN. This assumes\nthere is a bridge device on the host which has one or more of the hosts\nphysical NICs enslaved. The guest VM will have an associated _tun_ device\ncreated and enslaved to the bridge. The IP range / network configuration is\nwhatever is used on the LAN. This provides the guest VM full incoming \u0026\noutgoing net access just like a physical machine.\n"
                 },
                 "hostname": {
                     "type": "string",
-                    "description": "A hostname that will be assigned to this domain\nresource in this network.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "A hostname that will be assigned to this domain\nresource in this network.\n"
                 },
                 "mac": {
                     "type": "string",
-                    "description": "The specific MAC address to use for this interface.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The specific MAC address to use for this interface.\n"
                 },
                 "macvtap": {
                     "type": "string",
-                    "description": "Packets whose destination is on the same host as where they\noriginate from are directly delivered to the target macvtap device. Both\norigin and destination devices need to be in bridge mode for direct delivery.\nIf either one of them is in vepa mode, a VEPA capable bridge is required.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Packets whose destination is on the same host as where they\noriginate from are directly delivered to the target macvtap device. Both\norigin and destination devices need to be in bridge mode for direct delivery.\nIf either one of them is in vepa mode, a VEPA capable bridge is required.\n"
                 },
                 "networkId": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 },
                 "networkName": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 },
                 "passthrough": {
                     "type": "string",
-                    "description": "This feature attaches a virtual function of a SRIOV capable\nNIC directly to a VM without losing the migration capability. All packets are\nsent to the VF/IF of the configured network device. Depending on the\ncapabilities of the device additional prerequisites or limitations may apply;\nfor example, on Linux this requires kernel 2.6.38 or newer.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "This feature attaches a virtual function of a SRIOV capable\nNIC directly to a VM without losing the migration capability. All packets are\nsent to the VF/IF of the configured network device. Depending on the\ncapabilities of the device additional prerequisites or limitations may apply;\nfor example, on Linux this requires kernel 2.6.38 or newer.\n"
                 },
                 "vepa": {
                     "type": "string",
-                    "description": "All VMs' packets are sent to the external bridge. Packets whose\ndestination is a VM on the same host as where the packet originates from are\nsent back to the host by the VEPA capable bridge (today's bridges are\ntypically not VEPA capable).\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "All VMs' packets are sent to the external bridge. Packets whose\ndestination is a VM on the same host as where the packet originates from are\nsent back to the host by the VEPA capable bridge (today's bridges are\ntypically not VEPA capable).\n"
                 },
                 "waitForLease": {
                     "type": "boolean",
-                    "description": "When creating the domain resource, wait until the\nnetwork interface gets a DHCP lease from libvirt, so that the computed IP\naddresses will be available when the domain is up and the plan applied.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "When creating the domain resource, wait until the\nnetwork interface gets a DHCP lease from libvirt, so that the computed IP\naddresses will be available when the domain is up and the plan applied.\n"
                 }
             },
             "type": "object",
@@ -441,21 +276,11 @@
                 "file": {
                     "type": "string",
                     "description": "path to the file backing the NVRAM store for non-volatile variables. When provided,\nthis file must be writable and specific to this domain, as it will be updated when running the\ndomain. However, `libvirt` can  manage this automatically (and this is the recommended solution)\nif a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.\nIn that case, `libvirt` will copy that variables file into a file specific for this domain.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "template": {
                     "type": "string",
                     "description": "path to the file used to override variables from the master NVRAM\nstore.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -469,61 +294,31 @@
                 "backendDevicePath": {
                     "type": "string",
                     "description": "Path to TPM device on the host, ex: `/dev/tpm0`\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "backendEncryptionSecret": {
                     "type": "string",
                     "description": "[Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "backendPersistentState": {
                     "type": "boolean",
                     "description": "Keep the TPM state when a transient domain is powered off or undefined\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "backendType": {
                     "type": "string",
                     "description": "TPM backend, either `passthrough` or `emulator` (default: `emulator`)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "backendVersion": {
                     "type": "string",
                     "description": "TPM version\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "model": {
                     "type": "string",
                     "description": "TPM model provided to the guest\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -533,12 +328,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "description": "the type of graphics emulation (default is \"spice\")\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "the type of graphics emulation (default is \"spice\")\n"
                 }
             },
             "type": "object"
@@ -547,11 +337,6 @@
             "properties": {
                 "xslt": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -561,12 +346,7 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "when false, disable the DHCP server\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "when false, disable the DHCP server\n"
                 }
             },
             "type": "object",
@@ -582,12 +362,7 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "description": "when false, disable the DHCP server\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "when false, disable the DHCP server\n"
                 },
                 "forwarders": {
                     "type": "array",
@@ -595,11 +370,6 @@
                         "$ref": "#/types/libvirt:index/NetworkDnsForwarder:NetworkDnsForwarder"
                     },
                     "description": "Either `address`, `domain`, or both must be set\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "hosts": {
@@ -607,21 +377,11 @@
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkDnsHost:NetworkDnsHost"
                     },
-                    "description": "a DNS host entry block. You can have one or more of these\nblocks in your DNS definition. You must specify both `ip` and `hostname`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "a DNS host entry block. You can have one or more of these\nblocks in your DNS definition. You must specify both `ip` and `hostname`.\n"
                 },
                 "localOnly": {
                     "type": "boolean",
-                    "description": "true/false: true means 'do not forward unresolved requests for this domain to the part DNS server\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "true/false: true means 'do not forward unresolved requests for this domain to the part DNS server\n"
                 },
                 "srvs": {
                     "type": "array",
@@ -629,11 +389,6 @@
                         "$ref": "#/types/libvirt:index/NetworkDnsSrv:NetworkDnsSrv"
                     },
                     "description": "a DNS SRV entry block. You can have one or more of these blocks\nin your DNS definition. You must specify `service` and `protocol`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -643,21 +398,11 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "domain": {
                     "type": "string",
                     "description": "The domain used by the DNS server.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -666,20 +411,10 @@
         "libvirt:index/NetworkDnsHost:NetworkDnsHost": {
             "properties": {
                 "hostname": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 },
                 "ip": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -689,65 +424,30 @@
                 "domain": {
                     "type": "string",
                     "description": "The domain used by the DNS server.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "port": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "priority": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "protocol": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "service": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "target": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 },
                 "weight": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -760,12 +460,7 @@
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption"
                     },
-                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify both `option_name` and `option_value`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify both `option_name` and `option_value`.\n"
                 }
             },
             "type": "object"
@@ -773,20 +468,10 @@
         "libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption": {
             "properties": {
                 "optionName": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 },
                 "optionValue": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -794,20 +479,10 @@
         "libvirt:index/NetworkRoute:NetworkRoute": {
             "properties": {
                 "cidr": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 },
                 "gateway": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -820,11 +495,6 @@
             "properties": {
                 "xslt": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -834,11 +504,6 @@
             "properties": {
                 "xslt": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -848,11 +513,6 @@
             "properties": {
                 "xslt": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
                     "willReplaceOnChanges": true
                 }
             },
@@ -966,7 +626,7 @@
             }
         },
         "libvirt:index/domain:Domain": {
-            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst _default = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Libvirt.Domain(\"default\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new Domain(\"default\");\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: libvirt:Domain\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a VM domain resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatdomain.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst _default = new libvirt.Domain(\"default\", {});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndefault = libvirt.Domain(\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Libvirt.Domain(\"default\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"default\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new Domain(\"default\");\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: libvirt:Domain\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "arch": {
                     "type": "string",
@@ -1662,7 +1322,7 @@
             }
         },
         "libvirt:index/pool:Pool": {
-            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    type: \"dir\",\n    path: \"/home/user/cluster_storage\",\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    type=\"dir\",\n    path=\"/home/user/cluster_storage\")\nopensuse_leap = libvirt.Volume(\"opensuseLeap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // A pool for all cluster volumes\n    var cluster = new Libvirt.Pool(\"cluster\", new()\n    {\n        Type = \"dir\",\n        Path = \"/home/user/cluster_storage\",\n    });\n\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Pool = cluster.Name,\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Pool;\nimport com.pulumi.libvirt.PoolArgs;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cluster = new Pool(\"cluster\", PoolArgs.builder()        \n            .type(\"dir\")\n            .path(\"/home/user/cluster_storage\")\n            .build());\n\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .pool(cluster.name())\n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # A pool for all cluster volumes\n  cluster:\n    type: libvirt:Pool\n    properties:\n      type: dir\n      path: /home/user/cluster_storage\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      pool: ${cluster.name}\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    type: \"dir\",\n    path: \"/home/user/cluster_storage\",\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    type=\"dir\",\n    path=\"/home/user/cluster_storage\")\nopensuse_leap = libvirt.Volume(\"opensuseLeap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // A pool for all cluster volumes\n    var cluster = new Libvirt.Pool(\"cluster\", new()\n    {\n        Type = \"dir\",\n        Path = \"/home/user/cluster_storage\",\n    });\n\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Pool = cluster.Name,\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Pool;\nimport com.pulumi.libvirt.PoolArgs;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cluster = new Pool(\"cluster\", PoolArgs.builder()        \n            .type(\"dir\")\n            .path(\"/home/user/cluster_storage\")\n            .build());\n\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .pool(cluster.name())\n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # A pool for all cluster volumes\n  cluster:\n    type: libvirt:Pool\n    properties:\n      type: dir\n      path: /home/user/cluster_storage\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      pool: ${cluster.name}\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "allocation": {
                     "type": "integer"
@@ -1771,7 +1431,7 @@
             }
         },
         "libvirt:index/volume:Volume": {
-            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[] = [];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Base OS image to use to create a cluster of different\n    // nodes\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n    // volume to attach to the \"master\" domain as main disk\n    var master = new Libvirt.Volume(\"master\", new()\n    {\n        BaseVolumeId = opensuseLeap.Id,\n    });\n\n    // volumes to attach to the \"workers\" domains as main disk\n    var worker = new List\u003cLibvirt.Volume\u003e();\n    for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n    {\n        var range = new { Value = rangeIndex };\n        worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new()\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        }));\n    }\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor index := 0; index \u003c _var.Workers_count; index++ {\n\t\t\tkey0 := index\n\t\t\t_ := index\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n        var master = new Volume(\"master\", VolumeArgs.builder()        \n            .baseVolumeId(opensuseLeap.id())\n            .build());\n\n        for (var i = 0; i \u003c var_.workers_count(); i++) {\n            new Volume(\"worker-\" + i, VolumeArgs.builder()            \n                .baseVolumeId(opensuseLeap.id())\n                .build());\n\n        \n}\n    }\n}\n```\n```yaml\nresources:\n  # Base OS image to use to create a cluster of different\n  # nodes\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n  # volume to attach to the \"master\" domain as main disk\n  master:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n  # volumes to attach to the \"workers\" domains as main disk\n  worker:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n    options: {}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a storage volume in libvirt. For more information see\n[the official documentation](https://libvirt.org/formatstorage.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// Base OS image to use to create a cluster of different\n// nodes\nconst opensuseLeap = new libvirt.Volume(\"opensuseLeap\", {source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"});\n// volume to attach to the \"master\" domain as main disk\nconst master = new libvirt.Volume(\"master\", {baseVolumeId: opensuseLeap.id});\n// volumes to attach to the \"workers\" domains as main disk\nconst worker: libvirt.Volume[] = [];\nfor (const range = {value: 0}; range.value \u003c _var.workers_count; range.value++) {\n    worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));\n}\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# Base OS image to use to create a cluster of different\n# nodes\nopensuse_leap = libvirt.Volume(\"opensuseLeap\", source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n# volume to attach to the \"master\" domain as main disk\nmaster = libvirt.Volume(\"master\", base_volume_id=opensuse_leap.id)\n# volumes to attach to the \"workers\" domains as main disk\nworker = []\nfor range in [{\"value\": i} for i in range(0, var.workers_count)]:\n    worker.append(libvirt.Volume(f\"worker-{range['value']}\", base_volume_id=opensuse_leap.id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Base OS image to use to create a cluster of different\n    // nodes\n    var opensuseLeap = new Libvirt.Volume(\"opensuseLeap\", new()\n    {\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n    // volume to attach to the \"master\" domain as main disk\n    var master = new Libvirt.Volume(\"master\", new()\n    {\n        BaseVolumeId = opensuseLeap.Id,\n    });\n\n    // volumes to attach to the \"workers\" domains as main disk\n    var worker = new List\u003cLibvirt.Volume\u003e();\n    for (var rangeIndex = 0; rangeIndex \u003c @var.Workers_count; rangeIndex++)\n    {\n        var range = new { Value = rangeIndex };\n        worker.Add(new Libvirt.Volume($\"worker-{range.Value}\", new()\n        {\n            BaseVolumeId = opensuseLeap.Id,\n        }));\n    }\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topensuseLeap, err := libvirt.NewVolume(ctx, \"opensuseLeap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"master\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar worker []*libvirt.Volume\n\t\tfor index := 0; index \u003c _var.Workers_count; index++ {\n\t\t\tkey0 := index\n\t\t\t_ := index\n\t\t\t__res, err := libvirt.NewVolume(ctx, fmt.Sprintf(\"worker-%v\", key0), \u0026libvirt.VolumeArgs{\n\t\t\t\tBaseVolumeId: opensuseLeap.ID(),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tworker = append(worker, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n        var master = new Volume(\"master\", VolumeArgs.builder()        \n            .baseVolumeId(opensuseLeap.id())\n            .build());\n\n        for (var i = 0; i \u003c var_.workers_count(); i++) {\n            new Volume(\"worker-\" + i, VolumeArgs.builder()            \n                .baseVolumeId(opensuseLeap.id())\n                .build());\n\n        \n}\n    }\n}\n```\n```yaml\nresources:\n  # Base OS image to use to create a cluster of different\n  # nodes\n  opensuseLeap:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n  # volume to attach to the \"master\" domain as main disk\n  master:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n  # volumes to attach to the \"workers\" domains as main disk\n  worker:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${opensuseLeap.id}\n    options: {}\n```\n\n\u003e **Tip:** when provisioning multiple domains using the same base image, create\na `libvirt.Volume` for the base image and then define the domain specific ones\nas based on it. This way the image will not be modified and no extra disk space\nis going to be used for the base image.\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "baseVolumeId": {
                     "type": "string",
