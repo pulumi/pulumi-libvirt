@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='pulumi_libvirt',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing libvirt cloud resources.",
       long_description=readme(),
