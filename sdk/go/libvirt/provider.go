@@ -28,7 +28,7 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.Uri) {
+	if args.Uri == nil {
 		args.Uri = pulumi.StringPtr(getEnvOrDefault("", nil, "LIBVIRT_DEFAULT_URI").(string))
 	}
 	var resource Provider
