@@ -41,13 +41,13 @@ class NetworkArgs:
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
+        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration.
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
         :param pulumi.Input['NetworkDnsmasqOptionsArgs'] dnsmasq_options: configuration of Dnsmasq options for the network
                You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
-        :param pulumi.Input[str] mode: One of:
+        :param pulumi.Input[str] mode: One of: none, nat, route, open, bridge
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
                not supplied, libvirt will use the default for the interface, usually 1500.
                Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
@@ -129,7 +129,7 @@ class NetworkArgs:
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input['NetworkDhcpArgs']]:
         """
-        DHCP configuration. 
+        DHCP configuration.
         You need to use it in conjuction with the adresses variable.
         """
         return pulumi.get(self, "dhcp")
@@ -265,13 +265,13 @@ class _NetworkState:
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
+        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration.
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
         :param pulumi.Input['NetworkDnsmasqOptionsArgs'] dnsmasq_options: configuration of Dnsmasq options for the network
                You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
-        :param pulumi.Input[str] mode: One of:
+        :param pulumi.Input[str] mode: One of: none, nat, route, open, bridge
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
                not supplied, libvirt will use the default for the interface, usually 1500.
                Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
@@ -353,7 +353,7 @@ class _NetworkState:
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input['NetworkDhcpArgs']]:
         """
-        DHCP configuration. 
+        DHCP configuration.
         You need to use it in conjuction with the adresses variable.
         """
         return pulumi.get(self, "dhcp")
@@ -496,13 +496,13 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
+        :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration.
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
         :param pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']] dnsmasq_options: configuration of Dnsmasq options for the network
                You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
-        :param pulumi.Input[str] mode: One of:
+        :param pulumi.Input[str] mode: One of: none, nat, route, open, bridge
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
                not supplied, libvirt will use the default for the interface, usually 1500.
                Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
@@ -609,13 +609,13 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
+        :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration.
                You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
         :param pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']] dnsmasq_options: configuration of Dnsmasq options for the network
                You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
-        :param pulumi.Input[str] mode: One of:
+        :param pulumi.Input[str] mode: One of: none, nat, route, open, bridge
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
                not supplied, libvirt will use the default for the interface, usually 1500.
                Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
@@ -678,7 +678,7 @@ class Network(pulumi.CustomResource):
     @pulumi.getter
     def dhcp(self) -> pulumi.Output['outputs.NetworkDhcp']:
         """
-        DHCP configuration. 
+        DHCP configuration.
         You need to use it in conjuction with the adresses variable.
         """
         return pulumi.get(self, "dhcp")
