@@ -19,12 +19,16 @@ public final class DomainTpmArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Path to TPM device on the host, ex: `/dev/tpm0`
      * 
+     * Additional attributes when `backend_type` is &#34;emulator&#34;:
+     * 
      */
     @Import(name="backendDevicePath")
     private @Nullable Output<String> backendDevicePath;
 
     /**
      * @return Path to TPM device on the host, ex: `/dev/tpm0`
+     * 
+     * Additional attributes when `backend_type` is &#34;emulator&#34;:
      * 
      */
     public Optional<Output<String>> backendDevicePath() {
@@ -64,12 +68,16 @@ public final class DomainTpmArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * TPM backend, either `passthrough` or `emulator` (default: `emulator`)
      * 
+     * Additional attributes when `backend_type` is &#34;passthrough&#34;:
+     * 
      */
     @Import(name="backendType")
     private @Nullable Output<String> backendType;
 
     /**
      * @return TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+     * 
+     * Additional attributes when `backend_type` is &#34;passthrough&#34;:
      * 
      */
     public Optional<Output<String>> backendType() {
@@ -138,6 +146,8 @@ public final class DomainTpmArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param backendDevicePath Path to TPM device on the host, ex: `/dev/tpm0`
          * 
+         * Additional attributes when `backend_type` is &#34;emulator&#34;:
+         * 
          * @return builder
          * 
          */
@@ -148,6 +158,8 @@ public final class DomainTpmArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param backendDevicePath Path to TPM device on the host, ex: `/dev/tpm0`
+         * 
+         * Additional attributes when `backend_type` is &#34;emulator&#34;:
          * 
          * @return builder
          * 
@@ -201,6 +213,8 @@ public final class DomainTpmArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param backendType TPM backend, either `passthrough` or `emulator` (default: `emulator`)
          * 
+         * Additional attributes when `backend_type` is &#34;passthrough&#34;:
+         * 
          * @return builder
          * 
          */
@@ -211,6 +225,8 @@ public final class DomainTpmArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param backendType TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+         * 
+         * Additional attributes when `backend_type` is &#34;passthrough&#34;:
          * 
          * @return builder
          * 

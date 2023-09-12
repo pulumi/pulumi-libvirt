@@ -20,6 +20,8 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
      * a Dnsmasq option entry block. You can have one or more of these
      * blocks in your definition. You must specify both `option_name` and `option_value`.
      * 
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+     * 
      */
     @Import(name="options")
     private @Nullable Output<List<NetworkDnsmasqOptionsOptionArgs>> options;
@@ -27,6 +29,8 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
     /**
      * @return a Dnsmasq option entry block. You can have one or more of these
      * blocks in your definition. You must specify both `option_name` and `option_value`.
+     * 
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
      * 
      */
     public Optional<Output<List<NetworkDnsmasqOptionsOptionArgs>>> options() {
@@ -61,6 +65,8 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
          * @param options a Dnsmasq option entry block. You can have one or more of these
          * blocks in your definition. You must specify both `option_name` and `option_value`.
          * 
+         * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+         * 
          * @return builder
          * 
          */
@@ -73,6 +79,8 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
          * @param options a Dnsmasq option entry block. You can have one or more of these
          * blocks in your definition. You must specify both `option_name` and `option_value`.
          * 
+         * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+         * 
          * @return builder
          * 
          */
@@ -83,6 +91,8 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
         /**
          * @param options a Dnsmasq option entry block. You can have one or more of these
          * blocks in your definition. You must specify both `option_name` and `option_value`.
+         * 
+         * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
          * 
          * @return builder
          * 

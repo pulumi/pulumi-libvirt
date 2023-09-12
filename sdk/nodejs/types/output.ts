@@ -16,11 +16,19 @@ export interface DomainConsole {
     sourceHost?: string;
     /**
      * Source path
+     *
+     * Additional attributes when type is "tcp":
      */
     sourcePath?: string;
     /**
      * Port number or a service name. Defaults to a
      * random port.
+     *
+     * Note that you can repeat the `console` block to create more than one console.
+     * This works the same way as with the `disk` blocks (see above).
+     *
+     * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+     * for more information.
      */
     sourceService?: string;
     /**
@@ -30,6 +38,8 @@ export interface DomainConsole {
     /**
      * for the first console and defaults to `serial`.
      * Subsequent `console` blocks must have a different type - usually `virtio`.
+     *
+     * Additional attributes when type is "pty":
      */
     targetType?: string;
     /**
@@ -44,7 +54,9 @@ export interface DomainCpu {
 
 export interface DomainDisk {
     /**
-     * The path to the host device to use as the block device for this disk.
+     * The path to the host device to use as the block device for this disk. 
+     *
+     * While `volumeId`, `url`, `file` and `blockDevice` are optional, it is intended that you use one of them.
      */
     blockDevice?: string;
     /**
@@ -67,6 +79,34 @@ export interface DomainDisk {
     /**
      * Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
+     *
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const leap = new libvirt.Volume("leap", {source: "http://someurl/openSUSE_Leap-42.1.qcow2"});
+     * const mydisk = new libvirt.Volume("mydisk", {baseVolumeId: leap.id});
+     * const domain1 = new libvirt.Domain("domain1", {disks: [
+     *     {
+     *         volumeId: mydisk.id,
+     *         scsi: true,
+     *     },
+     *     {
+     *         url: "http://foo.com/install.iso",
+     *     },
+     *     {
+     *         file: "/absolute/path/to/disk.iso",
+     *     },
+     *     {
+     *         blockDevice: "/dev/mapper/36005076802810e55400000000000145f",
+     *     },
+     * ]});
+     * ```
+     *
+     * Also note that the `disk` block is actually a list of maps, so it is possible to
+     * declare several of them by using either the literal list and map syntax as in
+     * the following examples:
      */
     wwn?: string;
 }
@@ -80,6 +120,17 @@ export interface DomainFilesystem {
     /**
      * enables exporting filesystem as a readonly mount for guest, by
      * default read-only access is given.
+     *
+     * Example:
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
+     *
+     * The exported filesystems can be mounted inside of the guest in this way:
+     *
+     *
+     * This can be automated inside of `/etc/fstab`:
      */
     readonly?: boolean;
     /**
@@ -113,6 +164,22 @@ export interface DomainGraphics {
     type?: string;
     /**
      * Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+     *
+     * On occasion we have found it necessary to set a `type` of `vnc` and a
+     * `listenType` of `address` with certain builds of QEMU.
+     *
+     * With `listenAddress` it is possible to specify a listener address for the virtual
+     * machines VNC server. Usually this is an IP of the host system.
+     *
+     * The `graphics` block will look as follows:
+     *
+     *
+     * The video card type can be changed from libvirt default `cirrus` to
+     * `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+     *
+     *
+     * > **Note well:** the `graphics` block is ignored for the architectures
+     * `s390x` and `ppc64`.
      */
     websocket?: number;
 }
@@ -155,6 +222,13 @@ export interface DomainNetworkInterface {
      * sent to the VF/IF of the configured network device. Depending on the
      * capabilities of the device additional prerequisites or limitations may apply;
      * for example, on Linux this requires kernel 2.6.38 or newer.
+     *
+     * Example of a `macvtap` interface:
+     *
+     *
+     * **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+     * must be installed and running inside of the domain in order to discover the IP
+     * addresses of all the network interfaces attached to a LAN.
      */
     passthrough?: string;
     /**
@@ -168,6 +242,8 @@ export interface DomainNetworkInterface {
      * When creating the domain resource, wait until the
      * network interface gets a DHCP lease from libvirt, so that the computed IP
      * addresses will be available when the domain is up and the plan applied.
+     *
+     * When connecting to a LAN, users can specify a target device with:
      */
     waitForLease?: boolean;
 }
@@ -184,6 +260,22 @@ export interface DomainNvram {
     /**
      * path to the file used to override variables from the master NVRAM
      * store.
+     *
+     * So you should typically use the firmware as this,
+     *
+     *
+     * and `/etc/libvirt/qemu.conf` should contain:
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
+     *
+     * In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+     * look like this:
+     *
+     *
+     * Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+     * coming from a template, the domain definition should look like this:
      */
     template?: string;
 }
@@ -191,6 +283,8 @@ export interface DomainNvram {
 export interface DomainTpm {
     /**
      * Path to TPM device on the host, ex: `/dev/tpm0`
+     *
+     * Additional attributes when `backendType` is "emulator":
      */
     backendDevicePath?: string;
     /**
@@ -203,6 +297,8 @@ export interface DomainTpm {
     backendPersistentState?: boolean;
     /**
      * TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+     *
+     * Additional attributes when `backendType` is "passthrough":
      */
     backendType?: string;
     /**
@@ -245,6 +341,11 @@ export interface NetworkDns {
     /**
      * a DNS host entry block. You can have one or more of these
      * blocks in your DNS definition. You must specify both `ip` and `hostname`.
+     *
+     * An advanced example of round-robin DNS (using DNS host templates) follows:
+     *
+     *
+     * An advanced example of setting up multiple SRV records using DNS SRV templates is:
      */
     hosts?: outputs.NetworkDnsHost[];
     /**
@@ -288,6 +389,8 @@ export interface NetworkDnsmasqOptions {
     /**
      * a Dnsmasq option entry block. You can have one or more of these
      * blocks in your definition. You must specify both `optionName` and `optionValue`.
+     *
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
      */
     options?: outputs.NetworkDnsmasqOptionsOption[];
 }

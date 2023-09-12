@@ -14,6 +14,8 @@ namespace Pulumi.Libvirt.Inputs
     {
         /// <summary>
         /// Path to TPM device on the host, ex: `/dev/tpm0`
+        /// 
+        /// Additional attributes when `backend_type` is "emulator":
         /// </summary>
         [Input("backendDevicePath")]
         public Input<string>? BackendDevicePath { get; set; }
@@ -32,6 +34,8 @@ namespace Pulumi.Libvirt.Inputs
 
         /// <summary>
         /// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+        /// 
+        /// Additional attributes when `backend_type` is "passthrough":
         /// </summary>
         [Input("backendType")]
         public Input<string>? BackendType { get; set; }

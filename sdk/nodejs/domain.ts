@@ -71,6 +71,30 @@ export class Domain extends pulumi.CustomResource {
     public readonly cloudinit!: pulumi.Output<string | undefined>;
     /**
      * Arguments to the kernel
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     memory: 1024,
+     *     vcpu: 1,
+     *     kernel: libvirt_volume.kernel.id,
+     *     cmdlines: [{
+     *         arg1: "value1",
+     *         arg2: "value2",
+     *         _: "rw nosplash",
+     *     }],
+     * });
+     * ```
+     *
+     * Kernel params that don't have a keyword identifier can be specified using the
+     * special `"_"` keyword. Multiple keyword-less params have to be specified using
+     * the same `"_"` keyword, like in the example above.
+     *
+     * Also note that the `cmd` block is actually a list of maps, so it is possible to
+     * declare several of them by using either the literal list and map syntax as in
+     * the following examples:
      */
     public readonly cmdlines!: pulumi.Output<{[key: string]: any}[] | undefined>;
     public readonly consoles!: pulumi.Output<outputs.DomainConsole[] | undefined>;
@@ -120,10 +144,34 @@ export class Domain extends pulumi.CustomResource {
     public readonly graphics!: pulumi.Output<outputs.DomainGraphics | undefined>;
     /**
      * The path of the initrd to boot.
+     *
+     * You can use it in the same way as the kernel.
      */
     public readonly initrd!: pulumi.Output<string | undefined>;
     /**
      * The path of the kernel to boot
+     *
+     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+     * as they are local to the hypervisor.
+     *
+     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const kernel = new libvirt.Volume("kernel", {
+     *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+     *     pool: "default",
+     *     format: "raw",
+     * });
+     * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     memory: 1024,
+     *     vcpu: 1,
+     *     kernel: kernel.id,
+     * });
+     * // ...
+     * ```
      */
     public readonly kernel!: pulumi.Output<string | undefined>;
     /**
@@ -281,6 +329,30 @@ export interface DomainState {
     cloudinit?: pulumi.Input<string>;
     /**
      * Arguments to the kernel
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     memory: 1024,
+     *     vcpu: 1,
+     *     kernel: libvirt_volume.kernel.id,
+     *     cmdlines: [{
+     *         arg1: "value1",
+     *         arg2: "value2",
+     *         _: "rw nosplash",
+     *     }],
+     * });
+     * ```
+     *
+     * Kernel params that don't have a keyword identifier can be specified using the
+     * special `"_"` keyword. Multiple keyword-less params have to be specified using
+     * the same `"_"` keyword, like in the example above.
+     *
+     * Also note that the `cmd` block is actually a list of maps, so it is possible to
+     * declare several of them by using either the literal list and map syntax as in
+     * the following examples:
      */
     cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
     consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
@@ -330,10 +402,34 @@ export interface DomainState {
     graphics?: pulumi.Input<inputs.DomainGraphics>;
     /**
      * The path of the initrd to boot.
+     *
+     * You can use it in the same way as the kernel.
      */
     initrd?: pulumi.Input<string>;
     /**
      * The path of the kernel to boot
+     *
+     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+     * as they are local to the hypervisor.
+     *
+     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const kernel = new libvirt.Volume("kernel", {
+     *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+     *     pool: "default",
+     *     format: "raw",
+     * });
+     * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     memory: 1024,
+     *     vcpu: 1,
+     *     kernel: kernel.id,
+     * });
+     * // ...
+     * ```
      */
     kernel?: pulumi.Input<string>;
     /**
@@ -413,6 +509,30 @@ export interface DomainArgs {
     cloudinit?: pulumi.Input<string>;
     /**
      * Arguments to the kernel
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     memory: 1024,
+     *     vcpu: 1,
+     *     kernel: libvirt_volume.kernel.id,
+     *     cmdlines: [{
+     *         arg1: "value1",
+     *         arg2: "value2",
+     *         _: "rw nosplash",
+     *     }],
+     * });
+     * ```
+     *
+     * Kernel params that don't have a keyword identifier can be specified using the
+     * special `"_"` keyword. Multiple keyword-less params have to be specified using
+     * the same `"_"` keyword, like in the example above.
+     *
+     * Also note that the `cmd` block is actually a list of maps, so it is possible to
+     * declare several of them by using either the literal list and map syntax as in
+     * the following examples:
      */
     cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
     consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
@@ -462,10 +582,34 @@ export interface DomainArgs {
     graphics?: pulumi.Input<inputs.DomainGraphics>;
     /**
      * The path of the initrd to boot.
+     *
+     * You can use it in the same way as the kernel.
      */
     initrd?: pulumi.Input<string>;
     /**
      * The path of the kernel to boot
+     *
+     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+     * as they are local to the hypervisor.
+     *
+     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as libvirt from "@pulumi/libvirt";
+     *
+     * const kernel = new libvirt.Volume("kernel", {
+     *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+     *     pool: "default",
+     *     format: "raw",
+     * });
+     * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     memory: 1024,
+     *     vcpu: 1,
+     *     kernel: kernel.id,
+     * });
+     * // ...
+     * ```
      */
     kernel?: pulumi.Input<string>;
     /**

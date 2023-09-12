@@ -84,10 +84,10 @@ def get_network_dns_host_template(hostname: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate', __args__, opts=opts, typ=GetNetworkDnsHostTemplateResult).value
 
     return AwaitableGetNetworkDnsHostTemplateResult(
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        rendered=__ret__.rendered)
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        rendered=pulumi.get(__ret__, 'rendered'))
 
 
 @_utilities.lift_output_func(get_network_dns_host_template)

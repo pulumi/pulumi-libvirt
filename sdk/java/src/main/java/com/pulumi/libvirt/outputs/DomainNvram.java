@@ -24,6 +24,38 @@ public final class DomainNvram {
      * @return path to the file used to override variables from the master NVRAM
      * store.
      * 
+     * So you should typically use the firmware as this,
+     * 
+     * and `/etc/libvirt/qemu.conf` should contain:
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * 
+     * In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+     * look like this:
+     * 
+     * Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+     * coming from a template, the domain definition should look like this:
+     * 
      */
     private @Nullable String template;
 
@@ -42,6 +74,38 @@ public final class DomainNvram {
     /**
      * @return path to the file used to override variables from the master NVRAM
      * store.
+     * 
+     * So you should typically use the firmware as this,
+     * 
+     * and `/etc/libvirt/qemu.conf` should contain:
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * 
+     * In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+     * look like this:
+     * 
+     * Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+     * coming from a template, the domain definition should look like this:
      * 
      */
     public Optional<String> template() {

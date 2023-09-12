@@ -15,6 +15,8 @@ public final class NetworkDnsmasqOptions {
      * @return a Dnsmasq option entry block. You can have one or more of these
      * blocks in your definition. You must specify both `option_name` and `option_value`.
      * 
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+     * 
      */
     private @Nullable List<NetworkDnsmasqOptionsOption> options;
 
@@ -22,6 +24,8 @@ public final class NetworkDnsmasqOptions {
     /**
      * @return a Dnsmasq option entry block. You can have one or more of these
      * blocks in your definition. You must specify both `option_name` and `option_value`.
+     * 
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
      * 
      */
     public List<NetworkDnsmasqOptionsOption> options() {

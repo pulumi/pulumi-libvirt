@@ -15,6 +15,8 @@ namespace Pulumi.Libvirt.Outputs
     {
         /// <summary>
         /// Path to TPM device on the host, ex: `/dev/tpm0`
+        /// 
+        /// Additional attributes when `backend_type` is "emulator":
         /// </summary>
         public readonly string? BackendDevicePath;
         /// <summary>
@@ -27,6 +29,8 @@ namespace Pulumi.Libvirt.Outputs
         public readonly bool? BackendPersistentState;
         /// <summary>
         /// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+        /// 
+        /// Additional attributes when `backend_type` is "passthrough":
         /// </summary>
         public readonly string? BackendType;
         /// <summary>

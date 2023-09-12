@@ -63,6 +63,41 @@ namespace Pulumi.Libvirt
 
         /// <summary>
         /// Arguments to the kernel
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
+        ///     {
+        ///         Memory = 1024,
+        ///         Vcpu = 1,
+        ///         Kernel = libvirt_volume.Kernel.Id,
+        ///         Cmdlines = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "arg1", "value1" },
+        ///                 { "arg2", "value2" },
+        ///                 { "_", "rw nosplash" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Kernel params that don't have a keyword identifier can be specified using the
+        /// special `"_"` keyword. Multiple keyword-less params have to be specified using
+        /// the same `"_"` keyword, like in the example above.
+        /// 
+        /// Also note that the `cmd` block is actually a list of maps, so it is possible to
+        /// declare several of them by using either the literal list and map syntax as in
+        /// the following examples:
         /// </summary>
         [Output("cmdlines")]
         public Output<ImmutableArray<ImmutableDictionary<string, object>>> Cmdlines { get; private set; } = null!;
@@ -134,12 +169,45 @@ namespace Pulumi.Libvirt
 
         /// <summary>
         /// The path of the initrd to boot.
+        /// 
+        /// You can use it in the same way as the kernel.
         /// </summary>
         [Output("initrd")]
         public Output<string?> Initrd { get; private set; } = null!;
 
         /// <summary>
         /// The path of the kernel to boot
+        /// 
+        /// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+        /// as they are local to the hypervisor.
+        /// 
+        /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kernel = new Libvirt.Volume("kernel", new()
+        ///     {
+        ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+        ///         Pool = "default",
+        ///         Format = "raw",
+        ///     });
+        /// 
+        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
+        ///     {
+        ///         Memory = 1024,
+        ///         Vcpu = 1,
+        ///         Kernel = kernel.Id,
+        ///     });
+        /// 
+        ///     // ...
+        /// });
+        /// ```
         /// </summary>
         [Output("kernel")]
         public Output<string?> Kernel { get; private set; } = null!;
@@ -302,6 +370,41 @@ namespace Pulumi.Libvirt
 
         /// <summary>
         /// Arguments to the kernel
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
+        ///     {
+        ///         Memory = 1024,
+        ///         Vcpu = 1,
+        ///         Kernel = libvirt_volume.Kernel.Id,
+        ///         Cmdlines = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "arg1", "value1" },
+        ///                 { "arg2", "value2" },
+        ///                 { "_", "rw nosplash" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Kernel params that don't have a keyword identifier can be specified using the
+        /// special `"_"` keyword. Multiple keyword-less params have to be specified using
+        /// the same `"_"` keyword, like in the example above.
+        /// 
+        /// Also note that the `cmd` block is actually a list of maps, so it is possible to
+        /// declare several of them by using either the literal list and map syntax as in
+        /// the following examples:
         /// </summary>
         public InputList<ImmutableDictionary<string, object>> Cmdlines
         {
@@ -393,12 +496,45 @@ namespace Pulumi.Libvirt
 
         /// <summary>
         /// The path of the initrd to boot.
+        /// 
+        /// You can use it in the same way as the kernel.
         /// </summary>
         [Input("initrd")]
         public Input<string>? Initrd { get; set; }
 
         /// <summary>
         /// The path of the kernel to boot
+        /// 
+        /// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+        /// as they are local to the hypervisor.
+        /// 
+        /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kernel = new Libvirt.Volume("kernel", new()
+        ///     {
+        ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+        ///         Pool = "default",
+        ///         Format = "raw",
+        ///     });
+        /// 
+        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
+        ///     {
+        ///         Memory = 1024,
+        ///         Vcpu = 1,
+        ///         Kernel = kernel.Id,
+        ///     });
+        /// 
+        ///     // ...
+        /// });
+        /// ```
         /// </summary>
         [Input("kernel")]
         public Input<string>? Kernel { get; set; }
@@ -529,6 +665,41 @@ namespace Pulumi.Libvirt
 
         /// <summary>
         /// Arguments to the kernel
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
+        ///     {
+        ///         Memory = 1024,
+        ///         Vcpu = 1,
+        ///         Kernel = libvirt_volume.Kernel.Id,
+        ///         Cmdlines = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "arg1", "value1" },
+        ///                 { "arg2", "value2" },
+        ///                 { "_", "rw nosplash" },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Kernel params that don't have a keyword identifier can be specified using the
+        /// special `"_"` keyword. Multiple keyword-less params have to be specified using
+        /// the same `"_"` keyword, like in the example above.
+        /// 
+        /// Also note that the `cmd` block is actually a list of maps, so it is possible to
+        /// declare several of them by using either the literal list and map syntax as in
+        /// the following examples:
         /// </summary>
         public InputList<ImmutableDictionary<string, object>> Cmdlines
         {
@@ -620,12 +791,45 @@ namespace Pulumi.Libvirt
 
         /// <summary>
         /// The path of the initrd to boot.
+        /// 
+        /// You can use it in the same way as the kernel.
         /// </summary>
         [Input("initrd")]
         public Input<string>? Initrd { get; set; }
 
         /// <summary>
         /// The path of the kernel to boot
+        /// 
+        /// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+        /// as they are local to the hypervisor.
+        /// 
+        /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kernel = new Libvirt.Volume("kernel", new()
+        ///     {
+        ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+        ///         Pool = "default",
+        ///         Format = "raw",
+        ///     });
+        /// 
+        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
+        ///     {
+        ///         Memory = 1024,
+        ///         Vcpu = 1,
+        ///         Kernel = kernel.Id,
+        ///     });
+        /// 
+        ///     // ...
+        /// });
+        /// ```
         /// </summary>
         [Input("kernel")]
         public Input<string>? Kernel { get; set; }

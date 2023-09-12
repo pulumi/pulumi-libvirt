@@ -15,6 +15,8 @@ public final class DomainTpm {
     /**
      * @return Path to TPM device on the host, ex: `/dev/tpm0`
      * 
+     * Additional attributes when `backend_type` is &#34;emulator&#34;:
+     * 
      */
     private @Nullable String backendDevicePath;
     /**
@@ -29,6 +31,8 @@ public final class DomainTpm {
     private @Nullable Boolean backendPersistentState;
     /**
      * @return TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+     * 
+     * Additional attributes when `backend_type` is &#34;passthrough&#34;:
      * 
      */
     private @Nullable String backendType;
@@ -46,6 +50,8 @@ public final class DomainTpm {
     private DomainTpm() {}
     /**
      * @return Path to TPM device on the host, ex: `/dev/tpm0`
+     * 
+     * Additional attributes when `backend_type` is &#34;emulator&#34;:
      * 
      */
     public Optional<String> backendDevicePath() {
@@ -67,6 +73,8 @@ public final class DomainTpm {
     }
     /**
      * @return TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+     * 
+     * Additional attributes when `backend_type` is &#34;passthrough&#34;:
      * 
      */
     public Optional<String> backendType() {

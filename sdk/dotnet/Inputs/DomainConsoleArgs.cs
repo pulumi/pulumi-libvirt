@@ -20,6 +20,8 @@ namespace Pulumi.Libvirt.Inputs
 
         /// <summary>
         /// Source path
+        /// 
+        /// Additional attributes when type is "tcp":
         /// </summary>
         [Input("sourcePath")]
         public Input<string>? SourcePath { get; set; }
@@ -27,6 +29,12 @@ namespace Pulumi.Libvirt.Inputs
         /// <summary>
         /// Port number or a service name. Defaults to a
         /// random port.
+        /// 
+        /// Note that you can repeat the `console` block to create more than one console.
+        /// This works the same way as with the `disk` blocks (see above).
+        /// 
+        /// See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+        /// for more information.
         /// </summary>
         [Input("sourceService")]
         public Input<string>? SourceService { get; set; }
@@ -40,6 +48,8 @@ namespace Pulumi.Libvirt.Inputs
         /// <summary>
         /// for the first console and defaults to `serial`.
         /// Subsequent `console` blocks must have a different type - usually `virtio`.
+        /// 
+        /// Additional attributes when type is "pty":
         /// </summary>
         [Input("targetType")]
         public Input<string>? TargetType { get; set; }

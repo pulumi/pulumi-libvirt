@@ -37,6 +37,34 @@ public final class DomainFilesystemArgs extends com.pulumi.resources.ResourceArg
      * enables exporting filesystem as a readonly mount for guest, by
      * default read-only access is given.
      * 
+     * Example:
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * 
+     * The exported filesystems can be mounted inside of the guest in this way:
+     * 
+     * This can be automated inside of `/etc/fstab`:
+     * 
      */
     @Import(name="readonly")
     private @Nullable Output<Boolean> readonly;
@@ -44,6 +72,34 @@ public final class DomainFilesystemArgs extends com.pulumi.resources.ResourceArg
     /**
      * @return enables exporting filesystem as a readonly mount for guest, by
      * default read-only access is given.
+     * 
+     * Example:
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * 
+     * The exported filesystems can be mounted inside of the guest in this way:
+     * 
+     * This can be automated inside of `/etc/fstab`:
      * 
      */
     public Optional<Output<Boolean>> readonly() {
@@ -136,6 +192,34 @@ public final class DomainFilesystemArgs extends com.pulumi.resources.ResourceArg
          * @param readonly enables exporting filesystem as a readonly mount for guest, by
          * default read-only access is given.
          * 
+         * Example:
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
+         * 
+         * The exported filesystems can be mounted inside of the guest in this way:
+         * 
+         * This can be automated inside of `/etc/fstab`:
+         * 
          * @return builder
          * 
          */
@@ -147,6 +231,34 @@ public final class DomainFilesystemArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param readonly enables exporting filesystem as a readonly mount for guest, by
          * default read-only access is given.
+         * 
+         * Example:
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
+         * 
+         * The exported filesystems can be mounted inside of the guest in this way:
+         * 
+         * This can be automated inside of `/etc/fstab`:
          * 
          * @return builder
          * 

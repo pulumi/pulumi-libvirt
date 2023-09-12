@@ -56,6 +56,12 @@ public final class DomainNetworkInterface {
      * capabilities of the device additional prerequisites or limitations may apply;
      * for example, on Linux this requires kernel 2.6.38 or newer.
      * 
+     * Example of a `macvtap` interface:
+     * 
+     * **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+     * must be installed and running inside of the domain in order to discover the IP
+     * addresses of all the network interfaces attached to a LAN.
+     * 
      */
     private @Nullable String passthrough;
     /**
@@ -70,6 +76,8 @@ public final class DomainNetworkInterface {
      * @return When creating the domain resource, wait until the
      * network interface gets a DHCP lease from libvirt, so that the computed IP
      * addresses will be available when the domain is up and the plan applied.
+     * 
+     * When connecting to a LAN, users can specify a target device with:
      * 
      */
     private @Nullable Boolean waitForLease;
@@ -132,6 +140,12 @@ public final class DomainNetworkInterface {
      * capabilities of the device additional prerequisites or limitations may apply;
      * for example, on Linux this requires kernel 2.6.38 or newer.
      * 
+     * Example of a `macvtap` interface:
+     * 
+     * **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+     * must be installed and running inside of the domain in order to discover the IP
+     * addresses of all the network interfaces attached to a LAN.
+     * 
      */
     public Optional<String> passthrough() {
         return Optional.ofNullable(this.passthrough);
@@ -150,6 +164,8 @@ public final class DomainNetworkInterface {
      * @return When creating the domain resource, wait until the
      * network interface gets a DHCP lease from libvirt, so that the computed IP
      * addresses will be available when the domain is up and the plan applied.
+     * 
+     * When connecting to a LAN, users can specify a target device with:
      * 
      */
     public Optional<Boolean> waitForLease() {

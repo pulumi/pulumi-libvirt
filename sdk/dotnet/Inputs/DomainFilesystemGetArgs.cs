@@ -22,6 +22,23 @@ namespace Pulumi.Libvirt.Inputs
         /// <summary>
         /// enables exporting filesystem as a readonly mount for guest, by
         /// default read-only access is given.
+        /// 
+        /// Example:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
+        /// 
+        /// The exported filesystems can be mounted inside of the guest in this way:
+        /// 
+        /// 
+        /// This can be automated inside of `/etc/fstab`:
         /// </summary>
         [Input("readonly")]
         public Input<bool>? Readonly { get; set; }

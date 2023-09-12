@@ -7,10 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetNetworkDnsmasqOptionsTemplate(ctx *pulumi.Context, args *GetNetworkDnsmasqOptionsTemplateArgs, opts ...pulumi.InvokeOption) (*GetNetworkDnsmasqOptionsTemplateResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNetworkDnsmasqOptionsTemplateResult
 	err := ctx.Invoke("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args, &rv, opts...)
 	if err != nil {
@@ -70,6 +73,12 @@ func (o GetNetworkDnsmasqOptionsTemplateResultOutput) ToGetNetworkDnsmasqOptions
 
 func (o GetNetworkDnsmasqOptionsTemplateResultOutput) ToGetNetworkDnsmasqOptionsTemplateResultOutputWithContext(ctx context.Context) GetNetworkDnsmasqOptionsTemplateResultOutput {
 	return o
+}
+
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNetworkDnsmasqOptionsTemplateResult] {
+	return pulumix.Output[GetNetworkDnsmasqOptionsTemplateResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.
