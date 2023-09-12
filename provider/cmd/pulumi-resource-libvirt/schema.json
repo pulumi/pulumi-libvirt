@@ -14,19 +14,19 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "compatibility": "tfbridge20"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-libvirt/sdk/go/libvirt",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageDescription": "A Pulumi package for creating and managing libvirt cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -34,18 +34,16 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing libvirt cloud resources.",
-            "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/dmacvicar/terraform-provider-libvirt)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-libvirt` repo](https://github.com/pulumi/pulumi-libvirt/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-libvirt` repo](https://github.com/dmacvicar/terraform-provider-libvirt/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
@@ -85,12 +83,12 @@
                 },
                 "sourcePath": {
                     "type": "string",
-                    "description": "Source path\n",
+                    "description": "Source path\n\nAdditional attributes when type is \"tcp\":\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceService": {
                     "type": "string",
-                    "description": "Port number or a service name. Defaults to a\nrandom port.\n",
+                    "description": "Port number or a service name. Defaults to a\nrandom port.\n\nNote that you can repeat the `console` block to create more than one console.\nThis works the same way as with the `disk` blocks (see above).\n\nSee [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)\nfor more information.\n",
                     "willReplaceOnChanges": true
                 },
                 "targetPort": {
@@ -100,7 +98,7 @@
                 },
                 "targetType": {
                     "type": "string",
-                    "description": "for the first console and defaults to `serial`.\nSubsequent `console` blocks must have a different type - usually `virtio`.\n",
+                    "description": "for the first console and defaults to `serial`.\nSubsequent `console` blocks must have a different type - usually `virtio`.\n\nAdditional attributes when type is \"pty\":\n",
                     "willReplaceOnChanges": true
                 },
                 "type": {
@@ -134,7 +132,7 @@
             "properties": {
                 "blockDevice": {
                     "type": "string",
-                    "description": "The path to the host device to use as the block device for this disk.\n"
+                    "description": "The path to the host device to use as the block device for this disk. \n\nWhile `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.\n"
                 },
                 "file": {
                     "type": "string",
@@ -155,7 +153,7 @@
                 },
                 "wwn": {
                     "type": "string",
-                    "description": "Specify a WWN to use for the disk if the disk is using\na scsi controller, if not specified then a random wwn is generated for the disk\n"
+                    "description": "Specify a WWN to use for the disk if the disk is using\na scsi controller, if not specified then a random wwn is generated for the disk\n\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst leap = new libvirt.Volume(\"leap\", {source: \"http://someurl/openSUSE_Leap-42.1.qcow2\"});\nconst mydisk = new libvirt.Volume(\"mydisk\", {baseVolumeId: leap.id});\nconst domain1 = new libvirt.Domain(\"domain1\", {disks: [\n    {\n        volumeId: mydisk.id,\n        scsi: true,\n    },\n    {\n        url: \"http://foo.com/install.iso\",\n    },\n    {\n        file: \"/absolute/path/to/disk.iso\",\n    },\n    {\n        blockDevice: \"/dev/mapper/36005076802810e55400000000000145f\",\n    },\n]});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nleap = libvirt.Volume(\"leap\", source=\"http://someurl/openSUSE_Leap-42.1.qcow2\")\nmydisk = libvirt.Volume(\"mydisk\", base_volume_id=leap.id)\ndomain1 = libvirt.Domain(\"domain1\", disks=[\n    libvirt.DomainDiskArgs(\n        volume_id=mydisk.id,\n        scsi=True,\n    ),\n    libvirt.DomainDiskArgs(\n        url=\"http://foo.com/install.iso\",\n    ),\n    libvirt.DomainDiskArgs(\n        file=\"/absolute/path/to/disk.iso\",\n    ),\n    libvirt.DomainDiskArgs(\n        block_device=\"/dev/mapper/36005076802810e55400000000000145f\",\n    ),\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var leap = new Libvirt.Volume(\"leap\", new()\n    {\n        Source = \"http://someurl/openSUSE_Leap-42.1.qcow2\",\n    });\n\n    var mydisk = new Libvirt.Volume(\"mydisk\", new()\n    {\n        BaseVolumeId = leap.Id,\n    });\n\n    var domain1 = new Libvirt.Domain(\"domain1\", new()\n    {\n        Disks = new[]\n        {\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                VolumeId = mydisk.Id,\n                Scsi = true,\n            },\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                Url = \"http://foo.com/install.iso\",\n            },\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                File = \"/absolute/path/to/disk.iso\",\n            },\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                BlockDevice = \"/dev/mapper/36005076802810e55400000000000145f\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tleap, err := libvirt.NewVolume(ctx, \"leap\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://someurl/openSUSE_Leap-42.1.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmydisk, err := libvirt.NewVolume(ctx, \"mydisk\", \u0026libvirt.VolumeArgs{\n\t\t\tBaseVolumeId: leap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewDomain(ctx, \"domain1\", \u0026libvirt.DomainArgs{\n\t\t\tDisks: libvirt.DomainDiskArray{\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tVolumeId: mydisk.ID(),\n\t\t\t\t\tScsi:     pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tUrl: pulumi.String(\"http://foo.com/install.iso\"),\n\t\t\t\t},\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tFile: pulumi.String(\"/absolute/path/to/disk.iso\"),\n\t\t\t\t},\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tBlockDevice: pulumi.String(\"/dev/mapper/36005076802810e55400000000000145f\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport com.pulumi.libvirt.inputs.DomainDiskArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var leap = new Volume(\"leap\", VolumeArgs.builder()        \n            .source(\"http://someurl/openSUSE_Leap-42.1.qcow2\")\n            .build());\n\n        var mydisk = new Volume(\"mydisk\", VolumeArgs.builder()        \n            .baseVolumeId(leap.id())\n            .build());\n\n        var domain1 = new Domain(\"domain1\", DomainArgs.builder()        \n            .disks(            \n                DomainDiskArgs.builder()\n                    .volumeId(mydisk.id())\n                    .scsi(\"true\")\n                    .build(),\n                DomainDiskArgs.builder()\n                    .url(\"http://foo.com/install.iso\")\n                    .build(),\n                DomainDiskArgs.builder()\n                    .file(\"/absolute/path/to/disk.iso\")\n                    .build(),\n                DomainDiskArgs.builder()\n                    .blockDevice(\"/dev/mapper/36005076802810e55400000000000145f\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  leap:\n    type: libvirt:Volume\n    properties:\n      source: http://someurl/openSUSE_Leap-42.1.qcow2\n  mydisk:\n    type: libvirt:Volume\n    properties:\n      baseVolumeId: ${leap.id}\n  domain1:\n    type: libvirt:Domain\n    properties:\n      disks:\n        - volumeId: ${mydisk.id}\n          scsi: 'true'\n        - url: http://foo.com/install.iso\n        - file: /absolute/path/to/disk.iso\n        - blockDevice: /dev/mapper/36005076802810e55400000000000145f\n```\n\nAlso note that the `disk` block is actually a list of maps, so it is possible to\ndeclare several of them by using either the literal list and map syntax as in\nthe following examples:\n\n\n\n"
                 }
             },
             "type": "object"
@@ -168,7 +166,7 @@
                 },
                 "readonly": {
                     "type": "boolean",
-                    "description": "enables exporting filesystem as a readonly mount for guest, by\ndefault read-only access is given.\n"
+                    "description": "enables exporting filesystem as a readonly mount for guest, by\ndefault read-only access is given.\n\nExample:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n\nThe exported filesystems can be mounted inside of the guest in this way:\n\n\nThis can be automated inside of `/etc/fstab`:\n"
                 },
                 "source": {
                     "type": "string",
@@ -209,7 +207,7 @@
                 },
                 "websocket": {
                     "type": "integer",
-                    "description": "Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)\n"
+                    "description": "Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)\n\nOn occasion we have found it necessary to set a `type` of `vnc` and a\n`listen_type` of `address` with certain builds of QEMU.\n\nWith `listen_address` it is possible to specify a listener address for the virtual\nmachines VNC server. Usually this is an IP of the host system.\n\nThe `graphics` block will look as follows:\n\n\nThe video card type can be changed from libvirt default `cirrus` to\n`vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)\n\n\n\u003e **Note well:** the `graphics` block is ignored for the architectures\n`s390x` and `ppc64`.\n"
                 }
             },
             "type": "object"
@@ -247,7 +245,7 @@
                 },
                 "passthrough": {
                     "type": "string",
-                    "description": "This feature attaches a virtual function of a SRIOV capable\nNIC directly to a VM without losing the migration capability. All packets are\nsent to the VF/IF of the configured network device. Depending on the\ncapabilities of the device additional prerequisites or limitations may apply;\nfor example, on Linux this requires kernel 2.6.38 or newer.\n"
+                    "description": "This feature attaches a virtual function of a SRIOV capable\nNIC directly to a VM without losing the migration capability. All packets are\nsent to the VF/IF of the configured network device. Depending on the\ncapabilities of the device additional prerequisites or limitations may apply;\nfor example, on Linux this requires kernel 2.6.38 or newer.\n\nExample of a `macvtap` interface:\n\n\n**Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)\nmust be installed and running inside of the domain in order to discover the IP\naddresses of all the network interfaces attached to a LAN.\n"
                 },
                 "vepa": {
                     "type": "string",
@@ -255,7 +253,7 @@
                 },
                 "waitForLease": {
                     "type": "boolean",
-                    "description": "When creating the domain resource, wait until the\nnetwork interface gets a DHCP lease from libvirt, so that the computed IP\naddresses will be available when the domain is up and the plan applied.\n"
+                    "description": "When creating the domain resource, wait until the\nnetwork interface gets a DHCP lease from libvirt, so that the computed IP\naddresses will be available when the domain is up and the plan applied.\n\nWhen connecting to a LAN, users can specify a target device with:\n"
                 }
             },
             "type": "object",
@@ -280,7 +278,7 @@
                 },
                 "template": {
                     "type": "string",
-                    "description": "path to the file used to override variables from the master NVRAM\nstore.\n",
+                    "description": "path to the file used to override variables from the master NVRAM\nstore.\n\nSo you should typically use the firmware as this,\n\n\nand `/etc/libvirt/qemu.conf` should contain:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\n```\n```python\nimport pulumi\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n    }\n}\n```\n```yaml\n{}\n```\n\nIn case you need (or want) to specify the path for the NVRAM store, the domain definition should\nlook like this:\n\n\nFinally, if you want the initial values for the NVRAM to be overridden by custom initial values\ncoming from a template, the domain definition should look like this:\n\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -293,7 +291,7 @@
             "properties": {
                 "backendDevicePath": {
                     "type": "string",
-                    "description": "Path to TPM device on the host, ex: `/dev/tpm0`\n",
+                    "description": "Path to TPM device on the host, ex: `/dev/tpm0`\n\nAdditional attributes when `backend_type` is \"emulator\":\n",
                     "willReplaceOnChanges": true
                 },
                 "backendEncryptionSecret": {
@@ -308,7 +306,7 @@
                 },
                 "backendType": {
                     "type": "string",
-                    "description": "TPM backend, either `passthrough` or `emulator` (default: `emulator`)\n",
+                    "description": "TPM backend, either `passthrough` or `emulator` (default: `emulator`)\n\nAdditional attributes when `backend_type` is \"passthrough\":\n",
                     "willReplaceOnChanges": true
                 },
                 "backendVersion": {
@@ -377,7 +375,7 @@
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkDnsHost:NetworkDnsHost"
                     },
-                    "description": "a DNS host entry block. You can have one or more of these\nblocks in your DNS definition. You must specify both `ip` and `hostname`.\n"
+                    "description": "a DNS host entry block. You can have one or more of these\nblocks in your DNS definition. You must specify both `ip` and `hostname`.\n\nAn advanced example of round-robin DNS (using DNS host templates) follows:\n\n\nAn advanced example of setting up multiple SRV records using DNS SRV templates is:\n\n"
                 },
                 "localOnly": {
                     "type": "boolean",
@@ -460,7 +458,7 @@
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption"
                     },
-                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify both `option_name` and `option_value`.\n"
+                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify both `option_name` and `option_value`.\n\nAn example of setting Dnsmasq options (using Dnsmasq option templates) follows:\n\n"
                 }
             },
             "type": "object"
@@ -655,7 +653,7 @@
                             "$ref": "pulumi.json#/Any"
                         }
                     },
-                    "description": "Arguments to the kernel\n"
+                    "description": "Arguments to the kernel\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst domain_suse = new libvirt.Domain(\"domain-suse\", {\n    memory: 1024,\n    vcpu: 1,\n    kernel: libvirt_volume.kernel.id,\n    cmdlines: [{\n        arg1: \"value1\",\n        arg2: \"value2\",\n        _: \"rw nosplash\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndomain_suse = libvirt.Domain(\"domain-suse\",\n    memory=1024,\n    vcpu=1,\n    kernel=libvirt_volume[\"kernel\"][\"id\"],\n    cmdlines=[{\n        \"arg1\": \"value1\",\n        \"arg2\": \"value2\",\n        \"_\": \"rw nosplash\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var domain_suse = new Libvirt.Domain(\"domain-suse\", new()\n    {\n        Memory = 1024,\n        Vcpu = 1,\n        Kernel = libvirt_volume.Kernel.Id,\n        Cmdlines = new[]\n        {\n            \n            {\n                { \"arg1\", \"value1\" },\n                { \"arg2\", \"value2\" },\n                { \"_\", \"rw nosplash\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"domain-suse\", \u0026libvirt.DomainArgs{\n\t\t\tMemory: pulumi.Int(1024),\n\t\t\tVcpu:   pulumi.Int(1),\n\t\t\tKernel: pulumi.Any(libvirt_volume.Kernel.Id),\n\t\t\tCmdlines: pulumi.AnyMapArray{\n\t\t\t\tpulumi.AnyMap{\n\t\t\t\t\t\"arg1\": pulumi.Any(\"value1\"),\n\t\t\t\t\t\"arg2\": pulumi.Any(\"value2\"),\n\t\t\t\t\t\"_\":    pulumi.Any(\"rw nosplash\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var domain_suse = new Domain(\"domain-suse\", DomainArgs.builder()        \n            .memory(\"1024\")\n            .vcpu(1)\n            .kernel(libvirt_volume.kernel().id())\n            .cmdlines(Map.ofEntries(\n                Map.entry(\"arg1\", \"value1\"),\n                Map.entry(\"arg2\", \"value2\"),\n                Map.entry(\"_\", \"rw nosplash\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  domain-suse:\n    type: libvirt:Domain\n    properties:\n      memory: '1024'\n      vcpu: 1\n      kernel: ${libvirt_volume.kernel.id}\n      cmdlines:\n        - arg1: value1\n          arg2: value2\n          _: rw nosplash\n```\n\nKernel params that don't have a keyword identifier can be specified using the\nspecial `\"_\"` keyword. Multiple keyword-less params have to be specified using\nthe same `\"_\"` keyword, like in the example above.\n\nAlso note that the `cmd` block is actually a list of maps, so it is possible to\ndeclare several of them by using either the literal list and map syntax as in\nthe following examples:\n\n\n"
                 },
                 "consoles": {
                     "type": "array",
@@ -706,11 +704,11 @@
                 },
                 "initrd": {
                     "type": "string",
-                    "description": "The path of the initrd to boot.\n"
+                    "description": "The path of the initrd to boot.\n\nYou can use it in the same way as the kernel.\n"
                 },
                 "kernel": {
                     "type": "string",
-                    "description": "The path of the kernel to boot\n"
+                    "description": "The path of the kernel to boot\n\nIf you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)\nas they are local to the hypervisor.\n\nGiven that you can define a volume from a remote http file, this means, you can also have remote kernels.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst kernel = new libvirt.Volume(\"kernel\", {\n    source: \"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n    pool: \"default\",\n    format: \"raw\",\n});\nconst domain_suse = new libvirt.Domain(\"domain-suse\", {\n    memory: 1024,\n    vcpu: 1,\n    kernel: kernel.id,\n});\n// ...\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nkernel = libvirt.Volume(\"kernel\",\n    source=\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n    pool=\"default\",\n    format=\"raw\")\ndomain_suse = libvirt.Domain(\"domain-suse\",\n    memory=1024,\n    vcpu=1,\n    kernel=kernel.id)\n# ...\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kernel = new Libvirt.Volume(\"kernel\", new()\n    {\n        Source = \"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n        Pool = \"default\",\n        Format = \"raw\",\n    });\n\n    var domain_suse = new Libvirt.Domain(\"domain-suse\", new()\n    {\n        Memory = 1024,\n        Vcpu = 1,\n        Kernel = kernel.Id,\n    });\n\n    // ...\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkernel, err := libvirt.NewVolume(ctx, \"kernel\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\"),\n\t\t\tPool:   pulumi.String(\"default\"),\n\t\t\tFormat: pulumi.String(\"raw\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewDomain(ctx, \"domain-suse\", \u0026libvirt.DomainArgs{\n\t\t\tMemory: pulumi.Int(1024),\n\t\t\tVcpu:   pulumi.Int(1),\n\t\t\tKernel: kernel.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kernel = new Volume(\"kernel\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\")\n            .pool(\"default\")\n            .format(\"raw\")\n            .build());\n\n        var domain_suse = new Domain(\"domain-suse\", DomainArgs.builder()        \n            .memory(\"1024\")\n            .vcpu(1)\n            .kernel(kernel.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kernel:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\n      pool: default\n      format: raw\n  domain-suse:\n    type: libvirt:Domain\n    properties:\n      memory: '1024'\n      vcpu: 1\n      kernel: ${kernel.id}\n```\n"
                 },
                 "machine": {
                     "type": "string",
@@ -797,7 +795,7 @@
                             "$ref": "pulumi.json#/Any"
                         }
                     },
-                    "description": "Arguments to the kernel\n",
+                    "description": "Arguments to the kernel\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst domain_suse = new libvirt.Domain(\"domain-suse\", {\n    memory: 1024,\n    vcpu: 1,\n    kernel: libvirt_volume.kernel.id,\n    cmdlines: [{\n        arg1: \"value1\",\n        arg2: \"value2\",\n        _: \"rw nosplash\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndomain_suse = libvirt.Domain(\"domain-suse\",\n    memory=1024,\n    vcpu=1,\n    kernel=libvirt_volume[\"kernel\"][\"id\"],\n    cmdlines=[{\n        \"arg1\": \"value1\",\n        \"arg2\": \"value2\",\n        \"_\": \"rw nosplash\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var domain_suse = new Libvirt.Domain(\"domain-suse\", new()\n    {\n        Memory = 1024,\n        Vcpu = 1,\n        Kernel = libvirt_volume.Kernel.Id,\n        Cmdlines = new[]\n        {\n            \n            {\n                { \"arg1\", \"value1\" },\n                { \"arg2\", \"value2\" },\n                { \"_\", \"rw nosplash\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"domain-suse\", \u0026libvirt.DomainArgs{\n\t\t\tMemory: pulumi.Int(1024),\n\t\t\tVcpu:   pulumi.Int(1),\n\t\t\tKernel: pulumi.Any(libvirt_volume.Kernel.Id),\n\t\t\tCmdlines: pulumi.AnyMapArray{\n\t\t\t\tpulumi.AnyMap{\n\t\t\t\t\t\"arg1\": pulumi.Any(\"value1\"),\n\t\t\t\t\t\"arg2\": pulumi.Any(\"value2\"),\n\t\t\t\t\t\"_\":    pulumi.Any(\"rw nosplash\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var domain_suse = new Domain(\"domain-suse\", DomainArgs.builder()        \n            .memory(\"1024\")\n            .vcpu(1)\n            .kernel(libvirt_volume.kernel().id())\n            .cmdlines(Map.ofEntries(\n                Map.entry(\"arg1\", \"value1\"),\n                Map.entry(\"arg2\", \"value2\"),\n                Map.entry(\"_\", \"rw nosplash\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  domain-suse:\n    type: libvirt:Domain\n    properties:\n      memory: '1024'\n      vcpu: 1\n      kernel: ${libvirt_volume.kernel.id}\n      cmdlines:\n        - arg1: value1\n          arg2: value2\n          _: rw nosplash\n```\n\nKernel params that don't have a keyword identifier can be specified using the\nspecial `\"_\"` keyword. Multiple keyword-less params have to be specified using\nthe same `\"_\"` keyword, like in the example above.\n\nAlso note that the `cmd` block is actually a list of maps, so it is possible to\ndeclare several of them by using either the literal list and map syntax as in\nthe following examples:\n\n\n",
                     "willReplaceOnChanges": true
                 },
                 "consoles": {
@@ -857,11 +855,11 @@
                 },
                 "initrd": {
                     "type": "string",
-                    "description": "The path of the initrd to boot.\n"
+                    "description": "The path of the initrd to boot.\n\nYou can use it in the same way as the kernel.\n"
                 },
                 "kernel": {
                     "type": "string",
-                    "description": "The path of the kernel to boot\n"
+                    "description": "The path of the kernel to boot\n\nIf you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)\nas they are local to the hypervisor.\n\nGiven that you can define a volume from a remote http file, this means, you can also have remote kernels.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst kernel = new libvirt.Volume(\"kernel\", {\n    source: \"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n    pool: \"default\",\n    format: \"raw\",\n});\nconst domain_suse = new libvirt.Domain(\"domain-suse\", {\n    memory: 1024,\n    vcpu: 1,\n    kernel: kernel.id,\n});\n// ...\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nkernel = libvirt.Volume(\"kernel\",\n    source=\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n    pool=\"default\",\n    format=\"raw\")\ndomain_suse = libvirt.Domain(\"domain-suse\",\n    memory=1024,\n    vcpu=1,\n    kernel=kernel.id)\n# ...\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kernel = new Libvirt.Volume(\"kernel\", new()\n    {\n        Source = \"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n        Pool = \"default\",\n        Format = \"raw\",\n    });\n\n    var domain_suse = new Libvirt.Domain(\"domain-suse\", new()\n    {\n        Memory = 1024,\n        Vcpu = 1,\n        Kernel = kernel.Id,\n    });\n\n    // ...\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkernel, err := libvirt.NewVolume(ctx, \"kernel\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\"),\n\t\t\tPool:   pulumi.String(\"default\"),\n\t\t\tFormat: pulumi.String(\"raw\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewDomain(ctx, \"domain-suse\", \u0026libvirt.DomainArgs{\n\t\t\tMemory: pulumi.Int(1024),\n\t\t\tVcpu:   pulumi.Int(1),\n\t\t\tKernel: kernel.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kernel = new Volume(\"kernel\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\")\n            .pool(\"default\")\n            .format(\"raw\")\n            .build());\n\n        var domain_suse = new Domain(\"domain-suse\", DomainArgs.builder()        \n            .memory(\"1024\")\n            .vcpu(1)\n            .kernel(kernel.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kernel:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\n      pool: default\n      format: raw\n  domain-suse:\n    type: libvirt:Domain\n    properties:\n      memory: '1024'\n      vcpu: 1\n      kernel: ${kernel.id}\n```\n"
                 },
                 "machine": {
                     "type": "string",
@@ -946,7 +944,7 @@
                                 "$ref": "pulumi.json#/Any"
                             }
                         },
-                        "description": "Arguments to the kernel\n",
+                        "description": "Arguments to the kernel\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst domain_suse = new libvirt.Domain(\"domain-suse\", {\n    memory: 1024,\n    vcpu: 1,\n    kernel: libvirt_volume.kernel.id,\n    cmdlines: [{\n        arg1: \"value1\",\n        arg2: \"value2\",\n        _: \"rw nosplash\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndomain_suse = libvirt.Domain(\"domain-suse\",\n    memory=1024,\n    vcpu=1,\n    kernel=libvirt_volume[\"kernel\"][\"id\"],\n    cmdlines=[{\n        \"arg1\": \"value1\",\n        \"arg2\": \"value2\",\n        \"_\": \"rw nosplash\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var domain_suse = new Libvirt.Domain(\"domain-suse\", new()\n    {\n        Memory = 1024,\n        Vcpu = 1,\n        Kernel = libvirt_volume.Kernel.Id,\n        Cmdlines = new[]\n        {\n            \n            {\n                { \"arg1\", \"value1\" },\n                { \"arg2\", \"value2\" },\n                { \"_\", \"rw nosplash\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewDomain(ctx, \"domain-suse\", \u0026libvirt.DomainArgs{\n\t\t\tMemory: pulumi.Int(1024),\n\t\t\tVcpu:   pulumi.Int(1),\n\t\t\tKernel: pulumi.Any(libvirt_volume.Kernel.Id),\n\t\t\tCmdlines: pulumi.AnyMapArray{\n\t\t\t\tpulumi.AnyMap{\n\t\t\t\t\t\"arg1\": pulumi.Any(\"value1\"),\n\t\t\t\t\t\"arg2\": pulumi.Any(\"value2\"),\n\t\t\t\t\t\"_\":    pulumi.Any(\"rw nosplash\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var domain_suse = new Domain(\"domain-suse\", DomainArgs.builder()        \n            .memory(\"1024\")\n            .vcpu(1)\n            .kernel(libvirt_volume.kernel().id())\n            .cmdlines(Map.ofEntries(\n                Map.entry(\"arg1\", \"value1\"),\n                Map.entry(\"arg2\", \"value2\"),\n                Map.entry(\"_\", \"rw nosplash\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  domain-suse:\n    type: libvirt:Domain\n    properties:\n      memory: '1024'\n      vcpu: 1\n      kernel: ${libvirt_volume.kernel.id}\n      cmdlines:\n        - arg1: value1\n          arg2: value2\n          _: rw nosplash\n```\n\nKernel params that don't have a keyword identifier can be specified using the\nspecial `\"_\"` keyword. Multiple keyword-less params have to be specified using\nthe same `\"_\"` keyword, like in the example above.\n\nAlso note that the `cmd` block is actually a list of maps, so it is possible to\ndeclare several of them by using either the literal list and map syntax as in\nthe following examples:\n\n\n",
                         "willReplaceOnChanges": true
                     },
                     "consoles": {
@@ -1006,11 +1004,11 @@
                     },
                     "initrd": {
                         "type": "string",
-                        "description": "The path of the initrd to boot.\n"
+                        "description": "The path of the initrd to boot.\n\nYou can use it in the same way as the kernel.\n"
                     },
                     "kernel": {
                         "type": "string",
-                        "description": "The path of the kernel to boot\n"
+                        "description": "The path of the kernel to boot\n\nIf you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)\nas they are local to the hypervisor.\n\nGiven that you can define a volume from a remote http file, this means, you can also have remote kernels.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst kernel = new libvirt.Volume(\"kernel\", {\n    source: \"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n    pool: \"default\",\n    format: \"raw\",\n});\nconst domain_suse = new libvirt.Domain(\"domain-suse\", {\n    memory: 1024,\n    vcpu: 1,\n    kernel: kernel.id,\n});\n// ...\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nkernel = libvirt.Volume(\"kernel\",\n    source=\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n    pool=\"default\",\n    format=\"raw\")\ndomain_suse = libvirt.Domain(\"domain-suse\",\n    memory=1024,\n    vcpu=1,\n    kernel=kernel.id)\n# ...\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kernel = new Libvirt.Volume(\"kernel\", new()\n    {\n        Source = \"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\",\n        Pool = \"default\",\n        Format = \"raw\",\n    });\n\n    var domain_suse = new Libvirt.Domain(\"domain-suse\", new()\n    {\n        Memory = 1024,\n        Vcpu = 1,\n        Kernel = kernel.Id,\n    });\n\n    // ...\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkernel, err := libvirt.NewVolume(ctx, \"kernel\", \u0026libvirt.VolumeArgs{\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\"),\n\t\t\tPool:   pulumi.String(\"default\"),\n\t\t\tFormat: pulumi.String(\"raw\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewDomain(ctx, \"domain-suse\", \u0026libvirt.DomainArgs{\n\t\t\tMemory: pulumi.Int(1024),\n\t\t\tVcpu:   pulumi.Int(1),\n\t\t\tKernel: kernel.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kernel = new Volume(\"kernel\", VolumeArgs.builder()        \n            .source(\"http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\")\n            .pool(\"default\")\n            .format(\"raw\")\n            .build());\n\n        var domain_suse = new Domain(\"domain-suse\", DomainArgs.builder()        \n            .memory(\"1024\")\n            .vcpu(1)\n            .kernel(kernel.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kernel:\n    type: libvirt:Volume\n    properties:\n      source: http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux\n      pool: default\n      format: raw\n  domain-suse:\n    type: libvirt:Domain\n    properties:\n      memory: '1024'\n      vcpu: 1\n      kernel: ${kernel.id}\n```\n"
                     },
                     "machine": {
                         "type": "string",
