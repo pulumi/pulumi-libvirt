@@ -15,6 +15,8 @@ public final class DomainDisk {
     /**
      * @return The path to the host device to use as the block device for this disk.
      * 
+     * While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
+     * 
      */
     private @Nullable String blockDevice;
     /**
@@ -41,6 +43,62 @@ public final class DomainDisk {
     /**
      * @return Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.libvirt.Volume;
+     * import com.pulumi.libvirt.VolumeArgs;
+     * import com.pulumi.libvirt.Domain;
+     * import com.pulumi.libvirt.DomainArgs;
+     * import com.pulumi.libvirt.inputs.DomainDiskArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var leap = new Volume(&#34;leap&#34;, VolumeArgs.builder()        
+     *             .source(&#34;http://someurl/openSUSE_Leap-42.1.qcow2&#34;)
+     *             .build());
+     * 
+     *         var mydisk = new Volume(&#34;mydisk&#34;, VolumeArgs.builder()        
+     *             .baseVolumeId(leap.id())
+     *             .build());
+     * 
+     *         var domain1 = new Domain(&#34;domain1&#34;, DomainArgs.builder()        
+     *             .disks(            
+     *                 DomainDiskArgs.builder()
+     *                     .volumeId(mydisk.id())
+     *                     .scsi(&#34;true&#34;)
+     *                     .build(),
+     *                 DomainDiskArgs.builder()
+     *                     .url(&#34;http://foo.com/install.iso&#34;)
+     *                     .build(),
+     *                 DomainDiskArgs.builder()
+     *                     .file(&#34;/absolute/path/to/disk.iso&#34;)
+     *                     .build(),
+     *                 DomainDiskArgs.builder()
+     *                     .blockDevice(&#34;/dev/mapper/36005076802810e55400000000000145f&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * Also note that the `disk` block is actually a list of maps, so it is possible to
+     * declare several of them by using either the literal list and map syntax as in
+     * the following examples:
      * 
      */
     private @Nullable String wwn;
@@ -48,6 +106,8 @@ public final class DomainDisk {
     private DomainDisk() {}
     /**
      * @return The path to the host device to use as the block device for this disk.
+     * 
+     * While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
      * 
      */
     public Optional<String> blockDevice() {
@@ -85,6 +145,62 @@ public final class DomainDisk {
     /**
      * @return Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.libvirt.Volume;
+     * import com.pulumi.libvirt.VolumeArgs;
+     * import com.pulumi.libvirt.Domain;
+     * import com.pulumi.libvirt.DomainArgs;
+     * import com.pulumi.libvirt.inputs.DomainDiskArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var leap = new Volume(&#34;leap&#34;, VolumeArgs.builder()        
+     *             .source(&#34;http://someurl/openSUSE_Leap-42.1.qcow2&#34;)
+     *             .build());
+     * 
+     *         var mydisk = new Volume(&#34;mydisk&#34;, VolumeArgs.builder()        
+     *             .baseVolumeId(leap.id())
+     *             .build());
+     * 
+     *         var domain1 = new Domain(&#34;domain1&#34;, DomainArgs.builder()        
+     *             .disks(            
+     *                 DomainDiskArgs.builder()
+     *                     .volumeId(mydisk.id())
+     *                     .scsi(&#34;true&#34;)
+     *                     .build(),
+     *                 DomainDiskArgs.builder()
+     *                     .url(&#34;http://foo.com/install.iso&#34;)
+     *                     .build(),
+     *                 DomainDiskArgs.builder()
+     *                     .file(&#34;/absolute/path/to/disk.iso&#34;)
+     *                     .build(),
+     *                 DomainDiskArgs.builder()
+     *                     .blockDevice(&#34;/dev/mapper/36005076802810e55400000000000145f&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * Also note that the `disk` block is actually a list of maps, so it is possible to
+     * declare several of them by using either the literal list and map syntax as in
+     * the following examples:
      * 
      */
     public Optional<String> wwn() {

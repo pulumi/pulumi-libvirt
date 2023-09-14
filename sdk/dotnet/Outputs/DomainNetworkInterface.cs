@@ -50,6 +50,13 @@ namespace Pulumi.Libvirt.Outputs
         /// sent to the VF/IF of the configured network device. Depending on the
         /// capabilities of the device additional prerequisites or limitations may apply;
         /// for example, on Linux this requires kernel 2.6.38 or newer.
+        /// 
+        /// Example of a `macvtap` interface:
+        /// 
+        /// 
+        /// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+        /// must be installed and running inside of the domain in order to discover the IP
+        /// addresses of all the network interfaces attached to a LAN.
         /// </summary>
         public readonly string? Passthrough;
         /// <summary>
@@ -63,6 +70,8 @@ namespace Pulumi.Libvirt.Outputs
         /// When creating the domain resource, wait until the
         /// network interface gets a DHCP lease from libvirt, so that the computed IP
         /// addresses will be available when the domain is up and the plan applied.
+        /// 
+        /// When connecting to a LAN, users can specify a target device with:
         /// </summary>
         public readonly bool? WaitForLease;
 

@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Ignition struct {
@@ -32,6 +34,7 @@ func NewIgnition(ctx *pulumi.Context,
 	if args.Content == nil {
 		return nil, errors.New("invalid value for required argument 'Content'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ignition
 	err := ctx.RegisterResource("libvirt:index/ignition:Ignition", name, args, &resource, opts...)
 	if err != nil {
@@ -117,6 +120,12 @@ func (i *Ignition) ToIgnitionOutputWithContext(ctx context.Context) IgnitionOutp
 	return pulumi.ToOutputWithContext(ctx, i).(IgnitionOutput)
 }
 
+func (i *Ignition) ToOutput(ctx context.Context) pulumix.Output[*Ignition] {
+	return pulumix.Output[*Ignition]{
+		OutputState: i.ToIgnitionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IgnitionArrayInput is an input type that accepts IgnitionArray and IgnitionArrayOutput values.
 // You can construct a concrete instance of `IgnitionArrayInput` via:
 //
@@ -140,6 +149,12 @@ func (i IgnitionArray) ToIgnitionArrayOutput() IgnitionArrayOutput {
 
 func (i IgnitionArray) ToIgnitionArrayOutputWithContext(ctx context.Context) IgnitionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IgnitionArrayOutput)
+}
+
+func (i IgnitionArray) ToOutput(ctx context.Context) pulumix.Output[[]*Ignition] {
+	return pulumix.Output[[]*Ignition]{
+		OutputState: i.ToIgnitionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IgnitionMapInput is an input type that accepts IgnitionMap and IgnitionMapOutput values.
@@ -167,6 +182,12 @@ func (i IgnitionMap) ToIgnitionMapOutputWithContext(ctx context.Context) Ignitio
 	return pulumi.ToOutputWithContext(ctx, i).(IgnitionMapOutput)
 }
 
+func (i IgnitionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Ignition] {
+	return pulumix.Output[map[string]*Ignition]{
+		OutputState: i.ToIgnitionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IgnitionOutput struct{ *pulumi.OutputState }
 
 func (IgnitionOutput) ElementType() reflect.Type {
@@ -179,6 +200,12 @@ func (o IgnitionOutput) ToIgnitionOutput() IgnitionOutput {
 
 func (o IgnitionOutput) ToIgnitionOutputWithContext(ctx context.Context) IgnitionOutput {
 	return o
+}
+
+func (o IgnitionOutput) ToOutput(ctx context.Context) pulumix.Output[*Ignition] {
+	return pulumix.Output[*Ignition]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IgnitionOutput) Content() pulumi.StringOutput {
@@ -210,6 +237,12 @@ func (o IgnitionArrayOutput) ToIgnitionArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o IgnitionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Ignition] {
+	return pulumix.Output[[]*Ignition]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IgnitionArrayOutput) Index(i pulumi.IntInput) IgnitionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Ignition {
 		return vs[0].([]*Ignition)[vs[1].(int)]
@@ -228,6 +261,12 @@ func (o IgnitionMapOutput) ToIgnitionMapOutput() IgnitionMapOutput {
 
 func (o IgnitionMapOutput) ToIgnitionMapOutputWithContext(ctx context.Context) IgnitionMapOutput {
 	return o
+}
+
+func (o IgnitionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Ignition] {
+	return pulumix.Output[map[string]*Ignition]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IgnitionMapOutput) MapIndex(k pulumi.StringInput) IgnitionOutput {

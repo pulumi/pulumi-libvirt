@@ -53,6 +53,10 @@ public final class NetworkDnsArgs extends com.pulumi.resources.ResourceArgs {
      * a DNS host entry block. You can have one or more of these
      * blocks in your DNS definition. You must specify both `ip` and `hostname`.
      * 
+     * An advanced example of round-robin DNS (using DNS host templates) follows:
+     * 
+     * An advanced example of setting up multiple SRV records using DNS SRV templates is:
+     * 
      */
     @Import(name="hosts")
     private @Nullable Output<List<NetworkDnsHostArgs>> hosts;
@@ -60,6 +64,10 @@ public final class NetworkDnsArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return a DNS host entry block. You can have one or more of these
      * blocks in your DNS definition. You must specify both `ip` and `hostname`.
+     * 
+     * An advanced example of round-robin DNS (using DNS host templates) follows:
+     * 
+     * An advanced example of setting up multiple SRV records using DNS SRV templates is:
      * 
      */
     public Optional<Output<List<NetworkDnsHostArgs>>> hosts() {
@@ -182,6 +190,10 @@ public final class NetworkDnsArgs extends com.pulumi.resources.ResourceArgs {
          * @param hosts a DNS host entry block. You can have one or more of these
          * blocks in your DNS definition. You must specify both `ip` and `hostname`.
          * 
+         * An advanced example of round-robin DNS (using DNS host templates) follows:
+         * 
+         * An advanced example of setting up multiple SRV records using DNS SRV templates is:
+         * 
          * @return builder
          * 
          */
@@ -194,6 +206,10 @@ public final class NetworkDnsArgs extends com.pulumi.resources.ResourceArgs {
          * @param hosts a DNS host entry block. You can have one or more of these
          * blocks in your DNS definition. You must specify both `ip` and `hostname`.
          * 
+         * An advanced example of round-robin DNS (using DNS host templates) follows:
+         * 
+         * An advanced example of setting up multiple SRV records using DNS SRV templates is:
+         * 
          * @return builder
          * 
          */
@@ -204,6 +220,10 @@ public final class NetworkDnsArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param hosts a DNS host entry block. You can have one or more of these
          * blocks in your DNS definition. You must specify both `ip` and `hostname`.
+         * 
+         * An advanced example of round-robin DNS (using DNS host templates) follows:
+         * 
+         * An advanced example of setting up multiple SRV records using DNS SRV templates is:
          * 
          * @return builder
          * 

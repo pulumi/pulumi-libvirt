@@ -16,6 +16,8 @@ namespace Pulumi.Libvirt.Outputs
         /// <summary>
         /// a Dnsmasq option entry block. You can have one or more of these
         /// blocks in your definition. You must specify both `option_name` and `option_value`.
+        /// 
+        /// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
         /// </summary>
         public readonly ImmutableArray<Outputs.NetworkDnsmasqOptionsOption> Options;
 

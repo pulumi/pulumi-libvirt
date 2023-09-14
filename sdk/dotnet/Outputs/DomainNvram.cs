@@ -24,6 +24,28 @@ namespace Pulumi.Libvirt.Outputs
         /// <summary>
         /// path to the file used to override variables from the master NVRAM
         /// store.
+        /// 
+        /// So you should typically use the firmware as this,
+        /// 
+        /// 
+        /// and `/etc/libvirt/qemu.conf` should contain:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
+        /// 
+        /// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+        /// look like this:
+        /// 
+        /// 
+        /// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+        /// coming from a template, the domain definition should look like this:
         /// </summary>
         public readonly string? Template;
 

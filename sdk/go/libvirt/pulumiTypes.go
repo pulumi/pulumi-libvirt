@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type DomainBootDevice struct {
 	Devs []string `pulumi:"devs"`
@@ -41,6 +45,12 @@ func (i DomainBootDeviceArgs) ToDomainBootDeviceOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DomainBootDeviceOutput)
 }
 
+func (i DomainBootDeviceArgs) ToOutput(ctx context.Context) pulumix.Output[DomainBootDevice] {
+	return pulumix.Output[DomainBootDevice]{
+		OutputState: i.ToDomainBootDeviceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DomainBootDeviceArrayInput is an input type that accepts DomainBootDeviceArray and DomainBootDeviceArrayOutput values.
 // You can construct a concrete instance of `DomainBootDeviceArrayInput` via:
 //
@@ -66,6 +76,12 @@ func (i DomainBootDeviceArray) ToDomainBootDeviceArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DomainBootDeviceArrayOutput)
 }
 
+func (i DomainBootDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainBootDevice] {
+	return pulumix.Output[[]DomainBootDevice]{
+		OutputState: i.ToDomainBootDeviceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainBootDeviceOutput struct{ *pulumi.OutputState }
 
 func (DomainBootDeviceOutput) ElementType() reflect.Type {
@@ -78,6 +94,12 @@ func (o DomainBootDeviceOutput) ToDomainBootDeviceOutput() DomainBootDeviceOutpu
 
 func (o DomainBootDeviceOutput) ToDomainBootDeviceOutputWithContext(ctx context.Context) DomainBootDeviceOutput {
 	return o
+}
+
+func (o DomainBootDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[DomainBootDevice] {
+	return pulumix.Output[DomainBootDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainBootDeviceOutput) Devs() pulumi.StringArrayOutput {
@@ -98,6 +120,12 @@ func (o DomainBootDeviceArrayOutput) ToDomainBootDeviceArrayOutputWithContext(ct
 	return o
 }
 
+func (o DomainBootDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainBootDevice] {
+	return pulumix.Output[[]DomainBootDevice]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainBootDeviceArrayOutput) Index(i pulumi.IntInput) DomainBootDeviceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainBootDevice {
 		return vs[0].([]DomainBootDevice)[vs[1].(int)]
@@ -108,14 +136,24 @@ type DomainConsole struct {
 	// IP address to listen on. Defaults to 127.0.0.1.
 	SourceHost *string `pulumi:"sourceHost"`
 	// Source path
+	//
+	// Additional attributes when type is "tcp":
 	SourcePath *string `pulumi:"sourcePath"`
 	// Port number or a service name. Defaults to a
 	// random port.
+	//
+	// Note that you can repeat the `console` block to create more than one console.
+	// This works the same way as with the `disk` blocks (see above).
+	//
+	// See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+	// for more information.
 	SourceService *string `pulumi:"sourceService"`
 	// Target port
 	TargetPort string `pulumi:"targetPort"`
 	// for the first console and defaults to `serial`.
 	// Subsequent `console` blocks must have a different type - usually `virtio`.
+	//
+	// Additional attributes when type is "pty":
 	TargetType *string `pulumi:"targetType"`
 	// the type of graphics emulation (default is "spice")
 	Type string `pulumi:"type"`
@@ -136,14 +174,24 @@ type DomainConsoleArgs struct {
 	// IP address to listen on. Defaults to 127.0.0.1.
 	SourceHost pulumi.StringPtrInput `pulumi:"sourceHost"`
 	// Source path
+	//
+	// Additional attributes when type is "tcp":
 	SourcePath pulumi.StringPtrInput `pulumi:"sourcePath"`
 	// Port number or a service name. Defaults to a
 	// random port.
+	//
+	// Note that you can repeat the `console` block to create more than one console.
+	// This works the same way as with the `disk` blocks (see above).
+	//
+	// See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+	// for more information.
 	SourceService pulumi.StringPtrInput `pulumi:"sourceService"`
 	// Target port
 	TargetPort pulumi.StringInput `pulumi:"targetPort"`
 	// for the first console and defaults to `serial`.
 	// Subsequent `console` blocks must have a different type - usually `virtio`.
+	//
+	// Additional attributes when type is "pty":
 	TargetType pulumi.StringPtrInput `pulumi:"targetType"`
 	// the type of graphics emulation (default is "spice")
 	Type pulumi.StringInput `pulumi:"type"`
@@ -159,6 +207,12 @@ func (i DomainConsoleArgs) ToDomainConsoleOutput() DomainConsoleOutput {
 
 func (i DomainConsoleArgs) ToDomainConsoleOutputWithContext(ctx context.Context) DomainConsoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainConsoleOutput)
+}
+
+func (i DomainConsoleArgs) ToOutput(ctx context.Context) pulumix.Output[DomainConsole] {
+	return pulumix.Output[DomainConsole]{
+		OutputState: i.ToDomainConsoleOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DomainConsoleArrayInput is an input type that accepts DomainConsoleArray and DomainConsoleArrayOutput values.
@@ -186,6 +240,12 @@ func (i DomainConsoleArray) ToDomainConsoleArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DomainConsoleArrayOutput)
 }
 
+func (i DomainConsoleArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainConsole] {
+	return pulumix.Output[[]DomainConsole]{
+		OutputState: i.ToDomainConsoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainConsoleOutput struct{ *pulumi.OutputState }
 
 func (DomainConsoleOutput) ElementType() reflect.Type {
@@ -200,18 +260,32 @@ func (o DomainConsoleOutput) ToDomainConsoleOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o DomainConsoleOutput) ToOutput(ctx context.Context) pulumix.Output[DomainConsole] {
+	return pulumix.Output[DomainConsole]{
+		OutputState: o.OutputState,
+	}
+}
+
 // IP address to listen on. Defaults to 127.0.0.1.
 func (o DomainConsoleOutput) SourceHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainConsole) *string { return v.SourceHost }).(pulumi.StringPtrOutput)
 }
 
 // Source path
+//
+// Additional attributes when type is "tcp":
 func (o DomainConsoleOutput) SourcePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainConsole) *string { return v.SourcePath }).(pulumi.StringPtrOutput)
 }
 
 // Port number or a service name. Defaults to a
 // random port.
+//
+// Note that you can repeat the `console` block to create more than one console.
+// This works the same way as with the `disk` blocks (see above).
+//
+// See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+// for more information.
 func (o DomainConsoleOutput) SourceService() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainConsole) *string { return v.SourceService }).(pulumi.StringPtrOutput)
 }
@@ -223,6 +297,8 @@ func (o DomainConsoleOutput) TargetPort() pulumi.StringOutput {
 
 // for the first console and defaults to `serial`.
 // Subsequent `console` blocks must have a different type - usually `virtio`.
+//
+// Additional attributes when type is "pty":
 func (o DomainConsoleOutput) TargetType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainConsole) *string { return v.TargetType }).(pulumi.StringPtrOutput)
 }
@@ -244,6 +320,12 @@ func (o DomainConsoleArrayOutput) ToDomainConsoleArrayOutput() DomainConsoleArra
 
 func (o DomainConsoleArrayOutput) ToDomainConsoleArrayOutputWithContext(ctx context.Context) DomainConsoleArrayOutput {
 	return o
+}
+
+func (o DomainConsoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainConsole] {
+	return pulumix.Output[[]DomainConsole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainConsoleArrayOutput) Index(i pulumi.IntInput) DomainConsoleOutput {
@@ -281,6 +363,12 @@ func (i DomainCpuArgs) ToDomainCpuOutput() DomainCpuOutput {
 
 func (i DomainCpuArgs) ToDomainCpuOutputWithContext(ctx context.Context) DomainCpuOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainCpuOutput)
+}
+
+func (i DomainCpuArgs) ToOutput(ctx context.Context) pulumix.Output[DomainCpu] {
+	return pulumix.Output[DomainCpu]{
+		OutputState: i.ToDomainCpuOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i DomainCpuArgs) ToDomainCpuPtrOutput() DomainCpuPtrOutput {
@@ -324,6 +412,12 @@ func (i *domainCpuPtrType) ToDomainCpuPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DomainCpuPtrOutput)
 }
 
+func (i *domainCpuPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainCpu] {
+	return pulumix.Output[*DomainCpu]{
+		OutputState: i.ToDomainCpuPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainCpuOutput struct{ *pulumi.OutputState }
 
 func (DomainCpuOutput) ElementType() reflect.Type {
@@ -348,6 +442,12 @@ func (o DomainCpuOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context) Do
 	}).(DomainCpuPtrOutput)
 }
 
+func (o DomainCpuOutput) ToOutput(ctx context.Context) pulumix.Output[DomainCpu] {
+	return pulumix.Output[DomainCpu]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainCpuOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainCpu) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -364,6 +464,12 @@ func (o DomainCpuPtrOutput) ToDomainCpuPtrOutput() DomainCpuPtrOutput {
 
 func (o DomainCpuPtrOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context) DomainCpuPtrOutput {
 	return o
+}
+
+func (o DomainCpuPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainCpu] {
+	return pulumix.Output[*DomainCpu]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainCpuPtrOutput) Elem() DomainCpuOutput {
@@ -387,6 +493,8 @@ func (o DomainCpuPtrOutput) Mode() pulumi.StringPtrOutput {
 
 type DomainDisk struct {
 	// The path to the host device to use as the block device for this disk.
+	//
+	// While `volumeId`, `url`, `file` and `blockDevice` are optional, it is intended that you use one of them.
 	BlockDevice *string `pulumi:"blockDevice"`
 	// The filename to use as the block device for this disk (read-only)
 	File *string `pulumi:"file"`
@@ -399,6 +507,57 @@ type DomainDisk struct {
 	VolumeId *string `pulumi:"volumeId"`
 	// Specify a WWN to use for the disk if the disk is using
 	// a scsi controller, if not specified then a random wwn is generated for the disk
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		leap, err := libvirt.NewVolume(ctx, "leap", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://someurl/openSUSE_Leap-42.1.qcow2"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		mydisk, err := libvirt.NewVolume(ctx, "mydisk", &libvirt.VolumeArgs{
+	// 			BaseVolumeId: leap.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain1", &libvirt.DomainArgs{
+	// 			Disks: libvirt.DomainDiskArray{
+	// 				&libvirt.DomainDiskArgs{
+	// 					VolumeId: mydisk.ID(),
+	// 					Scsi:     pulumi.Bool(true),
+	// 				},
+	// 				&libvirt.DomainDiskArgs{
+	// 					Url: pulumi.String("http://foo.com/install.iso"),
+	// 				},
+	// 				&libvirt.DomainDiskArgs{
+	// 					File: pulumi.String("/absolute/path/to/disk.iso"),
+	// 				},
+	// 				&libvirt.DomainDiskArgs{
+	// 					BlockDevice: pulumi.String("/dev/mapper/36005076802810e55400000000000145f"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Also note that the `disk` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Wwn *string `pulumi:"wwn"`
 }
 
@@ -415,6 +574,8 @@ type DomainDiskInput interface {
 
 type DomainDiskArgs struct {
 	// The path to the host device to use as the block device for this disk.
+	//
+	// While `volumeId`, `url`, `file` and `blockDevice` are optional, it is intended that you use one of them.
 	BlockDevice pulumi.StringPtrInput `pulumi:"blockDevice"`
 	// The filename to use as the block device for this disk (read-only)
 	File pulumi.StringPtrInput `pulumi:"file"`
@@ -427,6 +588,57 @@ type DomainDiskArgs struct {
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
 	// Specify a WWN to use for the disk if the disk is using
 	// a scsi controller, if not specified then a random wwn is generated for the disk
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		leap, err := libvirt.NewVolume(ctx, "leap", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://someurl/openSUSE_Leap-42.1.qcow2"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		mydisk, err := libvirt.NewVolume(ctx, "mydisk", &libvirt.VolumeArgs{
+	// 			BaseVolumeId: leap.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain1", &libvirt.DomainArgs{
+	// 			Disks: libvirt.DomainDiskArray{
+	// 				&libvirt.DomainDiskArgs{
+	// 					VolumeId: mydisk.ID(),
+	// 					Scsi:     pulumi.Bool(true),
+	// 				},
+	// 				&libvirt.DomainDiskArgs{
+	// 					Url: pulumi.String("http://foo.com/install.iso"),
+	// 				},
+	// 				&libvirt.DomainDiskArgs{
+	// 					File: pulumi.String("/absolute/path/to/disk.iso"),
+	// 				},
+	// 				&libvirt.DomainDiskArgs{
+	// 					BlockDevice: pulumi.String("/dev/mapper/36005076802810e55400000000000145f"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Also note that the `disk` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Wwn pulumi.StringPtrInput `pulumi:"wwn"`
 }
 
@@ -440,6 +652,12 @@ func (i DomainDiskArgs) ToDomainDiskOutput() DomainDiskOutput {
 
 func (i DomainDiskArgs) ToDomainDiskOutputWithContext(ctx context.Context) DomainDiskOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainDiskOutput)
+}
+
+func (i DomainDiskArgs) ToOutput(ctx context.Context) pulumix.Output[DomainDisk] {
+	return pulumix.Output[DomainDisk]{
+		OutputState: i.ToDomainDiskOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DomainDiskArrayInput is an input type that accepts DomainDiskArray and DomainDiskArrayOutput values.
@@ -467,6 +685,12 @@ func (i DomainDiskArray) ToDomainDiskArrayOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DomainDiskArrayOutput)
 }
 
+func (i DomainDiskArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainDisk] {
+	return pulumix.Output[[]DomainDisk]{
+		OutputState: i.ToDomainDiskArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainDiskOutput struct{ *pulumi.OutputState }
 
 func (DomainDiskOutput) ElementType() reflect.Type {
@@ -481,7 +705,15 @@ func (o DomainDiskOutput) ToDomainDiskOutputWithContext(ctx context.Context) Dom
 	return o
 }
 
+func (o DomainDiskOutput) ToOutput(ctx context.Context) pulumix.Output[DomainDisk] {
+	return pulumix.Output[DomainDisk]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The path to the host device to use as the block device for this disk.
+//
+// While `volumeId`, `url`, `file` and `blockDevice` are optional, it is intended that you use one of them.
 func (o DomainDiskOutput) BlockDevice() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainDisk) *string { return v.BlockDevice }).(pulumi.StringPtrOutput)
 }
@@ -509,6 +741,60 @@ func (o DomainDiskOutput) VolumeId() pulumi.StringPtrOutput {
 
 // Specify a WWN to use for the disk if the disk is using
 // a scsi controller, if not specified then a random wwn is generated for the disk
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			leap, err := libvirt.NewVolume(ctx, "leap", &libvirt.VolumeArgs{
+//				Source: pulumi.String("http://someurl/openSUSE_Leap-42.1.qcow2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mydisk, err := libvirt.NewVolume(ctx, "mydisk", &libvirt.VolumeArgs{
+//				BaseVolumeId: leap.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = libvirt.NewDomain(ctx, "domain1", &libvirt.DomainArgs{
+//				Disks: libvirt.DomainDiskArray{
+//					&libvirt.DomainDiskArgs{
+//						VolumeId: mydisk.ID(),
+//						Scsi:     pulumi.Bool(true),
+//					},
+//					&libvirt.DomainDiskArgs{
+//						Url: pulumi.String("http://foo.com/install.iso"),
+//					},
+//					&libvirt.DomainDiskArgs{
+//						File: pulumi.String("/absolute/path/to/disk.iso"),
+//					},
+//					&libvirt.DomainDiskArgs{
+//						BlockDevice: pulumi.String("/dev/mapper/36005076802810e55400000000000145f"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Also note that the `disk` block is actually a list of maps, so it is possible to
+// declare several of them by using either the literal list and map syntax as in
+// the following examples:
 func (o DomainDiskOutput) Wwn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainDisk) *string { return v.Wwn }).(pulumi.StringPtrOutput)
 }
@@ -527,6 +813,12 @@ func (o DomainDiskArrayOutput) ToDomainDiskArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o DomainDiskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainDisk] {
+	return pulumix.Output[[]DomainDisk]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainDiskArrayOutput) Index(i pulumi.IntInput) DomainDiskOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainDisk {
 		return vs[0].([]DomainDisk)[vs[1].(int)]
@@ -539,6 +831,26 @@ type DomainFilesystem struct {
 	Accessmode *string `pulumi:"accessmode"`
 	// enables exporting filesystem as a readonly mount for guest, by
 	// default read-only access is given.
+	//
+	// Example:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// The exported filesystems can be mounted inside of the guest in this way:
+	//
+	// This can be automated inside of `/etc/fstab`:
 	Readonly *bool `pulumi:"readonly"`
 	// the directory of the host to be shared with the guest.
 	Source string `pulumi:"source"`
@@ -564,6 +876,26 @@ type DomainFilesystemArgs struct {
 	Accessmode pulumi.StringPtrInput `pulumi:"accessmode"`
 	// enables exporting filesystem as a readonly mount for guest, by
 	// default read-only access is given.
+	//
+	// Example:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// The exported filesystems can be mounted inside of the guest in this way:
+	//
+	// This can be automated inside of `/etc/fstab`:
 	Readonly pulumi.BoolPtrInput `pulumi:"readonly"`
 	// the directory of the host to be shared with the guest.
 	Source pulumi.StringInput `pulumi:"source"`
@@ -582,6 +914,12 @@ func (i DomainFilesystemArgs) ToDomainFilesystemOutput() DomainFilesystemOutput 
 
 func (i DomainFilesystemArgs) ToDomainFilesystemOutputWithContext(ctx context.Context) DomainFilesystemOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainFilesystemOutput)
+}
+
+func (i DomainFilesystemArgs) ToOutput(ctx context.Context) pulumix.Output[DomainFilesystem] {
+	return pulumix.Output[DomainFilesystem]{
+		OutputState: i.ToDomainFilesystemOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DomainFilesystemArrayInput is an input type that accepts DomainFilesystemArray and DomainFilesystemArrayOutput values.
@@ -609,6 +947,12 @@ func (i DomainFilesystemArray) ToDomainFilesystemArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DomainFilesystemArrayOutput)
 }
 
+func (i DomainFilesystemArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainFilesystem] {
+	return pulumix.Output[[]DomainFilesystem]{
+		OutputState: i.ToDomainFilesystemArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainFilesystemOutput struct{ *pulumi.OutputState }
 
 func (DomainFilesystemOutput) ElementType() reflect.Type {
@@ -623,6 +967,12 @@ func (o DomainFilesystemOutput) ToDomainFilesystemOutputWithContext(ctx context.
 	return o
 }
 
+func (o DomainFilesystemOutput) ToOutput(ctx context.Context) pulumix.Output[DomainFilesystem] {
+	return pulumix.Output[DomainFilesystem]{
+		OutputState: o.OutputState,
+	}
+}
+
 // specifies the security mode for accessing the source. By default
 // the `mapped` mode is chosen.
 func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
@@ -631,6 +981,29 @@ func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 
 // enables exporting filesystem as a readonly mount for guest, by
 // default read-only access is given.
+//
+// Example:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// The exported filesystems can be mounted inside of the guest in this way:
+//
+// This can be automated inside of `/etc/fstab`:
 func (o DomainFilesystemOutput) Readonly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *bool { return v.Readonly }).(pulumi.BoolPtrOutput)
 }
@@ -660,6 +1033,12 @@ func (o DomainFilesystemArrayOutput) ToDomainFilesystemArrayOutputWithContext(ct
 	return o
 }
 
+func (o DomainFilesystemArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainFilesystem] {
+	return pulumix.Output[[]DomainFilesystem]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainFilesystemArrayOutput) Index(i pulumi.IntInput) DomainFilesystemOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainFilesystem {
 		return vs[0].([]DomainFilesystem)[vs[1].(int)]
@@ -677,6 +1056,20 @@ type DomainGraphics struct {
 	// the type of graphics emulation (default is "spice")
 	Type *string `pulumi:"type"`
 	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+	//
+	// On occasion we have found it necessary to set a `type` of `vnc` and a
+	// `listenType` of `address` with certain builds of QEMU.
+	//
+	// With `listenAddress` it is possible to specify a listener address for the virtual
+	// machines VNC server. Usually this is an IP of the host system.
+	//
+	// The `graphics` block will look as follows:
+	//
+	// The video card type can be changed from libvirt default `cirrus` to
+	// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+	//
+	// > **Note well:** the `graphics` block is ignored for the architectures
+	// `s390x` and `ppc64`.
 	Websocket *int `pulumi:"websocket"`
 }
 
@@ -702,6 +1095,20 @@ type DomainGraphicsArgs struct {
 	// the type of graphics emulation (default is "spice")
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+	//
+	// On occasion we have found it necessary to set a `type` of `vnc` and a
+	// `listenType` of `address` with certain builds of QEMU.
+	//
+	// With `listenAddress` it is possible to specify a listener address for the virtual
+	// machines VNC server. Usually this is an IP of the host system.
+	//
+	// The `graphics` block will look as follows:
+	//
+	// The video card type can be changed from libvirt default `cirrus` to
+	// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+	//
+	// > **Note well:** the `graphics` block is ignored for the architectures
+	// `s390x` and `ppc64`.
 	Websocket pulumi.IntPtrInput `pulumi:"websocket"`
 }
 
@@ -715,6 +1122,12 @@ func (i DomainGraphicsArgs) ToDomainGraphicsOutput() DomainGraphicsOutput {
 
 func (i DomainGraphicsArgs) ToDomainGraphicsOutputWithContext(ctx context.Context) DomainGraphicsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainGraphicsOutput)
+}
+
+func (i DomainGraphicsArgs) ToOutput(ctx context.Context) pulumix.Output[DomainGraphics] {
+	return pulumix.Output[DomainGraphics]{
+		OutputState: i.ToDomainGraphicsOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i DomainGraphicsArgs) ToDomainGraphicsPtrOutput() DomainGraphicsPtrOutput {
@@ -758,6 +1171,12 @@ func (i *domainGraphicsPtrType) ToDomainGraphicsPtrOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DomainGraphicsPtrOutput)
 }
 
+func (i *domainGraphicsPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainGraphics] {
+	return pulumix.Output[*DomainGraphics]{
+		OutputState: i.ToDomainGraphicsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainGraphicsOutput struct{ *pulumi.OutputState }
 
 func (DomainGraphicsOutput) ElementType() reflect.Type {
@@ -782,6 +1201,12 @@ func (o DomainGraphicsOutput) ToDomainGraphicsPtrOutputWithContext(ctx context.C
 	}).(DomainGraphicsPtrOutput)
 }
 
+func (o DomainGraphicsOutput) ToOutput(ctx context.Context) pulumix.Output[DomainGraphics] {
+	return pulumix.Output[DomainGraphics]{
+		OutputState: o.OutputState,
+	}
+}
+
 // defaults to "yes"
 func (o DomainGraphicsOutput) Autoport() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *bool { return v.Autoport }).(pulumi.BoolPtrOutput)
@@ -804,6 +1229,20 @@ func (o DomainGraphicsOutput) Type() pulumi.StringPtrOutput {
 }
 
 // Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+//
+// On occasion we have found it necessary to set a `type` of `vnc` and a
+// `listenType` of `address` with certain builds of QEMU.
+//
+// With `listenAddress` it is possible to specify a listener address for the virtual
+// machines VNC server. Usually this is an IP of the host system.
+//
+// The `graphics` block will look as follows:
+//
+// The video card type can be changed from libvirt default `cirrus` to
+// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+//
+// > **Note well:** the `graphics` block is ignored for the architectures
+// `s390x` and `ppc64`.
 func (o DomainGraphicsOutput) Websocket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *int { return v.Websocket }).(pulumi.IntPtrOutput)
 }
@@ -820,6 +1259,12 @@ func (o DomainGraphicsPtrOutput) ToDomainGraphicsPtrOutput() DomainGraphicsPtrOu
 
 func (o DomainGraphicsPtrOutput) ToDomainGraphicsPtrOutputWithContext(ctx context.Context) DomainGraphicsPtrOutput {
 	return o
+}
+
+func (o DomainGraphicsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainGraphics] {
+	return pulumix.Output[*DomainGraphics]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainGraphicsPtrOutput) Elem() DomainGraphicsOutput {
@@ -874,6 +1319,20 @@ func (o DomainGraphicsPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 // Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+//
+// On occasion we have found it necessary to set a `type` of `vnc` and a
+// `listenType` of `address` with certain builds of QEMU.
+//
+// With `listenAddress` it is possible to specify a listener address for the virtual
+// machines VNC server. Usually this is an IP of the host system.
+//
+// The `graphics` block will look as follows:
+//
+// The video card type can be changed from libvirt default `cirrus` to
+// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+//
+// > **Note well:** the `graphics` block is ignored for the architectures
+// `s390x` and `ppc64`.
 func (o DomainGraphicsPtrOutput) Websocket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DomainGraphics) *int {
 		if v == nil {
@@ -910,6 +1369,12 @@ type DomainNetworkInterface struct {
 	// sent to the VF/IF of the configured network device. Depending on the
 	// capabilities of the device additional prerequisites or limitations may apply;
 	// for example, on Linux this requires kernel 2.6.38 or newer.
+	//
+	// Example of a `macvtap` interface:
+	//
+	// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+	// must be installed and running inside of the domain in order to discover the IP
+	// addresses of all the network interfaces attached to a LAN.
 	Passthrough *string `pulumi:"passthrough"`
 	// All VMs' packets are sent to the external bridge. Packets whose
 	// destination is a VM on the same host as where the packet originates from are
@@ -919,6 +1384,8 @@ type DomainNetworkInterface struct {
 	// When creating the domain resource, wait until the
 	// network interface gets a DHCP lease from libvirt, so that the computed IP
 	// addresses will be available when the domain is up and the plan applied.
+	//
+	// When connecting to a LAN, users can specify a target device with:
 	WaitForLease *bool `pulumi:"waitForLease"`
 }
 
@@ -960,6 +1427,12 @@ type DomainNetworkInterfaceArgs struct {
 	// sent to the VF/IF of the configured network device. Depending on the
 	// capabilities of the device additional prerequisites or limitations may apply;
 	// for example, on Linux this requires kernel 2.6.38 or newer.
+	//
+	// Example of a `macvtap` interface:
+	//
+	// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+	// must be installed and running inside of the domain in order to discover the IP
+	// addresses of all the network interfaces attached to a LAN.
 	Passthrough pulumi.StringPtrInput `pulumi:"passthrough"`
 	// All VMs' packets are sent to the external bridge. Packets whose
 	// destination is a VM on the same host as where the packet originates from are
@@ -969,6 +1442,8 @@ type DomainNetworkInterfaceArgs struct {
 	// When creating the domain resource, wait until the
 	// network interface gets a DHCP lease from libvirt, so that the computed IP
 	// addresses will be available when the domain is up and the plan applied.
+	//
+	// When connecting to a LAN, users can specify a target device with:
 	WaitForLease pulumi.BoolPtrInput `pulumi:"waitForLease"`
 }
 
@@ -982,6 +1457,12 @@ func (i DomainNetworkInterfaceArgs) ToDomainNetworkInterfaceOutput() DomainNetwo
 
 func (i DomainNetworkInterfaceArgs) ToDomainNetworkInterfaceOutputWithContext(ctx context.Context) DomainNetworkInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNetworkInterfaceOutput)
+}
+
+func (i DomainNetworkInterfaceArgs) ToOutput(ctx context.Context) pulumix.Output[DomainNetworkInterface] {
+	return pulumix.Output[DomainNetworkInterface]{
+		OutputState: i.ToDomainNetworkInterfaceOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DomainNetworkInterfaceArrayInput is an input type that accepts DomainNetworkInterfaceArray and DomainNetworkInterfaceArrayOutput values.
@@ -1009,6 +1490,12 @@ func (i DomainNetworkInterfaceArray) ToDomainNetworkInterfaceArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNetworkInterfaceArrayOutput)
 }
 
+func (i DomainNetworkInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainNetworkInterface] {
+	return pulumix.Output[[]DomainNetworkInterface]{
+		OutputState: i.ToDomainNetworkInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainNetworkInterfaceOutput struct{ *pulumi.OutputState }
 
 func (DomainNetworkInterfaceOutput) ElementType() reflect.Type {
@@ -1021,6 +1508,12 @@ func (o DomainNetworkInterfaceOutput) ToDomainNetworkInterfaceOutput() DomainNet
 
 func (o DomainNetworkInterfaceOutput) ToDomainNetworkInterfaceOutputWithContext(ctx context.Context) DomainNetworkInterfaceOutput {
 	return o
+}
+
+func (o DomainNetworkInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[DomainNetworkInterface] {
+	return pulumix.Output[DomainNetworkInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 // An IP address for this domain in this network.
@@ -1070,6 +1563,12 @@ func (o DomainNetworkInterfaceOutput) NetworkName() pulumi.StringPtrOutput {
 // sent to the VF/IF of the configured network device. Depending on the
 // capabilities of the device additional prerequisites or limitations may apply;
 // for example, on Linux this requires kernel 2.6.38 or newer.
+//
+// Example of a `macvtap` interface:
+//
+// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+// must be installed and running inside of the domain in order to discover the IP
+// addresses of all the network interfaces attached to a LAN.
 func (o DomainNetworkInterfaceOutput) Passthrough() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Passthrough }).(pulumi.StringPtrOutput)
 }
@@ -1085,6 +1584,8 @@ func (o DomainNetworkInterfaceOutput) Vepa() pulumi.StringPtrOutput {
 // When creating the domain resource, wait until the
 // network interface gets a DHCP lease from libvirt, so that the computed IP
 // addresses will be available when the domain is up and the plan applied.
+//
+// When connecting to a LAN, users can specify a target device with:
 func (o DomainNetworkInterfaceOutput) WaitForLease() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *bool { return v.WaitForLease }).(pulumi.BoolPtrOutput)
 }
@@ -1103,6 +1604,12 @@ func (o DomainNetworkInterfaceArrayOutput) ToDomainNetworkInterfaceArrayOutputWi
 	return o
 }
 
+func (o DomainNetworkInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainNetworkInterface] {
+	return pulumix.Output[[]DomainNetworkInterface]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) DomainNetworkInterfaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainNetworkInterface {
 		return vs[0].([]DomainNetworkInterface)[vs[1].(int)]
@@ -1118,6 +1625,30 @@ type DomainNvram struct {
 	File string `pulumi:"file"`
 	// path to the file used to override variables from the master NVRAM
 	// store.
+	//
+	// So you should typically use the firmware as this,
+	//
+	// and `/etc/libvirt/qemu.conf` should contain:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+	// look like this:
+	//
+	// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+	// coming from a template, the domain definition should look like this:
 	Template *string `pulumi:"template"`
 }
 
@@ -1141,6 +1672,30 @@ type DomainNvramArgs struct {
 	File pulumi.StringInput `pulumi:"file"`
 	// path to the file used to override variables from the master NVRAM
 	// store.
+	//
+	// So you should typically use the firmware as this,
+	//
+	// and `/etc/libvirt/qemu.conf` should contain:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+	// look like this:
+	//
+	// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+	// coming from a template, the domain definition should look like this:
 	Template pulumi.StringPtrInput `pulumi:"template"`
 }
 
@@ -1154,6 +1709,12 @@ func (i DomainNvramArgs) ToDomainNvramOutput() DomainNvramOutput {
 
 func (i DomainNvramArgs) ToDomainNvramOutputWithContext(ctx context.Context) DomainNvramOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNvramOutput)
+}
+
+func (i DomainNvramArgs) ToOutput(ctx context.Context) pulumix.Output[DomainNvram] {
+	return pulumix.Output[DomainNvram]{
+		OutputState: i.ToDomainNvramOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i DomainNvramArgs) ToDomainNvramPtrOutput() DomainNvramPtrOutput {
@@ -1197,6 +1758,12 @@ func (i *domainNvramPtrType) ToDomainNvramPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNvramPtrOutput)
 }
 
+func (i *domainNvramPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainNvram] {
+	return pulumix.Output[*DomainNvram]{
+		OutputState: i.ToDomainNvramPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainNvramOutput struct{ *pulumi.OutputState }
 
 func (DomainNvramOutput) ElementType() reflect.Type {
@@ -1221,6 +1788,12 @@ func (o DomainNvramOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context
 	}).(DomainNvramPtrOutput)
 }
 
+func (o DomainNvramOutput) ToOutput(ctx context.Context) pulumix.Output[DomainNvram] {
+	return pulumix.Output[DomainNvram]{
+		OutputState: o.OutputState,
+	}
+}
+
 // path to the file backing the NVRAM store for non-volatile variables. When provided,
 // this file must be writable and specific to this domain, as it will be updated when running the
 // domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
@@ -1232,6 +1805,33 @@ func (o DomainNvramOutput) File() pulumi.StringOutput {
 
 // path to the file used to override variables from the master NVRAM
 // store.
+//
+// So you should typically use the firmware as this,
+//
+// and `/etc/libvirt/qemu.conf` should contain:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+// look like this:
+//
+// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+// coming from a template, the domain definition should look like this:
 func (o DomainNvramOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNvram) *string { return v.Template }).(pulumi.StringPtrOutput)
 }
@@ -1248,6 +1848,12 @@ func (o DomainNvramPtrOutput) ToDomainNvramPtrOutput() DomainNvramPtrOutput {
 
 func (o DomainNvramPtrOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context) DomainNvramPtrOutput {
 	return o
+}
+
+func (o DomainNvramPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainNvram] {
+	return pulumix.Output[*DomainNvram]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainNvramPtrOutput) Elem() DomainNvramOutput {
@@ -1276,6 +1882,33 @@ func (o DomainNvramPtrOutput) File() pulumi.StringPtrOutput {
 
 // path to the file used to override variables from the master NVRAM
 // store.
+//
+// So you should typically use the firmware as this,
+//
+// and `/etc/libvirt/qemu.conf` should contain:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+// look like this:
+//
+// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+// coming from a template, the domain definition should look like this:
 func (o DomainNvramPtrOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainNvram) *string {
 		if v == nil {
@@ -1287,12 +1920,16 @@ func (o DomainNvramPtrOutput) Template() pulumi.StringPtrOutput {
 
 type DomainTpm struct {
 	// Path to TPM device on the host, ex: `/dev/tpm0`
+	//
+	// Additional attributes when `backendType` is "emulator":
 	BackendDevicePath *string `pulumi:"backendDevicePath"`
 	// [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
 	BackendEncryptionSecret *string `pulumi:"backendEncryptionSecret"`
 	// Keep the TPM state when a transient domain is powered off or undefined
 	BackendPersistentState *bool `pulumi:"backendPersistentState"`
 	// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+	//
+	// Additional attributes when `backendType` is "passthrough":
 	BackendType *string `pulumi:"backendType"`
 	// TPM version
 	BackendVersion *string `pulumi:"backendVersion"`
@@ -1313,12 +1950,16 @@ type DomainTpmInput interface {
 
 type DomainTpmArgs struct {
 	// Path to TPM device on the host, ex: `/dev/tpm0`
+	//
+	// Additional attributes when `backendType` is "emulator":
 	BackendDevicePath pulumi.StringPtrInput `pulumi:"backendDevicePath"`
 	// [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
 	BackendEncryptionSecret pulumi.StringPtrInput `pulumi:"backendEncryptionSecret"`
 	// Keep the TPM state when a transient domain is powered off or undefined
 	BackendPersistentState pulumi.BoolPtrInput `pulumi:"backendPersistentState"`
 	// TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+	//
+	// Additional attributes when `backendType` is "passthrough":
 	BackendType pulumi.StringPtrInput `pulumi:"backendType"`
 	// TPM version
 	BackendVersion pulumi.StringPtrInput `pulumi:"backendVersion"`
@@ -1336,6 +1977,12 @@ func (i DomainTpmArgs) ToDomainTpmOutput() DomainTpmOutput {
 
 func (i DomainTpmArgs) ToDomainTpmOutputWithContext(ctx context.Context) DomainTpmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmOutput)
+}
+
+func (i DomainTpmArgs) ToOutput(ctx context.Context) pulumix.Output[DomainTpm] {
+	return pulumix.Output[DomainTpm]{
+		OutputState: i.ToDomainTpmOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i DomainTpmArgs) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
@@ -1379,6 +2026,12 @@ func (i *domainTpmPtrType) ToDomainTpmPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmPtrOutput)
 }
 
+func (i *domainTpmPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainTpm] {
+	return pulumix.Output[*DomainTpm]{
+		OutputState: i.ToDomainTpmPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainTpmOutput struct{ *pulumi.OutputState }
 
 func (DomainTpmOutput) ElementType() reflect.Type {
@@ -1403,7 +2056,15 @@ func (o DomainTpmOutput) ToDomainTpmPtrOutputWithContext(ctx context.Context) Do
 	}).(DomainTpmPtrOutput)
 }
 
+func (o DomainTpmOutput) ToOutput(ctx context.Context) pulumix.Output[DomainTpm] {
+	return pulumix.Output[DomainTpm]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Path to TPM device on the host, ex: `/dev/tpm0`
+//
+// Additional attributes when `backendType` is "emulator":
 func (o DomainTpmOutput) BackendDevicePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainTpm) *string { return v.BackendDevicePath }).(pulumi.StringPtrOutput)
 }
@@ -1419,6 +2080,8 @@ func (o DomainTpmOutput) BackendPersistentState() pulumi.BoolPtrOutput {
 }
 
 // TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+//
+// Additional attributes when `backendType` is "passthrough":
 func (o DomainTpmOutput) BackendType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainTpm) *string { return v.BackendType }).(pulumi.StringPtrOutput)
 }
@@ -1447,6 +2110,12 @@ func (o DomainTpmPtrOutput) ToDomainTpmPtrOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o DomainTpmPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainTpm] {
+	return pulumix.Output[*DomainTpm]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainTpmPtrOutput) Elem() DomainTpmOutput {
 	return o.ApplyT(func(v *DomainTpm) DomainTpm {
 		if v != nil {
@@ -1458,6 +2127,8 @@ func (o DomainTpmPtrOutput) Elem() DomainTpmOutput {
 }
 
 // Path to TPM device on the host, ex: `/dev/tpm0`
+//
+// Additional attributes when `backendType` is "emulator":
 func (o DomainTpmPtrOutput) BackendDevicePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainTpm) *string {
 		if v == nil {
@@ -1488,6 +2159,8 @@ func (o DomainTpmPtrOutput) BackendPersistentState() pulumi.BoolPtrOutput {
 }
 
 // TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+//
+// Additional attributes when `backendType` is "passthrough":
 func (o DomainTpmPtrOutput) BackendType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainTpm) *string {
 		if v == nil {
@@ -1550,6 +2223,12 @@ func (i DomainVideoArgs) ToDomainVideoOutputWithContext(ctx context.Context) Dom
 	return pulumi.ToOutputWithContext(ctx, i).(DomainVideoOutput)
 }
 
+func (i DomainVideoArgs) ToOutput(ctx context.Context) pulumix.Output[DomainVideo] {
+	return pulumix.Output[DomainVideo]{
+		OutputState: i.ToDomainVideoOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DomainVideoArgs) ToDomainVideoPtrOutput() DomainVideoPtrOutput {
 	return i.ToDomainVideoPtrOutputWithContext(context.Background())
 }
@@ -1591,6 +2270,12 @@ func (i *domainVideoPtrType) ToDomainVideoPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DomainVideoPtrOutput)
 }
 
+func (i *domainVideoPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainVideo] {
+	return pulumix.Output[*DomainVideo]{
+		OutputState: i.ToDomainVideoPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainVideoOutput struct{ *pulumi.OutputState }
 
 func (DomainVideoOutput) ElementType() reflect.Type {
@@ -1615,6 +2300,12 @@ func (o DomainVideoOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context
 	}).(DomainVideoPtrOutput)
 }
 
+func (o DomainVideoOutput) ToOutput(ctx context.Context) pulumix.Output[DomainVideo] {
+	return pulumix.Output[DomainVideo]{
+		OutputState: o.OutputState,
+	}
+}
+
 // the type of graphics emulation (default is "spice")
 func (o DomainVideoOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainVideo) *string { return v.Type }).(pulumi.StringPtrOutput)
@@ -1632,6 +2323,12 @@ func (o DomainVideoPtrOutput) ToDomainVideoPtrOutput() DomainVideoPtrOutput {
 
 func (o DomainVideoPtrOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context) DomainVideoPtrOutput {
 	return o
+}
+
+func (o DomainVideoPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainVideo] {
+	return pulumix.Output[*DomainVideo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainVideoPtrOutput) Elem() DomainVideoOutput {
@@ -1685,6 +2382,12 @@ func (i DomainXmlArgs) ToDomainXmlOutputWithContext(ctx context.Context) DomainX
 	return pulumi.ToOutputWithContext(ctx, i).(DomainXmlOutput)
 }
 
+func (i DomainXmlArgs) ToOutput(ctx context.Context) pulumix.Output[DomainXml] {
+	return pulumix.Output[DomainXml]{
+		OutputState: i.ToDomainXmlOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i DomainXmlArgs) ToDomainXmlPtrOutput() DomainXmlPtrOutput {
 	return i.ToDomainXmlPtrOutputWithContext(context.Background())
 }
@@ -1726,6 +2429,12 @@ func (i *domainXmlPtrType) ToDomainXmlPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DomainXmlPtrOutput)
 }
 
+func (i *domainXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainXml] {
+	return pulumix.Output[*DomainXml]{
+		OutputState: i.ToDomainXmlPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainXmlOutput struct{ *pulumi.OutputState }
 
 func (DomainXmlOutput) ElementType() reflect.Type {
@@ -1750,6 +2459,12 @@ func (o DomainXmlOutput) ToDomainXmlPtrOutputWithContext(ctx context.Context) Do
 	}).(DomainXmlPtrOutput)
 }
 
+func (o DomainXmlOutput) ToOutput(ctx context.Context) pulumix.Output[DomainXml] {
+	return pulumix.Output[DomainXml]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -1766,6 +2481,12 @@ func (o DomainXmlPtrOutput) ToDomainXmlPtrOutput() DomainXmlPtrOutput {
 
 func (o DomainXmlPtrOutput) ToDomainXmlPtrOutputWithContext(ctx context.Context) DomainXmlPtrOutput {
 	return o
+}
+
+func (o DomainXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainXml] {
+	return pulumix.Output[*DomainXml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainXmlPtrOutput) Elem() DomainXmlOutput {
@@ -1820,6 +2541,12 @@ func (i NetworkDhcpArgs) ToNetworkDhcpOutputWithContext(ctx context.Context) Net
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDhcpOutput)
 }
 
+func (i NetworkDhcpArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDhcp] {
+	return pulumix.Output[NetworkDhcp]{
+		OutputState: i.ToNetworkDhcpOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i NetworkDhcpArgs) ToNetworkDhcpPtrOutput() NetworkDhcpPtrOutput {
 	return i.ToNetworkDhcpPtrOutputWithContext(context.Background())
 }
@@ -1861,6 +2588,12 @@ func (i *networkDhcpPtrType) ToNetworkDhcpPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDhcpPtrOutput)
 }
 
+func (i *networkDhcpPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkDhcp] {
+	return pulumix.Output[*NetworkDhcp]{
+		OutputState: i.ToNetworkDhcpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDhcpOutput struct{ *pulumi.OutputState }
 
 func (NetworkDhcpOutput) ElementType() reflect.Type {
@@ -1885,6 +2618,12 @@ func (o NetworkDhcpOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Context
 	}).(NetworkDhcpPtrOutput)
 }
 
+func (o NetworkDhcpOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDhcp] {
+	return pulumix.Output[NetworkDhcp]{
+		OutputState: o.OutputState,
+	}
+}
+
 // when false, disable the DHCP server
 func (o NetworkDhcpOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NetworkDhcp) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
@@ -1902,6 +2641,12 @@ func (o NetworkDhcpPtrOutput) ToNetworkDhcpPtrOutput() NetworkDhcpPtrOutput {
 
 func (o NetworkDhcpPtrOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Context) NetworkDhcpPtrOutput {
 	return o
+}
+
+func (o NetworkDhcpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkDhcp] {
+	return pulumix.Output[*NetworkDhcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDhcpPtrOutput) Elem() NetworkDhcpOutput {
@@ -1931,6 +2676,10 @@ type NetworkDns struct {
 	Forwarders []NetworkDnsForwarder `pulumi:"forwarders"`
 	// a DNS host entry block. You can have one or more of these
 	// blocks in your DNS definition. You must specify both `ip` and `hostname`.
+	//
+	// An advanced example of round-robin DNS (using DNS host templates) follows:
+	//
+	// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 	Hosts []NetworkDnsHost `pulumi:"hosts"`
 	// true/false: true means 'do not forward unresolved requests for this domain to the part DNS server
 	LocalOnly *bool `pulumi:"localOnly"`
@@ -1957,6 +2706,10 @@ type NetworkDnsArgs struct {
 	Forwarders NetworkDnsForwarderArrayInput `pulumi:"forwarders"`
 	// a DNS host entry block. You can have one or more of these
 	// blocks in your DNS definition. You must specify both `ip` and `hostname`.
+	//
+	// An advanced example of round-robin DNS (using DNS host templates) follows:
+	//
+	// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 	Hosts NetworkDnsHostArrayInput `pulumi:"hosts"`
 	// true/false: true means 'do not forward unresolved requests for this domain to the part DNS server
 	LocalOnly pulumi.BoolPtrInput `pulumi:"localOnly"`
@@ -1975,6 +2728,12 @@ func (i NetworkDnsArgs) ToNetworkDnsOutput() NetworkDnsOutput {
 
 func (i NetworkDnsArgs) ToNetworkDnsOutputWithContext(ctx context.Context) NetworkDnsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsOutput)
+}
+
+func (i NetworkDnsArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDns] {
+	return pulumix.Output[NetworkDns]{
+		OutputState: i.ToNetworkDnsOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i NetworkDnsArgs) ToNetworkDnsPtrOutput() NetworkDnsPtrOutput {
@@ -2018,6 +2777,12 @@ func (i *networkDnsPtrType) ToNetworkDnsPtrOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsPtrOutput)
 }
 
+func (i *networkDnsPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkDns] {
+	return pulumix.Output[*NetworkDns]{
+		OutputState: i.ToNetworkDnsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDnsOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsOutput) ElementType() reflect.Type {
@@ -2042,6 +2807,12 @@ func (o NetworkDnsOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Context) 
 	}).(NetworkDnsPtrOutput)
 }
 
+func (o NetworkDnsOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDns] {
+	return pulumix.Output[NetworkDns]{
+		OutputState: o.OutputState,
+	}
+}
+
 // when false, disable the DHCP server
 func (o NetworkDnsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NetworkDns) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
@@ -2054,6 +2825,10 @@ func (o NetworkDnsOutput) Forwarders() NetworkDnsForwarderArrayOutput {
 
 // a DNS host entry block. You can have one or more of these
 // blocks in your DNS definition. You must specify both `ip` and `hostname`.
+//
+// An advanced example of round-robin DNS (using DNS host templates) follows:
+//
+// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 func (o NetworkDnsOutput) Hosts() NetworkDnsHostArrayOutput {
 	return o.ApplyT(func(v NetworkDns) []NetworkDnsHost { return v.Hosts }).(NetworkDnsHostArrayOutput)
 }
@@ -2081,6 +2856,12 @@ func (o NetworkDnsPtrOutput) ToNetworkDnsPtrOutput() NetworkDnsPtrOutput {
 
 func (o NetworkDnsPtrOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Context) NetworkDnsPtrOutput {
 	return o
+}
+
+func (o NetworkDnsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkDns] {
+	return pulumix.Output[*NetworkDns]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsPtrOutput) Elem() NetworkDnsOutput {
@@ -2115,6 +2896,10 @@ func (o NetworkDnsPtrOutput) Forwarders() NetworkDnsForwarderArrayOutput {
 
 // a DNS host entry block. You can have one or more of these
 // blocks in your DNS definition. You must specify both `ip` and `hostname`.
+//
+// An advanced example of round-robin DNS (using DNS host templates) follows:
+//
+// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 func (o NetworkDnsPtrOutput) Hosts() NetworkDnsHostArrayOutput {
 	return o.ApplyT(func(v *NetworkDns) []NetworkDnsHost {
 		if v == nil {
@@ -2180,6 +2965,12 @@ func (i NetworkDnsForwarderArgs) ToNetworkDnsForwarderOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsForwarderOutput)
 }
 
+func (i NetworkDnsForwarderArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsForwarder] {
+	return pulumix.Output[NetworkDnsForwarder]{
+		OutputState: i.ToNetworkDnsForwarderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkDnsForwarderArrayInput is an input type that accepts NetworkDnsForwarderArray and NetworkDnsForwarderArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsForwarderArrayInput` via:
 //
@@ -2205,6 +2996,12 @@ func (i NetworkDnsForwarderArray) ToNetworkDnsForwarderArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsForwarderArrayOutput)
 }
 
+func (i NetworkDnsForwarderArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsForwarder] {
+	return pulumix.Output[[]NetworkDnsForwarder]{
+		OutputState: i.ToNetworkDnsForwarderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDnsForwarderOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsForwarderOutput) ElementType() reflect.Type {
@@ -2217,6 +3014,12 @@ func (o NetworkDnsForwarderOutput) ToNetworkDnsForwarderOutput() NetworkDnsForwa
 
 func (o NetworkDnsForwarderOutput) ToNetworkDnsForwarderOutputWithContext(ctx context.Context) NetworkDnsForwarderOutput {
 	return o
+}
+
+func (o NetworkDnsForwarderOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsForwarder] {
+	return pulumix.Output[NetworkDnsForwarder]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsForwarderOutput) Address() pulumi.StringPtrOutput {
@@ -2240,6 +3043,12 @@ func (o NetworkDnsForwarderArrayOutput) ToNetworkDnsForwarderArrayOutput() Netwo
 
 func (o NetworkDnsForwarderArrayOutput) ToNetworkDnsForwarderArrayOutputWithContext(ctx context.Context) NetworkDnsForwarderArrayOutput {
 	return o
+}
+
+func (o NetworkDnsForwarderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsForwarder] {
+	return pulumix.Output[[]NetworkDnsForwarder]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsForwarderArrayOutput) Index(i pulumi.IntInput) NetworkDnsForwarderOutput {
@@ -2281,6 +3090,12 @@ func (i NetworkDnsHostArgs) ToNetworkDnsHostOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsHostOutput)
 }
 
+func (i NetworkDnsHostArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsHost] {
+	return pulumix.Output[NetworkDnsHost]{
+		OutputState: i.ToNetworkDnsHostOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkDnsHostArrayInput is an input type that accepts NetworkDnsHostArray and NetworkDnsHostArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsHostArrayInput` via:
 //
@@ -2306,6 +3121,12 @@ func (i NetworkDnsHostArray) ToNetworkDnsHostArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsHostArrayOutput)
 }
 
+func (i NetworkDnsHostArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsHost] {
+	return pulumix.Output[[]NetworkDnsHost]{
+		OutputState: i.ToNetworkDnsHostArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDnsHostOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsHostOutput) ElementType() reflect.Type {
@@ -2318,6 +3139,12 @@ func (o NetworkDnsHostOutput) ToNetworkDnsHostOutput() NetworkDnsHostOutput {
 
 func (o NetworkDnsHostOutput) ToNetworkDnsHostOutputWithContext(ctx context.Context) NetworkDnsHostOutput {
 	return o
+}
+
+func (o NetworkDnsHostOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsHost] {
+	return pulumix.Output[NetworkDnsHost]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsHostOutput) Hostname() pulumi.StringPtrOutput {
@@ -2340,6 +3167,12 @@ func (o NetworkDnsHostArrayOutput) ToNetworkDnsHostArrayOutput() NetworkDnsHostA
 
 func (o NetworkDnsHostArrayOutput) ToNetworkDnsHostArrayOutputWithContext(ctx context.Context) NetworkDnsHostArrayOutput {
 	return o
+}
+
+func (o NetworkDnsHostArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsHost] {
+	return pulumix.Output[[]NetworkDnsHost]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsHostArrayOutput) Index(i pulumi.IntInput) NetworkDnsHostOutput {
@@ -2393,6 +3226,12 @@ func (i NetworkDnsSrvArgs) ToNetworkDnsSrvOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsSrvOutput)
 }
 
+func (i NetworkDnsSrvArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsSrv] {
+	return pulumix.Output[NetworkDnsSrv]{
+		OutputState: i.ToNetworkDnsSrvOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkDnsSrvArrayInput is an input type that accepts NetworkDnsSrvArray and NetworkDnsSrvArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsSrvArrayInput` via:
 //
@@ -2418,6 +3257,12 @@ func (i NetworkDnsSrvArray) ToNetworkDnsSrvArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsSrvArrayOutput)
 }
 
+func (i NetworkDnsSrvArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsSrv] {
+	return pulumix.Output[[]NetworkDnsSrv]{
+		OutputState: i.ToNetworkDnsSrvArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDnsSrvOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsSrvOutput) ElementType() reflect.Type {
@@ -2430,6 +3275,12 @@ func (o NetworkDnsSrvOutput) ToNetworkDnsSrvOutput() NetworkDnsSrvOutput {
 
 func (o NetworkDnsSrvOutput) ToNetworkDnsSrvOutputWithContext(ctx context.Context) NetworkDnsSrvOutput {
 	return o
+}
+
+func (o NetworkDnsSrvOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsSrv] {
+	return pulumix.Output[NetworkDnsSrv]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The domain used by the DNS server.
@@ -2475,6 +3326,12 @@ func (o NetworkDnsSrvArrayOutput) ToNetworkDnsSrvArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o NetworkDnsSrvArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsSrv] {
+	return pulumix.Output[[]NetworkDnsSrv]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkDnsSrvArrayOutput) Index(i pulumi.IntInput) NetworkDnsSrvOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkDnsSrv {
 		return vs[0].([]NetworkDnsSrv)[vs[1].(int)]
@@ -2484,6 +3341,8 @@ func (o NetworkDnsSrvArrayOutput) Index(i pulumi.IntInput) NetworkDnsSrvOutput {
 type NetworkDnsmasqOptions struct {
 	// a Dnsmasq option entry block. You can have one or more of these
 	// blocks in your definition. You must specify both `optionName` and `optionValue`.
+	//
+	// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 	Options []NetworkDnsmasqOptionsOption `pulumi:"options"`
 }
 
@@ -2501,6 +3360,8 @@ type NetworkDnsmasqOptionsInput interface {
 type NetworkDnsmasqOptionsArgs struct {
 	// a Dnsmasq option entry block. You can have one or more of these
 	// blocks in your definition. You must specify both `optionName` and `optionValue`.
+	//
+	// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 	Options NetworkDnsmasqOptionsOptionArrayInput `pulumi:"options"`
 }
 
@@ -2514,6 +3375,12 @@ func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsOutput() NetworkDnsmas
 
 func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOutput)
+}
+
+func (i NetworkDnsmasqOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptions] {
+	return pulumix.Output[NetworkDnsmasqOptions]{
+		OutputState: i.ToNetworkDnsmasqOptionsOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput {
@@ -2557,6 +3424,12 @@ func (i *networkDnsmasqOptionsPtrType) ToNetworkDnsmasqOptionsPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsPtrOutput)
 }
 
+func (i *networkDnsmasqOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkDnsmasqOptions] {
+	return pulumix.Output[*NetworkDnsmasqOptions]{
+		OutputState: i.ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDnsmasqOptionsOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsmasqOptionsOutput) ElementType() reflect.Type {
@@ -2581,8 +3454,16 @@ func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext
 	}).(NetworkDnsmasqOptionsPtrOutput)
 }
 
+func (o NetworkDnsmasqOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptions] {
+	return pulumix.Output[NetworkDnsmasqOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
 // a Dnsmasq option entry block. You can have one or more of these
 // blocks in your definition. You must specify both `optionName` and `optionValue`.
+//
+// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 func (o NetworkDnsmasqOptionsOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
 	return o.ApplyT(func(v NetworkDnsmasqOptions) []NetworkDnsmasqOptionsOption { return v.Options }).(NetworkDnsmasqOptionsOptionArrayOutput)
 }
@@ -2601,6 +3482,12 @@ func (o NetworkDnsmasqOptionsPtrOutput) ToNetworkDnsmasqOptionsPtrOutputWithCont
 	return o
 }
 
+func (o NetworkDnsmasqOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkDnsmasqOptions] {
+	return pulumix.Output[*NetworkDnsmasqOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
 	return o.ApplyT(func(v *NetworkDnsmasqOptions) NetworkDnsmasqOptions {
 		if v != nil {
@@ -2613,6 +3500,8 @@ func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
 
 // a Dnsmasq option entry block. You can have one or more of these
 // blocks in your definition. You must specify both `optionName` and `optionValue`.
+//
+// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 func (o NetworkDnsmasqOptionsPtrOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
 	return o.ApplyT(func(v *NetworkDnsmasqOptions) []NetworkDnsmasqOptionsOption {
 		if v == nil {
@@ -2655,6 +3544,12 @@ func (i NetworkDnsmasqOptionsOptionArgs) ToNetworkDnsmasqOptionsOptionOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOptionOutput)
 }
 
+func (i NetworkDnsmasqOptionsOptionArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptionsOption] {
+	return pulumix.Output[NetworkDnsmasqOptionsOption]{
+		OutputState: i.ToNetworkDnsmasqOptionsOptionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkDnsmasqOptionsOptionArrayInput is an input type that accepts NetworkDnsmasqOptionsOptionArray and NetworkDnsmasqOptionsOptionArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsmasqOptionsOptionArrayInput` via:
 //
@@ -2680,6 +3575,12 @@ func (i NetworkDnsmasqOptionsOptionArray) ToNetworkDnsmasqOptionsOptionArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOptionArrayOutput)
 }
 
+func (i NetworkDnsmasqOptionsOptionArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsmasqOptionsOption] {
+	return pulumix.Output[[]NetworkDnsmasqOptionsOption]{
+		OutputState: i.ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkDnsmasqOptionsOptionOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsmasqOptionsOptionOutput) ElementType() reflect.Type {
@@ -2692,6 +3593,12 @@ func (o NetworkDnsmasqOptionsOptionOutput) ToNetworkDnsmasqOptionsOptionOutput()
 
 func (o NetworkDnsmasqOptionsOptionOutput) ToNetworkDnsmasqOptionsOptionOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionOutput {
 	return o
+}
+
+func (o NetworkDnsmasqOptionsOptionOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptionsOption] {
+	return pulumix.Output[NetworkDnsmasqOptionsOption]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsmasqOptionsOptionOutput) OptionName() pulumi.StringPtrOutput {
@@ -2714,6 +3621,12 @@ func (o NetworkDnsmasqOptionsOptionArrayOutput) ToNetworkDnsmasqOptionsOptionArr
 
 func (o NetworkDnsmasqOptionsOptionArrayOutput) ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionArrayOutput {
 	return o
+}
+
+func (o NetworkDnsmasqOptionsOptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsmasqOptionsOption] {
+	return pulumix.Output[[]NetworkDnsmasqOptionsOption]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkDnsmasqOptionsOptionArrayOutput) Index(i pulumi.IntInput) NetworkDnsmasqOptionsOptionOutput {
@@ -2755,6 +3668,12 @@ func (i NetworkRouteArgs) ToNetworkRouteOutputWithContext(ctx context.Context) N
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkRouteOutput)
 }
 
+func (i NetworkRouteArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkRoute] {
+	return pulumix.Output[NetworkRoute]{
+		OutputState: i.ToNetworkRouteOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkRouteArrayInput is an input type that accepts NetworkRouteArray and NetworkRouteArrayOutput values.
 // You can construct a concrete instance of `NetworkRouteArrayInput` via:
 //
@@ -2780,6 +3699,12 @@ func (i NetworkRouteArray) ToNetworkRouteArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkRouteArrayOutput)
 }
 
+func (i NetworkRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkRoute] {
+	return pulumix.Output[[]NetworkRoute]{
+		OutputState: i.ToNetworkRouteArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkRouteOutput struct{ *pulumi.OutputState }
 
 func (NetworkRouteOutput) ElementType() reflect.Type {
@@ -2792,6 +3717,12 @@ func (o NetworkRouteOutput) ToNetworkRouteOutput() NetworkRouteOutput {
 
 func (o NetworkRouteOutput) ToNetworkRouteOutputWithContext(ctx context.Context) NetworkRouteOutput {
 	return o
+}
+
+func (o NetworkRouteOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkRoute] {
+	return pulumix.Output[NetworkRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkRouteOutput) Cidr() pulumi.StringOutput {
@@ -2814,6 +3745,12 @@ func (o NetworkRouteArrayOutput) ToNetworkRouteArrayOutput() NetworkRouteArrayOu
 
 func (o NetworkRouteArrayOutput) ToNetworkRouteArrayOutputWithContext(ctx context.Context) NetworkRouteArrayOutput {
 	return o
+}
+
+func (o NetworkRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkRoute] {
+	return pulumix.Output[[]NetworkRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkRouteArrayOutput) Index(i pulumi.IntInput) NetworkRouteOutput {
@@ -2851,6 +3788,12 @@ func (i NetworkXmlArgs) ToNetworkXmlOutput() NetworkXmlOutput {
 
 func (i NetworkXmlArgs) ToNetworkXmlOutputWithContext(ctx context.Context) NetworkXmlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkXmlOutput)
+}
+
+func (i NetworkXmlArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkXml] {
+	return pulumix.Output[NetworkXml]{
+		OutputState: i.ToNetworkXmlOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i NetworkXmlArgs) ToNetworkXmlPtrOutput() NetworkXmlPtrOutput {
@@ -2894,6 +3837,12 @@ func (i *networkXmlPtrType) ToNetworkXmlPtrOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkXmlPtrOutput)
 }
 
+func (i *networkXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkXml] {
+	return pulumix.Output[*NetworkXml]{
+		OutputState: i.ToNetworkXmlPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkXmlOutput struct{ *pulumi.OutputState }
 
 func (NetworkXmlOutput) ElementType() reflect.Type {
@@ -2918,6 +3867,12 @@ func (o NetworkXmlOutput) ToNetworkXmlPtrOutputWithContext(ctx context.Context) 
 	}).(NetworkXmlPtrOutput)
 }
 
+func (o NetworkXmlOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkXml] {
+	return pulumix.Output[NetworkXml]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -2934,6 +3889,12 @@ func (o NetworkXmlPtrOutput) ToNetworkXmlPtrOutput() NetworkXmlPtrOutput {
 
 func (o NetworkXmlPtrOutput) ToNetworkXmlPtrOutputWithContext(ctx context.Context) NetworkXmlPtrOutput {
 	return o
+}
+
+func (o NetworkXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkXml] {
+	return pulumix.Output[*NetworkXml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkXmlPtrOutput) Elem() NetworkXmlOutput {
@@ -2986,6 +3947,12 @@ func (i PoolXmlArgs) ToPoolXmlOutputWithContext(ctx context.Context) PoolXmlOutp
 	return pulumi.ToOutputWithContext(ctx, i).(PoolXmlOutput)
 }
 
+func (i PoolXmlArgs) ToOutput(ctx context.Context) pulumix.Output[PoolXml] {
+	return pulumix.Output[PoolXml]{
+		OutputState: i.ToPoolXmlOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i PoolXmlArgs) ToPoolXmlPtrOutput() PoolXmlPtrOutput {
 	return i.ToPoolXmlPtrOutputWithContext(context.Background())
 }
@@ -3027,6 +3994,12 @@ func (i *poolXmlPtrType) ToPoolXmlPtrOutputWithContext(ctx context.Context) Pool
 	return pulumi.ToOutputWithContext(ctx, i).(PoolXmlPtrOutput)
 }
 
+func (i *poolXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*PoolXml] {
+	return pulumix.Output[*PoolXml]{
+		OutputState: i.ToPoolXmlPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type PoolXmlOutput struct{ *pulumi.OutputState }
 
 func (PoolXmlOutput) ElementType() reflect.Type {
@@ -3051,6 +4024,12 @@ func (o PoolXmlOutput) ToPoolXmlPtrOutputWithContext(ctx context.Context) PoolXm
 	}).(PoolXmlPtrOutput)
 }
 
+func (o PoolXmlOutput) ToOutput(ctx context.Context) pulumix.Output[PoolXml] {
+	return pulumix.Output[PoolXml]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PoolXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -3067,6 +4046,12 @@ func (o PoolXmlPtrOutput) ToPoolXmlPtrOutput() PoolXmlPtrOutput {
 
 func (o PoolXmlPtrOutput) ToPoolXmlPtrOutputWithContext(ctx context.Context) PoolXmlPtrOutput {
 	return o
+}
+
+func (o PoolXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PoolXml] {
+	return pulumix.Output[*PoolXml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PoolXmlPtrOutput) Elem() PoolXmlOutput {
@@ -3119,6 +4104,12 @@ func (i VolumeXmlArgs) ToVolumeXmlOutputWithContext(ctx context.Context) VolumeX
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeXmlOutput)
 }
 
+func (i VolumeXmlArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeXml] {
+	return pulumix.Output[VolumeXml]{
+		OutputState: i.ToVolumeXmlOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VolumeXmlArgs) ToVolumeXmlPtrOutput() VolumeXmlPtrOutput {
 	return i.ToVolumeXmlPtrOutputWithContext(context.Background())
 }
@@ -3160,6 +4151,12 @@ func (i *volumeXmlPtrType) ToVolumeXmlPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeXmlPtrOutput)
 }
 
+func (i *volumeXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeXml] {
+	return pulumix.Output[*VolumeXml]{
+		OutputState: i.ToVolumeXmlPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeXmlOutput struct{ *pulumi.OutputState }
 
 func (VolumeXmlOutput) ElementType() reflect.Type {
@@ -3184,6 +4181,12 @@ func (o VolumeXmlOutput) ToVolumeXmlPtrOutputWithContext(ctx context.Context) Vo
 	}).(VolumeXmlPtrOutput)
 }
 
+func (o VolumeXmlOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeXml] {
+	return pulumix.Output[VolumeXml]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VolumeXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -3200,6 +4203,12 @@ func (o VolumeXmlPtrOutput) ToVolumeXmlPtrOutput() VolumeXmlPtrOutput {
 
 func (o VolumeXmlPtrOutput) ToVolumeXmlPtrOutputWithContext(ctx context.Context) VolumeXmlPtrOutput {
 	return o
+}
+
+func (o VolumeXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeXml] {
+	return pulumix.Output[*VolumeXml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeXmlPtrOutput) Elem() VolumeXmlOutput {

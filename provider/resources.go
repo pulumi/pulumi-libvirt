@@ -24,10 +24,9 @@ import (
 	"github.com/dmacvicar/terraform-provider-libvirt/libvirt"
 	"github.com/pulumi/pulumi-libvirt/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
+	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // all of the token components used below.
@@ -151,8 +150,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		}, MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
-	err := x.AutoAliasing(&prov, prov.GetMetadata())
-	contract.AssertNoErrorf(err, "auto aliasing apply failed")
+	prov.MustComputeTokens(tfbridgetokens.SingleModule("libvirt_", mainMod,
+		tfbridgetokens.MakeStandard(mainPkg)))
+	prov.MustApplyAutoAliases()
 
 	prov.SetAutonaming(255, "-")
 

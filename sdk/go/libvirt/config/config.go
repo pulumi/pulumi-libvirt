@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // libvirt connection URI for operations. See https://libvirt.org/uri.html
 func GetUri(ctx *pulumi.Context) string {
@@ -14,5 +17,9 @@ func GetUri(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "LIBVIRT_DEFAULT_URI").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "LIBVIRT_DEFAULT_URI"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

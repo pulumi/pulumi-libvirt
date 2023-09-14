@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages a VM domain resource within libvirt. For more information see
@@ -54,6 +56,44 @@ type Domain struct {
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrOutput `pulumi:"cloudinit"`
 	// Arguments to the kernel
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Cmdlines: pulumi.AnyMapArray{
+	// 				pulumi.AnyMap{
+	// 					"arg1": pulumi.Any("value1"),
+	// 					"arg2": pulumi.Any("value2"),
+	// 					"_":    pulumi.Any("rw nosplash"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Kernel params that don't have a keyword identifier can be specified using the
+	// special `"_"` keyword. Multiple keyword-less params have to be specified using
+	// the same `"_"` keyword, like in the example above.
+	//
+	// Also note that the `cmd` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Cmdlines pulumi.MapArrayOutput    `pulumi:"cmdlines"`
 	Consoles DomainConsoleArrayOutput `pulumi:"consoles"`
 	// The
@@ -85,8 +125,46 @@ type Domain struct {
 	FwCfgName pulumi.StringPtrOutput  `pulumi:"fwCfgName"`
 	Graphics  DomainGraphicsPtrOutput `pulumi:"graphics"`
 	// The path of the initrd to boot.
+	//
+	// You can use it in the same way as the kernel.
 	Initrd pulumi.StringPtrOutput `pulumi:"initrd"`
 	// The path of the kernel to boot
+	//
+	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+	// as they are local to the hypervisor.
+	//
+	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Pool:   pulumi.String("default"),
+	// 			Format: pulumi.String("raw"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: kernel.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	Kernel pulumi.StringPtrOutput `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -126,6 +204,7 @@ func NewDomain(ctx *pulumi.Context,
 		args = &DomainArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Domain
 	err := ctx.RegisterResource("libvirt:index/domain:Domain", name, args, &resource, opts...)
 	if err != nil {
@@ -163,6 +242,44 @@ type domainState struct {
 	// have effect on the next reboot.
 	Cloudinit *string `pulumi:"cloudinit"`
 	// Arguments to the kernel
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Cmdlines: pulumi.AnyMapArray{
+	// 				pulumi.AnyMap{
+	// 					"arg1": pulumi.Any("value1"),
+	// 					"arg2": pulumi.Any("value2"),
+	// 					"_":    pulumi.Any("rw nosplash"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Kernel params that don't have a keyword identifier can be specified using the
+	// special `"_"` keyword. Multiple keyword-less params have to be specified using
+	// the same `"_"` keyword, like in the example above.
+	//
+	// Also note that the `cmd` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Cmdlines []map[string]interface{} `pulumi:"cmdlines"`
 	Consoles []DomainConsole          `pulumi:"consoles"`
 	// The
@@ -194,8 +311,46 @@ type domainState struct {
 	FwCfgName *string         `pulumi:"fwCfgName"`
 	Graphics  *DomainGraphics `pulumi:"graphics"`
 	// The path of the initrd to boot.
+	//
+	// You can use it in the same way as the kernel.
 	Initrd *string `pulumi:"initrd"`
 	// The path of the kernel to boot
+	//
+	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+	// as they are local to the hypervisor.
+	//
+	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Pool:   pulumi.String("default"),
+	// 			Format: pulumi.String("raw"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: kernel.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	Kernel *string `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -244,6 +399,44 @@ type DomainState struct {
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrInput
 	// Arguments to the kernel
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Cmdlines: pulumi.AnyMapArray{
+	// 				pulumi.AnyMap{
+	// 					"arg1": pulumi.Any("value1"),
+	// 					"arg2": pulumi.Any("value2"),
+	// 					"_":    pulumi.Any("rw nosplash"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Kernel params that don't have a keyword identifier can be specified using the
+	// special `"_"` keyword. Multiple keyword-less params have to be specified using
+	// the same `"_"` keyword, like in the example above.
+	//
+	// Also note that the `cmd` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Cmdlines pulumi.MapArrayInput
 	Consoles DomainConsoleArrayInput
 	// The
@@ -275,8 +468,46 @@ type DomainState struct {
 	FwCfgName pulumi.StringPtrInput
 	Graphics  DomainGraphicsPtrInput
 	// The path of the initrd to boot.
+	//
+	// You can use it in the same way as the kernel.
 	Initrd pulumi.StringPtrInput
 	// The path of the kernel to boot
+	//
+	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+	// as they are local to the hypervisor.
+	//
+	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Pool:   pulumi.String("default"),
+	// 			Format: pulumi.String("raw"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: kernel.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	Kernel pulumi.StringPtrInput
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -329,6 +560,44 @@ type domainArgs struct {
 	// have effect on the next reboot.
 	Cloudinit *string `pulumi:"cloudinit"`
 	// Arguments to the kernel
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Cmdlines: pulumi.AnyMapArray{
+	// 				pulumi.AnyMap{
+	// 					"arg1": pulumi.Any("value1"),
+	// 					"arg2": pulumi.Any("value2"),
+	// 					"_":    pulumi.Any("rw nosplash"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Kernel params that don't have a keyword identifier can be specified using the
+	// special `"_"` keyword. Multiple keyword-less params have to be specified using
+	// the same `"_"` keyword, like in the example above.
+	//
+	// Also note that the `cmd` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Cmdlines []map[string]interface{} `pulumi:"cmdlines"`
 	Consoles []DomainConsole          `pulumi:"consoles"`
 	// The
@@ -360,8 +629,46 @@ type domainArgs struct {
 	FwCfgName *string         `pulumi:"fwCfgName"`
 	Graphics  *DomainGraphics `pulumi:"graphics"`
 	// The path of the initrd to boot.
+	//
+	// You can use it in the same way as the kernel.
 	Initrd *string `pulumi:"initrd"`
 	// The path of the kernel to boot
+	//
+	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+	// as they are local to the hypervisor.
+	//
+	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Pool:   pulumi.String("default"),
+	// 			Format: pulumi.String("raw"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: kernel.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	Kernel *string `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -411,6 +718,44 @@ type DomainArgs struct {
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrInput
 	// Arguments to the kernel
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Cmdlines: pulumi.AnyMapArray{
+	// 				pulumi.AnyMap{
+	// 					"arg1": pulumi.Any("value1"),
+	// 					"arg2": pulumi.Any("value2"),
+	// 					"_":    pulumi.Any("rw nosplash"),
+	// 				},
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	//
+	// Kernel params that don't have a keyword identifier can be specified using the
+	// special `"_"` keyword. Multiple keyword-less params have to be specified using
+	// the same `"_"` keyword, like in the example above.
+	//
+	// Also note that the `cmd` block is actually a list of maps, so it is possible to
+	// declare several of them by using either the literal list and map syntax as in
+	// the following examples:
 	Cmdlines pulumi.MapArrayInput
 	Consoles DomainConsoleArrayInput
 	// The
@@ -442,8 +787,46 @@ type DomainArgs struct {
 	FwCfgName pulumi.StringPtrInput
 	Graphics  DomainGraphicsPtrInput
 	// The path of the initrd to boot.
+	//
+	// You can use it in the same way as the kernel.
 	Initrd pulumi.StringPtrInput
 	// The path of the kernel to boot
+	//
+	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+	// as they are local to the hypervisor.
+	//
+	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
+	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Pool:   pulumi.String("default"),
+	// 			Format: pulumi.String("raw"),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Memory: pulumi.Int(1024),
+	// 			Vcpu:   pulumi.Int(1),
+	// 			Kernel: kernel.ID(),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	Kernel pulumi.StringPtrInput
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -499,6 +882,12 @@ func (i *Domain) ToDomainOutputWithContext(ctx context.Context) DomainOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainOutput)
 }
 
+func (i *Domain) ToOutput(ctx context.Context) pulumix.Output[*Domain] {
+	return pulumix.Output[*Domain]{
+		OutputState: i.ToDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DomainArrayInput is an input type that accepts DomainArray and DomainArrayOutput values.
 // You can construct a concrete instance of `DomainArrayInput` via:
 //
@@ -522,6 +911,12 @@ func (i DomainArray) ToDomainArrayOutput() DomainArrayOutput {
 
 func (i DomainArray) ToDomainArrayOutputWithContext(ctx context.Context) DomainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainArrayOutput)
+}
+
+func (i DomainArray) ToOutput(ctx context.Context) pulumix.Output[[]*Domain] {
+	return pulumix.Output[[]*Domain]{
+		OutputState: i.ToDomainArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DomainMapInput is an input type that accepts DomainMap and DomainMapOutput values.
@@ -549,6 +944,12 @@ func (i DomainMap) ToDomainMapOutputWithContext(ctx context.Context) DomainMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(DomainMapOutput)
 }
 
+func (i DomainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Domain] {
+	return pulumix.Output[map[string]*Domain]{
+		OutputState: i.ToDomainMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DomainOutput struct{ *pulumi.OutputState }
 
 func (DomainOutput) ElementType() reflect.Type {
@@ -561,6 +962,12 @@ func (o DomainOutput) ToDomainOutput() DomainOutput {
 
 func (o DomainOutput) ToDomainOutputWithContext(ctx context.Context) DomainOutput {
 	return o
+}
+
+func (o DomainOutput) ToOutput(ctx context.Context) pulumix.Output[*Domain] {
+	return pulumix.Output[*Domain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The architecture for the VM (probably x8664 or i686),
@@ -590,6 +997,47 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 }
 
 // Arguments to the kernel
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+//				Memory: pulumi.Int(1024),
+//				Vcpu:   pulumi.Int(1),
+//				Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+//				Cmdlines: pulumi.AnyMapArray{
+//					pulumi.AnyMap{
+//						"arg1": pulumi.Any("value1"),
+//						"arg2": pulumi.Any("value2"),
+//						"_":    pulumi.Any("rw nosplash"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Kernel params that don't have a keyword identifier can be specified using the
+// special `"_"` keyword. Multiple keyword-less params have to be specified using
+// the same `"_"` keyword, like in the example above.
+//
+// Also note that the `cmd` block is actually a list of maps, so it is possible to
+// declare several of them by using either the literal list and map syntax as in
+// the following examples:
 func (o DomainOutput) Cmdlines() pulumi.MapArrayOutput {
 	return o.ApplyT(func(v *Domain) pulumi.MapArrayOutput { return v.Cmdlines }).(pulumi.MapArrayOutput)
 }
@@ -654,11 +1102,52 @@ func (o DomainOutput) Graphics() DomainGraphicsPtrOutput {
 }
 
 // The path of the initrd to boot.
+//
+// You can use it in the same way as the kernel.
 func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Initrd }).(pulumi.StringPtrOutput)
 }
 
 // The path of the kernel to boot
+//
+// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+// as they are local to the hypervisor.
+//
+// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
+//				Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+//				Pool:   pulumi.String("default"),
+//				Format: pulumi.String("raw"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+//				Memory: pulumi.Int(1024),
+//				Vcpu:   pulumi.Int(1),
+//				Kernel: kernel.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func (o DomainOutput) Kernel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Kernel }).(pulumi.StringPtrOutput)
 }
@@ -742,6 +1231,12 @@ func (o DomainArrayOutput) ToDomainArrayOutputWithContext(ctx context.Context) D
 	return o
 }
 
+func (o DomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Domain] {
+	return pulumix.Output[[]*Domain]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainArrayOutput) Index(i pulumi.IntInput) DomainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Domain {
 		return vs[0].([]*Domain)[vs[1].(int)]
@@ -760,6 +1255,12 @@ func (o DomainMapOutput) ToDomainMapOutput() DomainMapOutput {
 
 func (o DomainMapOutput) ToDomainMapOutputWithContext(ctx context.Context) DomainMapOutput {
 	return o
+}
+
+func (o DomainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Domain] {
+	return pulumix.Output[map[string]*Domain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainMapOutput) MapIndex(k pulumi.StringInput) DomainOutput {

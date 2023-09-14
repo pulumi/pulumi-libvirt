@@ -139,15 +139,15 @@ def get_network_dns_srv_template(domain: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate', __args__, opts=opts, typ=GetNetworkDnsSrvTemplateResult).value
 
     return AwaitableGetNetworkDnsSrvTemplateResult(
-        domain=__ret__.domain,
-        id=__ret__.id,
-        port=__ret__.port,
-        priority=__ret__.priority,
-        protocol=__ret__.protocol,
-        rendered=__ret__.rendered,
-        service=__ret__.service,
-        target=__ret__.target,
-        weight=__ret__.weight)
+        domain=pulumi.get(__ret__, 'domain'),
+        id=pulumi.get(__ret__, 'id'),
+        port=pulumi.get(__ret__, 'port'),
+        priority=pulumi.get(__ret__, 'priority'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        rendered=pulumi.get(__ret__, 'rendered'),
+        service=pulumi.get(__ret__, 'service'),
+        target=pulumi.get(__ret__, 'target'),
+        weight=pulumi.get(__ret__, 'weight'))
 
 
 @_utilities.lift_output_func(get_network_dns_srv_template)

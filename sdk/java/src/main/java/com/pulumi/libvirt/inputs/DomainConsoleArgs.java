@@ -33,12 +33,16 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Source path
      * 
+     * Additional attributes when type is &#34;tcp&#34;:
+     * 
      */
     @Import(name="sourcePath")
     private @Nullable Output<String> sourcePath;
 
     /**
      * @return Source path
+     * 
+     * Additional attributes when type is &#34;tcp&#34;:
      * 
      */
     public Optional<Output<String>> sourcePath() {
@@ -49,6 +53,12 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
      * Port number or a service name. Defaults to a
      * random port.
      * 
+     * Note that you can repeat the `console` block to create more than one console.
+     * This works the same way as with the `disk` blocks (see above).
+     * 
+     * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+     * for more information.
+     * 
      */
     @Import(name="sourceService")
     private @Nullable Output<String> sourceService;
@@ -56,6 +66,12 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Port number or a service name. Defaults to a
      * random port.
+     * 
+     * Note that you can repeat the `console` block to create more than one console.
+     * This works the same way as with the `disk` blocks (see above).
+     * 
+     * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+     * for more information.
      * 
      */
     public Optional<Output<String>> sourceService() {
@@ -81,6 +97,8 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
      * for the first console and defaults to `serial`.
      * Subsequent `console` blocks must have a different type - usually `virtio`.
      * 
+     * Additional attributes when type is &#34;pty&#34;:
+     * 
      */
     @Import(name="targetType")
     private @Nullable Output<String> targetType;
@@ -88,6 +106,8 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return for the first console and defaults to `serial`.
      * Subsequent `console` blocks must have a different type - usually `virtio`.
+     * 
+     * Additional attributes when type is &#34;pty&#34;:
      * 
      */
     public Optional<Output<String>> targetType() {
@@ -162,6 +182,8 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param sourcePath Source path
          * 
+         * Additional attributes when type is &#34;tcp&#34;:
+         * 
          * @return builder
          * 
          */
@@ -172,6 +194,8 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param sourcePath Source path
+         * 
+         * Additional attributes when type is &#34;tcp&#34;:
          * 
          * @return builder
          * 
@@ -184,6 +208,12 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
          * @param sourceService Port number or a service name. Defaults to a
          * random port.
          * 
+         * Note that you can repeat the `console` block to create more than one console.
+         * This works the same way as with the `disk` blocks (see above).
+         * 
+         * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+         * for more information.
+         * 
          * @return builder
          * 
          */
@@ -195,6 +225,12 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param sourceService Port number or a service name. Defaults to a
          * random port.
+         * 
+         * Note that you can repeat the `console` block to create more than one console.
+         * This works the same way as with the `disk` blocks (see above).
+         * 
+         * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+         * for more information.
          * 
          * @return builder
          * 
@@ -228,6 +264,8 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
          * @param targetType for the first console and defaults to `serial`.
          * Subsequent `console` blocks must have a different type - usually `virtio`.
          * 
+         * Additional attributes when type is &#34;pty&#34;:
+         * 
          * @return builder
          * 
          */
@@ -239,6 +277,8 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param targetType for the first console and defaults to `serial`.
          * Subsequent `console` blocks must have a different type - usually `virtio`.
+         * 
+         * Additional attributes when type is &#34;pty&#34;:
          * 
          * @return builder
          * 

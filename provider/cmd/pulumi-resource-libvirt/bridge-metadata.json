@@ -5,19 +5,121 @@
                 "current": "libvirt:index/cloudInitDisk:CloudInitDisk"
             },
             "libvirt_domain": {
-                "current": "libvirt:index/domain:Domain"
+                "current": "libvirt:index/domain:Domain",
+                "fields": {
+                    "boot_device": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dev": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "cmdline": {
+                        "maxItemsOne": false
+                    },
+                    "console": {
+                        "maxItemsOne": false
+                    },
+                    "cpu": {
+                        "maxItemsOne": true
+                    },
+                    "disk": {
+                        "maxItemsOne": false
+                    },
+                    "filesystem": {
+                        "maxItemsOne": false
+                    },
+                    "graphics": {
+                        "maxItemsOne": true
+                    },
+                    "network_interface": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "addresses": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "nvram": {
+                        "maxItemsOne": true
+                    },
+                    "tpm": {
+                        "maxItemsOne": true
+                    },
+                    "video": {
+                        "maxItemsOne": true
+                    },
+                    "xml": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "libvirt_ignition": {
                 "current": "libvirt:index/ignition:Ignition"
             },
             "libvirt_network": {
-                "current": "libvirt:index/network:Network"
+                "current": "libvirt:index/network:Network",
+                "fields": {
+                    "addresses": {
+                        "maxItemsOne": false
+                    },
+                    "dhcp": {
+                        "maxItemsOne": true
+                    },
+                    "dns": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "forwarders": {
+                                    "maxItemsOne": false
+                                },
+                                "hosts": {
+                                    "maxItemsOne": false
+                                },
+                                "srvs": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "dnsmasq_options": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "options": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "routes": {
+                        "maxItemsOne": false
+                    },
+                    "xml": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "libvirt_pool": {
-                "current": "libvirt:index/pool:Pool"
+                "current": "libvirt:index/pool:Pool",
+                "fields": {
+                    "xml": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "libvirt_volume": {
-                "current": "libvirt:index/volume:Volume"
+                "current": "libvirt:index/volume:Volume",
+                "fields": {
+                    "xml": {
+                        "maxItemsOne": true
+                    }
+                }
             }
         },
         "datasources": {

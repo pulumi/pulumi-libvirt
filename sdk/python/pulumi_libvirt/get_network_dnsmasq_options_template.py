@@ -84,10 +84,10 @@ def get_network_dnsmasq_options_template(option_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate', __args__, opts=opts, typ=GetNetworkDnsmasqOptionsTemplateResult).value
 
     return AwaitableGetNetworkDnsmasqOptionsTemplateResult(
-        id=__ret__.id,
-        option_name=__ret__.option_name,
-        option_value=__ret__.option_value,
-        rendered=__ret__.rendered)
+        id=pulumi.get(__ret__, 'id'),
+        option_name=pulumi.get(__ret__, 'option_name'),
+        option_value=pulumi.get(__ret__, 'option_value'),
+        rendered=pulumi.get(__ret__, 'rendered'))
 
 
 @_utilities.lift_output_func(get_network_dnsmasq_options_template)

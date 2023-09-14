@@ -7,10 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetNetworkDnsSrvTemplate(ctx *pulumi.Context, args *GetNetworkDnsSrvTemplateArgs, opts ...pulumi.InvokeOption) (*GetNetworkDnsSrvTemplateResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNetworkDnsSrvTemplateResult
 	err := ctx.Invoke("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", args, &rv, opts...)
 	if err != nil {
@@ -85,6 +88,12 @@ func (o GetNetworkDnsSrvTemplateResultOutput) ToGetNetworkDnsSrvTemplateResultOu
 
 func (o GetNetworkDnsSrvTemplateResultOutput) ToGetNetworkDnsSrvTemplateResultOutputWithContext(ctx context.Context) GetNetworkDnsSrvTemplateResultOutput {
 	return o
+}
+
+func (o GetNetworkDnsSrvTemplateResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNetworkDnsSrvTemplateResult] {
+	return pulumix.Output[GetNetworkDnsSrvTemplateResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetNetworkDnsSrvTemplateResultOutput) Domain() pulumi.StringPtrOutput {

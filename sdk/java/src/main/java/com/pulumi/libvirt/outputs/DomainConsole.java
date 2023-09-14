@@ -19,11 +19,19 @@ public final class DomainConsole {
     /**
      * @return Source path
      * 
+     * Additional attributes when type is &#34;tcp&#34;:
+     * 
      */
     private @Nullable String sourcePath;
     /**
      * @return Port number or a service name. Defaults to a
      * random port.
+     * 
+     * Note that you can repeat the `console` block to create more than one console.
+     * This works the same way as with the `disk` blocks (see above).
+     * 
+     * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+     * for more information.
      * 
      */
     private @Nullable String sourceService;
@@ -35,6 +43,8 @@ public final class DomainConsole {
     /**
      * @return for the first console and defaults to `serial`.
      * Subsequent `console` blocks must have a different type - usually `virtio`.
+     * 
+     * Additional attributes when type is &#34;pty&#34;:
      * 
      */
     private @Nullable String targetType;
@@ -55,6 +65,8 @@ public final class DomainConsole {
     /**
      * @return Source path
      * 
+     * Additional attributes when type is &#34;tcp&#34;:
+     * 
      */
     public Optional<String> sourcePath() {
         return Optional.ofNullable(this.sourcePath);
@@ -62,6 +74,12 @@ public final class DomainConsole {
     /**
      * @return Port number or a service name. Defaults to a
      * random port.
+     * 
+     * Note that you can repeat the `console` block to create more than one console.
+     * This works the same way as with the `disk` blocks (see above).
+     * 
+     * See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+     * for more information.
      * 
      */
     public Optional<String> sourceService() {
@@ -77,6 +95,8 @@ public final class DomainConsole {
     /**
      * @return for the first console and defaults to `serial`.
      * Subsequent `console` blocks must have a different type - usually `virtio`.
+     * 
+     * Additional attributes when type is &#34;pty&#34;:
      * 
      */
     public Optional<String> targetType() {

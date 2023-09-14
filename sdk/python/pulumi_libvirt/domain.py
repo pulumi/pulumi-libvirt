@@ -58,6 +58,29 @@ class DomainArgs:
                cloud-init won't cause the domain to be recreated, however the change will
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=libvirt_volume["kernel"]["id"],
+                   cmdlines=[{
+                       "arg1": "value1",
+                       "arg2": "value2",
+                       "_": "rw nosplash",
+                   }])
+               ```
+               
+               Kernel params that don't have a keyword identifier can be specified using the
+               special `"_"` keyword. Multiple keyword-less params have to be specified using
+               the same `"_"` keyword, like in the example above.
+               
+               Also note that the `cmd` block is actually a list of maps, so it is possible to
+               declare several of them by using either the literal list and map syntax as in
+               the following examples:
         :param pulumi.Input[str] coreos_ignition: The
                [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
                that is to be used by the CoreOS domain.
@@ -78,7 +101,29 @@ class DomainArgs:
                read-only.
         :param pulumi.Input[str] fw_cfg_name: The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
         :param pulumi.Input[str] initrd: The path of the initrd to boot.
+               
+               You can use it in the same way as the kernel.
         :param pulumi.Input[str] kernel: The path of the kernel to boot
+               
+               If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+               as they are local to the hypervisor.
+               
+               Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               kernel = libvirt.Volume("kernel",
+                   source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   pool="default",
+                   format="raw")
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=kernel.id)
+               # ...
+               ```
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -215,6 +260,29 @@ class DomainArgs:
     def cmdlines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]:
         """
         Arguments to the kernel
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        domain_suse = libvirt.Domain("domain-suse",
+            memory=1024,
+            vcpu=1,
+            kernel=libvirt_volume["kernel"]["id"],
+            cmdlines=[{
+                "arg1": "value1",
+                "arg2": "value2",
+                "_": "rw nosplash",
+            }])
+        ```
+
+        Kernel params that don't have a keyword identifier can be specified using the
+        special `"_"` keyword. Multiple keyword-less params have to be specified using
+        the same `"_"` keyword, like in the example above.
+
+        Also note that the `cmd` block is actually a list of maps, so it is possible to
+        declare several of them by using either the literal list and map syntax as in
+        the following examples:
         """
         return pulumi.get(self, "cmdlines")
 
@@ -352,6 +420,8 @@ class DomainArgs:
     def initrd(self) -> Optional[pulumi.Input[str]]:
         """
         The path of the initrd to boot.
+
+        You can use it in the same way as the kernel.
         """
         return pulumi.get(self, "initrd")
 
@@ -364,6 +434,26 @@ class DomainArgs:
     def kernel(self) -> Optional[pulumi.Input[str]]:
         """
         The path of the kernel to boot
+
+        If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+        as they are local to the hypervisor.
+
+        Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        kernel = libvirt.Volume("kernel",
+            source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+            pool="default",
+            format="raw")
+        domain_suse = libvirt.Domain("domain-suse",
+            memory=1024,
+            vcpu=1,
+            kernel=kernel.id)
+        # ...
+        ```
         """
         return pulumi.get(self, "kernel")
 
@@ -560,6 +650,29 @@ class _DomainState:
                cloud-init won't cause the domain to be recreated, however the change will
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=libvirt_volume["kernel"]["id"],
+                   cmdlines=[{
+                       "arg1": "value1",
+                       "arg2": "value2",
+                       "_": "rw nosplash",
+                   }])
+               ```
+               
+               Kernel params that don't have a keyword identifier can be specified using the
+               special `"_"` keyword. Multiple keyword-less params have to be specified using
+               the same `"_"` keyword, like in the example above.
+               
+               Also note that the `cmd` block is actually a list of maps, so it is possible to
+               declare several of them by using either the literal list and map syntax as in
+               the following examples:
         :param pulumi.Input[str] coreos_ignition: The
                [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
                that is to be used by the CoreOS domain.
@@ -580,7 +693,29 @@ class _DomainState:
                read-only.
         :param pulumi.Input[str] fw_cfg_name: The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
         :param pulumi.Input[str] initrd: The path of the initrd to boot.
+               
+               You can use it in the same way as the kernel.
         :param pulumi.Input[str] kernel: The path of the kernel to boot
+               
+               If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+               as they are local to the hypervisor.
+               
+               Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               kernel = libvirt.Volume("kernel",
+                   source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   pool="default",
+                   format="raw")
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=kernel.id)
+               # ...
+               ```
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -717,6 +852,29 @@ class _DomainState:
     def cmdlines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]:
         """
         Arguments to the kernel
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        domain_suse = libvirt.Domain("domain-suse",
+            memory=1024,
+            vcpu=1,
+            kernel=libvirt_volume["kernel"]["id"],
+            cmdlines=[{
+                "arg1": "value1",
+                "arg2": "value2",
+                "_": "rw nosplash",
+            }])
+        ```
+
+        Kernel params that don't have a keyword identifier can be specified using the
+        special `"_"` keyword. Multiple keyword-less params have to be specified using
+        the same `"_"` keyword, like in the example above.
+
+        Also note that the `cmd` block is actually a list of maps, so it is possible to
+        declare several of them by using either the literal list and map syntax as in
+        the following examples:
         """
         return pulumi.get(self, "cmdlines")
 
@@ -854,6 +1012,8 @@ class _DomainState:
     def initrd(self) -> Optional[pulumi.Input[str]]:
         """
         The path of the initrd to boot.
+
+        You can use it in the same way as the kernel.
         """
         return pulumi.get(self, "initrd")
 
@@ -866,6 +1026,26 @@ class _DomainState:
     def kernel(self) -> Optional[pulumi.Input[str]]:
         """
         The path of the kernel to boot
+
+        If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+        as they are local to the hypervisor.
+
+        Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        kernel = libvirt.Volume("kernel",
+            source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+            pool="default",
+            format="raw")
+        domain_suse = libvirt.Domain("domain-suse",
+            memory=1024,
+            vcpu=1,
+            kernel=kernel.id)
+        # ...
+        ```
         """
         return pulumi.get(self, "kernel")
 
@@ -1078,6 +1258,29 @@ class Domain(pulumi.CustomResource):
                cloud-init won't cause the domain to be recreated, however the change will
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=libvirt_volume["kernel"]["id"],
+                   cmdlines=[{
+                       "arg1": "value1",
+                       "arg2": "value2",
+                       "_": "rw nosplash",
+                   }])
+               ```
+               
+               Kernel params that don't have a keyword identifier can be specified using the
+               special `"_"` keyword. Multiple keyword-less params have to be specified using
+               the same `"_"` keyword, like in the example above.
+               
+               Also note that the `cmd` block is actually a list of maps, so it is possible to
+               declare several of them by using either the literal list and map syntax as in
+               the following examples:
         :param pulumi.Input[str] coreos_ignition: The
                [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
                that is to be used by the CoreOS domain.
@@ -1098,7 +1301,29 @@ class Domain(pulumi.CustomResource):
                read-only.
         :param pulumi.Input[str] fw_cfg_name: The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
         :param pulumi.Input[str] initrd: The path of the initrd to boot.
+               
+               You can use it in the same way as the kernel.
         :param pulumi.Input[str] kernel: The path of the kernel to boot
+               
+               If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+               as they are local to the hypervisor.
+               
+               Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               kernel = libvirt.Volume("kernel",
+                   source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   pool="default",
+                   format="raw")
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=kernel.id)
+               # ...
+               ```
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -1275,6 +1500,29 @@ class Domain(pulumi.CustomResource):
                cloud-init won't cause the domain to be recreated, however the change will
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=libvirt_volume["kernel"]["id"],
+                   cmdlines=[{
+                       "arg1": "value1",
+                       "arg2": "value2",
+                       "_": "rw nosplash",
+                   }])
+               ```
+               
+               Kernel params that don't have a keyword identifier can be specified using the
+               special `"_"` keyword. Multiple keyword-less params have to be specified using
+               the same `"_"` keyword, like in the example above.
+               
+               Also note that the `cmd` block is actually a list of maps, so it is possible to
+               declare several of them by using either the literal list and map syntax as in
+               the following examples:
         :param pulumi.Input[str] coreos_ignition: The
                [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
                that is to be used by the CoreOS domain.
@@ -1295,7 +1543,29 @@ class Domain(pulumi.CustomResource):
                read-only.
         :param pulumi.Input[str] fw_cfg_name: The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
         :param pulumi.Input[str] initrd: The path of the initrd to boot.
+               
+               You can use it in the same way as the kernel.
         :param pulumi.Input[str] kernel: The path of the kernel to boot
+               
+               If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+               as they are local to the hypervisor.
+               
+               Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               kernel = libvirt.Volume("kernel",
+                   source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   pool="default",
+                   format="raw")
+               domain_suse = libvirt.Domain("domain-suse",
+                   memory=1024,
+                   vcpu=1,
+                   kernel=kernel.id)
+               # ...
+               ```
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -1392,6 +1662,29 @@ class Domain(pulumi.CustomResource):
     def cmdlines(self) -> pulumi.Output[Optional[Sequence[Mapping[str, Any]]]]:
         """
         Arguments to the kernel
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        domain_suse = libvirt.Domain("domain-suse",
+            memory=1024,
+            vcpu=1,
+            kernel=libvirt_volume["kernel"]["id"],
+            cmdlines=[{
+                "arg1": "value1",
+                "arg2": "value2",
+                "_": "rw nosplash",
+            }])
+        ```
+
+        Kernel params that don't have a keyword identifier can be specified using the
+        special `"_"` keyword. Multiple keyword-less params have to be specified using
+        the same `"_"` keyword, like in the example above.
+
+        Also note that the `cmd` block is actually a list of maps, so it is possible to
+        declare several of them by using either the literal list and map syntax as in
+        the following examples:
         """
         return pulumi.get(self, "cmdlines")
 
@@ -1485,6 +1778,8 @@ class Domain(pulumi.CustomResource):
     def initrd(self) -> pulumi.Output[Optional[str]]:
         """
         The path of the initrd to boot.
+
+        You can use it in the same way as the kernel.
         """
         return pulumi.get(self, "initrd")
 
@@ -1493,6 +1788,26 @@ class Domain(pulumi.CustomResource):
     def kernel(self) -> pulumi.Output[Optional[str]]:
         """
         The path of the kernel to boot
+
+        If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
+        as they are local to the hypervisor.
+
+        Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        kernel = libvirt.Volume("kernel",
+            source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+            pool="default",
+            format="raw")
+        domain_suse = libvirt.Domain("domain-suse",
+            memory=1024,
+            vcpu=1,
+            kernel=kernel.id)
+        # ...
+        ```
         """
         return pulumi.get(self, "kernel")
 

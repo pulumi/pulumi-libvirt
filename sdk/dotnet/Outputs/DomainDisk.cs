@@ -14,7 +14,9 @@ namespace Pulumi.Libvirt.Outputs
     public sealed class DomainDisk
     {
         /// <summary>
-        /// The path to the host device to use as the block device for this disk.
+        /// The path to the host device to use as the block device for this disk. 
+        /// 
+        /// While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         /// </summary>
         public readonly string? BlockDevice;
         /// <summary>
@@ -37,6 +39,56 @@ namespace Pulumi.Libvirt.Outputs
         /// <summary>
         /// Specify a WWN to use for the disk if the disk is using
         /// a scsi controller, if not specified then a random wwn is generated for the disk
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var leap = new Libvirt.Volume("leap", new()
+        ///     {
+        ///         Source = "http://someurl/openSUSE_Leap-42.1.qcow2",
+        ///     });
+        /// 
+        ///     var mydisk = new Libvirt.Volume("mydisk", new()
+        ///     {
+        ///         BaseVolumeId = leap.Id,
+        ///     });
+        /// 
+        ///     var domain1 = new Libvirt.Domain("domain1", new()
+        ///     {
+        ///         Disks = new[]
+        ///         {
+        ///             new Libvirt.Inputs.DomainDiskArgs
+        ///             {
+        ///                 VolumeId = mydisk.Id,
+        ///                 Scsi = true,
+        ///             },
+        ///             new Libvirt.Inputs.DomainDiskArgs
+        ///             {
+        ///                 Url = "http://foo.com/install.iso",
+        ///             },
+        ///             new Libvirt.Inputs.DomainDiskArgs
+        ///             {
+        ///                 File = "/absolute/path/to/disk.iso",
+        ///             },
+        ///             new Libvirt.Inputs.DomainDiskArgs
+        ///             {
+        ///                 BlockDevice = "/dev/mapper/36005076802810e55400000000000145f",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Also note that the `disk` block is actually a list of maps, so it is possible to
+        /// declare several of them by using either the literal list and map syntax as in
+        /// the following examples:
         /// </summary>
         public readonly string? Wwn;
 

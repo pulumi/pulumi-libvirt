@@ -87,10 +87,20 @@ class DomainConsole(dict):
         :param str type: the type of graphics emulation (default is "spice")
         :param str source_host: IP address to listen on. Defaults to 127.0.0.1.
         :param str source_path: Source path
+               
+               Additional attributes when type is "tcp":
         :param str source_service: Port number or a service name. Defaults to a
                random port.
+               
+               Note that you can repeat the `console` block to create more than one console.
+               This works the same way as with the `disk` blocks (see above).
+               
+               See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+               for more information.
         :param str target_type: for the first console and defaults to `serial`.
                Subsequent `console` blocks must have a different type - usually `virtio`.
+               
+               Additional attributes when type is "pty":
         """
         pulumi.set(__self__, "target_port", target_port)
         pulumi.set(__self__, "type", type)
@@ -132,6 +142,8 @@ class DomainConsole(dict):
     def source_path(self) -> Optional[str]:
         """
         Source path
+
+        Additional attributes when type is "tcp":
         """
         return pulumi.get(self, "source_path")
 
@@ -141,6 +153,12 @@ class DomainConsole(dict):
         """
         Port number or a service name. Defaults to a
         random port.
+
+        Note that you can repeat the `console` block to create more than one console.
+        This works the same way as with the `disk` blocks (see above).
+
+        See [libvirt Domain XML Console element](https://libvirt.org/formatdomain.html#elementsConsole)
+        for more information.
         """
         return pulumi.get(self, "source_service")
 
@@ -150,6 +168,8 @@ class DomainConsole(dict):
         """
         for the first console and defaults to `serial`.
         Subsequent `console` blocks must have a different type - usually `virtio`.
+
+        Additional attributes when type is "pty":
         """
         return pulumi.get(self, "target_type")
 
@@ -196,7 +216,9 @@ class DomainDisk(dict):
                  volume_id: Optional[str] = None,
                  wwn: Optional[str] = None):
         """
-        :param str block_device: The path to the host device to use as the block device for this disk.
+        :param str block_device: The path to the host device to use as the block device for this disk. 
+               
+               While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         :param str file: The filename to use as the block device for this disk (read-only)
         :param bool scsi: Use a scsi controller for this disk.  The controller
                model is set to `virtio-scsi`
@@ -204,6 +226,34 @@ class DomainDisk(dict):
         :param str volume_id: The volume id to use for this disk.
         :param str wwn: Specify a WWN to use for the disk if the disk is using
                a scsi controller, if not specified then a random wwn is generated for the disk
+               
+               
+               ```python
+               import pulumi
+               import pulumi_libvirt as libvirt
+               
+               leap = libvirt.Volume("leap", source="http://someurl/openSUSE_Leap-42.1.qcow2")
+               mydisk = libvirt.Volume("mydisk", base_volume_id=leap.id)
+               domain1 = libvirt.Domain("domain1", disks=[
+                   libvirt.DomainDiskArgs(
+                       volume_id=mydisk.id,
+                       scsi=True,
+                   ),
+                   libvirt.DomainDiskArgs(
+                       url="http://foo.com/install.iso",
+                   ),
+                   libvirt.DomainDiskArgs(
+                       file="/absolute/path/to/disk.iso",
+                   ),
+                   libvirt.DomainDiskArgs(
+                       block_device="/dev/mapper/36005076802810e55400000000000145f",
+                   ),
+               ])
+               ```
+               
+               Also note that the `disk` block is actually a list of maps, so it is possible to
+               declare several of them by using either the literal list and map syntax as in
+               the following examples:
         """
         if block_device is not None:
             pulumi.set(__self__, "block_device", block_device)
@@ -222,7 +272,9 @@ class DomainDisk(dict):
     @pulumi.getter(name="blockDevice")
     def block_device(self) -> Optional[str]:
         """
-        The path to the host device to use as the block device for this disk.
+        The path to the host device to use as the block device for this disk. 
+
+        While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         """
         return pulumi.get(self, "block_device")
 
@@ -265,6 +317,34 @@ class DomainDisk(dict):
         """
         Specify a WWN to use for the disk if the disk is using
         a scsi controller, if not specified then a random wwn is generated for the disk
+
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        leap = libvirt.Volume("leap", source="http://someurl/openSUSE_Leap-42.1.qcow2")
+        mydisk = libvirt.Volume("mydisk", base_volume_id=leap.id)
+        domain1 = libvirt.Domain("domain1", disks=[
+            libvirt.DomainDiskArgs(
+                volume_id=mydisk.id,
+                scsi=True,
+            ),
+            libvirt.DomainDiskArgs(
+                url="http://foo.com/install.iso",
+            ),
+            libvirt.DomainDiskArgs(
+                file="/absolute/path/to/disk.iso",
+            ),
+            libvirt.DomainDiskArgs(
+                block_device="/dev/mapper/36005076802810e55400000000000145f",
+            ),
+        ])
+        ```
+
+        Also note that the `disk` block is actually a list of maps, so it is possible to
+        declare several of them by using either the literal list and map syntax as in
+        the following examples:
         """
         return pulumi.get(self, "wwn")
 
@@ -284,6 +364,17 @@ class DomainFilesystem(dict):
                the `mapped` mode is chosen.
         :param bool readonly: enables exporting filesystem as a readonly mount for guest, by
                default read-only access is given.
+               
+               Example:
+               
+               ```python
+               import pulumi
+               ```
+               
+               The exported filesystems can be mounted inside of the guest in this way:
+               
+               
+               This can be automated inside of `/etc/fstab`:
         """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
@@ -324,6 +415,17 @@ class DomainFilesystem(dict):
         """
         enables exporting filesystem as a readonly mount for guest, by
         default read-only access is given.
+
+        Example:
+
+        ```python
+        import pulumi
+        ```
+
+        The exported filesystems can be mounted inside of the guest in this way:
+
+
+        This can be automated inside of `/etc/fstab`:
         """
         return pulumi.get(self, "readonly")
 
@@ -362,6 +464,22 @@ class DomainGraphics(dict):
         :param str listen_type: "listen type", defaults to "none"
         :param str type: the type of graphics emulation (default is "spice")
         :param int websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+               
+               On occasion we have found it necessary to set a `type` of `vnc` and a
+               `listen_type` of `address` with certain builds of QEMU.
+               
+               With `listen_address` it is possible to specify a listener address for the virtual
+               machines VNC server. Usually this is an IP of the host system.
+               
+               The `graphics` block will look as follows:
+               
+               
+               The video card type can be changed from libvirt default `cirrus` to
+               `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+               
+               
+               > **Note well:** the `graphics` block is ignored for the architectures
+               `s390x` and `ppc64`.
         """
         if autoport is not None:
             pulumi.set(__self__, "autoport", autoport)
@@ -412,6 +530,22 @@ class DomainGraphics(dict):
     def websocket(self) -> Optional[int]:
         """
         Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
+
+        On occasion we have found it necessary to set a `type` of `vnc` and a
+        `listen_type` of `address` with certain builds of QEMU.
+
+        With `listen_address` it is possible to specify a listener address for the virtual
+        machines VNC server. Usually this is an IP of the host system.
+
+        The `graphics` block will look as follows:
+
+
+        The video card type can be changed from libvirt default `cirrus` to
+        `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
+
+
+        > **Note well:** the `graphics` block is ignored for the architectures
+        `s390x` and `ppc64`.
         """
         return pulumi.get(self, "websocket")
 
@@ -470,6 +604,13 @@ class DomainNetworkInterface(dict):
                sent to the VF/IF of the configured network device. Depending on the
                capabilities of the device additional prerequisites or limitations may apply;
                for example, on Linux this requires kernel 2.6.38 or newer.
+               
+               Example of a `macvtap` interface:
+               
+               
+               **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+               must be installed and running inside of the domain in order to discover the IP
+               addresses of all the network interfaces attached to a LAN.
         :param str vepa: All VMs' packets are sent to the external bridge. Packets whose
                destination is a VM on the same host as where the packet originates from are
                sent back to the host by the VEPA capable bridge (today's bridges are
@@ -477,6 +618,8 @@ class DomainNetworkInterface(dict):
         :param bool wait_for_lease: When creating the domain resource, wait until the
                network interface gets a DHCP lease from libvirt, so that the computed IP
                addresses will be available when the domain is up and the plan applied.
+               
+               When connecting to a LAN, users can specify a target device with:
         """
         if addresses is not None:
             pulumi.set(__self__, "addresses", addresses)
@@ -567,6 +710,13 @@ class DomainNetworkInterface(dict):
         sent to the VF/IF of the configured network device. Depending on the
         capabilities of the device additional prerequisites or limitations may apply;
         for example, on Linux this requires kernel 2.6.38 or newer.
+
+        Example of a `macvtap` interface:
+
+
+        **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
+        must be installed and running inside of the domain in order to discover the IP
+        addresses of all the network interfaces attached to a LAN.
         """
         return pulumi.get(self, "passthrough")
 
@@ -588,6 +738,8 @@ class DomainNetworkInterface(dict):
         When creating the domain resource, wait until the
         network interface gets a DHCP lease from libvirt, so that the computed IP
         addresses will be available when the domain is up and the plan applied.
+
+        When connecting to a LAN, users can specify a target device with:
         """
         return pulumi.get(self, "wait_for_lease")
 
@@ -605,6 +757,22 @@ class DomainNvram(dict):
                In that case, `libvirt` will copy that variables file into a file specific for this domain.
         :param str template: path to the file used to override variables from the master NVRAM
                store.
+               
+               So you should typically use the firmware as this,
+               
+               
+               and `/etc/libvirt/qemu.conf` should contain:
+               
+               ```python
+               import pulumi
+               ```
+               
+               In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+               look like this:
+               
+               
+               Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+               coming from a template, the domain definition should look like this:
         """
         pulumi.set(__self__, "file", file)
         if template is not None:
@@ -628,6 +796,22 @@ class DomainNvram(dict):
         """
         path to the file used to override variables from the master NVRAM
         store.
+
+        So you should typically use the firmware as this,
+
+
+        and `/etc/libvirt/qemu.conf` should contain:
+
+        ```python
+        import pulumi
+        ```
+
+        In case you need (or want) to specify the path for the NVRAM store, the domain definition should
+        look like this:
+
+
+        Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
+        coming from a template, the domain definition should look like this:
         """
         return pulumi.get(self, "template")
 
@@ -668,9 +852,13 @@ class DomainTpm(dict):
                  model: Optional[str] = None):
         """
         :param str backend_device_path: Path to TPM device on the host, ex: `/dev/tpm0`
+               
+               Additional attributes when `backend_type` is "emulator":
         :param str backend_encryption_secret: [Secret object](https://libvirt.org/formatsecret.html) for encrypting the TPM state
         :param bool backend_persistent_state: Keep the TPM state when a transient domain is powered off or undefined
         :param str backend_type: TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+               
+               Additional attributes when `backend_type` is "passthrough":
         :param str backend_version: TPM version
         :param str model: TPM model provided to the guest
         """
@@ -692,6 +880,8 @@ class DomainTpm(dict):
     def backend_device_path(self) -> Optional[str]:
         """
         Path to TPM device on the host, ex: `/dev/tpm0`
+
+        Additional attributes when `backend_type` is "emulator":
         """
         return pulumi.get(self, "backend_device_path")
 
@@ -716,6 +906,8 @@ class DomainTpm(dict):
     def backend_type(self) -> Optional[str]:
         """
         TPM backend, either `passthrough` or `emulator` (default: `emulator`)
+
+        Additional attributes when `backend_type` is "passthrough":
         """
         return pulumi.get(self, "backend_type")
 
@@ -817,6 +1009,11 @@ class NetworkDns(dict):
         :param Sequence['NetworkDnsForwarderArgs'] forwarders: Either `address`, `domain`, or both must be set
         :param Sequence['NetworkDnsHostArgs'] hosts: a DNS host entry block. You can have one or more of these
                blocks in your DNS definition. You must specify both `ip` and `hostname`.
+               
+               An advanced example of round-robin DNS (using DNS host templates) follows:
+               
+               
+               An advanced example of setting up multiple SRV records using DNS SRV templates is:
         :param bool local_only: true/false: true means 'do not forward unresolved requests for this domain to the part DNS server
         :param Sequence['NetworkDnsSrvArgs'] srvs: a DNS SRV entry block. You can have one or more of these blocks
                in your DNS definition. You must specify `service` and `protocol`.
@@ -854,6 +1051,11 @@ class NetworkDns(dict):
         """
         a DNS host entry block. You can have one or more of these
         blocks in your DNS definition. You must specify both `ip` and `hostname`.
+
+        An advanced example of round-robin DNS (using DNS host templates) follows:
+
+
+        An advanced example of setting up multiple SRV records using DNS SRV templates is:
         """
         return pulumi.get(self, "hosts")
 
@@ -997,6 +1199,8 @@ class NetworkDnsmasqOptions(dict):
         """
         :param Sequence['NetworkDnsmasqOptionsOptionArgs'] options: a Dnsmasq option entry block. You can have one or more of these
                blocks in your definition. You must specify both `option_name` and `option_value`.
+               
+               An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
         """
         if options is not None:
             pulumi.set(__self__, "options", options)
@@ -1007,6 +1211,8 @@ class NetworkDnsmasqOptions(dict):
         """
         a Dnsmasq option entry block. You can have one or more of these
         blocks in your definition. You must specify both `option_name` and `option_value`.
+
+        An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
         """
         return pulumi.get(self, "options")
 
