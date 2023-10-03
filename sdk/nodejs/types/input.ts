@@ -43,7 +43,7 @@ export interface DomainConsole {
      */
     targetType?: pulumi.Input<string>;
     /**
-     * the type of graphics emulation (default is "spice")
+     * Console device type. Valid values are "pty" and "tcp".
      */
     type: pulumi.Input<string>;
 }
@@ -159,7 +159,7 @@ export interface DomainGraphics {
      */
     listenType?: pulumi.Input<string>;
     /**
-     * the type of graphics emulation (default is "spice")
+     * Console device type. Valid values are "pty" and "tcp".
      */
     type?: pulumi.Input<string>;
     /**
@@ -250,11 +250,7 @@ export interface DomainNetworkInterface {
 
 export interface DomainNvram {
     /**
-     * path to the file backing the NVRAM store for non-volatile variables. When provided,
-     * this file must be writable and specific to this domain, as it will be updated when running the
-     * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
-     * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
-     * In that case, `libvirt` will copy that variables file into a file specific for this domain.
+     * The filename to use as the block device for this disk (read-only)
      */
     file: pulumi.Input<string>;
     /**
@@ -313,7 +309,7 @@ export interface DomainTpm {
 
 export interface DomainVideo {
     /**
-     * the type of graphics emulation (default is "spice")
+     * Console device type. Valid values are "pty" and "tcp".
      */
     type?: pulumi.Input<string>;
 }
