@@ -13,7 +13,7 @@ namespace Pulumi.Libvirt.Inputs
     public sealed class DomainVideoGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// the type of graphics emulation (default is "spice")
+        /// Console device type. Valid values are "pty" and "tcp".
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -115,14 +115,14 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * the type of graphics emulation (default is &#34;spice&#34;)
+     * Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return the type of graphics emulation (default is &#34;spice&#34;)
+     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
     public Output<String> type() {
@@ -288,7 +288,7 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type the type of graphics emulation (default is &#34;spice&#34;)
+         * @param type Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
          * 
          * @return builder
          * 
@@ -299,7 +299,7 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type the type of graphics emulation (default is &#34;spice&#34;)
+         * @param type Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
          * 
          * @return builder
          * 

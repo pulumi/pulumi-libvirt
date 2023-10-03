@@ -46,7 +46,7 @@ namespace Pulumi.Libvirt.Outputs
         /// </summary>
         public readonly string? TargetType;
         /// <summary>
-        /// the type of graphics emulation (default is "spice")
+        /// Console device type. Valid values are "pty" and "tcp".
         /// </summary>
         public readonly string Type;
 

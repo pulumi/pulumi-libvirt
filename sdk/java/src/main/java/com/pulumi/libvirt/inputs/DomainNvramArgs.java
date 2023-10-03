@@ -16,22 +16,14 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
     public static final DomainNvramArgs Empty = new DomainNvramArgs();
 
     /**
-     * path to the file backing the NVRAM store for non-volatile variables. When provided,
-     * this file must be writable and specific to this domain, as it will be updated when running the
-     * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
-     * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
-     * In that case, `libvirt` will copy that variables file into a file specific for this domain.
+     * The filename to use as the block device for this disk (read-only)
      * 
      */
     @Import(name="file", required=true)
     private Output<String> file;
 
     /**
-     * @return path to the file backing the NVRAM store for non-volatile variables. When provided,
-     * this file must be writable and specific to this domain, as it will be updated when running the
-     * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
-     * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
-     * In that case, `libvirt` will copy that variables file into a file specific for this domain.
+     * @return The filename to use as the block device for this disk (read-only)
      * 
      */
     public Output<String> file() {
@@ -145,11 +137,7 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param file path to the file backing the NVRAM store for non-volatile variables. When provided,
-         * this file must be writable and specific to this domain, as it will be updated when running the
-         * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
-         * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
-         * In that case, `libvirt` will copy that variables file into a file specific for this domain.
+         * @param file The filename to use as the block device for this disk (read-only)
          * 
          * @return builder
          * 
@@ -160,11 +148,7 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param file path to the file backing the NVRAM store for non-volatile variables. When provided,
-         * this file must be writable and specific to this domain, as it will be updated when running the
-         * domain. However, `libvirt` can  manage this automatically (and this is the recommended solution)
-         * if a mapping for the firmware to a _variables file_ exists in `/etc/libvirt/qemu.conf:nvram`.
-         * In that case, `libvirt` will copy that variables file into a file specific for this domain.
+         * @param file The filename to use as the block device for this disk (read-only)
          * 
          * @return builder
          * 
