@@ -1,0 +1,7 @@
+provider: libvirt
+setup-script: testing/setup.sh
+major-version: 1
+env:
+  LIBVIRT_DEFAULT_URI: "lxc://"
+makeTemplate: bridged
+team: ecosystem
