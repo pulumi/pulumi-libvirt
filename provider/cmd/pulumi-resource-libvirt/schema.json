@@ -460,7 +460,7 @@
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption"
                     },
-                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify both `option_name` and `option_value`.\n\nAn example of setting Dnsmasq options (using Dnsmasq option templates) follows:\n\n"
+                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify `option_name` while `option_value` is\noptional to support value-less options.\n\nAn example of setting Dnsmasq options (using Dnsmasq option templates) follows:\n\n"
                 }
             },
             "type": "object"
@@ -1699,8 +1699,7 @@
                 },
                 "type": "object",
                 "required": [
-                    "optionName",
-                    "optionValue"
+                    "optionName"
                 ]
             },
             "outputs": {
@@ -1726,7 +1725,6 @@
                 "type": "object",
                 "required": [
                     "optionName",
-                    "optionValue",
                     "rendered",
                     "id"
                 ]
