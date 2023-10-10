@@ -13,7 +13,8 @@ import javax.annotation.Nullable;
 public final class NetworkDnsmasqOptions {
     /**
      * @return a Dnsmasq option entry block. You can have one or more of these
-     * blocks in your definition. You must specify both `option_name` and `option_value`.
+     * blocks in your definition. You must specify `option_name` while `option_value` is
+     * optional to support value-less options.
      * 
      * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
      * 
@@ -23,7 +24,8 @@ public final class NetworkDnsmasqOptions {
     private NetworkDnsmasqOptions() {}
     /**
      * @return a Dnsmasq option entry block. You can have one or more of these
-     * blocks in your definition. You must specify both `option_name` and `option_value`.
+     * blocks in your definition. You must specify `option_name` while `option_value` is
+     * optional to support value-less options.
      * 
      * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
      * 

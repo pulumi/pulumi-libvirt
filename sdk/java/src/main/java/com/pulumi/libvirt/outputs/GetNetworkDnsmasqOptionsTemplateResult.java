@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNetworkDnsmasqOptionsTemplateResult {
@@ -16,7 +18,7 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
      */
     private String id;
     private String optionName;
-    private String optionValue;
+    private @Nullable String optionValue;
     private Map<String,String> rendered;
 
     private GetNetworkDnsmasqOptionsTemplateResult() {}
@@ -30,8 +32,8 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
     public String optionName() {
         return this.optionName;
     }
-    public String optionValue() {
-        return this.optionValue;
+    public Optional<String> optionValue() {
+        return Optional.ofNullable(this.optionValue);
     }
     public Map<String,String> rendered() {
         return this.rendered;
@@ -48,7 +50,7 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
     public static final class Builder {
         private String id;
         private String optionName;
-        private String optionValue;
+        private @Nullable String optionValue;
         private Map<String,String> rendered;
         public Builder() {}
         public Builder(GetNetworkDnsmasqOptionsTemplateResult defaults) {
@@ -70,8 +72,8 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
             return this;
         }
         @CustomType.Setter
-        public Builder optionValue(String optionValue) {
-            this.optionValue = Objects.requireNonNull(optionValue);
+        public Builder optionValue(@Nullable String optionValue) {
+            this.optionValue = optionValue;
             return this;
         }
         @CustomType.Setter

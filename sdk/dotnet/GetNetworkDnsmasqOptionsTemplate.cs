@@ -24,8 +24,8 @@ namespace Pulumi.Libvirt
         [Input("optionName", required: true)]
         public string OptionName { get; set; } = null!;
 
-        [Input("optionValue", required: true)]
-        public string OptionValue { get; set; } = null!;
+        [Input("optionValue")]
+        public string? OptionValue { get; set; }
 
         public GetNetworkDnsmasqOptionsTemplateArgs()
         {
@@ -38,8 +38,8 @@ namespace Pulumi.Libvirt
         [Input("optionName", required: true)]
         public Input<string> OptionName { get; set; } = null!;
 
-        [Input("optionValue", required: true)]
-        public Input<string> OptionValue { get; set; } = null!;
+        [Input("optionValue")]
+        public Input<string>? OptionValue { get; set; }
 
         public GetNetworkDnsmasqOptionsTemplateInvokeArgs()
         {
@@ -56,7 +56,7 @@ namespace Pulumi.Libvirt
         /// </summary>
         public readonly string Id;
         public readonly string OptionName;
-        public readonly string OptionValue;
+        public readonly string? OptionValue;
         public readonly ImmutableDictionary<string, string> Rendered;
 
         [OutputConstructor]
@@ -65,7 +65,7 @@ namespace Pulumi.Libvirt
 
             string optionName,
 
-            string optionValue,
+            string? optionValue,
 
             ImmutableDictionary<string, string> rendered)
         {

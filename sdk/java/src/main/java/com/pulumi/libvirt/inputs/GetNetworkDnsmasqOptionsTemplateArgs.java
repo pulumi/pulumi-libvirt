@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetNetworkDnsmasqOptionsTemplateArgs extends com.pulumi.resources.InvokeArgs {
@@ -20,11 +22,11 @@ public final class GetNetworkDnsmasqOptionsTemplateArgs extends com.pulumi.resou
         return this.optionName;
     }
 
-    @Import(name="optionValue", required=true)
-    private Output<String> optionValue;
+    @Import(name="optionValue")
+    private @Nullable Output<String> optionValue;
 
-    public Output<String> optionValue() {
-        return this.optionValue;
+    public Optional<Output<String>> optionValue() {
+        return Optional.ofNullable(this.optionValue);
     }
 
     private GetNetworkDnsmasqOptionsTemplateArgs() {}
@@ -61,7 +63,7 @@ public final class GetNetworkDnsmasqOptionsTemplateArgs extends com.pulumi.resou
             return optionName(Output.of(optionName));
         }
 
-        public Builder optionValue(Output<String> optionValue) {
+        public Builder optionValue(@Nullable Output<String> optionValue) {
             $.optionValue = optionValue;
             return this;
         }
@@ -72,7 +74,6 @@ public final class GetNetworkDnsmasqOptionsTemplateArgs extends com.pulumi.resou
 
         public GetNetworkDnsmasqOptionsTemplateArgs build() {
             $.optionName = Objects.requireNonNull($.optionName, "expected parameter 'optionName' to be non-null");
-            $.optionValue = Objects.requireNonNull($.optionValue, "expected parameter 'optionValue' to be non-null");
             return $;
         }
     }

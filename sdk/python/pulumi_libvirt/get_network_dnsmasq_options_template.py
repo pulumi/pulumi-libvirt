@@ -50,7 +50,7 @@ class GetNetworkDnsmasqOptionsTemplateResult:
 
     @property
     @pulumi.getter(name="optionValue")
-    def option_value(self) -> str:
+    def option_value(self) -> Optional[str]:
         return pulumi.get(self, "option_value")
 
     @property
@@ -92,7 +92,7 @@ def get_network_dnsmasq_options_template(option_name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_network_dnsmasq_options_template)
 def get_network_dnsmasq_options_template_output(option_name: Optional[pulumi.Input[str]] = None,
-                                                option_value: Optional[pulumi.Input[str]] = None,
+                                                option_value: Optional[pulumi.Input[Optional[str]]] = None,
                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsmasqOptionsTemplateResult]:
     """
     Use this data source to access information about an existing resource.
