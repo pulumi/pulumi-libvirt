@@ -3324,7 +3324,8 @@ func (o NetworkDnsSrvArrayOutput) Index(i pulumi.IntInput) NetworkDnsSrvOutput {
 
 type NetworkDnsmasqOptions struct {
 	// a Dnsmasq option entry block. You can have one or more of these
-	// blocks in your definition. You must specify both `optionName` and `optionValue`.
+	// blocks in your definition. You must specify `optionName` while `optionValue` is
+	// optional to support value-less options.
 	//
 	// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 	Options []NetworkDnsmasqOptionsOption `pulumi:"options"`
@@ -3343,7 +3344,8 @@ type NetworkDnsmasqOptionsInput interface {
 
 type NetworkDnsmasqOptionsArgs struct {
 	// a Dnsmasq option entry block. You can have one or more of these
-	// blocks in your definition. You must specify both `optionName` and `optionValue`.
+	// blocks in your definition. You must specify `optionName` while `optionValue` is
+	// optional to support value-less options.
 	//
 	// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 	Options NetworkDnsmasqOptionsOptionArrayInput `pulumi:"options"`
@@ -3445,7 +3447,8 @@ func (o NetworkDnsmasqOptionsOutput) ToOutput(ctx context.Context) pulumix.Outpu
 }
 
 // a Dnsmasq option entry block. You can have one or more of these
-// blocks in your definition. You must specify both `optionName` and `optionValue`.
+// blocks in your definition. You must specify `optionName` while `optionValue` is
+// optional to support value-less options.
 //
 // An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 func (o NetworkDnsmasqOptionsOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
@@ -3483,7 +3486,8 @@ func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
 }
 
 // a Dnsmasq option entry block. You can have one or more of these
-// blocks in your definition. You must specify both `optionName` and `optionValue`.
+// blocks in your definition. You must specify `optionName` while `optionValue` is
+// optional to support value-less options.
 //
 // An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 func (o NetworkDnsmasqOptionsPtrOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {

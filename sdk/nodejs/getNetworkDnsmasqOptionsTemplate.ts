@@ -18,7 +18,7 @@ export function getNetworkDnsmasqOptionsTemplate(args: GetNetworkDnsmasqOptionsT
  */
 export interface GetNetworkDnsmasqOptionsTemplateArgs {
     optionName: string;
-    optionValue: string;
+    optionValue?: string;
 }
 
 /**
@@ -30,7 +30,7 @@ export interface GetNetworkDnsmasqOptionsTemplateResult {
      */
     readonly id: string;
     readonly optionName: string;
-    readonly optionValue: string;
+    readonly optionValue?: string;
     readonly rendered: {[key: string]: string};
 }
 export function getNetworkDnsmasqOptionsTemplateOutput(args: GetNetworkDnsmasqOptionsTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsmasqOptionsTemplateResult> {
@@ -42,5 +42,5 @@ export function getNetworkDnsmasqOptionsTemplateOutput(args: GetNetworkDnsmasqOp
  */
 export interface GetNetworkDnsmasqOptionsTemplateOutputArgs {
     optionName: pulumi.Input<string>;
-    optionValue: pulumi.Input<string>;
+    optionValue?: pulumi.Input<string>;
 }

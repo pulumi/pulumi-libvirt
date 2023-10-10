@@ -384,7 +384,8 @@ export interface NetworkDnsSrv {
 export interface NetworkDnsmasqOptions {
     /**
      * a Dnsmasq option entry block. You can have one or more of these
-     * blocks in your definition. You must specify both `optionName` and `optionValue`.
+     * blocks in your definition. You must specify `optionName` while `optionValue` is
+     * optional to support value-less options.
      *
      * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
      */
