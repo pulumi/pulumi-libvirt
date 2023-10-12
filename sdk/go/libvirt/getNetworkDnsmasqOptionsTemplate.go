@@ -24,8 +24,8 @@ func GetNetworkDnsmasqOptionsTemplate(ctx *pulumi.Context, args *GetNetworkDnsma
 
 // A collection of arguments for invoking getNetworkDnsmasqOptionsTemplate.
 type GetNetworkDnsmasqOptionsTemplateArgs struct {
-	OptionName  string `pulumi:"optionName"`
-	OptionValue string `pulumi:"optionValue"`
+	OptionName  string  `pulumi:"optionName"`
+	OptionValue *string `pulumi:"optionValue"`
 }
 
 // A collection of values returned by getNetworkDnsmasqOptionsTemplate.
@@ -33,7 +33,7 @@ type GetNetworkDnsmasqOptionsTemplateResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id          string            `pulumi:"id"`
 	OptionName  string            `pulumi:"optionName"`
-	OptionValue string            `pulumi:"optionValue"`
+	OptionValue *string           `pulumi:"optionValue"`
 	Rendered    map[string]string `pulumi:"rendered"`
 }
 
@@ -52,8 +52,8 @@ func GetNetworkDnsmasqOptionsTemplateOutput(ctx *pulumi.Context, args GetNetwork
 
 // A collection of arguments for invoking getNetworkDnsmasqOptionsTemplate.
 type GetNetworkDnsmasqOptionsTemplateOutputArgs struct {
-	OptionName  pulumi.StringInput `pulumi:"optionName"`
-	OptionValue pulumi.StringInput `pulumi:"optionValue"`
+	OptionName  pulumi.StringInput    `pulumi:"optionName"`
+	OptionValue pulumi.StringPtrInput `pulumi:"optionValue"`
 }
 
 func (GetNetworkDnsmasqOptionsTemplateOutputArgs) ElementType() reflect.Type {
@@ -90,8 +90,8 @@ func (o GetNetworkDnsmasqOptionsTemplateResultOutput) OptionName() pulumi.String
 	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) string { return v.OptionName }).(pulumi.StringOutput)
 }
 
-func (o GetNetworkDnsmasqOptionsTemplateResultOutput) OptionValue() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) string { return v.OptionValue }).(pulumi.StringOutput)
+func (o GetNetworkDnsmasqOptionsTemplateResultOutput) OptionValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNetworkDnsmasqOptionsTemplateResult) *string { return v.OptionValue }).(pulumi.StringPtrOutput)
 }
 
 func (o GetNetworkDnsmasqOptionsTemplateResultOutput) Rendered() pulumi.StringMapOutput {
