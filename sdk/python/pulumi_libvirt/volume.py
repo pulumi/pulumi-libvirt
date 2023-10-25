@@ -62,7 +62,15 @@ class VolumeArgs:
              size: Optional[pulumi.Input[int]] = None,
              source: Optional[pulumi.Input[str]] = None,
              xml: Optional[pulumi.Input['VolumeXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if base_volume_id is None and 'baseVolumeId' in kwargs:
+            base_volume_id = kwargs['baseVolumeId']
+        if base_volume_name is None and 'baseVolumeName' in kwargs:
+            base_volume_name = kwargs['baseVolumeName']
+        if base_volume_pool is None and 'baseVolumePool' in kwargs:
+            base_volume_pool = kwargs['baseVolumePool']
+
         if base_volume_id is not None:
             _setter("base_volume_id", base_volume_id)
         if base_volume_name is not None:
@@ -233,7 +241,15 @@ class _VolumeState:
              size: Optional[pulumi.Input[int]] = None,
              source: Optional[pulumi.Input[str]] = None,
              xml: Optional[pulumi.Input['VolumeXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if base_volume_id is None and 'baseVolumeId' in kwargs:
+            base_volume_id = kwargs['baseVolumeId']
+        if base_volume_name is None and 'baseVolumeName' in kwargs:
+            base_volume_name = kwargs['baseVolumeName']
+        if base_volume_pool is None and 'baseVolumePool' in kwargs:
+            base_volume_pool = kwargs['baseVolumePool']
+
         if base_volume_id is not None:
             _setter("base_volume_id", base_volume_id)
         if base_volume_name is not None:
@@ -486,11 +502,7 @@ class Volume(pulumi.CustomResource):
             __props__.__dict__["pool"] = pool
             __props__.__dict__["size"] = size
             __props__.__dict__["source"] = source
-            if xml is not None and not isinstance(xml, VolumeXmlArgs):
-                xml = xml or {}
-                def _setter(key, value):
-                    xml[key] = value
-                VolumeXmlArgs._configure(_setter, **xml)
+            xml = _utilities.configure(xml, VolumeXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Volume, __self__).__init__(
             'libvirt:index/volume:Volume',

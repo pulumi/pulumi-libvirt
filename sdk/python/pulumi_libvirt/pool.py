@@ -43,14 +43,18 @@ class PoolArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             type: pulumi.Input[str],
+             type: Optional[pulumi.Input[str]] = None,
              allocation: Optional[pulumi.Input[int]] = None,
              available: Optional[pulumi.Input[int]] = None,
              capacity: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
              path: Optional[pulumi.Input[str]] = None,
              xml: Optional[pulumi.Input['PoolXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
         _setter("type", type)
         if allocation is not None:
             _setter("allocation", allocation)
@@ -176,7 +180,9 @@ class _PoolState:
              path: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[str]] = None,
              xml: Optional[pulumi.Input['PoolXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if allocation is not None:
             _setter("allocation", allocation)
         if available is not None:
@@ -377,11 +383,7 @@ class Pool(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-            if xml is not None and not isinstance(xml, PoolXmlArgs):
-                xml = xml or {}
-                def _setter(key, value):
-                    xml[key] = value
-                PoolXmlArgs._configure(_setter, **xml)
+            xml = _utilities.configure(xml, PoolXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Pool, __self__).__init__(
             'libvirt:index/pool:Pool',

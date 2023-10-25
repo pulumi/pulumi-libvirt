@@ -86,7 +86,11 @@ class NetworkArgs:
              name: Optional[pulumi.Input[str]] = None,
              routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]] = None,
              xml: Optional[pulumi.Input['NetworkXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if dnsmasq_options is None and 'dnsmasqOptions' in kwargs:
+            dnsmasq_options = kwargs['dnsmasqOptions']
+
         if addresses is not None:
             _setter("addresses", addresses)
         if autostart is not None:
@@ -341,7 +345,11 @@ class _NetworkState:
              name: Optional[pulumi.Input[str]] = None,
              routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]] = None,
              xml: Optional[pulumi.Input['NetworkXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if dnsmasq_options is None and 'dnsmasqOptions' in kwargs:
+            dnsmasq_options = kwargs['dnsmasqOptions']
+
         if addresses is not None:
             _setter("addresses", addresses)
         if autostart is not None:
@@ -626,34 +634,18 @@ class Network(pulumi.CustomResource):
             __props__.__dict__["addresses"] = addresses
             __props__.__dict__["autostart"] = autostart
             __props__.__dict__["bridge"] = bridge
-            if dhcp is not None and not isinstance(dhcp, NetworkDhcpArgs):
-                dhcp = dhcp or {}
-                def _setter(key, value):
-                    dhcp[key] = value
-                NetworkDhcpArgs._configure(_setter, **dhcp)
+            dhcp = _utilities.configure(dhcp, NetworkDhcpArgs, True)
             __props__.__dict__["dhcp"] = dhcp
-            if dns is not None and not isinstance(dns, NetworkDnsArgs):
-                dns = dns or {}
-                def _setter(key, value):
-                    dns[key] = value
-                NetworkDnsArgs._configure(_setter, **dns)
+            dns = _utilities.configure(dns, NetworkDnsArgs, True)
             __props__.__dict__["dns"] = dns
-            if dnsmasq_options is not None and not isinstance(dnsmasq_options, NetworkDnsmasqOptionsArgs):
-                dnsmasq_options = dnsmasq_options or {}
-                def _setter(key, value):
-                    dnsmasq_options[key] = value
-                NetworkDnsmasqOptionsArgs._configure(_setter, **dnsmasq_options)
+            dnsmasq_options = _utilities.configure(dnsmasq_options, NetworkDnsmasqOptionsArgs, True)
             __props__.__dict__["dnsmasq_options"] = dnsmasq_options
             __props__.__dict__["domain"] = domain
             __props__.__dict__["mode"] = mode
             __props__.__dict__["mtu"] = mtu
             __props__.__dict__["name"] = name
             __props__.__dict__["routes"] = routes
-            if xml is not None and not isinstance(xml, NetworkXmlArgs):
-                xml = xml or {}
-                def _setter(key, value):
-                    xml[key] = value
-                NetworkXmlArgs._configure(_setter, **xml)
+            xml = _utilities.configure(xml, NetworkXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Network, __self__).__init__(
             'libvirt:index/network:Network',

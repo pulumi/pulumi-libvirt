@@ -27,7 +27,9 @@ class ProviderArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              uri: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if uri is None:
             uri = _utilities.get_env('LIBVIRT_DEFAULT_URI')
         if uri is not None:
