@@ -32,10 +32,14 @@ class IgnitionArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             content: pulumi.Input[str],
+             content: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              pool: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if content is None:
+            raise TypeError("Missing 'content' argument")
+
         _setter("content", content)
         if name is not None:
             _setter("name", name)
@@ -101,7 +105,9 @@ class _IgnitionState:
              content: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              pool: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if content is not None:
             _setter("content", content)
         if name is not None:

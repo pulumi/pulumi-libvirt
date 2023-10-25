@@ -71,8 +71,8 @@ type Domain struct {
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
-	// 			Cmdlines: pulumi.AnyMapArray{
-	// 				pulumi.AnyMap{
+	// 			Cmdlines: pulumi.MapArray{
+	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
 	// 					"arg2": pulumi.Any("value2"),
 	// 					"_":    pulumi.Any("rw nosplash"),
@@ -257,8 +257,8 @@ type domainState struct {
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
-	// 			Cmdlines: pulumi.AnyMapArray{
-	// 				pulumi.AnyMap{
+	// 			Cmdlines: pulumi.MapArray{
+	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
 	// 					"arg2": pulumi.Any("value2"),
 	// 					"_":    pulumi.Any("rw nosplash"),
@@ -414,8 +414,8 @@ type DomainState struct {
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
-	// 			Cmdlines: pulumi.AnyMapArray{
-	// 				pulumi.AnyMap{
+	// 			Cmdlines: pulumi.MapArray{
+	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
 	// 					"arg2": pulumi.Any("value2"),
 	// 					"_":    pulumi.Any("rw nosplash"),
@@ -575,8 +575,8 @@ type domainArgs struct {
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
-	// 			Cmdlines: pulumi.AnyMapArray{
-	// 				pulumi.AnyMap{
+	// 			Cmdlines: pulumi.MapArray{
+	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
 	// 					"arg2": pulumi.Any("value2"),
 	// 					"_":    pulumi.Any("rw nosplash"),
@@ -733,8 +733,8 @@ type DomainArgs struct {
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
-	// 			Cmdlines: pulumi.AnyMapArray{
-	// 				pulumi.AnyMap{
+	// 			Cmdlines: pulumi.MapArray{
+	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
 	// 					"arg2": pulumi.Any("value2"),
 	// 					"_":    pulumi.Any("rw nosplash"),
@@ -1014,8 +1014,8 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 //				Memory: pulumi.Int(1024),
 //				Vcpu:   pulumi.Int(1),
 //				Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
-//				Cmdlines: pulumi.AnyMapArray{
-//					pulumi.AnyMap{
+//				Cmdlines: pulumi.MapArray{
+//					pulumi.Map{
 //						"arg1": pulumi.Any("value1"),
 //						"arg2": pulumi.Any("value2"),
 //						"_":    pulumi.Any("rw nosplash"),

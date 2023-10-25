@@ -46,7 +46,15 @@ class CloudInitDiskArgs:
              network_config: Optional[pulumi.Input[str]] = None,
              pool: Optional[pulumi.Input[str]] = None,
              user_data: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if meta_data is None and 'metaData' in kwargs:
+            meta_data = kwargs['metaData']
+        if network_config is None and 'networkConfig' in kwargs:
+            network_config = kwargs['networkConfig']
+        if user_data is None and 'userData' in kwargs:
+            user_data = kwargs['userData']
+
         if meta_data is not None:
             _setter("meta_data", meta_data)
         if name is not None:
@@ -157,7 +165,15 @@ class _CloudInitDiskState:
              network_config: Optional[pulumi.Input[str]] = None,
              pool: Optional[pulumi.Input[str]] = None,
              user_data: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if meta_data is None and 'metaData' in kwargs:
+            meta_data = kwargs['metaData']
+        if network_config is None and 'networkConfig' in kwargs:
+            network_config = kwargs['networkConfig']
+        if user_data is None and 'userData' in kwargs:
+            user_data = kwargs['userData']
+
         if meta_data is not None:
             _setter("meta_data", meta_data)
         if name is not None:

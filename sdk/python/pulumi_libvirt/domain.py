@@ -206,7 +206,19 @@ class DomainArgs:
              vcpu: Optional[pulumi.Input[int]] = None,
              video: Optional[pulumi.Input['DomainVideoArgs']] = None,
              xml: Optional[pulumi.Input['DomainXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if boot_devices is None and 'bootDevices' in kwargs:
+            boot_devices = kwargs['bootDevices']
+        if coreos_ignition is None and 'coreosIgnition' in kwargs:
+            coreos_ignition = kwargs['coreosIgnition']
+        if fw_cfg_name is None and 'fwCfgName' in kwargs:
+            fw_cfg_name = kwargs['fwCfgName']
+        if network_interfaces is None and 'networkInterfaces' in kwargs:
+            network_interfaces = kwargs['networkInterfaces']
+        if qemu_agent is None and 'qemuAgent' in kwargs:
+            qemu_agent = kwargs['qemuAgent']
+
         if arch is not None:
             _setter("arch", arch)
         if autostart is not None:
@@ -863,7 +875,19 @@ class _DomainState:
              vcpu: Optional[pulumi.Input[int]] = None,
              video: Optional[pulumi.Input['DomainVideoArgs']] = None,
              xml: Optional[pulumi.Input['DomainXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if boot_devices is None and 'bootDevices' in kwargs:
+            boot_devices = kwargs['bootDevices']
+        if coreos_ignition is None and 'coreosIgnition' in kwargs:
+            coreos_ignition = kwargs['coreosIgnition']
+        if fw_cfg_name is None and 'fwCfgName' in kwargs:
+            fw_cfg_name = kwargs['fwCfgName']
+        if network_interfaces is None and 'networkInterfaces' in kwargs:
+            network_interfaces = kwargs['networkInterfaces']
+        if qemu_agent is None and 'qemuAgent' in kwargs:
+            qemu_agent = kwargs['qemuAgent']
+
         if arch is not None:
             _setter("arch", arch)
         if autostart is not None:
@@ -1555,11 +1579,7 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["cmdlines"] = cmdlines
             __props__.__dict__["consoles"] = consoles
             __props__.__dict__["coreos_ignition"] = coreos_ignition
-            if cpu is not None and not isinstance(cpu, DomainCpuArgs):
-                cpu = cpu or {}
-                def _setter(key, value):
-                    cpu[key] = value
-                DomainCpuArgs._configure(_setter, **cpu)
+            cpu = _utilities.configure(cpu, DomainCpuArgs, True)
             __props__.__dict__["cpu"] = cpu
             __props__.__dict__["description"] = description
             __props__.__dict__["disks"] = disks
@@ -1567,11 +1587,7 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["filesystems"] = filesystems
             __props__.__dict__["firmware"] = firmware
             __props__.__dict__["fw_cfg_name"] = fw_cfg_name
-            if graphics is not None and not isinstance(graphics, DomainGraphicsArgs):
-                graphics = graphics or {}
-                def _setter(key, value):
-                    graphics[key] = value
-                DomainGraphicsArgs._configure(_setter, **graphics)
+            graphics = _utilities.configure(graphics, DomainGraphicsArgs, True)
             __props__.__dict__["graphics"] = graphics
             __props__.__dict__["initrd"] = initrd
             __props__.__dict__["kernel"] = kernel
@@ -1580,32 +1596,16 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["network_interfaces"] = network_interfaces
-            if nvram is not None and not isinstance(nvram, DomainNvramArgs):
-                nvram = nvram or {}
-                def _setter(key, value):
-                    nvram[key] = value
-                DomainNvramArgs._configure(_setter, **nvram)
+            nvram = _utilities.configure(nvram, DomainNvramArgs, True)
             __props__.__dict__["nvram"] = nvram
             __props__.__dict__["qemu_agent"] = qemu_agent
             __props__.__dict__["running"] = running
-            if tpm is not None and not isinstance(tpm, DomainTpmArgs):
-                tpm = tpm or {}
-                def _setter(key, value):
-                    tpm[key] = value
-                DomainTpmArgs._configure(_setter, **tpm)
+            tpm = _utilities.configure(tpm, DomainTpmArgs, True)
             __props__.__dict__["tpm"] = tpm
             __props__.__dict__["vcpu"] = vcpu
-            if video is not None and not isinstance(video, DomainVideoArgs):
-                video = video or {}
-                def _setter(key, value):
-                    video[key] = value
-                DomainVideoArgs._configure(_setter, **video)
+            video = _utilities.configure(video, DomainVideoArgs, True)
             __props__.__dict__["video"] = video
-            if xml is not None and not isinstance(xml, DomainXmlArgs):
-                xml = xml or {}
-                def _setter(key, value):
-                    xml[key] = value
-                DomainXmlArgs._configure(_setter, **xml)
+            xml = _utilities.configure(xml, DomainXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Domain, __self__).__init__(
             'libvirt:index/domain:Domain',
