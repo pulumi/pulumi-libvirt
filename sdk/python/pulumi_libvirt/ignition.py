@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IgnitionArgs', 'Ignition']
@@ -23,28 +23,11 @@ class IgnitionArgs:
         :param pulumi.Input[str] pool: The pool where the resource will be created.
                If not given, the `default` pool will be used.
         """
-        IgnitionArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            content=content,
-            name=name,
-            pool=pool,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             content: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             pool: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if content is None:
-            raise TypeError("Missing 'content' argument")
-
-        _setter("content", content)
+        pulumi.set(__self__, "content", content)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if pool is not None:
-            _setter("pool", pool)
+            pulumi.set(__self__, "pool", pool)
 
     @property
     @pulumi.getter
@@ -93,27 +76,12 @@ class _IgnitionState:
         :param pulumi.Input[str] pool: The pool where the resource will be created.
                If not given, the `default` pool will be used.
         """
-        _IgnitionState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            content=content,
-            name=name,
-            pool=pool,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             content: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             pool: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if content is not None:
-            _setter("content", content)
+            pulumi.set(__self__, "content", content)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if pool is not None:
-            _setter("pool", pool)
+            pulumi.set(__self__, "pool", pool)
 
     @property
     @pulumi.getter
@@ -185,10 +153,6 @@ class Ignition(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IgnitionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

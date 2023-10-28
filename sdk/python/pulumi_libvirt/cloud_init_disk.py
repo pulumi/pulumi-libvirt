@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['CloudInitDiskArgs', 'CloudInitDisk']
@@ -30,41 +30,16 @@ class CloudInitDiskArgs:
                http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
         :param pulumi.Input[str] user_data: cloud-init user data.
         """
-        CloudInitDiskArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            meta_data=meta_data,
-            name=name,
-            network_config=network_config,
-            pool=pool,
-            user_data=user_data,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             meta_data: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             network_config: Optional[pulumi.Input[str]] = None,
-             pool: Optional[pulumi.Input[str]] = None,
-             user_data: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if meta_data is None and 'metaData' in kwargs:
-            meta_data = kwargs['metaData']
-        if network_config is None and 'networkConfig' in kwargs:
-            network_config = kwargs['networkConfig']
-        if user_data is None and 'userData' in kwargs:
-            user_data = kwargs['userData']
-
         if meta_data is not None:
-            _setter("meta_data", meta_data)
+            pulumi.set(__self__, "meta_data", meta_data)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if network_config is not None:
-            _setter("network_config", network_config)
+            pulumi.set(__self__, "network_config", network_config)
         if pool is not None:
-            _setter("pool", pool)
+            pulumi.set(__self__, "pool", pool)
         if user_data is not None:
-            _setter("user_data", user_data)
+            pulumi.set(__self__, "user_data", user_data)
 
     @property
     @pulumi.getter(name="metaData")
@@ -149,41 +124,16 @@ class _CloudInitDiskState:
                http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
         :param pulumi.Input[str] user_data: cloud-init user data.
         """
-        _CloudInitDiskState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            meta_data=meta_data,
-            name=name,
-            network_config=network_config,
-            pool=pool,
-            user_data=user_data,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             meta_data: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             network_config: Optional[pulumi.Input[str]] = None,
-             pool: Optional[pulumi.Input[str]] = None,
-             user_data: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if meta_data is None and 'metaData' in kwargs:
-            meta_data = kwargs['metaData']
-        if network_config is None and 'networkConfig' in kwargs:
-            network_config = kwargs['networkConfig']
-        if user_data is None and 'userData' in kwargs:
-            user_data = kwargs['userData']
-
         if meta_data is not None:
-            _setter("meta_data", meta_data)
+            pulumi.set(__self__, "meta_data", meta_data)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if network_config is not None:
-            _setter("network_config", network_config)
+            pulumi.set(__self__, "network_config", network_config)
         if pool is not None:
-            _setter("pool", pool)
+            pulumi.set(__self__, "pool", pool)
         if user_data is not None:
-            _setter("user_data", user_data)
+            pulumi.set(__self__, "user_data", user_data)
 
     @property
     @pulumi.getter(name="metaData")
@@ -291,10 +241,6 @@ class CloudInitDisk(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            CloudInitDiskArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
