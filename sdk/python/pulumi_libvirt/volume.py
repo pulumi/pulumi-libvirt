@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -38,57 +38,24 @@ class VolumeArgs:
         :param pulumi.Input[str] pool: The storage pool where the resource will be created.
                If not given, the `default` storage pool will be used.
         """
-        VolumeArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            base_volume_id=base_volume_id,
-            base_volume_name=base_volume_name,
-            base_volume_pool=base_volume_pool,
-            format=format,
-            name=name,
-            pool=pool,
-            size=size,
-            source=source,
-            xml=xml,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             base_volume_id: Optional[pulumi.Input[str]] = None,
-             base_volume_name: Optional[pulumi.Input[str]] = None,
-             base_volume_pool: Optional[pulumi.Input[str]] = None,
-             format: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             pool: Optional[pulumi.Input[str]] = None,
-             size: Optional[pulumi.Input[int]] = None,
-             source: Optional[pulumi.Input[str]] = None,
-             xml: Optional[pulumi.Input['VolumeXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if base_volume_id is None and 'baseVolumeId' in kwargs:
-            base_volume_id = kwargs['baseVolumeId']
-        if base_volume_name is None and 'baseVolumeName' in kwargs:
-            base_volume_name = kwargs['baseVolumeName']
-        if base_volume_pool is None and 'baseVolumePool' in kwargs:
-            base_volume_pool = kwargs['baseVolumePool']
-
         if base_volume_id is not None:
-            _setter("base_volume_id", base_volume_id)
+            pulumi.set(__self__, "base_volume_id", base_volume_id)
         if base_volume_name is not None:
-            _setter("base_volume_name", base_volume_name)
+            pulumi.set(__self__, "base_volume_name", base_volume_name)
         if base_volume_pool is not None:
-            _setter("base_volume_pool", base_volume_pool)
+            pulumi.set(__self__, "base_volume_pool", base_volume_pool)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if pool is not None:
-            _setter("pool", pool)
+            pulumi.set(__self__, "pool", pool)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if source is not None:
-            _setter("source", source)
+            pulumi.set(__self__, "source", source)
         if xml is not None:
-            _setter("xml", xml)
+            pulumi.set(__self__, "xml", xml)
 
     @property
     @pulumi.getter(name="baseVolumeId")
@@ -217,57 +184,24 @@ class _VolumeState:
         :param pulumi.Input[str] pool: The storage pool where the resource will be created.
                If not given, the `default` storage pool will be used.
         """
-        _VolumeState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            base_volume_id=base_volume_id,
-            base_volume_name=base_volume_name,
-            base_volume_pool=base_volume_pool,
-            format=format,
-            name=name,
-            pool=pool,
-            size=size,
-            source=source,
-            xml=xml,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             base_volume_id: Optional[pulumi.Input[str]] = None,
-             base_volume_name: Optional[pulumi.Input[str]] = None,
-             base_volume_pool: Optional[pulumi.Input[str]] = None,
-             format: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             pool: Optional[pulumi.Input[str]] = None,
-             size: Optional[pulumi.Input[int]] = None,
-             source: Optional[pulumi.Input[str]] = None,
-             xml: Optional[pulumi.Input['VolumeXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if base_volume_id is None and 'baseVolumeId' in kwargs:
-            base_volume_id = kwargs['baseVolumeId']
-        if base_volume_name is None and 'baseVolumeName' in kwargs:
-            base_volume_name = kwargs['baseVolumeName']
-        if base_volume_pool is None and 'baseVolumePool' in kwargs:
-            base_volume_pool = kwargs['baseVolumePool']
-
         if base_volume_id is not None:
-            _setter("base_volume_id", base_volume_id)
+            pulumi.set(__self__, "base_volume_id", base_volume_id)
         if base_volume_name is not None:
-            _setter("base_volume_name", base_volume_name)
+            pulumi.set(__self__, "base_volume_name", base_volume_name)
         if base_volume_pool is not None:
-            _setter("base_volume_pool", base_volume_pool)
+            pulumi.set(__self__, "base_volume_pool", base_volume_pool)
         if format is not None:
-            _setter("format", format)
+            pulumi.set(__self__, "format", format)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if pool is not None:
-            _setter("pool", pool)
+            pulumi.set(__self__, "pool", pool)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if source is not None:
-            _setter("source", source)
+            pulumi.set(__self__, "source", source)
         if xml is not None:
-            _setter("xml", xml)
+            pulumi.set(__self__, "xml", xml)
 
     @property
     @pulumi.getter(name="baseVolumeId")
@@ -467,10 +401,6 @@ class Volume(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VolumeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -502,7 +432,6 @@ class Volume(pulumi.CustomResource):
             __props__.__dict__["pool"] = pool
             __props__.__dict__["size"] = size
             __props__.__dict__["source"] = source
-            xml = _utilities.configure(xml, VolumeXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Volume, __self__).__init__(
             'libvirt:index/volume:Volume',

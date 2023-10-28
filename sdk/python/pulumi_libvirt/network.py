@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -56,65 +56,30 @@ class NetworkArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]] routes: a list of static routes. A `cidr` and a `gateway` must
                be provided. The `gateway` must be reachable via the bridge interface.
         """
-        NetworkArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            addresses=addresses,
-            autostart=autostart,
-            bridge=bridge,
-            dhcp=dhcp,
-            dns=dns,
-            dnsmasq_options=dnsmasq_options,
-            domain=domain,
-            mode=mode,
-            mtu=mtu,
-            name=name,
-            routes=routes,
-            xml=xml,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             autostart: Optional[pulumi.Input[bool]] = None,
-             bridge: Optional[pulumi.Input[str]] = None,
-             dhcp: Optional[pulumi.Input['NetworkDhcpArgs']] = None,
-             dns: Optional[pulumi.Input['NetworkDnsArgs']] = None,
-             dnsmasq_options: Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']] = None,
-             domain: Optional[pulumi.Input[str]] = None,
-             mode: Optional[pulumi.Input[str]] = None,
-             mtu: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]] = None,
-             xml: Optional[pulumi.Input['NetworkXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if dnsmasq_options is None and 'dnsmasqOptions' in kwargs:
-            dnsmasq_options = kwargs['dnsmasqOptions']
-
         if addresses is not None:
-            _setter("addresses", addresses)
+            pulumi.set(__self__, "addresses", addresses)
         if autostart is not None:
-            _setter("autostart", autostart)
+            pulumi.set(__self__, "autostart", autostart)
         if bridge is not None:
-            _setter("bridge", bridge)
+            pulumi.set(__self__, "bridge", bridge)
         if dhcp is not None:
-            _setter("dhcp", dhcp)
+            pulumi.set(__self__, "dhcp", dhcp)
         if dns is not None:
-            _setter("dns", dns)
+            pulumi.set(__self__, "dns", dns)
         if dnsmasq_options is not None:
-            _setter("dnsmasq_options", dnsmasq_options)
+            pulumi.set(__self__, "dnsmasq_options", dnsmasq_options)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if mode is not None:
-            _setter("mode", mode)
+            pulumi.set(__self__, "mode", mode)
         if mtu is not None:
-            _setter("mtu", mtu)
+            pulumi.set(__self__, "mtu", mtu)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if routes is not None:
-            _setter("routes", routes)
+            pulumi.set(__self__, "routes", routes)
         if xml is not None:
-            _setter("xml", xml)
+            pulumi.set(__self__, "xml", xml)
 
     @property
     @pulumi.getter
@@ -315,65 +280,30 @@ class _NetworkState:
         :param pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]] routes: a list of static routes. A `cidr` and a `gateway` must
                be provided. The `gateway` must be reachable via the bridge interface.
         """
-        _NetworkState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            addresses=addresses,
-            autostart=autostart,
-            bridge=bridge,
-            dhcp=dhcp,
-            dns=dns,
-            dnsmasq_options=dnsmasq_options,
-            domain=domain,
-            mode=mode,
-            mtu=mtu,
-            name=name,
-            routes=routes,
-            xml=xml,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             autostart: Optional[pulumi.Input[bool]] = None,
-             bridge: Optional[pulumi.Input[str]] = None,
-             dhcp: Optional[pulumi.Input['NetworkDhcpArgs']] = None,
-             dns: Optional[pulumi.Input['NetworkDnsArgs']] = None,
-             dnsmasq_options: Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']] = None,
-             domain: Optional[pulumi.Input[str]] = None,
-             mode: Optional[pulumi.Input[str]] = None,
-             mtu: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             routes: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkRouteArgs']]]] = None,
-             xml: Optional[pulumi.Input['NetworkXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if dnsmasq_options is None and 'dnsmasqOptions' in kwargs:
-            dnsmasq_options = kwargs['dnsmasqOptions']
-
         if addresses is not None:
-            _setter("addresses", addresses)
+            pulumi.set(__self__, "addresses", addresses)
         if autostart is not None:
-            _setter("autostart", autostart)
+            pulumi.set(__self__, "autostart", autostart)
         if bridge is not None:
-            _setter("bridge", bridge)
+            pulumi.set(__self__, "bridge", bridge)
         if dhcp is not None:
-            _setter("dhcp", dhcp)
+            pulumi.set(__self__, "dhcp", dhcp)
         if dns is not None:
-            _setter("dns", dns)
+            pulumi.set(__self__, "dns", dns)
         if dnsmasq_options is not None:
-            _setter("dnsmasq_options", dnsmasq_options)
+            pulumi.set(__self__, "dnsmasq_options", dnsmasq_options)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if mode is not None:
-            _setter("mode", mode)
+            pulumi.set(__self__, "mode", mode)
         if mtu is not None:
-            _setter("mtu", mtu)
+            pulumi.set(__self__, "mtu", mtu)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if routes is not None:
-            _setter("routes", routes)
+            pulumi.set(__self__, "routes", routes)
         if xml is not None:
-            _setter("xml", xml)
+            pulumi.set(__self__, "xml", xml)
 
     @property
     @pulumi.getter
@@ -601,10 +531,6 @@ class Network(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            NetworkArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -634,18 +560,14 @@ class Network(pulumi.CustomResource):
             __props__.__dict__["addresses"] = addresses
             __props__.__dict__["autostart"] = autostart
             __props__.__dict__["bridge"] = bridge
-            dhcp = _utilities.configure(dhcp, NetworkDhcpArgs, True)
             __props__.__dict__["dhcp"] = dhcp
-            dns = _utilities.configure(dns, NetworkDnsArgs, True)
             __props__.__dict__["dns"] = dns
-            dnsmasq_options = _utilities.configure(dnsmasq_options, NetworkDnsmasqOptionsArgs, True)
             __props__.__dict__["dnsmasq_options"] = dnsmasq_options
             __props__.__dict__["domain"] = domain
             __props__.__dict__["mode"] = mode
             __props__.__dict__["mtu"] = mtu
             __props__.__dict__["name"] = name
             __props__.__dict__["routes"] = routes
-            xml = _utilities.configure(xml, NetworkXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Network, __self__).__init__(
             'libvirt:index/network:Network',

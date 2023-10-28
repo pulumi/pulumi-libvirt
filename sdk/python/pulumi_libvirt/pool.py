@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -30,44 +30,19 @@ class PoolArgs:
         :param pulumi.Input[str] path: The directory where the pool will keep all its volumes. This is only relevant to (and required by)
                the "dir" type pools.
         """
-        PoolArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            allocation=allocation,
-            available=available,
-            capacity=capacity,
-            name=name,
-            path=path,
-            xml=xml,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: Optional[pulumi.Input[str]] = None,
-             allocation: Optional[pulumi.Input[int]] = None,
-             available: Optional[pulumi.Input[int]] = None,
-             capacity: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             path: Optional[pulumi.Input[str]] = None,
-             xml: Optional[pulumi.Input['PoolXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if allocation is not None:
-            _setter("allocation", allocation)
+            pulumi.set(__self__, "allocation", allocation)
         if available is not None:
-            _setter("available", available)
+            pulumi.set(__self__, "available", available)
         if capacity is not None:
-            _setter("capacity", capacity)
+            pulumi.set(__self__, "capacity", capacity)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if xml is not None:
-            _setter("xml", xml)
+            pulumi.set(__self__, "xml", xml)
 
     @property
     @pulumi.getter
@@ -160,43 +135,20 @@ class _PoolState:
                the "dir" type pools.
         :param pulumi.Input[str] type: The type of the pool. Currently, only "dir" supported.
         """
-        _PoolState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            allocation=allocation,
-            available=available,
-            capacity=capacity,
-            name=name,
-            path=path,
-            type=type,
-            xml=xml,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             allocation: Optional[pulumi.Input[int]] = None,
-             available: Optional[pulumi.Input[int]] = None,
-             capacity: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             path: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             xml: Optional[pulumi.Input['PoolXmlArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-
         if allocation is not None:
-            _setter("allocation", allocation)
+            pulumi.set(__self__, "allocation", allocation)
         if available is not None:
-            _setter("available", available)
+            pulumi.set(__self__, "available", available)
         if capacity is not None:
-            _setter("capacity", capacity)
+            pulumi.set(__self__, "capacity", capacity)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if path is not None:
-            _setter("path", path)
+            pulumi.set(__self__, "path", path)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if xml is not None:
-            _setter("xml", xml)
+            pulumi.set(__self__, "xml", xml)
 
     @property
     @pulumi.getter
@@ -350,10 +302,6 @@ class Pool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            PoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -383,7 +331,6 @@ class Pool(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-            xml = _utilities.configure(xml, PoolXmlArgs, True)
             __props__.__dict__["xml"] = xml
         super(Pool, __self__).__init__(
             'libvirt:index/pool:Pool',
