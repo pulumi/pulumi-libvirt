@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CloudInitDisk struct {
@@ -151,12 +150,6 @@ func (i *CloudInitDisk) ToCloudInitDiskOutputWithContext(ctx context.Context) Cl
 	return pulumi.ToOutputWithContext(ctx, i).(CloudInitDiskOutput)
 }
 
-func (i *CloudInitDisk) ToOutput(ctx context.Context) pulumix.Output[*CloudInitDisk] {
-	return pulumix.Output[*CloudInitDisk]{
-		OutputState: i.ToCloudInitDiskOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CloudInitDiskArrayInput is an input type that accepts CloudInitDiskArray and CloudInitDiskArrayOutput values.
 // You can construct a concrete instance of `CloudInitDiskArrayInput` via:
 //
@@ -180,12 +173,6 @@ func (i CloudInitDiskArray) ToCloudInitDiskArrayOutput() CloudInitDiskArrayOutpu
 
 func (i CloudInitDiskArray) ToCloudInitDiskArrayOutputWithContext(ctx context.Context) CloudInitDiskArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudInitDiskArrayOutput)
-}
-
-func (i CloudInitDiskArray) ToOutput(ctx context.Context) pulumix.Output[[]*CloudInitDisk] {
-	return pulumix.Output[[]*CloudInitDisk]{
-		OutputState: i.ToCloudInitDiskArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CloudInitDiskMapInput is an input type that accepts CloudInitDiskMap and CloudInitDiskMapOutput values.
@@ -213,12 +200,6 @@ func (i CloudInitDiskMap) ToCloudInitDiskMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(CloudInitDiskMapOutput)
 }
 
-func (i CloudInitDiskMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudInitDisk] {
-	return pulumix.Output[map[string]*CloudInitDisk]{
-		OutputState: i.ToCloudInitDiskMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CloudInitDiskOutput struct{ *pulumi.OutputState }
 
 func (CloudInitDiskOutput) ElementType() reflect.Type {
@@ -231,12 +212,6 @@ func (o CloudInitDiskOutput) ToCloudInitDiskOutput() CloudInitDiskOutput {
 
 func (o CloudInitDiskOutput) ToCloudInitDiskOutputWithContext(ctx context.Context) CloudInitDiskOutput {
 	return o
-}
-
-func (o CloudInitDiskOutput) ToOutput(ctx context.Context) pulumix.Output[*CloudInitDisk] {
-	return pulumix.Output[*CloudInitDisk]{
-		OutputState: o.OutputState,
-	}
 }
 
 // cloud-init user data.
@@ -281,12 +256,6 @@ func (o CloudInitDiskArrayOutput) ToCloudInitDiskArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o CloudInitDiskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CloudInitDisk] {
-	return pulumix.Output[[]*CloudInitDisk]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CloudInitDiskArrayOutput) Index(i pulumi.IntInput) CloudInitDiskOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudInitDisk {
 		return vs[0].([]*CloudInitDisk)[vs[1].(int)]
@@ -305,12 +274,6 @@ func (o CloudInitDiskMapOutput) ToCloudInitDiskMapOutput() CloudInitDiskMapOutpu
 
 func (o CloudInitDiskMapOutput) ToCloudInitDiskMapOutputWithContext(ctx context.Context) CloudInitDiskMapOutput {
 	return o
-}
-
-func (o CloudInitDiskMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CloudInitDisk] {
-	return pulumix.Output[map[string]*CloudInitDisk]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CloudInitDiskMapOutput) MapIndex(k pulumi.StringInput) CloudInitDiskOutput {
