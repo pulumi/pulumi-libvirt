@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -39,8 +39,19 @@ __all__ = [
 class DomainBootDevice(dict):
     def __init__(__self__, *,
                  devs: Optional[Sequence[str]] = None):
+        DomainBootDevice._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            devs=devs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             devs: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if devs is not None:
-            pulumi.set(__self__, "devs", devs)
+            _setter("devs", devs)
 
     @property
     @pulumi.getter
@@ -102,16 +113,51 @@ class DomainConsole(dict):
                
                Additional attributes when type is "pty":
         """
-        pulumi.set(__self__, "target_port", target_port)
-        pulumi.set(__self__, "type", type)
+        DomainConsole._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            target_port=target_port,
+            type=type,
+            source_host=source_host,
+            source_path=source_path,
+            source_service=source_service,
+            target_type=target_type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             target_port: Optional[str] = None,
+             type: Optional[str] = None,
+             source_host: Optional[str] = None,
+             source_path: Optional[str] = None,
+             source_service: Optional[str] = None,
+             target_type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if target_port is None and 'targetPort' in kwargs:
+            target_port = kwargs['targetPort']
+        if target_port is None:
+            raise TypeError("Missing 'target_port' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if source_host is None and 'sourceHost' in kwargs:
+            source_host = kwargs['sourceHost']
+        if source_path is None and 'sourcePath' in kwargs:
+            source_path = kwargs['sourcePath']
+        if source_service is None and 'sourceService' in kwargs:
+            source_service = kwargs['sourceService']
+        if target_type is None and 'targetType' in kwargs:
+            target_type = kwargs['targetType']
+
+        _setter("target_port", target_port)
+        _setter("type", type)
         if source_host is not None:
-            pulumi.set(__self__, "source_host", source_host)
+            _setter("source_host", source_host)
         if source_path is not None:
-            pulumi.set(__self__, "source_path", source_path)
+            _setter("source_path", source_path)
         if source_service is not None:
-            pulumi.set(__self__, "source_service", source_service)
+            _setter("source_service", source_service)
         if target_type is not None:
-            pulumi.set(__self__, "target_type", target_type)
+            _setter("target_type", target_type)
 
     @property
     @pulumi.getter(name="targetPort")
@@ -178,8 +224,19 @@ class DomainConsole(dict):
 class DomainCpu(dict):
     def __init__(__self__, *,
                  mode: Optional[str] = None):
+        DomainCpu._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            mode=mode,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             mode: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if mode is not None:
-            pulumi.set(__self__, "mode", mode)
+            _setter("mode", mode)
 
     @property
     @pulumi.getter
@@ -255,18 +312,43 @@ class DomainDisk(dict):
                declare several of them by using either the literal list and map syntax as in
                the following examples:
         """
+        DomainDisk._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            block_device=block_device,
+            file=file,
+            scsi=scsi,
+            url=url,
+            volume_id=volume_id,
+            wwn=wwn,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             block_device: Optional[str] = None,
+             file: Optional[str] = None,
+             scsi: Optional[bool] = None,
+             url: Optional[str] = None,
+             volume_id: Optional[str] = None,
+             wwn: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if block_device is None and 'blockDevice' in kwargs:
+            block_device = kwargs['blockDevice']
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+
         if block_device is not None:
-            pulumi.set(__self__, "block_device", block_device)
+            _setter("block_device", block_device)
         if file is not None:
-            pulumi.set(__self__, "file", file)
+            _setter("file", file)
         if scsi is not None:
-            pulumi.set(__self__, "scsi", scsi)
+            _setter("scsi", scsi)
         if url is not None:
-            pulumi.set(__self__, "url", url)
+            _setter("url", url)
         if volume_id is not None:
-            pulumi.set(__self__, "volume_id", volume_id)
+            _setter("volume_id", volume_id)
         if wwn is not None:
-            pulumi.set(__self__, "wwn", wwn)
+            _setter("wwn", wwn)
 
     @property
     @pulumi.getter(name="blockDevice")
@@ -376,12 +458,33 @@ class DomainFilesystem(dict):
                
                This can be automated inside of `/etc/fstab`:
         """
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "target", target)
+        DomainFilesystem._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            source=source,
+            target=target,
+            accessmode=accessmode,
+            readonly=readonly,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             source: Optional[str] = None,
+             target: Optional[str] = None,
+             accessmode: Optional[str] = None,
+             readonly: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if source is None:
+            raise TypeError("Missing 'source' argument")
+        if target is None:
+            raise TypeError("Missing 'target' argument")
+
+        _setter("source", source)
+        _setter("target", target)
         if accessmode is not None:
-            pulumi.set(__self__, "accessmode", accessmode)
+            _setter("accessmode", accessmode)
         if readonly is not None:
-            pulumi.set(__self__, "readonly", readonly)
+            _setter("readonly", readonly)
 
     @property
     @pulumi.getter
@@ -481,16 +584,39 @@ class DomainGraphics(dict):
                > **Note well:** the `graphics` block is ignored for the architectures
                `s390x` and `ppc64`.
         """
+        DomainGraphics._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autoport=autoport,
+            listen_address=listen_address,
+            listen_type=listen_type,
+            type=type,
+            websocket=websocket,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autoport: Optional[bool] = None,
+             listen_address: Optional[str] = None,
+             listen_type: Optional[str] = None,
+             type: Optional[str] = None,
+             websocket: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if listen_address is None and 'listenAddress' in kwargs:
+            listen_address = kwargs['listenAddress']
+        if listen_type is None and 'listenType' in kwargs:
+            listen_type = kwargs['listenType']
+
         if autoport is not None:
-            pulumi.set(__self__, "autoport", autoport)
+            _setter("autoport", autoport)
         if listen_address is not None:
-            pulumi.set(__self__, "listen_address", listen_address)
+            _setter("listen_address", listen_address)
         if listen_type is not None:
-            pulumi.set(__self__, "listen_type", listen_type)
+            _setter("listen_type", listen_type)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if websocket is not None:
-            pulumi.set(__self__, "websocket", websocket)
+            _setter("websocket", websocket)
 
     @property
     @pulumi.getter
@@ -621,26 +747,61 @@ class DomainNetworkInterface(dict):
                
                When connecting to a LAN, users can specify a target device with:
         """
+        DomainNetworkInterface._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            addresses=addresses,
+            bridge=bridge,
+            hostname=hostname,
+            mac=mac,
+            macvtap=macvtap,
+            network_id=network_id,
+            network_name=network_name,
+            passthrough=passthrough,
+            vepa=vepa,
+            wait_for_lease=wait_for_lease,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             addresses: Optional[Sequence[str]] = None,
+             bridge: Optional[str] = None,
+             hostname: Optional[str] = None,
+             mac: Optional[str] = None,
+             macvtap: Optional[str] = None,
+             network_id: Optional[str] = None,
+             network_name: Optional[str] = None,
+             passthrough: Optional[str] = None,
+             vepa: Optional[str] = None,
+             wait_for_lease: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if network_id is None and 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if network_name is None and 'networkName' in kwargs:
+            network_name = kwargs['networkName']
+        if wait_for_lease is None and 'waitForLease' in kwargs:
+            wait_for_lease = kwargs['waitForLease']
+
         if addresses is not None:
-            pulumi.set(__self__, "addresses", addresses)
+            _setter("addresses", addresses)
         if bridge is not None:
-            pulumi.set(__self__, "bridge", bridge)
+            _setter("bridge", bridge)
         if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
+            _setter("hostname", hostname)
         if mac is not None:
-            pulumi.set(__self__, "mac", mac)
+            _setter("mac", mac)
         if macvtap is not None:
-            pulumi.set(__self__, "macvtap", macvtap)
+            _setter("macvtap", macvtap)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if network_name is not None:
-            pulumi.set(__self__, "network_name", network_name)
+            _setter("network_name", network_name)
         if passthrough is not None:
-            pulumi.set(__self__, "passthrough", passthrough)
+            _setter("passthrough", passthrough)
         if vepa is not None:
-            pulumi.set(__self__, "vepa", vepa)
+            _setter("vepa", vepa)
         if wait_for_lease is not None:
-            pulumi.set(__self__, "wait_for_lease", wait_for_lease)
+            _setter("wait_for_lease", wait_for_lease)
 
     @property
     @pulumi.getter
@@ -770,9 +931,24 @@ class DomainNvram(dict):
                Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
                coming from a template, the domain definition should look like this:
         """
-        pulumi.set(__self__, "file", file)
+        DomainNvram._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            file=file,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             file: Optional[str] = None,
+             template: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if file is None:
+            raise TypeError("Missing 'file' argument")
+
+        _setter("file", file)
         if template is not None:
-            pulumi.set(__self__, "template", template)
+            _setter("template", template)
 
     @property
     @pulumi.getter
@@ -854,18 +1030,49 @@ class DomainTpm(dict):
         :param str backend_version: TPM version
         :param str model: TPM model provided to the guest
         """
+        DomainTpm._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            backend_device_path=backend_device_path,
+            backend_encryption_secret=backend_encryption_secret,
+            backend_persistent_state=backend_persistent_state,
+            backend_type=backend_type,
+            backend_version=backend_version,
+            model=model,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             backend_device_path: Optional[str] = None,
+             backend_encryption_secret: Optional[str] = None,
+             backend_persistent_state: Optional[bool] = None,
+             backend_type: Optional[str] = None,
+             backend_version: Optional[str] = None,
+             model: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if backend_device_path is None and 'backendDevicePath' in kwargs:
+            backend_device_path = kwargs['backendDevicePath']
+        if backend_encryption_secret is None and 'backendEncryptionSecret' in kwargs:
+            backend_encryption_secret = kwargs['backendEncryptionSecret']
+        if backend_persistent_state is None and 'backendPersistentState' in kwargs:
+            backend_persistent_state = kwargs['backendPersistentState']
+        if backend_type is None and 'backendType' in kwargs:
+            backend_type = kwargs['backendType']
+        if backend_version is None and 'backendVersion' in kwargs:
+            backend_version = kwargs['backendVersion']
+
         if backend_device_path is not None:
-            pulumi.set(__self__, "backend_device_path", backend_device_path)
+            _setter("backend_device_path", backend_device_path)
         if backend_encryption_secret is not None:
-            pulumi.set(__self__, "backend_encryption_secret", backend_encryption_secret)
+            _setter("backend_encryption_secret", backend_encryption_secret)
         if backend_persistent_state is not None:
-            pulumi.set(__self__, "backend_persistent_state", backend_persistent_state)
+            _setter("backend_persistent_state", backend_persistent_state)
         if backend_type is not None:
-            pulumi.set(__self__, "backend_type", backend_type)
+            _setter("backend_type", backend_type)
         if backend_version is not None:
-            pulumi.set(__self__, "backend_version", backend_version)
+            _setter("backend_version", backend_version)
         if model is not None:
-            pulumi.set(__self__, "model", model)
+            _setter("model", model)
 
     @property
     @pulumi.getter(name="backendDevicePath")
@@ -927,8 +1134,19 @@ class DomainVideo(dict):
         """
         :param str type: Console device type. Valid values are "pty" and "tcp".
         """
+        DomainVideo._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -943,8 +1161,19 @@ class DomainVideo(dict):
 class DomainXml(dict):
     def __init__(__self__, *,
                  xslt: Optional[str] = None):
+        DomainXml._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            xslt=xslt,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             xslt: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if xslt is not None:
-            pulumi.set(__self__, "xslt", xslt)
+            _setter("xslt", xslt)
 
     @property
     @pulumi.getter
@@ -959,8 +1188,19 @@ class NetworkDhcp(dict):
         """
         :param bool enabled: when false, disable the DHCP server
         """
+        NetworkDhcp._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
 
     @property
     @pulumi.getter
@@ -1010,16 +1250,37 @@ class NetworkDns(dict):
         :param Sequence['NetworkDnsSrvArgs'] srvs: a DNS SRV entry block. You can have one or more of these blocks
                in your DNS definition. You must specify `service` and `protocol`.
         """
+        NetworkDns._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            forwarders=forwarders,
+            hosts=hosts,
+            local_only=local_only,
+            srvs=srvs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: Optional[bool] = None,
+             forwarders: Optional[Sequence['outputs.NetworkDnsForwarder']] = None,
+             hosts: Optional[Sequence['outputs.NetworkDnsHost']] = None,
+             local_only: Optional[bool] = None,
+             srvs: Optional[Sequence['outputs.NetworkDnsSrv']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if local_only is None and 'localOnly' in kwargs:
+            local_only = kwargs['localOnly']
+
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if forwarders is not None:
-            pulumi.set(__self__, "forwarders", forwarders)
+            _setter("forwarders", forwarders)
         if hosts is not None:
-            pulumi.set(__self__, "hosts", hosts)
+            _setter("hosts", hosts)
         if local_only is not None:
-            pulumi.set(__self__, "local_only", local_only)
+            _setter("local_only", local_only)
         if srvs is not None:
-            pulumi.set(__self__, "srvs", srvs)
+            _setter("srvs", srvs)
 
     @property
     @pulumi.getter
@@ -1077,10 +1338,23 @@ class NetworkDnsForwarder(dict):
         """
         :param str domain: The domain used by the DNS server.
         """
+        NetworkDnsForwarder._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            domain=domain,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: Optional[str] = None,
+             domain: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if address is not None:
-            pulumi.set(__self__, "address", address)
+            _setter("address", address)
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
 
     @property
     @pulumi.getter
@@ -1101,10 +1375,23 @@ class NetworkDnsHost(dict):
     def __init__(__self__, *,
                  hostname: Optional[str] = None,
                  ip: Optional[str] = None):
+        NetworkDnsHost._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            hostname=hostname,
+            ip=ip,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             hostname: Optional[str] = None,
+             ip: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
+            _setter("hostname", hostname)
         if ip is not None:
-            pulumi.set(__self__, "ip", ip)
+            _setter("ip", ip)
 
     @property
     @pulumi.getter
@@ -1130,20 +1417,43 @@ class NetworkDnsSrv(dict):
         """
         :param str domain: The domain used by the DNS server.
         """
+        NetworkDnsSrv._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domain=domain,
+            port=port,
+            priority=priority,
+            protocol=protocol,
+            service=service,
+            target=target,
+            weight=weight,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domain: Optional[str] = None,
+             port: Optional[str] = None,
+             priority: Optional[str] = None,
+             protocol: Optional[str] = None,
+             service: Optional[str] = None,
+             target: Optional[str] = None,
+             weight: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if priority is not None:
-            pulumi.set(__self__, "priority", priority)
+            _setter("priority", priority)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
         if service is not None:
-            pulumi.set(__self__, "service", service)
+            _setter("service", service)
         if target is not None:
-            pulumi.set(__self__, "target", target)
+            _setter("target", target)
         if weight is not None:
-            pulumi.set(__self__, "weight", weight)
+            _setter("weight", weight)
 
     @property
     @pulumi.getter
@@ -1195,8 +1505,19 @@ class NetworkDnsmasqOptions(dict):
                
                An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
         """
+        NetworkDnsmasqOptions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            options=options,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             options: Optional[Sequence['outputs.NetworkDnsmasqOptionsOption']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if options is not None:
-            pulumi.set(__self__, "options", options)
+            _setter("options", options)
 
     @property
     @pulumi.getter
@@ -1235,10 +1556,27 @@ class NetworkDnsmasqOptionsOption(dict):
     def __init__(__self__, *,
                  option_name: Optional[str] = None,
                  option_value: Optional[str] = None):
+        NetworkDnsmasqOptionsOption._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            option_name=option_name,
+            option_value=option_value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             option_name: Optional[str] = None,
+             option_value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if option_name is None and 'optionName' in kwargs:
+            option_name = kwargs['optionName']
+        if option_value is None and 'optionValue' in kwargs:
+            option_value = kwargs['optionValue']
+
         if option_name is not None:
-            pulumi.set(__self__, "option_name", option_name)
+            _setter("option_name", option_name)
         if option_value is not None:
-            pulumi.set(__self__, "option_value", option_value)
+            _setter("option_value", option_value)
 
     @property
     @pulumi.getter(name="optionName")
@@ -1256,8 +1594,25 @@ class NetworkRoute(dict):
     def __init__(__self__, *,
                  cidr: str,
                  gateway: str):
-        pulumi.set(__self__, "cidr", cidr)
-        pulumi.set(__self__, "gateway", gateway)
+        NetworkRoute._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cidr=cidr,
+            gateway=gateway,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cidr: Optional[str] = None,
+             gateway: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cidr is None:
+            raise TypeError("Missing 'cidr' argument")
+        if gateway is None:
+            raise TypeError("Missing 'gateway' argument")
+
+        _setter("cidr", cidr)
+        _setter("gateway", gateway)
 
     @property
     @pulumi.getter
@@ -1274,8 +1629,19 @@ class NetworkRoute(dict):
 class NetworkXml(dict):
     def __init__(__self__, *,
                  xslt: Optional[str] = None):
+        NetworkXml._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            xslt=xslt,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             xslt: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if xslt is not None:
-            pulumi.set(__self__, "xslt", xslt)
+            _setter("xslt", xslt)
 
     @property
     @pulumi.getter
@@ -1287,8 +1653,19 @@ class NetworkXml(dict):
 class PoolXml(dict):
     def __init__(__self__, *,
                  xslt: Optional[str] = None):
+        PoolXml._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            xslt=xslt,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             xslt: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if xslt is not None:
-            pulumi.set(__self__, "xslt", xslt)
+            _setter("xslt", xslt)
 
     @property
     @pulumi.getter
@@ -1300,8 +1677,19 @@ class PoolXml(dict):
 class VolumeXml(dict):
     def __init__(__self__, *,
                  xslt: Optional[str] = None):
+        VolumeXml._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            xslt=xslt,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             xslt: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if xslt is not None:
-            pulumi.set(__self__, "xslt", xslt)
+            _setter("xslt", xslt)
 
     @property
     @pulumi.getter

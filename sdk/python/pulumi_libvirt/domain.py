@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -142,64 +142,141 @@ class DomainArgs:
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
         """
+        DomainArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            arch=arch,
+            autostart=autostart,
+            boot_devices=boot_devices,
+            cloudinit=cloudinit,
+            cmdlines=cmdlines,
+            consoles=consoles,
+            coreos_ignition=coreos_ignition,
+            cpu=cpu,
+            description=description,
+            disks=disks,
+            emulator=emulator,
+            filesystems=filesystems,
+            firmware=firmware,
+            fw_cfg_name=fw_cfg_name,
+            graphics=graphics,
+            initrd=initrd,
+            kernel=kernel,
+            machine=machine,
+            memory=memory,
+            metadata=metadata,
+            name=name,
+            network_interfaces=network_interfaces,
+            nvram=nvram,
+            qemu_agent=qemu_agent,
+            running=running,
+            tpm=tpm,
+            vcpu=vcpu,
+            video=video,
+            xml=xml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             arch: Optional[pulumi.Input[str]] = None,
+             autostart: Optional[pulumi.Input[bool]] = None,
+             boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input['DomainBootDeviceArgs']]]] = None,
+             cloudinit: Optional[pulumi.Input[str]] = None,
+             cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+             consoles: Optional[pulumi.Input[Sequence[pulumi.Input['DomainConsoleArgs']]]] = None,
+             coreos_ignition: Optional[pulumi.Input[str]] = None,
+             cpu: Optional[pulumi.Input['DomainCpuArgs']] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             disks: Optional[pulumi.Input[Sequence[pulumi.Input['DomainDiskArgs']]]] = None,
+             emulator: Optional[pulumi.Input[str]] = None,
+             filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['DomainFilesystemArgs']]]] = None,
+             firmware: Optional[pulumi.Input[str]] = None,
+             fw_cfg_name: Optional[pulumi.Input[str]] = None,
+             graphics: Optional[pulumi.Input['DomainGraphicsArgs']] = None,
+             initrd: Optional[pulumi.Input[str]] = None,
+             kernel: Optional[pulumi.Input[str]] = None,
+             machine: Optional[pulumi.Input[str]] = None,
+             memory: Optional[pulumi.Input[int]] = None,
+             metadata: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['DomainNetworkInterfaceArgs']]]] = None,
+             nvram: Optional[pulumi.Input['DomainNvramArgs']] = None,
+             qemu_agent: Optional[pulumi.Input[bool]] = None,
+             running: Optional[pulumi.Input[bool]] = None,
+             tpm: Optional[pulumi.Input['DomainTpmArgs']] = None,
+             vcpu: Optional[pulumi.Input[int]] = None,
+             video: Optional[pulumi.Input['DomainVideoArgs']] = None,
+             xml: Optional[pulumi.Input['DomainXmlArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if boot_devices is None and 'bootDevices' in kwargs:
+            boot_devices = kwargs['bootDevices']
+        if coreos_ignition is None and 'coreosIgnition' in kwargs:
+            coreos_ignition = kwargs['coreosIgnition']
+        if fw_cfg_name is None and 'fwCfgName' in kwargs:
+            fw_cfg_name = kwargs['fwCfgName']
+        if network_interfaces is None and 'networkInterfaces' in kwargs:
+            network_interfaces = kwargs['networkInterfaces']
+        if qemu_agent is None and 'qemuAgent' in kwargs:
+            qemu_agent = kwargs['qemuAgent']
+
         if arch is not None:
-            pulumi.set(__self__, "arch", arch)
+            _setter("arch", arch)
         if autostart is not None:
-            pulumi.set(__self__, "autostart", autostart)
+            _setter("autostart", autostart)
         if boot_devices is not None:
-            pulumi.set(__self__, "boot_devices", boot_devices)
+            _setter("boot_devices", boot_devices)
         if cloudinit is not None:
-            pulumi.set(__self__, "cloudinit", cloudinit)
+            _setter("cloudinit", cloudinit)
         if cmdlines is not None:
-            pulumi.set(__self__, "cmdlines", cmdlines)
+            _setter("cmdlines", cmdlines)
         if consoles is not None:
-            pulumi.set(__self__, "consoles", consoles)
+            _setter("consoles", consoles)
         if coreos_ignition is not None:
-            pulumi.set(__self__, "coreos_ignition", coreos_ignition)
+            _setter("coreos_ignition", coreos_ignition)
         if cpu is not None:
-            pulumi.set(__self__, "cpu", cpu)
+            _setter("cpu", cpu)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if disks is not None:
-            pulumi.set(__self__, "disks", disks)
+            _setter("disks", disks)
         if emulator is not None:
-            pulumi.set(__self__, "emulator", emulator)
+            _setter("emulator", emulator)
         if filesystems is not None:
-            pulumi.set(__self__, "filesystems", filesystems)
+            _setter("filesystems", filesystems)
         if firmware is not None:
-            pulumi.set(__self__, "firmware", firmware)
+            _setter("firmware", firmware)
         if fw_cfg_name is not None:
-            pulumi.set(__self__, "fw_cfg_name", fw_cfg_name)
+            _setter("fw_cfg_name", fw_cfg_name)
         if graphics is not None:
-            pulumi.set(__self__, "graphics", graphics)
+            _setter("graphics", graphics)
         if initrd is not None:
-            pulumi.set(__self__, "initrd", initrd)
+            _setter("initrd", initrd)
         if kernel is not None:
-            pulumi.set(__self__, "kernel", kernel)
+            _setter("kernel", kernel)
         if machine is not None:
-            pulumi.set(__self__, "machine", machine)
+            _setter("machine", machine)
         if memory is not None:
-            pulumi.set(__self__, "memory", memory)
+            _setter("memory", memory)
         if metadata is not None:
-            pulumi.set(__self__, "metadata", metadata)
+            _setter("metadata", metadata)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_interfaces is not None:
-            pulumi.set(__self__, "network_interfaces", network_interfaces)
+            _setter("network_interfaces", network_interfaces)
         if nvram is not None:
-            pulumi.set(__self__, "nvram", nvram)
+            _setter("nvram", nvram)
         if qemu_agent is not None:
-            pulumi.set(__self__, "qemu_agent", qemu_agent)
+            _setter("qemu_agent", qemu_agent)
         if running is not None:
-            pulumi.set(__self__, "running", running)
+            _setter("running", running)
         if tpm is not None:
-            pulumi.set(__self__, "tpm", tpm)
+            _setter("tpm", tpm)
         if vcpu is not None:
-            pulumi.set(__self__, "vcpu", vcpu)
+            _setter("vcpu", vcpu)
         if video is not None:
-            pulumi.set(__self__, "video", video)
+            _setter("video", video)
         if xml is not None:
-            pulumi.set(__self__, "xml", xml)
+            _setter("xml", xml)
 
     @property
     @pulumi.getter
@@ -734,64 +811,141 @@ class _DomainState:
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
         """
+        _DomainState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            arch=arch,
+            autostart=autostart,
+            boot_devices=boot_devices,
+            cloudinit=cloudinit,
+            cmdlines=cmdlines,
+            consoles=consoles,
+            coreos_ignition=coreos_ignition,
+            cpu=cpu,
+            description=description,
+            disks=disks,
+            emulator=emulator,
+            filesystems=filesystems,
+            firmware=firmware,
+            fw_cfg_name=fw_cfg_name,
+            graphics=graphics,
+            initrd=initrd,
+            kernel=kernel,
+            machine=machine,
+            memory=memory,
+            metadata=metadata,
+            name=name,
+            network_interfaces=network_interfaces,
+            nvram=nvram,
+            qemu_agent=qemu_agent,
+            running=running,
+            tpm=tpm,
+            vcpu=vcpu,
+            video=video,
+            xml=xml,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             arch: Optional[pulumi.Input[str]] = None,
+             autostart: Optional[pulumi.Input[bool]] = None,
+             boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input['DomainBootDeviceArgs']]]] = None,
+             cloudinit: Optional[pulumi.Input[str]] = None,
+             cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+             consoles: Optional[pulumi.Input[Sequence[pulumi.Input['DomainConsoleArgs']]]] = None,
+             coreos_ignition: Optional[pulumi.Input[str]] = None,
+             cpu: Optional[pulumi.Input['DomainCpuArgs']] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             disks: Optional[pulumi.Input[Sequence[pulumi.Input['DomainDiskArgs']]]] = None,
+             emulator: Optional[pulumi.Input[str]] = None,
+             filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['DomainFilesystemArgs']]]] = None,
+             firmware: Optional[pulumi.Input[str]] = None,
+             fw_cfg_name: Optional[pulumi.Input[str]] = None,
+             graphics: Optional[pulumi.Input['DomainGraphicsArgs']] = None,
+             initrd: Optional[pulumi.Input[str]] = None,
+             kernel: Optional[pulumi.Input[str]] = None,
+             machine: Optional[pulumi.Input[str]] = None,
+             memory: Optional[pulumi.Input[int]] = None,
+             metadata: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['DomainNetworkInterfaceArgs']]]] = None,
+             nvram: Optional[pulumi.Input['DomainNvramArgs']] = None,
+             qemu_agent: Optional[pulumi.Input[bool]] = None,
+             running: Optional[pulumi.Input[bool]] = None,
+             tpm: Optional[pulumi.Input['DomainTpmArgs']] = None,
+             vcpu: Optional[pulumi.Input[int]] = None,
+             video: Optional[pulumi.Input['DomainVideoArgs']] = None,
+             xml: Optional[pulumi.Input['DomainXmlArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if boot_devices is None and 'bootDevices' in kwargs:
+            boot_devices = kwargs['bootDevices']
+        if coreos_ignition is None and 'coreosIgnition' in kwargs:
+            coreos_ignition = kwargs['coreosIgnition']
+        if fw_cfg_name is None and 'fwCfgName' in kwargs:
+            fw_cfg_name = kwargs['fwCfgName']
+        if network_interfaces is None and 'networkInterfaces' in kwargs:
+            network_interfaces = kwargs['networkInterfaces']
+        if qemu_agent is None and 'qemuAgent' in kwargs:
+            qemu_agent = kwargs['qemuAgent']
+
         if arch is not None:
-            pulumi.set(__self__, "arch", arch)
+            _setter("arch", arch)
         if autostart is not None:
-            pulumi.set(__self__, "autostart", autostart)
+            _setter("autostart", autostart)
         if boot_devices is not None:
-            pulumi.set(__self__, "boot_devices", boot_devices)
+            _setter("boot_devices", boot_devices)
         if cloudinit is not None:
-            pulumi.set(__self__, "cloudinit", cloudinit)
+            _setter("cloudinit", cloudinit)
         if cmdlines is not None:
-            pulumi.set(__self__, "cmdlines", cmdlines)
+            _setter("cmdlines", cmdlines)
         if consoles is not None:
-            pulumi.set(__self__, "consoles", consoles)
+            _setter("consoles", consoles)
         if coreos_ignition is not None:
-            pulumi.set(__self__, "coreos_ignition", coreos_ignition)
+            _setter("coreos_ignition", coreos_ignition)
         if cpu is not None:
-            pulumi.set(__self__, "cpu", cpu)
+            _setter("cpu", cpu)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if disks is not None:
-            pulumi.set(__self__, "disks", disks)
+            _setter("disks", disks)
         if emulator is not None:
-            pulumi.set(__self__, "emulator", emulator)
+            _setter("emulator", emulator)
         if filesystems is not None:
-            pulumi.set(__self__, "filesystems", filesystems)
+            _setter("filesystems", filesystems)
         if firmware is not None:
-            pulumi.set(__self__, "firmware", firmware)
+            _setter("firmware", firmware)
         if fw_cfg_name is not None:
-            pulumi.set(__self__, "fw_cfg_name", fw_cfg_name)
+            _setter("fw_cfg_name", fw_cfg_name)
         if graphics is not None:
-            pulumi.set(__self__, "graphics", graphics)
+            _setter("graphics", graphics)
         if initrd is not None:
-            pulumi.set(__self__, "initrd", initrd)
+            _setter("initrd", initrd)
         if kernel is not None:
-            pulumi.set(__self__, "kernel", kernel)
+            _setter("kernel", kernel)
         if machine is not None:
-            pulumi.set(__self__, "machine", machine)
+            _setter("machine", machine)
         if memory is not None:
-            pulumi.set(__self__, "memory", memory)
+            _setter("memory", memory)
         if metadata is not None:
-            pulumi.set(__self__, "metadata", metadata)
+            _setter("metadata", metadata)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_interfaces is not None:
-            pulumi.set(__self__, "network_interfaces", network_interfaces)
+            _setter("network_interfaces", network_interfaces)
         if nvram is not None:
-            pulumi.set(__self__, "nvram", nvram)
+            _setter("nvram", nvram)
         if qemu_agent is not None:
-            pulumi.set(__self__, "qemu_agent", qemu_agent)
+            _setter("qemu_agent", qemu_agent)
         if running is not None:
-            pulumi.set(__self__, "running", running)
+            _setter("running", running)
         if tpm is not None:
-            pulumi.set(__self__, "tpm", tpm)
+            _setter("tpm", tpm)
         if vcpu is not None:
-            pulumi.set(__self__, "vcpu", vcpu)
+            _setter("vcpu", vcpu)
         if video is not None:
-            pulumi.set(__self__, "video", video)
+            _setter("video", video)
         if xml is not None:
-            pulumi.set(__self__, "xml", xml)
+            _setter("xml", xml)
 
     @property
     @pulumi.getter
@@ -1371,6 +1525,10 @@ class Domain(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DomainArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1421,6 +1579,11 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["cmdlines"] = cmdlines
             __props__.__dict__["consoles"] = consoles
             __props__.__dict__["coreos_ignition"] = coreos_ignition
+            if cpu is not None and not isinstance(cpu, DomainCpuArgs):
+                cpu = cpu or {}
+                def _setter(key, value):
+                    cpu[key] = value
+                DomainCpuArgs._configure(_setter, **cpu)
             __props__.__dict__["cpu"] = cpu
             __props__.__dict__["description"] = description
             __props__.__dict__["disks"] = disks
@@ -1428,6 +1591,11 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["filesystems"] = filesystems
             __props__.__dict__["firmware"] = firmware
             __props__.__dict__["fw_cfg_name"] = fw_cfg_name
+            if graphics is not None and not isinstance(graphics, DomainGraphicsArgs):
+                graphics = graphics or {}
+                def _setter(key, value):
+                    graphics[key] = value
+                DomainGraphicsArgs._configure(_setter, **graphics)
             __props__.__dict__["graphics"] = graphics
             __props__.__dict__["initrd"] = initrd
             __props__.__dict__["kernel"] = kernel
@@ -1436,12 +1604,32 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["network_interfaces"] = network_interfaces
+            if nvram is not None and not isinstance(nvram, DomainNvramArgs):
+                nvram = nvram or {}
+                def _setter(key, value):
+                    nvram[key] = value
+                DomainNvramArgs._configure(_setter, **nvram)
             __props__.__dict__["nvram"] = nvram
             __props__.__dict__["qemu_agent"] = qemu_agent
             __props__.__dict__["running"] = running
+            if tpm is not None and not isinstance(tpm, DomainTpmArgs):
+                tpm = tpm or {}
+                def _setter(key, value):
+                    tpm[key] = value
+                DomainTpmArgs._configure(_setter, **tpm)
             __props__.__dict__["tpm"] = tpm
             __props__.__dict__["vcpu"] = vcpu
+            if video is not None and not isinstance(video, DomainVideoArgs):
+                video = video or {}
+                def _setter(key, value):
+                    video[key] = value
+                DomainVideoArgs._configure(_setter, **video)
             __props__.__dict__["video"] = video
+            if xml is not None and not isinstance(xml, DomainXmlArgs):
+                xml = xml or {}
+                def _setter(key, value):
+                    xml[key] = value
+                DomainXmlArgs._configure(_setter, **xml)
             __props__.__dict__["xml"] = xml
         super(Domain, __self__).__init__(
             'libvirt:index/domain:Domain',
