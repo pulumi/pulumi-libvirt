@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -45,12 +44,6 @@ func (i DomainBootDeviceArgs) ToDomainBootDeviceOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DomainBootDeviceOutput)
 }
 
-func (i DomainBootDeviceArgs) ToOutput(ctx context.Context) pulumix.Output[DomainBootDevice] {
-	return pulumix.Output[DomainBootDevice]{
-		OutputState: i.ToDomainBootDeviceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainBootDeviceArrayInput is an input type that accepts DomainBootDeviceArray and DomainBootDeviceArrayOutput values.
 // You can construct a concrete instance of `DomainBootDeviceArrayInput` via:
 //
@@ -76,12 +69,6 @@ func (i DomainBootDeviceArray) ToDomainBootDeviceArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DomainBootDeviceArrayOutput)
 }
 
-func (i DomainBootDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainBootDevice] {
-	return pulumix.Output[[]DomainBootDevice]{
-		OutputState: i.ToDomainBootDeviceArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainBootDeviceOutput struct{ *pulumi.OutputState }
 
 func (DomainBootDeviceOutput) ElementType() reflect.Type {
@@ -94,12 +81,6 @@ func (o DomainBootDeviceOutput) ToDomainBootDeviceOutput() DomainBootDeviceOutpu
 
 func (o DomainBootDeviceOutput) ToDomainBootDeviceOutputWithContext(ctx context.Context) DomainBootDeviceOutput {
 	return o
-}
-
-func (o DomainBootDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[DomainBootDevice] {
-	return pulumix.Output[DomainBootDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainBootDeviceOutput) Devs() pulumi.StringArrayOutput {
@@ -118,12 +99,6 @@ func (o DomainBootDeviceArrayOutput) ToDomainBootDeviceArrayOutput() DomainBootD
 
 func (o DomainBootDeviceArrayOutput) ToDomainBootDeviceArrayOutputWithContext(ctx context.Context) DomainBootDeviceArrayOutput {
 	return o
-}
-
-func (o DomainBootDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainBootDevice] {
-	return pulumix.Output[[]DomainBootDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainBootDeviceArrayOutput) Index(i pulumi.IntInput) DomainBootDeviceOutput {
@@ -209,12 +184,6 @@ func (i DomainConsoleArgs) ToDomainConsoleOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DomainConsoleOutput)
 }
 
-func (i DomainConsoleArgs) ToOutput(ctx context.Context) pulumix.Output[DomainConsole] {
-	return pulumix.Output[DomainConsole]{
-		OutputState: i.ToDomainConsoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainConsoleArrayInput is an input type that accepts DomainConsoleArray and DomainConsoleArrayOutput values.
 // You can construct a concrete instance of `DomainConsoleArrayInput` via:
 //
@@ -240,12 +209,6 @@ func (i DomainConsoleArray) ToDomainConsoleArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DomainConsoleArrayOutput)
 }
 
-func (i DomainConsoleArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainConsole] {
-	return pulumix.Output[[]DomainConsole]{
-		OutputState: i.ToDomainConsoleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainConsoleOutput struct{ *pulumi.OutputState }
 
 func (DomainConsoleOutput) ElementType() reflect.Type {
@@ -258,12 +221,6 @@ func (o DomainConsoleOutput) ToDomainConsoleOutput() DomainConsoleOutput {
 
 func (o DomainConsoleOutput) ToDomainConsoleOutputWithContext(ctx context.Context) DomainConsoleOutput {
 	return o
-}
-
-func (o DomainConsoleOutput) ToOutput(ctx context.Context) pulumix.Output[DomainConsole] {
-	return pulumix.Output[DomainConsole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // IP address to listen on. Defaults to 127.0.0.1.
@@ -322,12 +279,6 @@ func (o DomainConsoleArrayOutput) ToDomainConsoleArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o DomainConsoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainConsole] {
-	return pulumix.Output[[]DomainConsole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainConsoleArrayOutput) Index(i pulumi.IntInput) DomainConsoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainConsole {
 		return vs[0].([]DomainConsole)[vs[1].(int)]
@@ -363,12 +314,6 @@ func (i DomainCpuArgs) ToDomainCpuOutput() DomainCpuOutput {
 
 func (i DomainCpuArgs) ToDomainCpuOutputWithContext(ctx context.Context) DomainCpuOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DomainCpuOutput)
-}
-
-func (i DomainCpuArgs) ToOutput(ctx context.Context) pulumix.Output[DomainCpu] {
-	return pulumix.Output[DomainCpu]{
-		OutputState: i.ToDomainCpuOutputWithContext(ctx).OutputState,
-	}
 }
 
 func (i DomainCpuArgs) ToDomainCpuPtrOutput() DomainCpuPtrOutput {
@@ -412,12 +357,6 @@ func (i *domainCpuPtrType) ToDomainCpuPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DomainCpuPtrOutput)
 }
 
-func (i *domainCpuPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainCpu] {
-	return pulumix.Output[*DomainCpu]{
-		OutputState: i.ToDomainCpuPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainCpuOutput struct{ *pulumi.OutputState }
 
 func (DomainCpuOutput) ElementType() reflect.Type {
@@ -442,12 +381,6 @@ func (o DomainCpuOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context) Do
 	}).(DomainCpuPtrOutput)
 }
 
-func (o DomainCpuOutput) ToOutput(ctx context.Context) pulumix.Output[DomainCpu] {
-	return pulumix.Output[DomainCpu]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainCpuOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainCpu) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -464,12 +397,6 @@ func (o DomainCpuPtrOutput) ToDomainCpuPtrOutput() DomainCpuPtrOutput {
 
 func (o DomainCpuPtrOutput) ToDomainCpuPtrOutputWithContext(ctx context.Context) DomainCpuPtrOutput {
 	return o
-}
-
-func (o DomainCpuPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainCpu] {
-	return pulumix.Output[*DomainCpu]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainCpuPtrOutput) Elem() DomainCpuOutput {
@@ -654,12 +581,6 @@ func (i DomainDiskArgs) ToDomainDiskOutputWithContext(ctx context.Context) Domai
 	return pulumi.ToOutputWithContext(ctx, i).(DomainDiskOutput)
 }
 
-func (i DomainDiskArgs) ToOutput(ctx context.Context) pulumix.Output[DomainDisk] {
-	return pulumix.Output[DomainDisk]{
-		OutputState: i.ToDomainDiskOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainDiskArrayInput is an input type that accepts DomainDiskArray and DomainDiskArrayOutput values.
 // You can construct a concrete instance of `DomainDiskArrayInput` via:
 //
@@ -685,12 +606,6 @@ func (i DomainDiskArray) ToDomainDiskArrayOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(DomainDiskArrayOutput)
 }
 
-func (i DomainDiskArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainDisk] {
-	return pulumix.Output[[]DomainDisk]{
-		OutputState: i.ToDomainDiskArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainDiskOutput struct{ *pulumi.OutputState }
 
 func (DomainDiskOutput) ElementType() reflect.Type {
@@ -703,12 +618,6 @@ func (o DomainDiskOutput) ToDomainDiskOutput() DomainDiskOutput {
 
 func (o DomainDiskOutput) ToDomainDiskOutputWithContext(ctx context.Context) DomainDiskOutput {
 	return o
-}
-
-func (o DomainDiskOutput) ToOutput(ctx context.Context) pulumix.Output[DomainDisk] {
-	return pulumix.Output[DomainDisk]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path to the host device to use as the block device for this disk.
@@ -813,12 +722,6 @@ func (o DomainDiskArrayOutput) ToDomainDiskArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o DomainDiskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainDisk] {
-	return pulumix.Output[[]DomainDisk]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainDiskArrayOutput) Index(i pulumi.IntInput) DomainDiskOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DomainDisk {
 		return vs[0].([]DomainDisk)[vs[1].(int)]
@@ -916,12 +819,6 @@ func (i DomainFilesystemArgs) ToDomainFilesystemOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DomainFilesystemOutput)
 }
 
-func (i DomainFilesystemArgs) ToOutput(ctx context.Context) pulumix.Output[DomainFilesystem] {
-	return pulumix.Output[DomainFilesystem]{
-		OutputState: i.ToDomainFilesystemOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainFilesystemArrayInput is an input type that accepts DomainFilesystemArray and DomainFilesystemArrayOutput values.
 // You can construct a concrete instance of `DomainFilesystemArrayInput` via:
 //
@@ -947,12 +844,6 @@ func (i DomainFilesystemArray) ToDomainFilesystemArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DomainFilesystemArrayOutput)
 }
 
-func (i DomainFilesystemArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainFilesystem] {
-	return pulumix.Output[[]DomainFilesystem]{
-		OutputState: i.ToDomainFilesystemArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainFilesystemOutput struct{ *pulumi.OutputState }
 
 func (DomainFilesystemOutput) ElementType() reflect.Type {
@@ -965,12 +856,6 @@ func (o DomainFilesystemOutput) ToDomainFilesystemOutput() DomainFilesystemOutpu
 
 func (o DomainFilesystemOutput) ToDomainFilesystemOutputWithContext(ctx context.Context) DomainFilesystemOutput {
 	return o
-}
-
-func (o DomainFilesystemOutput) ToOutput(ctx context.Context) pulumix.Output[DomainFilesystem] {
-	return pulumix.Output[DomainFilesystem]{
-		OutputState: o.OutputState,
-	}
 }
 
 // specifies the security mode for accessing the source. By default
@@ -1031,12 +916,6 @@ func (o DomainFilesystemArrayOutput) ToDomainFilesystemArrayOutput() DomainFiles
 
 func (o DomainFilesystemArrayOutput) ToDomainFilesystemArrayOutputWithContext(ctx context.Context) DomainFilesystemArrayOutput {
 	return o
-}
-
-func (o DomainFilesystemArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainFilesystem] {
-	return pulumix.Output[[]DomainFilesystem]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainFilesystemArrayOutput) Index(i pulumi.IntInput) DomainFilesystemOutput {
@@ -1124,12 +1003,6 @@ func (i DomainGraphicsArgs) ToDomainGraphicsOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(DomainGraphicsOutput)
 }
 
-func (i DomainGraphicsArgs) ToOutput(ctx context.Context) pulumix.Output[DomainGraphics] {
-	return pulumix.Output[DomainGraphics]{
-		OutputState: i.ToDomainGraphicsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i DomainGraphicsArgs) ToDomainGraphicsPtrOutput() DomainGraphicsPtrOutput {
 	return i.ToDomainGraphicsPtrOutputWithContext(context.Background())
 }
@@ -1171,12 +1044,6 @@ func (i *domainGraphicsPtrType) ToDomainGraphicsPtrOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DomainGraphicsPtrOutput)
 }
 
-func (i *domainGraphicsPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainGraphics] {
-	return pulumix.Output[*DomainGraphics]{
-		OutputState: i.ToDomainGraphicsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainGraphicsOutput struct{ *pulumi.OutputState }
 
 func (DomainGraphicsOutput) ElementType() reflect.Type {
@@ -1199,12 +1066,6 @@ func (o DomainGraphicsOutput) ToDomainGraphicsPtrOutputWithContext(ctx context.C
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainGraphics) *DomainGraphics {
 		return &v
 	}).(DomainGraphicsPtrOutput)
-}
-
-func (o DomainGraphicsOutput) ToOutput(ctx context.Context) pulumix.Output[DomainGraphics] {
-	return pulumix.Output[DomainGraphics]{
-		OutputState: o.OutputState,
-	}
 }
 
 // defaults to "yes"
@@ -1259,12 +1120,6 @@ func (o DomainGraphicsPtrOutput) ToDomainGraphicsPtrOutput() DomainGraphicsPtrOu
 
 func (o DomainGraphicsPtrOutput) ToDomainGraphicsPtrOutputWithContext(ctx context.Context) DomainGraphicsPtrOutput {
 	return o
-}
-
-func (o DomainGraphicsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainGraphics] {
-	return pulumix.Output[*DomainGraphics]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainGraphicsPtrOutput) Elem() DomainGraphicsOutput {
@@ -1459,12 +1314,6 @@ func (i DomainNetworkInterfaceArgs) ToDomainNetworkInterfaceOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNetworkInterfaceOutput)
 }
 
-func (i DomainNetworkInterfaceArgs) ToOutput(ctx context.Context) pulumix.Output[DomainNetworkInterface] {
-	return pulumix.Output[DomainNetworkInterface]{
-		OutputState: i.ToDomainNetworkInterfaceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DomainNetworkInterfaceArrayInput is an input type that accepts DomainNetworkInterfaceArray and DomainNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `DomainNetworkInterfaceArrayInput` via:
 //
@@ -1490,12 +1339,6 @@ func (i DomainNetworkInterfaceArray) ToDomainNetworkInterfaceArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNetworkInterfaceArrayOutput)
 }
 
-func (i DomainNetworkInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]DomainNetworkInterface] {
-	return pulumix.Output[[]DomainNetworkInterface]{
-		OutputState: i.ToDomainNetworkInterfaceArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainNetworkInterfaceOutput struct{ *pulumi.OutputState }
 
 func (DomainNetworkInterfaceOutput) ElementType() reflect.Type {
@@ -1508,12 +1351,6 @@ func (o DomainNetworkInterfaceOutput) ToDomainNetworkInterfaceOutput() DomainNet
 
 func (o DomainNetworkInterfaceOutput) ToDomainNetworkInterfaceOutputWithContext(ctx context.Context) DomainNetworkInterfaceOutput {
 	return o
-}
-
-func (o DomainNetworkInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[DomainNetworkInterface] {
-	return pulumix.Output[DomainNetworkInterface]{
-		OutputState: o.OutputState,
-	}
 }
 
 // An IP address for this domain in this network.
@@ -1602,12 +1439,6 @@ func (o DomainNetworkInterfaceArrayOutput) ToDomainNetworkInterfaceArrayOutput()
 
 func (o DomainNetworkInterfaceArrayOutput) ToDomainNetworkInterfaceArrayOutputWithContext(ctx context.Context) DomainNetworkInterfaceArrayOutput {
 	return o
-}
-
-func (o DomainNetworkInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]DomainNetworkInterface] {
-	return pulumix.Output[[]DomainNetworkInterface]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) DomainNetworkInterfaceOutput {
@@ -1703,12 +1534,6 @@ func (i DomainNvramArgs) ToDomainNvramOutputWithContext(ctx context.Context) Dom
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNvramOutput)
 }
 
-func (i DomainNvramArgs) ToOutput(ctx context.Context) pulumix.Output[DomainNvram] {
-	return pulumix.Output[DomainNvram]{
-		OutputState: i.ToDomainNvramOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i DomainNvramArgs) ToDomainNvramPtrOutput() DomainNvramPtrOutput {
 	return i.ToDomainNvramPtrOutputWithContext(context.Background())
 }
@@ -1750,12 +1575,6 @@ func (i *domainNvramPtrType) ToDomainNvramPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DomainNvramPtrOutput)
 }
 
-func (i *domainNvramPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainNvram] {
-	return pulumix.Output[*DomainNvram]{
-		OutputState: i.ToDomainNvramPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainNvramOutput struct{ *pulumi.OutputState }
 
 func (DomainNvramOutput) ElementType() reflect.Type {
@@ -1778,12 +1597,6 @@ func (o DomainNvramOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainNvram) *DomainNvram {
 		return &v
 	}).(DomainNvramPtrOutput)
-}
-
-func (o DomainNvramOutput) ToOutput(ctx context.Context) pulumix.Output[DomainNvram] {
-	return pulumix.Output[DomainNvram]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The filename to use as the block device for this disk (read-only)
@@ -1836,12 +1649,6 @@ func (o DomainNvramPtrOutput) ToDomainNvramPtrOutput() DomainNvramPtrOutput {
 
 func (o DomainNvramPtrOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context) DomainNvramPtrOutput {
 	return o
-}
-
-func (o DomainNvramPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainNvram] {
-	return pulumix.Output[*DomainNvram]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainNvramPtrOutput) Elem() DomainNvramOutput {
@@ -1963,12 +1770,6 @@ func (i DomainTpmArgs) ToDomainTpmOutputWithContext(ctx context.Context) DomainT
 	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmOutput)
 }
 
-func (i DomainTpmArgs) ToOutput(ctx context.Context) pulumix.Output[DomainTpm] {
-	return pulumix.Output[DomainTpm]{
-		OutputState: i.ToDomainTpmOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i DomainTpmArgs) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
 	return i.ToDomainTpmPtrOutputWithContext(context.Background())
 }
@@ -2010,12 +1811,6 @@ func (i *domainTpmPtrType) ToDomainTpmPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DomainTpmPtrOutput)
 }
 
-func (i *domainTpmPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainTpm] {
-	return pulumix.Output[*DomainTpm]{
-		OutputState: i.ToDomainTpmPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainTpmOutput struct{ *pulumi.OutputState }
 
 func (DomainTpmOutput) ElementType() reflect.Type {
@@ -2038,12 +1833,6 @@ func (o DomainTpmOutput) ToDomainTpmPtrOutputWithContext(ctx context.Context) Do
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v DomainTpm) *DomainTpm {
 		return &v
 	}).(DomainTpmPtrOutput)
-}
-
-func (o DomainTpmOutput) ToOutput(ctx context.Context) pulumix.Output[DomainTpm] {
-	return pulumix.Output[DomainTpm]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Path to TPM device on the host, ex: `/dev/tpm0`
@@ -2092,12 +1881,6 @@ func (o DomainTpmPtrOutput) ToDomainTpmPtrOutput() DomainTpmPtrOutput {
 
 func (o DomainTpmPtrOutput) ToDomainTpmPtrOutputWithContext(ctx context.Context) DomainTpmPtrOutput {
 	return o
-}
-
-func (o DomainTpmPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainTpm] {
-	return pulumix.Output[*DomainTpm]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainTpmPtrOutput) Elem() DomainTpmOutput {
@@ -2207,12 +1990,6 @@ func (i DomainVideoArgs) ToDomainVideoOutputWithContext(ctx context.Context) Dom
 	return pulumi.ToOutputWithContext(ctx, i).(DomainVideoOutput)
 }
 
-func (i DomainVideoArgs) ToOutput(ctx context.Context) pulumix.Output[DomainVideo] {
-	return pulumix.Output[DomainVideo]{
-		OutputState: i.ToDomainVideoOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i DomainVideoArgs) ToDomainVideoPtrOutput() DomainVideoPtrOutput {
 	return i.ToDomainVideoPtrOutputWithContext(context.Background())
 }
@@ -2254,12 +2031,6 @@ func (i *domainVideoPtrType) ToDomainVideoPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DomainVideoPtrOutput)
 }
 
-func (i *domainVideoPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainVideo] {
-	return pulumix.Output[*DomainVideo]{
-		OutputState: i.ToDomainVideoPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainVideoOutput struct{ *pulumi.OutputState }
 
 func (DomainVideoOutput) ElementType() reflect.Type {
@@ -2284,12 +2055,6 @@ func (o DomainVideoOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context
 	}).(DomainVideoPtrOutput)
 }
 
-func (o DomainVideoOutput) ToOutput(ctx context.Context) pulumix.Output[DomainVideo] {
-	return pulumix.Output[DomainVideo]{
-		OutputState: o.OutputState,
-	}
-}
-
 // Console device type. Valid values are "pty" and "tcp".
 func (o DomainVideoOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainVideo) *string { return v.Type }).(pulumi.StringPtrOutput)
@@ -2307,12 +2072,6 @@ func (o DomainVideoPtrOutput) ToDomainVideoPtrOutput() DomainVideoPtrOutput {
 
 func (o DomainVideoPtrOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context) DomainVideoPtrOutput {
 	return o
-}
-
-func (o DomainVideoPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainVideo] {
-	return pulumix.Output[*DomainVideo]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainVideoPtrOutput) Elem() DomainVideoOutput {
@@ -2366,12 +2125,6 @@ func (i DomainXmlArgs) ToDomainXmlOutputWithContext(ctx context.Context) DomainX
 	return pulumi.ToOutputWithContext(ctx, i).(DomainXmlOutput)
 }
 
-func (i DomainXmlArgs) ToOutput(ctx context.Context) pulumix.Output[DomainXml] {
-	return pulumix.Output[DomainXml]{
-		OutputState: i.ToDomainXmlOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i DomainXmlArgs) ToDomainXmlPtrOutput() DomainXmlPtrOutput {
 	return i.ToDomainXmlPtrOutputWithContext(context.Background())
 }
@@ -2413,12 +2166,6 @@ func (i *domainXmlPtrType) ToDomainXmlPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DomainXmlPtrOutput)
 }
 
-func (i *domainXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*DomainXml] {
-	return pulumix.Output[*DomainXml]{
-		OutputState: i.ToDomainXmlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DomainXmlOutput struct{ *pulumi.OutputState }
 
 func (DomainXmlOutput) ElementType() reflect.Type {
@@ -2443,12 +2190,6 @@ func (o DomainXmlOutput) ToDomainXmlPtrOutputWithContext(ctx context.Context) Do
 	}).(DomainXmlPtrOutput)
 }
 
-func (o DomainXmlOutput) ToOutput(ctx context.Context) pulumix.Output[DomainXml] {
-	return pulumix.Output[DomainXml]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -2465,12 +2206,6 @@ func (o DomainXmlPtrOutput) ToDomainXmlPtrOutput() DomainXmlPtrOutput {
 
 func (o DomainXmlPtrOutput) ToDomainXmlPtrOutputWithContext(ctx context.Context) DomainXmlPtrOutput {
 	return o
-}
-
-func (o DomainXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainXml] {
-	return pulumix.Output[*DomainXml]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainXmlPtrOutput) Elem() DomainXmlOutput {
@@ -2525,12 +2260,6 @@ func (i NetworkDhcpArgs) ToNetworkDhcpOutputWithContext(ctx context.Context) Net
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDhcpOutput)
 }
 
-func (i NetworkDhcpArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDhcp] {
-	return pulumix.Output[NetworkDhcp]{
-		OutputState: i.ToNetworkDhcpOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i NetworkDhcpArgs) ToNetworkDhcpPtrOutput() NetworkDhcpPtrOutput {
 	return i.ToNetworkDhcpPtrOutputWithContext(context.Background())
 }
@@ -2572,12 +2301,6 @@ func (i *networkDhcpPtrType) ToNetworkDhcpPtrOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDhcpPtrOutput)
 }
 
-func (i *networkDhcpPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkDhcp] {
-	return pulumix.Output[*NetworkDhcp]{
-		OutputState: i.ToNetworkDhcpPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDhcpOutput struct{ *pulumi.OutputState }
 
 func (NetworkDhcpOutput) ElementType() reflect.Type {
@@ -2602,12 +2325,6 @@ func (o NetworkDhcpOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Context
 	}).(NetworkDhcpPtrOutput)
 }
 
-func (o NetworkDhcpOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDhcp] {
-	return pulumix.Output[NetworkDhcp]{
-		OutputState: o.OutputState,
-	}
-}
-
 // when false, disable the DHCP server
 func (o NetworkDhcpOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NetworkDhcp) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
@@ -2625,12 +2342,6 @@ func (o NetworkDhcpPtrOutput) ToNetworkDhcpPtrOutput() NetworkDhcpPtrOutput {
 
 func (o NetworkDhcpPtrOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Context) NetworkDhcpPtrOutput {
 	return o
-}
-
-func (o NetworkDhcpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkDhcp] {
-	return pulumix.Output[*NetworkDhcp]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDhcpPtrOutput) Elem() NetworkDhcpOutput {
@@ -2714,12 +2425,6 @@ func (i NetworkDnsArgs) ToNetworkDnsOutputWithContext(ctx context.Context) Netwo
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsOutput)
 }
 
-func (i NetworkDnsArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDns] {
-	return pulumix.Output[NetworkDns]{
-		OutputState: i.ToNetworkDnsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i NetworkDnsArgs) ToNetworkDnsPtrOutput() NetworkDnsPtrOutput {
 	return i.ToNetworkDnsPtrOutputWithContext(context.Background())
 }
@@ -2761,12 +2466,6 @@ func (i *networkDnsPtrType) ToNetworkDnsPtrOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsPtrOutput)
 }
 
-func (i *networkDnsPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkDns] {
-	return pulumix.Output[*NetworkDns]{
-		OutputState: i.ToNetworkDnsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDnsOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsOutput) ElementType() reflect.Type {
@@ -2789,12 +2488,6 @@ func (o NetworkDnsOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Context) 
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v NetworkDns) *NetworkDns {
 		return &v
 	}).(NetworkDnsPtrOutput)
-}
-
-func (o NetworkDnsOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDns] {
-	return pulumix.Output[NetworkDns]{
-		OutputState: o.OutputState,
-	}
 }
 
 // when false, disable the DHCP server
@@ -2840,12 +2533,6 @@ func (o NetworkDnsPtrOutput) ToNetworkDnsPtrOutput() NetworkDnsPtrOutput {
 
 func (o NetworkDnsPtrOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Context) NetworkDnsPtrOutput {
 	return o
-}
-
-func (o NetworkDnsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkDns] {
-	return pulumix.Output[*NetworkDns]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsPtrOutput) Elem() NetworkDnsOutput {
@@ -2949,12 +2636,6 @@ func (i NetworkDnsForwarderArgs) ToNetworkDnsForwarderOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsForwarderOutput)
 }
 
-func (i NetworkDnsForwarderArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsForwarder] {
-	return pulumix.Output[NetworkDnsForwarder]{
-		OutputState: i.ToNetworkDnsForwarderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NetworkDnsForwarderArrayInput is an input type that accepts NetworkDnsForwarderArray and NetworkDnsForwarderArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsForwarderArrayInput` via:
 //
@@ -2980,12 +2661,6 @@ func (i NetworkDnsForwarderArray) ToNetworkDnsForwarderArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsForwarderArrayOutput)
 }
 
-func (i NetworkDnsForwarderArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsForwarder] {
-	return pulumix.Output[[]NetworkDnsForwarder]{
-		OutputState: i.ToNetworkDnsForwarderArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDnsForwarderOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsForwarderOutput) ElementType() reflect.Type {
@@ -2998,12 +2673,6 @@ func (o NetworkDnsForwarderOutput) ToNetworkDnsForwarderOutput() NetworkDnsForwa
 
 func (o NetworkDnsForwarderOutput) ToNetworkDnsForwarderOutputWithContext(ctx context.Context) NetworkDnsForwarderOutput {
 	return o
-}
-
-func (o NetworkDnsForwarderOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsForwarder] {
-	return pulumix.Output[NetworkDnsForwarder]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsForwarderOutput) Address() pulumi.StringPtrOutput {
@@ -3027,12 +2696,6 @@ func (o NetworkDnsForwarderArrayOutput) ToNetworkDnsForwarderArrayOutput() Netwo
 
 func (o NetworkDnsForwarderArrayOutput) ToNetworkDnsForwarderArrayOutputWithContext(ctx context.Context) NetworkDnsForwarderArrayOutput {
 	return o
-}
-
-func (o NetworkDnsForwarderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsForwarder] {
-	return pulumix.Output[[]NetworkDnsForwarder]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsForwarderArrayOutput) Index(i pulumi.IntInput) NetworkDnsForwarderOutput {
@@ -3074,12 +2737,6 @@ func (i NetworkDnsHostArgs) ToNetworkDnsHostOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsHostOutput)
 }
 
-func (i NetworkDnsHostArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsHost] {
-	return pulumix.Output[NetworkDnsHost]{
-		OutputState: i.ToNetworkDnsHostOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NetworkDnsHostArrayInput is an input type that accepts NetworkDnsHostArray and NetworkDnsHostArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsHostArrayInput` via:
 //
@@ -3105,12 +2762,6 @@ func (i NetworkDnsHostArray) ToNetworkDnsHostArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsHostArrayOutput)
 }
 
-func (i NetworkDnsHostArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsHost] {
-	return pulumix.Output[[]NetworkDnsHost]{
-		OutputState: i.ToNetworkDnsHostArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDnsHostOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsHostOutput) ElementType() reflect.Type {
@@ -3123,12 +2774,6 @@ func (o NetworkDnsHostOutput) ToNetworkDnsHostOutput() NetworkDnsHostOutput {
 
 func (o NetworkDnsHostOutput) ToNetworkDnsHostOutputWithContext(ctx context.Context) NetworkDnsHostOutput {
 	return o
-}
-
-func (o NetworkDnsHostOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsHost] {
-	return pulumix.Output[NetworkDnsHost]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsHostOutput) Hostname() pulumi.StringPtrOutput {
@@ -3151,12 +2796,6 @@ func (o NetworkDnsHostArrayOutput) ToNetworkDnsHostArrayOutput() NetworkDnsHostA
 
 func (o NetworkDnsHostArrayOutput) ToNetworkDnsHostArrayOutputWithContext(ctx context.Context) NetworkDnsHostArrayOutput {
 	return o
-}
-
-func (o NetworkDnsHostArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsHost] {
-	return pulumix.Output[[]NetworkDnsHost]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsHostArrayOutput) Index(i pulumi.IntInput) NetworkDnsHostOutput {
@@ -3210,12 +2849,6 @@ func (i NetworkDnsSrvArgs) ToNetworkDnsSrvOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsSrvOutput)
 }
 
-func (i NetworkDnsSrvArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsSrv] {
-	return pulumix.Output[NetworkDnsSrv]{
-		OutputState: i.ToNetworkDnsSrvOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NetworkDnsSrvArrayInput is an input type that accepts NetworkDnsSrvArray and NetworkDnsSrvArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsSrvArrayInput` via:
 //
@@ -3241,12 +2874,6 @@ func (i NetworkDnsSrvArray) ToNetworkDnsSrvArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsSrvArrayOutput)
 }
 
-func (i NetworkDnsSrvArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsSrv] {
-	return pulumix.Output[[]NetworkDnsSrv]{
-		OutputState: i.ToNetworkDnsSrvArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDnsSrvOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsSrvOutput) ElementType() reflect.Type {
@@ -3259,12 +2886,6 @@ func (o NetworkDnsSrvOutput) ToNetworkDnsSrvOutput() NetworkDnsSrvOutput {
 
 func (o NetworkDnsSrvOutput) ToNetworkDnsSrvOutputWithContext(ctx context.Context) NetworkDnsSrvOutput {
 	return o
-}
-
-func (o NetworkDnsSrvOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsSrv] {
-	return pulumix.Output[NetworkDnsSrv]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The domain used by the DNS server.
@@ -3308,12 +2929,6 @@ func (o NetworkDnsSrvArrayOutput) ToNetworkDnsSrvArrayOutput() NetworkDnsSrvArra
 
 func (o NetworkDnsSrvArrayOutput) ToNetworkDnsSrvArrayOutputWithContext(ctx context.Context) NetworkDnsSrvArrayOutput {
 	return o
-}
-
-func (o NetworkDnsSrvArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsSrv] {
-	return pulumix.Output[[]NetworkDnsSrv]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsSrvArrayOutput) Index(i pulumi.IntInput) NetworkDnsSrvOutput {
@@ -3363,12 +2978,6 @@ func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOutput)
 }
 
-func (i NetworkDnsmasqOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptions] {
-	return pulumix.Output[NetworkDnsmasqOptions]{
-		OutputState: i.ToNetworkDnsmasqOptionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i NetworkDnsmasqOptionsArgs) ToNetworkDnsmasqOptionsPtrOutput() NetworkDnsmasqOptionsPtrOutput {
 	return i.ToNetworkDnsmasqOptionsPtrOutputWithContext(context.Background())
 }
@@ -3410,12 +3019,6 @@ func (i *networkDnsmasqOptionsPtrType) ToNetworkDnsmasqOptionsPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsPtrOutput)
 }
 
-func (i *networkDnsmasqOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkDnsmasqOptions] {
-	return pulumix.Output[*NetworkDnsmasqOptions]{
-		OutputState: i.ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDnsmasqOptionsOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsmasqOptionsOutput) ElementType() reflect.Type {
@@ -3440,12 +3043,6 @@ func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext
 	}).(NetworkDnsmasqOptionsPtrOutput)
 }
 
-func (o NetworkDnsmasqOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptions] {
-	return pulumix.Output[NetworkDnsmasqOptions]{
-		OutputState: o.OutputState,
-	}
-}
-
 // a Dnsmasq option entry block. You can have one or more of these
 // blocks in your definition. You must specify `optionName` while `optionValue` is
 // optional to support value-less options.
@@ -3467,12 +3064,6 @@ func (o NetworkDnsmasqOptionsPtrOutput) ToNetworkDnsmasqOptionsPtrOutput() Netwo
 
 func (o NetworkDnsmasqOptionsPtrOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsPtrOutput {
 	return o
-}
-
-func (o NetworkDnsmasqOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkDnsmasqOptions] {
-	return pulumix.Output[*NetworkDnsmasqOptions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
@@ -3532,12 +3123,6 @@ func (i NetworkDnsmasqOptionsOptionArgs) ToNetworkDnsmasqOptionsOptionOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOptionOutput)
 }
 
-func (i NetworkDnsmasqOptionsOptionArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptionsOption] {
-	return pulumix.Output[NetworkDnsmasqOptionsOption]{
-		OutputState: i.ToNetworkDnsmasqOptionsOptionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NetworkDnsmasqOptionsOptionArrayInput is an input type that accepts NetworkDnsmasqOptionsOptionArray and NetworkDnsmasqOptionsOptionArrayOutput values.
 // You can construct a concrete instance of `NetworkDnsmasqOptionsOptionArrayInput` via:
 //
@@ -3563,12 +3148,6 @@ func (i NetworkDnsmasqOptionsOptionArray) ToNetworkDnsmasqOptionsOptionArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkDnsmasqOptionsOptionArrayOutput)
 }
 
-func (i NetworkDnsmasqOptionsOptionArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsmasqOptionsOption] {
-	return pulumix.Output[[]NetworkDnsmasqOptionsOption]{
-		OutputState: i.ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkDnsmasqOptionsOptionOutput struct{ *pulumi.OutputState }
 
 func (NetworkDnsmasqOptionsOptionOutput) ElementType() reflect.Type {
@@ -3581,12 +3160,6 @@ func (o NetworkDnsmasqOptionsOptionOutput) ToNetworkDnsmasqOptionsOptionOutput()
 
 func (o NetworkDnsmasqOptionsOptionOutput) ToNetworkDnsmasqOptionsOptionOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionOutput {
 	return o
-}
-
-func (o NetworkDnsmasqOptionsOptionOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkDnsmasqOptionsOption] {
-	return pulumix.Output[NetworkDnsmasqOptionsOption]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsmasqOptionsOptionOutput) OptionName() pulumi.StringPtrOutput {
@@ -3609,12 +3182,6 @@ func (o NetworkDnsmasqOptionsOptionArrayOutput) ToNetworkDnsmasqOptionsOptionArr
 
 func (o NetworkDnsmasqOptionsOptionArrayOutput) ToNetworkDnsmasqOptionsOptionArrayOutputWithContext(ctx context.Context) NetworkDnsmasqOptionsOptionArrayOutput {
 	return o
-}
-
-func (o NetworkDnsmasqOptionsOptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkDnsmasqOptionsOption] {
-	return pulumix.Output[[]NetworkDnsmasqOptionsOption]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkDnsmasqOptionsOptionArrayOutput) Index(i pulumi.IntInput) NetworkDnsmasqOptionsOptionOutput {
@@ -3656,12 +3223,6 @@ func (i NetworkRouteArgs) ToNetworkRouteOutputWithContext(ctx context.Context) N
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkRouteOutput)
 }
 
-func (i NetworkRouteArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkRoute] {
-	return pulumix.Output[NetworkRoute]{
-		OutputState: i.ToNetworkRouteOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NetworkRouteArrayInput is an input type that accepts NetworkRouteArray and NetworkRouteArrayOutput values.
 // You can construct a concrete instance of `NetworkRouteArrayInput` via:
 //
@@ -3687,12 +3248,6 @@ func (i NetworkRouteArray) ToNetworkRouteArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkRouteArrayOutput)
 }
 
-func (i NetworkRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]NetworkRoute] {
-	return pulumix.Output[[]NetworkRoute]{
-		OutputState: i.ToNetworkRouteArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkRouteOutput struct{ *pulumi.OutputState }
 
 func (NetworkRouteOutput) ElementType() reflect.Type {
@@ -3705,12 +3260,6 @@ func (o NetworkRouteOutput) ToNetworkRouteOutput() NetworkRouteOutput {
 
 func (o NetworkRouteOutput) ToNetworkRouteOutputWithContext(ctx context.Context) NetworkRouteOutput {
 	return o
-}
-
-func (o NetworkRouteOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkRoute] {
-	return pulumix.Output[NetworkRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkRouteOutput) Cidr() pulumi.StringOutput {
@@ -3733,12 +3282,6 @@ func (o NetworkRouteArrayOutput) ToNetworkRouteArrayOutput() NetworkRouteArrayOu
 
 func (o NetworkRouteArrayOutput) ToNetworkRouteArrayOutputWithContext(ctx context.Context) NetworkRouteArrayOutput {
 	return o
-}
-
-func (o NetworkRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NetworkRoute] {
-	return pulumix.Output[[]NetworkRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkRouteArrayOutput) Index(i pulumi.IntInput) NetworkRouteOutput {
@@ -3776,12 +3319,6 @@ func (i NetworkXmlArgs) ToNetworkXmlOutput() NetworkXmlOutput {
 
 func (i NetworkXmlArgs) ToNetworkXmlOutputWithContext(ctx context.Context) NetworkXmlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkXmlOutput)
-}
-
-func (i NetworkXmlArgs) ToOutput(ctx context.Context) pulumix.Output[NetworkXml] {
-	return pulumix.Output[NetworkXml]{
-		OutputState: i.ToNetworkXmlOutputWithContext(ctx).OutputState,
-	}
 }
 
 func (i NetworkXmlArgs) ToNetworkXmlPtrOutput() NetworkXmlPtrOutput {
@@ -3825,12 +3362,6 @@ func (i *networkXmlPtrType) ToNetworkXmlPtrOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkXmlPtrOutput)
 }
 
-func (i *networkXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*NetworkXml] {
-	return pulumix.Output[*NetworkXml]{
-		OutputState: i.ToNetworkXmlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkXmlOutput struct{ *pulumi.OutputState }
 
 func (NetworkXmlOutput) ElementType() reflect.Type {
@@ -3855,12 +3386,6 @@ func (o NetworkXmlOutput) ToNetworkXmlPtrOutputWithContext(ctx context.Context) 
 	}).(NetworkXmlPtrOutput)
 }
 
-func (o NetworkXmlOutput) ToOutput(ctx context.Context) pulumix.Output[NetworkXml] {
-	return pulumix.Output[NetworkXml]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NetworkXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -3877,12 +3402,6 @@ func (o NetworkXmlPtrOutput) ToNetworkXmlPtrOutput() NetworkXmlPtrOutput {
 
 func (o NetworkXmlPtrOutput) ToNetworkXmlPtrOutputWithContext(ctx context.Context) NetworkXmlPtrOutput {
 	return o
-}
-
-func (o NetworkXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkXml] {
-	return pulumix.Output[*NetworkXml]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkXmlPtrOutput) Elem() NetworkXmlOutput {
@@ -3935,12 +3454,6 @@ func (i PoolXmlArgs) ToPoolXmlOutputWithContext(ctx context.Context) PoolXmlOutp
 	return pulumi.ToOutputWithContext(ctx, i).(PoolXmlOutput)
 }
 
-func (i PoolXmlArgs) ToOutput(ctx context.Context) pulumix.Output[PoolXml] {
-	return pulumix.Output[PoolXml]{
-		OutputState: i.ToPoolXmlOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i PoolXmlArgs) ToPoolXmlPtrOutput() PoolXmlPtrOutput {
 	return i.ToPoolXmlPtrOutputWithContext(context.Background())
 }
@@ -3982,12 +3495,6 @@ func (i *poolXmlPtrType) ToPoolXmlPtrOutputWithContext(ctx context.Context) Pool
 	return pulumi.ToOutputWithContext(ctx, i).(PoolXmlPtrOutput)
 }
 
-func (i *poolXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*PoolXml] {
-	return pulumix.Output[*PoolXml]{
-		OutputState: i.ToPoolXmlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PoolXmlOutput struct{ *pulumi.OutputState }
 
 func (PoolXmlOutput) ElementType() reflect.Type {
@@ -4012,12 +3519,6 @@ func (o PoolXmlOutput) ToPoolXmlPtrOutputWithContext(ctx context.Context) PoolXm
 	}).(PoolXmlPtrOutput)
 }
 
-func (o PoolXmlOutput) ToOutput(ctx context.Context) pulumix.Output[PoolXml] {
-	return pulumix.Output[PoolXml]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PoolXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -4034,12 +3535,6 @@ func (o PoolXmlPtrOutput) ToPoolXmlPtrOutput() PoolXmlPtrOutput {
 
 func (o PoolXmlPtrOutput) ToPoolXmlPtrOutputWithContext(ctx context.Context) PoolXmlPtrOutput {
 	return o
-}
-
-func (o PoolXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PoolXml] {
-	return pulumix.Output[*PoolXml]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PoolXmlPtrOutput) Elem() PoolXmlOutput {
@@ -4092,12 +3587,6 @@ func (i VolumeXmlArgs) ToVolumeXmlOutputWithContext(ctx context.Context) VolumeX
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeXmlOutput)
 }
 
-func (i VolumeXmlArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeXml] {
-	return pulumix.Output[VolumeXml]{
-		OutputState: i.ToVolumeXmlOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i VolumeXmlArgs) ToVolumeXmlPtrOutput() VolumeXmlPtrOutput {
 	return i.ToVolumeXmlPtrOutputWithContext(context.Background())
 }
@@ -4139,12 +3628,6 @@ func (i *volumeXmlPtrType) ToVolumeXmlPtrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeXmlPtrOutput)
 }
 
-func (i *volumeXmlPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeXml] {
-	return pulumix.Output[*VolumeXml]{
-		OutputState: i.ToVolumeXmlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VolumeXmlOutput struct{ *pulumi.OutputState }
 
 func (VolumeXmlOutput) ElementType() reflect.Type {
@@ -4169,12 +3652,6 @@ func (o VolumeXmlOutput) ToVolumeXmlPtrOutputWithContext(ctx context.Context) Vo
 	}).(VolumeXmlPtrOutput)
 }
 
-func (o VolumeXmlOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeXml] {
-	return pulumix.Output[VolumeXml]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o VolumeXmlOutput) Xslt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeXml) *string { return v.Xslt }).(pulumi.StringPtrOutput)
 }
@@ -4191,12 +3668,6 @@ func (o VolumeXmlPtrOutput) ToVolumeXmlPtrOutput() VolumeXmlPtrOutput {
 
 func (o VolumeXmlPtrOutput) ToVolumeXmlPtrOutputWithContext(ctx context.Context) VolumeXmlPtrOutput {
 	return o
-}
-
-func (o VolumeXmlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeXml] {
-	return pulumix.Output[*VolumeXml]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VolumeXmlPtrOutput) Elem() VolumeXmlOutput {
