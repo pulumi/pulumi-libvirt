@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetNetworkDnsHostTemplate(ctx *pulumi.Context, args *GetNetworkDnsHostTemplateArgs, opts ...pulumi.InvokeOption) (*GetNetworkDnsHostTemplateResult, error) {
@@ -73,12 +72,6 @@ func (o GetNetworkDnsHostTemplateResultOutput) ToGetNetworkDnsHostTemplateResult
 
 func (o GetNetworkDnsHostTemplateResultOutput) ToGetNetworkDnsHostTemplateResultOutputWithContext(ctx context.Context) GetNetworkDnsHostTemplateResultOutput {
 	return o
-}
-
-func (o GetNetworkDnsHostTemplateResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNetworkDnsHostTemplateResult] {
-	return pulumix.Output[GetNetworkDnsHostTemplateResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetNetworkDnsHostTemplateResultOutput) Hostname() pulumi.StringOutput {
