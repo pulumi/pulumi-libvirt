@@ -203,7 +203,7 @@ class DomainDiskArgs:
                  volume_id: Optional[pulumi.Input[str]] = None,
                  wwn: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] block_device: The path to the host device to use as the block device for this disk. 
+        :param pulumi.Input[str] block_device: The path to the host device to use as the block device for this disk.
                
                While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         :param pulumi.Input[str] file: The filename to use as the block device for this disk (read-only)
@@ -213,7 +213,6 @@ class DomainDiskArgs:
         :param pulumi.Input[str] volume_id: The volume id to use for this disk.
         :param pulumi.Input[str] wwn: Specify a WWN to use for the disk if the disk is using
                a scsi controller, if not specified then a random wwn is generated for the disk
-               
                
                ```python
                import pulumi
@@ -259,7 +258,7 @@ class DomainDiskArgs:
     @pulumi.getter(name="blockDevice")
     def block_device(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the host device to use as the block device for this disk. 
+        The path to the host device to use as the block device for this disk.
 
         While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         """
@@ -324,7 +323,6 @@ class DomainDiskArgs:
         """
         Specify a WWN to use for the disk if the disk is using
         a scsi controller, if not specified then a random wwn is generated for the disk
-
 
         ```python
         import pulumi

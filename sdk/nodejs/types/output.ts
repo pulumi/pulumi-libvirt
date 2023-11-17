@@ -54,7 +54,7 @@ export interface DomainCpu {
 
 export interface DomainDisk {
     /**
-     * The path to the host device to use as the block device for this disk. 
+     * The path to the host device to use as the block device for this disk.
      *
      * While `volumeId`, `url`, `file` and `blockDevice` are optional, it is intended that you use one of them.
      */
@@ -79,7 +79,6 @@ export interface DomainDisk {
     /**
      * Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
-     *
      *
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";

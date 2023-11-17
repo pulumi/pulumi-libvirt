@@ -216,7 +216,7 @@ class DomainDisk(dict):
                  volume_id: Optional[str] = None,
                  wwn: Optional[str] = None):
         """
-        :param str block_device: The path to the host device to use as the block device for this disk. 
+        :param str block_device: The path to the host device to use as the block device for this disk.
                
                While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         :param str file: The filename to use as the block device for this disk (read-only)
@@ -226,7 +226,6 @@ class DomainDisk(dict):
         :param str volume_id: The volume id to use for this disk.
         :param str wwn: Specify a WWN to use for the disk if the disk is using
                a scsi controller, if not specified then a random wwn is generated for the disk
-               
                
                ```python
                import pulumi
@@ -272,7 +271,7 @@ class DomainDisk(dict):
     @pulumi.getter(name="blockDevice")
     def block_device(self) -> Optional[str]:
         """
-        The path to the host device to use as the block device for this disk. 
+        The path to the host device to use as the block device for this disk.
 
         While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         """
@@ -317,7 +316,6 @@ class DomainDisk(dict):
         """
         Specify a WWN to use for the disk if the disk is using
         a scsi controller, if not specified then a random wwn is generated for the disk
-
 
         ```python
         import pulumi
