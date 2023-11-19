@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DomainVideo {
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      * 
      */
     private @Nullable String type;
 
     private DomainVideo() {}
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      * 
      */
     public Optional<String> type() {

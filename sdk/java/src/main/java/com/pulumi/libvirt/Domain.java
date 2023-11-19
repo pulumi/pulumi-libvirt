@@ -629,6 +629,20 @@ public class Domain extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tpm);
     }
     /**
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * 
+     */
+    @Export(name="type", type=String.class, parameters={})
+    private Output</* @Nullable */ String> type;
+
+    /**
+     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * 
+     */
+    public Output<Optional<String>> type() {
+        return Codegen.optional(this.type);
+    }
+    /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      * 

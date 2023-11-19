@@ -14,7 +14,7 @@ namespace Pulumi.Libvirt.Outputs
     public sealed class DomainVideo
     {
         /// <summary>
-        /// Console device type. Valid values are "pty" and "tcp".
+        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         /// </summary>
         public readonly string? Type;
 

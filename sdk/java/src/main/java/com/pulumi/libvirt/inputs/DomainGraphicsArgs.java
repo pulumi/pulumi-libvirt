@@ -65,14 +65,14 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      * 
      */
     public Optional<Output<String>> type() {
@@ -216,7 +216,7 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+         * @param type The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
          * 
          * @return builder
          * 
@@ -227,7 +227,7 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
+         * @param type The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
          * 
          * @return builder
          * 

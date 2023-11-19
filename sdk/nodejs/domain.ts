@@ -215,6 +215,10 @@ export class Domain extends pulumi.CustomResource {
      */
     public readonly tpm!: pulumi.Output<outputs.DomainTpm | undefined>;
     /**
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     */
+    public readonly type!: pulumi.Output<string | undefined>;
+    /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      */
@@ -261,6 +265,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["qemuAgent"] = state ? state.qemuAgent : undefined;
             resourceInputs["running"] = state ? state.running : undefined;
             resourceInputs["tpm"] = state ? state.tpm : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vcpu"] = state ? state.vcpu : undefined;
             resourceInputs["video"] = state ? state.video : undefined;
             resourceInputs["xml"] = state ? state.xml : undefined;
@@ -292,6 +297,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["qemuAgent"] = args ? args.qemuAgent : undefined;
             resourceInputs["running"] = args ? args.running : undefined;
             resourceInputs["tpm"] = args ? args.tpm : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vcpu"] = args ? args.vcpu : undefined;
             resourceInputs["video"] = args ? args.video : undefined;
             resourceInputs["xml"] = args ? args.xml : undefined;
@@ -473,6 +479,10 @@ export interface DomainState {
      */
     tpm?: pulumi.Input<inputs.DomainTpm>;
     /**
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     */
+    type?: pulumi.Input<string>;
+    /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      */
@@ -652,6 +662,10 @@ export interface DomainArgs {
      * TPM device to attach to the domain. The `tpm` object structure is documented below.
      */
     tpm?: pulumi.Input<inputs.DomainTpm>;
+    /**
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     */
+    type?: pulumi.Input<string>;
     /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
