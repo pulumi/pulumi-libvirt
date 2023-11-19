@@ -622,6 +622,21 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * 
+     */
+    @Import(name="type")
+    private @Nullable Output<String> type;
+
+    /**
+     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * 
+     */
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
+    }
+
+    /**
      * The amount of virtual CPUs. If not specified, a single CPU
      * will be created.
      * 
@@ -681,6 +696,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
         this.qemuAgent = $.qemuAgent;
         this.running = $.running;
         this.tpm = $.tpm;
+        this.type = $.type;
         this.vcpu = $.vcpu;
         this.video = $.video;
         this.xml = $.xml;
@@ -1539,6 +1555,27 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tpm(DomainTpmArgs tpm) {
             return tpm(Output.of(tpm));
+        }
+
+        /**
+         * @param type The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable Output<String> type) {
+            $.type = type;
+            return this;
+        }
+
+        /**
+         * @param type The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(String type) {
+            return type(Output.of(type));
         }
 
         /**

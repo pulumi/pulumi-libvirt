@@ -271,6 +271,12 @@ namespace Pulumi.Libvirt
         public Output<Outputs.DomainTpm?> Tpm { get; private set; } = null!;
 
         /// <summary>
+        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        /// </summary>
+        [Output("type")]
+        public Output<string?> Type { get; private set; } = null!;
+
+        /// <summary>
         /// The amount of virtual CPUs. If not specified, a single CPU
         /// will be created.
         /// </summary>
@@ -604,6 +610,12 @@ namespace Pulumi.Libvirt
         public Input<Inputs.DomainTpmArgs>? Tpm { get; set; }
 
         /// <summary>
+        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
         /// The amount of virtual CPUs. If not specified, a single CPU
         /// will be created.
         /// </summary>
@@ -897,6 +909,12 @@ namespace Pulumi.Libvirt
         /// </summary>
         [Input("tpm")]
         public Input<Inputs.DomainTpmGetArgs>? Tpm { get; set; }
+
+        /// <summary>
+        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// The amount of virtual CPUs. If not specified, a single CPU
