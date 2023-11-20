@@ -189,6 +189,8 @@ type Domain struct {
 	Running pulumi.BoolPtrOutput `pulumi:"running"`
 	// TPM device to attach to the domain. The `tpm` object structure is documented below.
 	Tpm DomainTpmPtrOutput `pulumi:"tpm"`
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+	Type pulumi.StringPtrOutput `pulumi:"type"`
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  pulumi.IntPtrOutput  `pulumi:"vcpu"`
@@ -375,6 +377,8 @@ type domainState struct {
 	Running *bool `pulumi:"running"`
 	// TPM device to attach to the domain. The `tpm` object structure is documented below.
 	Tpm *DomainTpm `pulumi:"tpm"`
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+	Type *string `pulumi:"type"`
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  *int         `pulumi:"vcpu"`
@@ -532,6 +536,8 @@ type DomainState struct {
 	Running pulumi.BoolPtrInput
 	// TPM device to attach to the domain. The `tpm` object structure is documented below.
 	Tpm DomainTpmPtrInput
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+	Type pulumi.StringPtrInput
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  pulumi.IntPtrInput
@@ -693,6 +699,8 @@ type domainArgs struct {
 	Running *bool `pulumi:"running"`
 	// TPM device to attach to the domain. The `tpm` object structure is documented below.
 	Tpm *DomainTpm `pulumi:"tpm"`
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+	Type *string `pulumi:"type"`
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  *int         `pulumi:"vcpu"`
@@ -851,6 +859,8 @@ type DomainArgs struct {
 	Running pulumi.BoolPtrInput
 	// TPM device to attach to the domain. The `tpm` object structure is documented below.
 	Tpm DomainTpmPtrInput
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+	Type pulumi.StringPtrInput
 	// The amount of virtual CPUs. If not specified, a single CPU
 	// will be created.
 	Vcpu  pulumi.IntPtrInput
@@ -1176,6 +1186,11 @@ func (o DomainOutput) Running() pulumi.BoolPtrOutput {
 // TPM device to attach to the domain. The `tpm` object structure is documented below.
 func (o DomainOutput) Tpm() DomainTpmPtrOutput {
 	return o.ApplyT(func(v *Domain) DomainTpmPtrOutput { return v.Tpm }).(DomainTpmPtrOutput)
+}
+
+// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+func (o DomainOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 // The amount of virtual CPUs. If not specified, a single CPU

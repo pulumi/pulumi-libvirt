@@ -9,7 +9,7 @@ replace (
 )
 
 require (
-	github.com/dmacvicar/terraform-provider-libvirt v0.7.2
+	github.com/dmacvicar/terraform-provider-libvirt v0.7.6
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.65.0
 	github.com/pulumi/pulumi/sdk/v3 v3.93.0
 )

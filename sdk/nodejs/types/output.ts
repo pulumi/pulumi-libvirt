@@ -43,7 +43,7 @@ export interface DomainConsole {
      */
     targetType?: string;
     /**
-     * Console device type. Valid values are "pty" and "tcp".
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      */
     type: string;
 }
@@ -159,7 +159,7 @@ export interface DomainGraphics {
      */
     listenType?: string;
     /**
-     * Console device type. Valid values are "pty" and "tcp".
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      */
     type?: string;
     /**
@@ -309,7 +309,7 @@ export interface DomainTpm {
 
 export interface DomainVideo {
     /**
-     * Console device type. Valid values are "pty" and "tcp".
+     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      */
     type?: string;
 }

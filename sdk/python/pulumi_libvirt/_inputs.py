@@ -62,7 +62,7 @@ class DomainConsoleArgs:
                  target_type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] target_port: Target port
-        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         :param pulumi.Input[str] source_host: IP address to listen on. Defaults to 127.0.0.1.
         :param pulumi.Input[str] source_path: Source path
                
@@ -107,7 +107,7 @@ class DomainConsoleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         """
         return pulumi.get(self, "type")
 
@@ -470,7 +470,7 @@ class DomainGraphicsArgs:
         :param pulumi.Input[str] listen_address: IP Address where the VNC listener should be started if
                `listen_type` is set to `address`. Defaults to 127.0.0.1
         :param pulumi.Input[str] listen_type: "listen type", defaults to "none"
-        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         :param pulumi.Input[int] websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
                
                On occasion we have found it necessary to set a `type` of `vnc` and a
@@ -541,7 +541,7 @@ class DomainGraphicsArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         """
         return pulumi.get(self, "type")
 
@@ -979,7 +979,7 @@ class DomainVideoArgs:
     def __init__(__self__, *,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
+        :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         """
         if type is not None:
             pulumi.set(__self__, "type", type)
@@ -988,7 +988,7 @@ class DomainVideoArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Console device type. Valid values are "pty" and "tcp".
+        The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         """
         return pulumi.get(self, "type")
 

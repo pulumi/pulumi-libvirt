@@ -105,7 +105,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "description": "The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -204,7 +204,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n",
+                    "description": "The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)\n",
                     "willReplaceOnChanges": true
                 },
                 "websocket": {
@@ -328,7 +328,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "description": "Console device type. Valid values are \"pty\" and \"tcp\".\n"
+                    "description": "The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)\n"
                 }
             },
             "type": "object"
@@ -750,6 +750,10 @@
                     "$ref": "#/types/libvirt:index/DomainTpm:DomainTpm",
                     "description": "TPM device to attach to the domain. The `tpm` object structure is documented below.\n"
                 },
+                "type": {
+                    "type": "string",
+                    "description": "The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)\n"
+                },
                 "vcpu": {
                     "type": "integer",
                     "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n"
@@ -904,6 +908,11 @@
                     "$ref": "#/types/libvirt:index/DomainTpm:DomainTpm",
                     "description": "TPM device to attach to the domain. The `tpm` object structure is documented below.\n"
                 },
+                "type": {
+                    "type": "string",
+                    "description": "The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)\n",
+                    "willReplaceOnChanges": true
+                },
                 "vcpu": {
                     "type": "integer",
                     "description": "The amount of virtual CPUs. If not specified, a single CPU\nwill be created.\n",
@@ -1052,6 +1061,11 @@
                     "tpm": {
                         "$ref": "#/types/libvirt:index/DomainTpm:DomainTpm",
                         "description": "TPM device to attach to the domain. The `tpm` object structure is documented below.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)\n",
+                        "willReplaceOnChanges": true
                     },
                     "vcpu": {
                         "type": "integer",

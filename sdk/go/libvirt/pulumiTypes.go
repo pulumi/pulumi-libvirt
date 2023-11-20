@@ -130,7 +130,7 @@ type DomainConsole struct {
 	//
 	// Additional attributes when type is "pty":
 	TargetType *string `pulumi:"targetType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 	Type string `pulumi:"type"`
 }
 
@@ -168,7 +168,7 @@ type DomainConsoleArgs struct {
 	//
 	// Additional attributes when type is "pty":
 	TargetType pulumi.StringPtrInput `pulumi:"targetType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -260,7 +260,7 @@ func (o DomainConsoleOutput) TargetType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainConsole) *string { return v.TargetType }).(pulumi.StringPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 func (o DomainConsoleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainConsole) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -932,7 +932,7 @@ type DomainGraphics struct {
 	ListenAddress *string `pulumi:"listenAddress"`
 	// "listen type", defaults to "none"
 	ListenType *string `pulumi:"listenType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 	Type *string `pulumi:"type"`
 	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
 	//
@@ -971,7 +971,7 @@ type DomainGraphicsArgs struct {
 	ListenAddress pulumi.StringPtrInput `pulumi:"listenAddress"`
 	// "listen type", defaults to "none"
 	ListenType pulumi.StringPtrInput `pulumi:"listenType"`
-	// Console device type. Valid values are "pty" and "tcp".
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
 	//
@@ -1084,7 +1084,7 @@ func (o DomainGraphicsOutput) ListenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *string { return v.ListenType }).(pulumi.StringPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 func (o DomainGraphicsOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -1163,7 +1163,7 @@ func (o DomainGraphicsPtrOutput) ListenType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 func (o DomainGraphicsPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainGraphics) *string {
 		if v == nil {
@@ -1958,7 +1958,7 @@ func (o DomainTpmPtrOutput) Model() pulumi.StringPtrOutput {
 }
 
 type DomainVideo struct {
-	// Console device type. Valid values are "pty" and "tcp".
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 	Type *string `pulumi:"type"`
 }
 
@@ -1974,7 +1974,7 @@ type DomainVideoInput interface {
 }
 
 type DomainVideoArgs struct {
-	// Console device type. Valid values are "pty" and "tcp".
+	// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -2055,7 +2055,7 @@ func (o DomainVideoOutput) ToDomainVideoPtrOutputWithContext(ctx context.Context
 	}).(DomainVideoPtrOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 func (o DomainVideoOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainVideo) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -2084,7 +2084,7 @@ func (o DomainVideoPtrOutput) Elem() DomainVideoOutput {
 	}).(DomainVideoOutput)
 }
 
-// Console device type. Valid values are "pty" and "tcp".
+// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
 func (o DomainVideoPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainVideo) *string {
 		if v == nil {
