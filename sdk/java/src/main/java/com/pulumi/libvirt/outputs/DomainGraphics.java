@@ -156,13 +156,13 @@ public final class DomainGraphics {
             return this;
         }
         public DomainGraphics build() {
-            final var o = new DomainGraphics();
-            o.autoport = autoport;
-            o.listenAddress = listenAddress;
-            o.listenType = listenType;
-            o.type = type;
-            o.websocket = websocket;
-            return o;
+            final var _resultValue = new DomainGraphics();
+            _resultValue.autoport = autoport;
+            _resultValue.listenAddress = listenAddress;
+            _resultValue.listenType = listenType;
+            _resultValue.type = type;
+            _resultValue.websocket = websocket;
+            return _resultValue;
         }
     }
 }

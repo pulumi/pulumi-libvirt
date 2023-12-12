@@ -152,14 +152,14 @@ public final class DomainTpm {
             return this;
         }
         public DomainTpm build() {
-            final var o = new DomainTpm();
-            o.backendDevicePath = backendDevicePath;
-            o.backendEncryptionSecret = backendEncryptionSecret;
-            o.backendPersistentState = backendPersistentState;
-            o.backendType = backendType;
-            o.backendVersion = backendVersion;
-            o.model = model;
-            return o;
+            final var _resultValue = new DomainTpm();
+            _resultValue.backendDevicePath = backendDevicePath;
+            _resultValue.backendEncryptionSecret = backendEncryptionSecret;
+            _resultValue.backendPersistentState = backendPersistentState;
+            _resultValue.backendType = backendType;
+            _resultValue.backendVersion = backendVersion;
+            _resultValue.model = model;
+            return _resultValue;
         }
     }
 }

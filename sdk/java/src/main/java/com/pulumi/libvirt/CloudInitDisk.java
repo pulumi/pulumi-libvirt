@@ -20,7 +20,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * cloud-init user data.
      * 
      */
-    @Export(name="metaData", type=String.class, parameters={})
+    @Export(name="metaData", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> metaData;
 
     /**
@@ -34,7 +34,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * A unique name for the resource, required by libvirt.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -48,7 +48,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * cloud-init network-config data.
      * 
      */
-    @Export(name="networkConfig", type=String.class, parameters={})
+    @Export(name="networkConfig", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> networkConfig;
 
     /**
@@ -65,7 +65,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
      * 
      */
-    @Export(name="pool", type=String.class, parameters={})
+    @Export(name="pool", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pool;
 
     /**
@@ -82,7 +82,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * cloud-init user data.
      * 
      */
-    @Export(name="userData", type=String.class, parameters={})
+    @Export(name="userData", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userData;
 
     /**

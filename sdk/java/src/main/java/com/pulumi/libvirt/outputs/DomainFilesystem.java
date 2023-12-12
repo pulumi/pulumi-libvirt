@@ -168,12 +168,12 @@ public final class DomainFilesystem {
             return this;
         }
         public DomainFilesystem build() {
-            final var o = new DomainFilesystem();
-            o.accessmode = accessmode;
-            o.readonly = readonly;
-            o.source = source;
-            o.target = target;
-            return o;
+            final var _resultValue = new DomainFilesystem();
+            _resultValue.accessmode = accessmode;
+            _resultValue.readonly = readonly;
+            _resultValue.source = source;
+            _resultValue.target = target;
+            return _resultValue;
         }
     }
 }

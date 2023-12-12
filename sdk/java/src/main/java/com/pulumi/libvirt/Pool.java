@@ -63,19 +63,19 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="libvirt:index/pool:Pool")
 public class Pool extends com.pulumi.resources.CustomResource {
-    @Export(name="allocation", type=Integer.class, parameters={})
+    @Export(name="allocation", refs={Integer.class}, tree="[0]")
     private Output<Integer> allocation;
 
     public Output<Integer> allocation() {
         return this.allocation;
     }
-    @Export(name="available", type=Integer.class, parameters={})
+    @Export(name="available", refs={Integer.class}, tree="[0]")
     private Output<Integer> available;
 
     public Output<Integer> available() {
         return this.available;
     }
-    @Export(name="capacity", type=Integer.class, parameters={})
+    @Export(name="capacity", refs={Integer.class}, tree="[0]")
     private Output<Integer> capacity;
 
     public Output<Integer> capacity() {
@@ -85,7 +85,7 @@ public class Pool extends com.pulumi.resources.CustomResource {
      * A unique name for the resource, required by libvirt.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -100,7 +100,7 @@ public class Pool extends com.pulumi.resources.CustomResource {
      * the &#34;dir&#34; type pools.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -115,7 +115,7 @@ public class Pool extends com.pulumi.resources.CustomResource {
      * The type of the pool. Currently, only &#34;dir&#34; supported.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -125,7 +125,7 @@ public class Pool extends com.pulumi.resources.CustomResource {
     public Output<String> type() {
         return this.type;
     }
-    @Export(name="xml", type=PoolXml.class, parameters={})
+    @Export(name="xml", refs={PoolXml.class}, tree="[0]")
     private Output</* @Nullable */ PoolXml> xml;
 
     public Output<Optional<PoolXml>> xml() {

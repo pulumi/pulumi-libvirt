@@ -40,9 +40,9 @@ public final class DomainXml {
             return this;
         }
         public DomainXml build() {
-            final var o = new DomainXml();
-            o.xslt = xslt;
-            return o;
+            final var _resultValue = new DomainXml();
+            _resultValue.xslt = xslt;
+            return _resultValue;
         }
     }
 }

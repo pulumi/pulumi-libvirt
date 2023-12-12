@@ -51,10 +51,10 @@ public final class NetworkDnsHost {
             return this;
         }
         public NetworkDnsHost build() {
-            final var o = new NetworkDnsHost();
-            o.hostname = hostname;
-            o.ip = ip;
-            return o;
+            final var _resultValue = new NetworkDnsHost();
+            _resultValue.hostname = hostname;
+            _resultValue.ip = ip;
+            return _resultValue;
         }
     }
 }

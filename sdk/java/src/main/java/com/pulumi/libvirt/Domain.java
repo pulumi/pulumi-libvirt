@@ -69,7 +69,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * you normally won&#39;t need to set this unless you are building a special VM
      * 
      */
-    @Export(name="arch", type=String.class, parameters={})
+    @Export(name="arch", refs={String.class}, tree="[0]")
     private Output<String> arch;
 
     /**
@@ -85,7 +85,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * If not specified `false` is assumed.
      * 
      */
-    @Export(name="autostart", type=Boolean.class, parameters={})
+    @Export(name="autostart", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autostart;
 
     /**
@@ -101,7 +101,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * below.
      * 
      */
-    @Export(name="bootDevices", type=List.class, parameters={DomainBootDevice.class})
+    @Export(name="bootDevices", refs={List.class,DomainBootDevice.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainBootDevice>> bootDevices;
 
     /**
@@ -119,7 +119,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * have effect on the next reboot.
      * 
      */
-    @Export(name="cloudinit", type=String.class, parameters={})
+    @Export(name="cloudinit", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cloudinit;
 
     /**
@@ -179,7 +179,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * the following examples:
      * 
      */
-    @Export(name="cmdlines", type=List.class, parameters={Map.class})
+    @Export(name="cmdlines", refs={List.class,Map.class,String.class,Object.class}, tree="[0,[1,2,3]]")
     private Output</* @Nullable */ List<Map<String,Object>>> cmdlines;
 
     /**
@@ -232,7 +232,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<Map<String,Object>>>> cmdlines() {
         return Codegen.optional(this.cmdlines);
     }
-    @Export(name="consoles", type=List.class, parameters={DomainConsole.class})
+    @Export(name="consoles", refs={List.class,DomainConsole.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainConsole>> consoles;
 
     public Output<Optional<List<DomainConsole>>> consoles() {
@@ -244,7 +244,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * that is to be used by the CoreOS domain.
      * 
      */
-    @Export(name="coreosIgnition", type=String.class, parameters={})
+    @Export(name="coreosIgnition", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> coreosIgnition;
 
     /**
@@ -261,7 +261,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * details.
      * 
      */
-    @Export(name="cpu", type=DomainCpu.class, parameters={})
+    @Export(name="cpu", refs={DomainCpu.class}, tree="[0]")
     private Output<DomainCpu> cpu;
 
     /**
@@ -278,7 +278,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * This data is not used by libvirt in any way, it can contain any information the user wants.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -295,7 +295,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * `disk` object structure is documented below.
      * 
      */
-    @Export(name="disks", type=List.class, parameters={DomainDisk.class})
+    @Export(name="disks", refs={List.class,DomainDisk.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainDisk>> disks;
 
     /**
@@ -310,7 +310,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * The path of the emulator to use
      * 
      */
-    @Export(name="emulator", type=String.class, parameters={})
+    @Export(name="emulator", refs={String.class}, tree="[0]")
     private Output<String> emulator;
 
     /**
@@ -326,7 +326,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * below.
      * 
      */
-    @Export(name="filesystems", type=List.class, parameters={DomainFilesystem.class})
+    @Export(name="filesystems", refs={List.class,DomainFilesystem.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainFilesystem>> filesystems;
 
     /**
@@ -345,7 +345,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * read-only.
      * 
      */
-    @Export(name="firmware", type=String.class, parameters={})
+    @Export(name="firmware", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firmware;
 
     /**
@@ -362,7 +362,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
      * 
      */
-    @Export(name="fwCfgName", type=String.class, parameters={})
+    @Export(name="fwCfgName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fwCfgName;
 
     /**
@@ -372,7 +372,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> fwCfgName() {
         return Codegen.optional(this.fwCfgName);
     }
-    @Export(name="graphics", type=DomainGraphics.class, parameters={})
+    @Export(name="graphics", refs={DomainGraphics.class}, tree="[0]")
     private Output</* @Nullable */ DomainGraphics> graphics;
 
     public Output<Optional<DomainGraphics>> graphics() {
@@ -384,7 +384,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * You can use it in the same way as the kernel.
      * 
      */
-    @Export(name="initrd", type=String.class, parameters={})
+    @Export(name="initrd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> initrd;
 
     /**
@@ -443,7 +443,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * ```
      * 
      */
-    @Export(name="kernel", type=String.class, parameters={})
+    @Export(name="kernel", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> kernel;
 
     /**
@@ -502,7 +502,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * defaults to the wrong machine type for your template
      * 
      */
-    @Export(name="machine", type=String.class, parameters={})
+    @Export(name="machine", refs={String.class}, tree="[0]")
     private Output<String> machine;
 
     /**
@@ -519,7 +519,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * will be created with 512 MiB of memory be used.
      * 
      */
-    @Export(name="memory", type=Integer.class, parameters={})
+    @Export(name="memory", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> memory;
 
     /**
@@ -530,7 +530,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> memory() {
         return Codegen.optional(this.memory);
     }
-    @Export(name="metadata", type=String.class, parameters={})
+    @Export(name="metadata", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> metadata;
 
     public Output<Optional<String>> metadata() {
@@ -541,7 +541,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * Changing this forces a new resource to be created.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -558,7 +558,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * below.
      * 
      */
-    @Export(name="networkInterfaces", type=List.class, parameters={DomainNetworkInterface.class})
+    @Export(name="networkInterfaces", refs={List.class,DomainNetworkInterface.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DomainNetworkInterface>> networkInterfaces;
 
     /**
@@ -574,7 +574,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * this block allows specifying the following attributes related to the _nvram_:
      * 
      */
-    @Export(name="nvram", type=DomainNvram.class, parameters={})
+    @Export(name="nvram", refs={DomainNvram.class}, tree="[0]")
     private Output</* @Nullable */ DomainNvram> nvram;
 
     /**
@@ -588,7 +588,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
      * 
      */
-    @Export(name="qemuAgent", type=Boolean.class, parameters={})
+    @Export(name="qemuAgent", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> qemuAgent;
 
     /**
@@ -603,7 +603,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * true is assumed and the instance, if stopped, will be started at next apply.
      * 
      */
-    @Export(name="running", type=Boolean.class, parameters={})
+    @Export(name="running", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> running;
 
     /**
@@ -618,7 +618,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * TPM device to attach to the domain. The `tpm` object structure is documented below.
      * 
      */
-    @Export(name="tpm", type=DomainTpm.class, parameters={})
+    @Export(name="tpm", refs={DomainTpm.class}, tree="[0]")
     private Output</* @Nullable */ DomainTpm> tpm;
 
     /**
@@ -632,7 +632,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**
@@ -647,7 +647,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * will be created.
      * 
      */
-    @Export(name="vcpu", type=Integer.class, parameters={})
+    @Export(name="vcpu", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> vcpu;
 
     /**
@@ -658,13 +658,13 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> vcpu() {
         return Codegen.optional(this.vcpu);
     }
-    @Export(name="video", type=DomainVideo.class, parameters={})
+    @Export(name="video", refs={DomainVideo.class}, tree="[0]")
     private Output</* @Nullable */ DomainVideo> video;
 
     public Output<Optional<DomainVideo>> video() {
         return Codegen.optional(this.video);
     }
-    @Export(name="xml", type=DomainXml.class, parameters={})
+    @Export(name="xml", refs={DomainXml.class}, tree="[0]")
     private Output</* @Nullable */ DomainXml> xml;
 
     public Output<Optional<DomainXml>> xml() {

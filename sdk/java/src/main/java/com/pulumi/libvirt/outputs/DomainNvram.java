@@ -133,10 +133,10 @@ public final class DomainNvram {
             return this;
         }
         public DomainNvram build() {
-            final var o = new DomainNvram();
-            o.file = file;
-            o.template = template;
-            return o;
+            final var _resultValue = new DomainNvram();
+            _resultValue.file = file;
+            _resultValue.template = template;
+            return _resultValue;
         }
     }
 }

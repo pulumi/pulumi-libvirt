@@ -40,9 +40,9 @@ public final class PoolXml {
             return this;
         }
         public PoolXml build() {
-            final var o = new PoolXml();
-            o.xslt = xslt;
-            return o;
+            final var _resultValue = new PoolXml();
+            _resultValue.xslt = xslt;
+            return _resultValue;
         }
     }
 }

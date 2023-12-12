@@ -38,7 +38,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * No DHCP server will be started if `addresses` is omitted.
      * 
      */
-    @Export(name="addresses", type=List.class, parameters={String.class})
+    @Export(name="addresses", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> addresses;
 
     /**
@@ -58,7 +58,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * If not specified `false` is assumed.
      * 
      */
-    @Export(name="autostart", type=Boolean.class, parameters={})
+    @Export(name="autostart", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autostart;
 
     /**
@@ -75,7 +75,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      * 
      */
-    @Export(name="bridge", type=String.class, parameters={})
+    @Export(name="bridge", refs={String.class}, tree="[0]")
     private Output<String> bridge;
 
     /**
@@ -92,7 +92,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * You need to use it in conjuction with the adresses variable.
      * 
      */
-    @Export(name="dhcp", type=NetworkDhcp.class, parameters={})
+    @Export(name="dhcp", refs={NetworkDhcp.class}, tree="[0]")
     private Output<NetworkDhcp> dhcp;
 
     /**
@@ -107,7 +107,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * configuration of DNS specific settings for the network
      * 
      */
-    @Export(name="dns", type=NetworkDns.class, parameters={})
+    @Export(name="dns", refs={NetworkDns.class}, tree="[0]")
     private Output<NetworkDns> dns;
 
     /**
@@ -122,7 +122,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * You need to provide a list of option name and value pairs.
      * 
      */
-    @Export(name="dnsmasqOptions", type=NetworkDnsmasqOptions.class, parameters={})
+    @Export(name="dnsmasqOptions", refs={NetworkDnsmasqOptions.class}, tree="[0]")
     private Output</* @Nullable */ NetworkDnsmasqOptions> dnsmasqOptions;
 
     /**
@@ -137,7 +137,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * The domain used by the DNS server.
      * 
      */
-    @Export(name="domain", type=String.class, parameters={})
+    @Export(name="domain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> domain;
 
     /**
@@ -151,7 +151,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * One of:
      * 
      */
-    @Export(name="mode", type=String.class, parameters={})
+    @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
     /**
@@ -167,7 +167,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
      * 
      */
-    @Export(name="mtu", type=Integer.class, parameters={})
+    @Export(name="mtu", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> mtu;
 
     /**
@@ -184,7 +184,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * Changing this forces a new resource to be created.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -200,7 +200,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * be provided. The `gateway` must be reachable via the bridge interface.
      * 
      */
-    @Export(name="routes", type=List.class, parameters={NetworkRoute.class})
+    @Export(name="routes", refs={List.class,NetworkRoute.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NetworkRoute>> routes;
 
     /**
@@ -211,7 +211,7 @@ public class Network extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<NetworkRoute>>> routes() {
         return Codegen.optional(this.routes);
     }
-    @Export(name="xml", type=NetworkXml.class, parameters={})
+    @Export(name="xml", refs={NetworkXml.class}, tree="[0]")
     private Output</* @Nullable */ NetworkXml> xml;
 
     public Output<Optional<NetworkXml>> xml() {

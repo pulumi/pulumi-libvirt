@@ -40,9 +40,9 @@ public final class NetworkXml {
             return this;
         }
         public NetworkXml build() {
-            final var o = new NetworkXml();
-            o.xslt = xslt;
-            return o;
+            final var _resultValue = new NetworkXml();
+            _resultValue.xslt = xslt;
+            return _resultValue;
         }
     }
 }

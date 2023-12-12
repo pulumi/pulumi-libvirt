@@ -74,7 +74,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * The backing volume (CoW) to use for this volume.
      * 
      */
-    @Export(name="baseVolumeId", type=String.class, parameters={})
+    @Export(name="baseVolumeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseVolumeId;
 
     /**
@@ -90,7 +90,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * volume is going to be searched inside of `pool`.
      * 
      */
-    @Export(name="baseVolumeName", type=String.class, parameters={})
+    @Export(name="baseVolumeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseVolumeName;
 
     /**
@@ -107,7 +107,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * volume defined by `base_volume_name`.
      * 
      */
-    @Export(name="baseVolumePool", type=String.class, parameters={})
+    @Export(name="baseVolumePool", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseVolumePool;
 
     /**
@@ -118,7 +118,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> baseVolumePool() {
         return Codegen.optional(this.baseVolumePool);
     }
-    @Export(name="format", type=String.class, parameters={})
+    @Export(name="format", refs={String.class}, tree="[0]")
     private Output<String> format;
 
     public Output<String> format() {
@@ -129,7 +129,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * Changing this forces a new resource to be created.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -145,7 +145,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * If not given, the `default` storage pool will be used.
      * 
      */
-    @Export(name="pool", type=String.class, parameters={})
+    @Export(name="pool", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pool;
 
     /**
@@ -156,19 +156,19 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> pool() {
         return Codegen.optional(this.pool);
     }
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     public Output<Integer> size() {
         return this.size;
     }
-    @Export(name="source", type=String.class, parameters={})
+    @Export(name="source", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> source;
 
     public Output<Optional<String>> source() {
         return Codegen.optional(this.source);
     }
-    @Export(name="xml", type=VolumeXml.class, parameters={})
+    @Export(name="xml", refs={VolumeXml.class}, tree="[0]")
     private Output</* @Nullable */ VolumeXml> xml;
 
     public Output<Optional<VolumeXml>> xml() {

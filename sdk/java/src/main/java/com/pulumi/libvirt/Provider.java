@@ -26,7 +26,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * libvirt connection URI for operations. See https://libvirt.org/uri.html
      * 
      */
-    @Export(name="uri", type=String.class, parameters={})
+    @Export(name="uri", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> uri;
 
     /**

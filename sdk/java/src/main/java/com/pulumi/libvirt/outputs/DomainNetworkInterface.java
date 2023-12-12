@@ -260,18 +260,18 @@ public final class DomainNetworkInterface {
             return this;
         }
         public DomainNetworkInterface build() {
-            final var o = new DomainNetworkInterface();
-            o.addresses = addresses;
-            o.bridge = bridge;
-            o.hostname = hostname;
-            o.mac = mac;
-            o.macvtap = macvtap;
-            o.networkId = networkId;
-            o.networkName = networkName;
-            o.passthrough = passthrough;
-            o.vepa = vepa;
-            o.waitForLease = waitForLease;
-            return o;
+            final var _resultValue = new DomainNetworkInterface();
+            _resultValue.addresses = addresses;
+            _resultValue.bridge = bridge;
+            _resultValue.hostname = hostname;
+            _resultValue.mac = mac;
+            _resultValue.macvtap = macvtap;
+            _resultValue.networkId = networkId;
+            _resultValue.networkName = networkName;
+            _resultValue.passthrough = passthrough;
+            _resultValue.vepa = vepa;
+            _resultValue.waitForLease = waitForLease;
+            return _resultValue;
         }
     }
 }

@@ -138,17 +138,17 @@ public final class GetNetworkDnsSrvTemplateResult {
             return this;
         }
         public GetNetworkDnsSrvTemplateResult build() {
-            final var o = new GetNetworkDnsSrvTemplateResult();
-            o.domain = domain;
-            o.id = id;
-            o.port = port;
-            o.priority = priority;
-            o.protocol = protocol;
-            o.rendered = rendered;
-            o.service = service;
-            o.target = target;
-            o.weight = weight;
-            return o;
+            final var _resultValue = new GetNetworkDnsSrvTemplateResult();
+            _resultValue.domain = domain;
+            _resultValue.id = id;
+            _resultValue.port = port;
+            _resultValue.priority = priority;
+            _resultValue.protocol = protocol;
+            _resultValue.rendered = rendered;
+            _resultValue.service = service;
+            _resultValue.target = target;
+            _resultValue.weight = weight;
+            return _resultValue;
         }
     }
 }

@@ -149,13 +149,13 @@ public final class NetworkDns {
             return srvs(List.of(srvs));
         }
         public NetworkDns build() {
-            final var o = new NetworkDns();
-            o.enabled = enabled;
-            o.forwarders = forwarders;
-            o.hosts = hosts;
-            o.localOnly = localOnly;
-            o.srvs = srvs;
-            return o;
+            final var _resultValue = new NetworkDns();
+            _resultValue.enabled = enabled;
+            _resultValue.forwarders = forwarders;
+            _resultValue.hosts = hosts;
+            _resultValue.localOnly = localOnly;
+            _resultValue.srvs = srvs;
+            return _resultValue;
         }
     }
 }

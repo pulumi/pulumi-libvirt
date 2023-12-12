@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="libvirt:index/ignition:Ignition")
 public class Ignition extends com.pulumi.resources.CustomResource {
-    @Export(name="content", type=String.class, parameters={})
+    @Export(name="content", refs={String.class}, tree="[0]")
     private Output<String> content;
 
     public Output<String> content() {
@@ -26,7 +26,7 @@ public class Ignition extends com.pulumi.resources.CustomResource {
      * A unique name for the resource, required by libvirt.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -41,7 +41,7 @@ public class Ignition extends com.pulumi.resources.CustomResource {
      * If not given, the `default` pool will be used.
      * 
      */
-    @Export(name="pool", type=String.class, parameters={})
+    @Export(name="pool", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pool;
 
     /**

@@ -264,14 +264,14 @@ public final class DomainDisk {
             return this;
         }
         public DomainDisk build() {
-            final var o = new DomainDisk();
-            o.blockDevice = blockDevice;
-            o.file = file;
-            o.scsi = scsi;
-            o.url = url;
-            o.volumeId = volumeId;
-            o.wwn = wwn;
-            return o;
+            final var _resultValue = new DomainDisk();
+            _resultValue.blockDevice = blockDevice;
+            _resultValue.file = file;
+            _resultValue.scsi = scsi;
+            _resultValue.url = url;
+            _resultValue.volumeId = volumeId;
+            _resultValue.wwn = wwn;
+            return _resultValue;
         }
     }
 }

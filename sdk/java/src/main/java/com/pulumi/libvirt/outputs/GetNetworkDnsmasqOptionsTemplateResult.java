@@ -82,12 +82,12 @@ public final class GetNetworkDnsmasqOptionsTemplateResult {
             return this;
         }
         public GetNetworkDnsmasqOptionsTemplateResult build() {
-            final var o = new GetNetworkDnsmasqOptionsTemplateResult();
-            o.id = id;
-            o.optionName = optionName;
-            o.optionValue = optionValue;
-            o.rendered = rendered;
-            return o;
+            final var _resultValue = new GetNetworkDnsmasqOptionsTemplateResult();
+            _resultValue.id = id;
+            _resultValue.optionName = optionName;
+            _resultValue.optionValue = optionValue;
+            _resultValue.rendered = rendered;
+            return _resultValue;
         }
     }
 }

@@ -59,10 +59,10 @@ public final class NetworkDnsForwarder {
             return this;
         }
         public NetworkDnsForwarder build() {
-            final var o = new NetworkDnsForwarder();
-            o.address = address;
-            o.domain = domain;
-            return o;
+            final var _resultValue = new NetworkDnsForwarder();
+            _resultValue.address = address;
+            _resultValue.domain = domain;
+            return _resultValue;
         }
     }
 }

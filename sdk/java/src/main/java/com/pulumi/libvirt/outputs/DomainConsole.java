@@ -167,14 +167,14 @@ public final class DomainConsole {
             return this;
         }
         public DomainConsole build() {
-            final var o = new DomainConsole();
-            o.sourceHost = sourceHost;
-            o.sourcePath = sourcePath;
-            o.sourceService = sourceService;
-            o.targetPort = targetPort;
-            o.targetType = targetType;
-            o.type = type;
-            return o;
+            final var _resultValue = new DomainConsole();
+            _resultValue.sourceHost = sourceHost;
+            _resultValue.sourcePath = sourcePath;
+            _resultValue.sourceService = sourceService;
+            _resultValue.targetPort = targetPort;
+            _resultValue.targetType = targetType;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }
