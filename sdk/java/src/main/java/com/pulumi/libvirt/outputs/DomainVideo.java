@@ -48,9 +48,9 @@ public final class DomainVideo {
             return this;
         }
         public DomainVideo build() {
-            final var o = new DomainVideo();
-            o.type = type;
-            return o;
+            final var _resultValue = new DomainVideo();
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

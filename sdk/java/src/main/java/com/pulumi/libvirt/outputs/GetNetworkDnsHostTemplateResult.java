@@ -80,12 +80,12 @@ public final class GetNetworkDnsHostTemplateResult {
             return this;
         }
         public GetNetworkDnsHostTemplateResult build() {
-            final var o = new GetNetworkDnsHostTemplateResult();
-            o.hostname = hostname;
-            o.id = id;
-            o.ip = ip;
-            o.rendered = rendered;
-            return o;
+            final var _resultValue = new GetNetworkDnsHostTemplateResult();
+            _resultValue.hostname = hostname;
+            _resultValue.id = id;
+            _resultValue.ip = ip;
+            _resultValue.rendered = rendered;
+            return _resultValue;
         }
     }
 }

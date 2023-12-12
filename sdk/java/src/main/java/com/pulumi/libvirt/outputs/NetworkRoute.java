@@ -49,10 +49,10 @@ public final class NetworkRoute {
             return this;
         }
         public NetworkRoute build() {
-            final var o = new NetworkRoute();
-            o.cidr = cidr;
-            o.gateway = gateway;
-            return o;
+            final var _resultValue = new NetworkRoute();
+            _resultValue.cidr = cidr;
+            _resultValue.gateway = gateway;
+            return _resultValue;
         }
     }
 }

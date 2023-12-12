@@ -40,9 +40,9 @@ public final class VolumeXml {
             return this;
         }
         public VolumeXml build() {
-            final var o = new VolumeXml();
-            o.xslt = xslt;
-            return o;
+            final var _resultValue = new VolumeXml();
+            _resultValue.xslt = xslt;
+            return _resultValue;
         }
     }
 }

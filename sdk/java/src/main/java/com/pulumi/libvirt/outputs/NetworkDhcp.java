@@ -48,9 +48,9 @@ public final class NetworkDhcp {
             return this;
         }
         public NetworkDhcp build() {
-            final var o = new NetworkDhcp();
-            o.enabled = enabled;
-            return o;
+            final var _resultValue = new NetworkDhcp();
+            _resultValue.enabled = enabled;
+            return _resultValue;
         }
     }
 }

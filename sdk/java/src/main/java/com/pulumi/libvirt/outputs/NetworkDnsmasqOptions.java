@@ -59,9 +59,9 @@ public final class NetworkDnsmasqOptions {
             return options(List.of(options));
         }
         public NetworkDnsmasqOptions build() {
-            final var o = new NetworkDnsmasqOptions();
-            o.options = options;
-            return o;
+            final var _resultValue = new NetworkDnsmasqOptions();
+            _resultValue.options = options;
+            return _resultValue;
         }
     }
 }

@@ -40,9 +40,9 @@ public final class DomainCpu {
             return this;
         }
         public DomainCpu build() {
-            final var o = new DomainCpu();
-            o.mode = mode;
-            return o;
+            final var _resultValue = new DomainCpu();
+            _resultValue.mode = mode;
+            return _resultValue;
         }
     }
 }

@@ -51,10 +51,10 @@ public final class NetworkDnsmasqOptionsOption {
             return this;
         }
         public NetworkDnsmasqOptionsOption build() {
-            final var o = new NetworkDnsmasqOptionsOption();
-            o.optionName = optionName;
-            o.optionValue = optionValue;
-            return o;
+            final var _resultValue = new NetworkDnsmasqOptionsOption();
+            _resultValue.optionName = optionName;
+            _resultValue.optionValue = optionValue;
+            return _resultValue;
         }
     }
 }

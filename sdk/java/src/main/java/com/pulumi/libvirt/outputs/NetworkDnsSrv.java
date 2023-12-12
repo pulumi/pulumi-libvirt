@@ -114,15 +114,15 @@ public final class NetworkDnsSrv {
             return this;
         }
         public NetworkDnsSrv build() {
-            final var o = new NetworkDnsSrv();
-            o.domain = domain;
-            o.port = port;
-            o.priority = priority;
-            o.protocol = protocol;
-            o.service = service;
-            o.target = target;
-            o.weight = weight;
-            return o;
+            final var _resultValue = new NetworkDnsSrv();
+            _resultValue.domain = domain;
+            _resultValue.port = port;
+            _resultValue.priority = priority;
+            _resultValue.protocol = protocol;
+            _resultValue.service = service;
+            _resultValue.target = target;
+            _resultValue.weight = weight;
+            return _resultValue;
         }
     }
 }

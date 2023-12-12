@@ -43,9 +43,9 @@ public final class DomainBootDevice {
             return devs(List.of(devs));
         }
         public DomainBootDevice build() {
-            final var o = new DomainBootDevice();
-            o.devs = devs;
-            return o;
+            final var _resultValue = new DomainBootDevice();
+            _resultValue.devs = devs;
+            return _resultValue;
         }
     }
 }
