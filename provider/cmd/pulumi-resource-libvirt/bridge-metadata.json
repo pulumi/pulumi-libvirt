@@ -134,6 +134,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "libvirt:index/cloudInitDisk:CloudInitDisk": "libvirt_cloudinit_disk",
