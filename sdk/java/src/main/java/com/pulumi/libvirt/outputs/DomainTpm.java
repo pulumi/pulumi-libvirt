@@ -123,31 +123,37 @@ public final class DomainTpm {
 
         @CustomType.Setter
         public Builder backendDevicePath(@Nullable String backendDevicePath) {
+
             this.backendDevicePath = backendDevicePath;
             return this;
         }
         @CustomType.Setter
         public Builder backendEncryptionSecret(@Nullable String backendEncryptionSecret) {
+
             this.backendEncryptionSecret = backendEncryptionSecret;
             return this;
         }
         @CustomType.Setter
         public Builder backendPersistentState(@Nullable Boolean backendPersistentState) {
+
             this.backendPersistentState = backendPersistentState;
             return this;
         }
         @CustomType.Setter
         public Builder backendType(@Nullable String backendType) {
+
             this.backendType = backendType;
             return this;
         }
         @CustomType.Setter
         public Builder backendVersion(@Nullable String backendVersion) {
+
             this.backendVersion = backendVersion;
             return this;
         }
         @CustomType.Setter
         public Builder model(@Nullable String model) {
+
             this.model = model;
             return this;
         }

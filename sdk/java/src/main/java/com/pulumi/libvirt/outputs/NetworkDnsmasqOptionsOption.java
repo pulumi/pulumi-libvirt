@@ -42,11 +42,13 @@ public final class NetworkDnsmasqOptionsOption {
 
         @CustomType.Setter
         public Builder optionName(@Nullable String optionName) {
+
             this.optionName = optionName;
             return this;
         }
         @CustomType.Setter
         public Builder optionValue(@Nullable String optionValue) {
+
             this.optionValue = optionValue;
             return this;
         }

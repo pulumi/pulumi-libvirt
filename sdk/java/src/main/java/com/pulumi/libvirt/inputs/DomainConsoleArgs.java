@@ -5,6 +5,7 @@ package com.pulumi.libvirt.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -309,8 +310,12 @@ public final class DomainConsoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DomainConsoleArgs build() {
-            $.targetPort = Objects.requireNonNull($.targetPort, "expected parameter 'targetPort' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.targetPort == null) {
+                throw new MissingRequiredPropertyException("DomainConsoleArgs", "targetPort");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("DomainConsoleArgs", "type");
+            }
             return $;
         }
     }

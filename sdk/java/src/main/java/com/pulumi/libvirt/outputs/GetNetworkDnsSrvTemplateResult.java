@@ -4,6 +4,7 @@
 package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -94,46 +95,63 @@ public final class GetNetworkDnsSrvTemplateResult {
 
         @CustomType.Setter
         public Builder domain(@Nullable String domain) {
+
             this.domain = domain;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsSrvTemplateResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable String port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder priority(@Nullable String priority) {
+
             this.priority = priority;
             return this;
         }
         @CustomType.Setter
         public Builder protocol(String protocol) {
-            this.protocol = Objects.requireNonNull(protocol);
+            if (protocol == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsSrvTemplateResult", "protocol");
+            }
+            this.protocol = protocol;
             return this;
         }
         @CustomType.Setter
         public Builder rendered(Map<String,Object> rendered) {
-            this.rendered = Objects.requireNonNull(rendered);
+            if (rendered == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsSrvTemplateResult", "rendered");
+            }
+            this.rendered = rendered;
             return this;
         }
         @CustomType.Setter
         public Builder service(String service) {
-            this.service = Objects.requireNonNull(service);
+            if (service == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsSrvTemplateResult", "service");
+            }
+            this.service = service;
             return this;
         }
         @CustomType.Setter
         public Builder target(@Nullable String target) {
+
             this.target = target;
             return this;
         }
         @CustomType.Setter
         public Builder weight(@Nullable String weight) {
+
             this.weight = weight;
             return this;
         }

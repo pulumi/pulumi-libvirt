@@ -116,11 +116,13 @@ public final class NetworkDns {
 
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder forwarders(@Nullable List<NetworkDnsForwarder> forwarders) {
+
             this.forwarders = forwarders;
             return this;
         }
@@ -129,6 +131,7 @@ public final class NetworkDns {
         }
         @CustomType.Setter
         public Builder hosts(@Nullable List<NetworkDnsHost> hosts) {
+
             this.hosts = hosts;
             return this;
         }
@@ -137,11 +140,13 @@ public final class NetworkDns {
         }
         @CustomType.Setter
         public Builder localOnly(@Nullable Boolean localOnly) {
+
             this.localOnly = localOnly;
             return this;
         }
         @CustomType.Setter
         public Builder srvs(@Nullable List<NetworkDnsSrv> srvs) {
+
             this.srvs = srvs;
             return this;
         }

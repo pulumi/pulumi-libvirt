@@ -4,6 +4,7 @@
 package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -138,32 +139,42 @@ public final class DomainConsole {
 
         @CustomType.Setter
         public Builder sourceHost(@Nullable String sourceHost) {
+
             this.sourceHost = sourceHost;
             return this;
         }
         @CustomType.Setter
         public Builder sourcePath(@Nullable String sourcePath) {
+
             this.sourcePath = sourcePath;
             return this;
         }
         @CustomType.Setter
         public Builder sourceService(@Nullable String sourceService) {
+
             this.sourceService = sourceService;
             return this;
         }
         @CustomType.Setter
         public Builder targetPort(String targetPort) {
-            this.targetPort = Objects.requireNonNull(targetPort);
+            if (targetPort == null) {
+              throw new MissingRequiredPropertyException("DomainConsole", "targetPort");
+            }
+            this.targetPort = targetPort;
             return this;
         }
         @CustomType.Setter
         public Builder targetType(@Nullable String targetType) {
+
             this.targetType = targetType;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("DomainConsole", "type");
+            }
+            this.type = type;
             return this;
         }
         public DomainConsole build() {

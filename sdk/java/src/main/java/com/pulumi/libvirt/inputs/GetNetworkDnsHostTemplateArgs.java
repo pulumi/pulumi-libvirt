@@ -5,6 +5,7 @@ package com.pulumi.libvirt.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -71,8 +72,12 @@ public final class GetNetworkDnsHostTemplateArgs extends com.pulumi.resources.In
         }
 
         public GetNetworkDnsHostTemplateArgs build() {
-            $.hostname = Objects.requireNonNull($.hostname, "expected parameter 'hostname' to be non-null");
-            $.ip = Objects.requireNonNull($.ip, "expected parameter 'ip' to be non-null");
+            if ($.hostname == null) {
+                throw new MissingRequiredPropertyException("GetNetworkDnsHostTemplateArgs", "hostname");
+            }
+            if ($.ip == null) {
+                throw new MissingRequiredPropertyException("GetNetworkDnsHostTemplateArgs", "ip");
+            }
             return $;
         }
     }
