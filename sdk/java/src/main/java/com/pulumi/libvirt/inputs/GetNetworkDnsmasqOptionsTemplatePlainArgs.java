@@ -4,6 +4,7 @@
 package com.pulumi.libvirt.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -64,7 +65,9 @@ public final class GetNetworkDnsmasqOptionsTemplatePlainArgs extends com.pulumi.
         }
 
         public GetNetworkDnsmasqOptionsTemplatePlainArgs build() {
-            $.optionName = Objects.requireNonNull($.optionName, "expected parameter 'optionName' to be non-null");
+            if ($.optionName == null) {
+                throw new MissingRequiredPropertyException("GetNetworkDnsmasqOptionsTemplatePlainArgs", "optionName");
+            }
             return $;
         }
     }

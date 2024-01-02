@@ -50,11 +50,13 @@ public final class NetworkDnsForwarder {
 
         @CustomType.Setter
         public Builder address(@Nullable String address) {
+
             this.address = address;
             return this;
         }
         @CustomType.Setter
         public Builder domain(@Nullable String domain) {
+
             this.domain = domain;
             return this;
         }

@@ -36,6 +36,7 @@ public final class PoolXml {
 
         @CustomType.Setter
         public Builder xslt(@Nullable String xslt) {
+
             this.xslt = xslt;
             return this;
         }

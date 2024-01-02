@@ -235,31 +235,37 @@ public final class DomainDisk {
 
         @CustomType.Setter
         public Builder blockDevice(@Nullable String blockDevice) {
+
             this.blockDevice = blockDevice;
             return this;
         }
         @CustomType.Setter
         public Builder file(@Nullable String file) {
+
             this.file = file;
             return this;
         }
         @CustomType.Setter
         public Builder scsi(@Nullable Boolean scsi) {
+
             this.scsi = scsi;
             return this;
         }
         @CustomType.Setter
         public Builder url(@Nullable String url) {
+
             this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder volumeId(@Nullable String volumeId) {
+
             this.volumeId = volumeId;
             return this;
         }
         @CustomType.Setter
         public Builder wwn(@Nullable String wwn) {
+
             this.wwn = wwn;
             return this;
         }

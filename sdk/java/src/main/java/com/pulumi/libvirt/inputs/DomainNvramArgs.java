@@ -5,6 +5,7 @@ package com.pulumi.libvirt.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -245,7 +246,9 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DomainNvramArgs build() {
-            $.file = Objects.requireNonNull($.file, "expected parameter 'file' to be non-null");
+            if ($.file == null) {
+                throw new MissingRequiredPropertyException("DomainNvramArgs", "file");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.libvirt;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.libvirt.inputs.PoolXmlArgs;
 import java.lang.Integer;
 import java.lang.String;
@@ -224,7 +225,9 @@ public final class PoolArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public PoolArgs build() {
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("PoolArgs", "type");
+            }
             return $;
         }
     }

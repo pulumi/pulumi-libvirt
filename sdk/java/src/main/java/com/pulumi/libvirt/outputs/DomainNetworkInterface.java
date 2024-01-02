@@ -208,6 +208,7 @@ public final class DomainNetworkInterface {
 
         @CustomType.Setter
         public Builder addresses(@Nullable List<String> addresses) {
+
             this.addresses = addresses;
             return this;
         }
@@ -216,46 +217,55 @@ public final class DomainNetworkInterface {
         }
         @CustomType.Setter
         public Builder bridge(@Nullable String bridge) {
+
             this.bridge = bridge;
             return this;
         }
         @CustomType.Setter
         public Builder hostname(@Nullable String hostname) {
+
             this.hostname = hostname;
             return this;
         }
         @CustomType.Setter
         public Builder mac(@Nullable String mac) {
+
             this.mac = mac;
             return this;
         }
         @CustomType.Setter
         public Builder macvtap(@Nullable String macvtap) {
+
             this.macvtap = macvtap;
             return this;
         }
         @CustomType.Setter
         public Builder networkId(@Nullable String networkId) {
+
             this.networkId = networkId;
             return this;
         }
         @CustomType.Setter
         public Builder networkName(@Nullable String networkName) {
+
             this.networkName = networkName;
             return this;
         }
         @CustomType.Setter
         public Builder passthrough(@Nullable String passthrough) {
+
             this.passthrough = passthrough;
             return this;
         }
         @CustomType.Setter
         public Builder vepa(@Nullable String vepa) {
+
             this.vepa = vepa;
             return this;
         }
         @CustomType.Setter
         public Builder waitForLease(@Nullable Boolean waitForLease) {
+
             this.waitForLease = waitForLease;
             return this;
         }

@@ -52,6 +52,7 @@ public final class NetworkDnsmasqOptions {
 
         @CustomType.Setter
         public Builder options(@Nullable List<NetworkDnsmasqOptionsOption> options) {
+
             this.options = options;
             return this;
         }

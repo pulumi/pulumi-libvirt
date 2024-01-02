@@ -4,6 +4,7 @@
 package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -40,12 +41,18 @@ public final class NetworkRoute {
 
         @CustomType.Setter
         public Builder cidr(String cidr) {
-            this.cidr = Objects.requireNonNull(cidr);
+            if (cidr == null) {
+              throw new MissingRequiredPropertyException("NetworkRoute", "cidr");
+            }
+            this.cidr = cidr;
             return this;
         }
         @CustomType.Setter
         public Builder gateway(String gateway) {
-            this.gateway = Objects.requireNonNull(gateway);
+            if (gateway == null) {
+              throw new MissingRequiredPropertyException("NetworkRoute", "gateway");
+            }
+            this.gateway = gateway;
             return this;
         }
         public NetworkRoute build() {
