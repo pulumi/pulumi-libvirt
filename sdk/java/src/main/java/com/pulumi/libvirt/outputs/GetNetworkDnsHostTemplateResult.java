@@ -4,6 +4,7 @@
 package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -61,22 +62,34 @@ public final class GetNetworkDnsHostTemplateResult {
 
         @CustomType.Setter
         public Builder hostname(String hostname) {
-            this.hostname = Objects.requireNonNull(hostname);
+            if (hostname == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsHostTemplateResult", "hostname");
+            }
+            this.hostname = hostname;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsHostTemplateResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ip(String ip) {
-            this.ip = Objects.requireNonNull(ip);
+            if (ip == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsHostTemplateResult", "ip");
+            }
+            this.ip = ip;
             return this;
         }
         @CustomType.Setter
         public Builder rendered(Map<String,String> rendered) {
-            this.rendered = Objects.requireNonNull(rendered);
+            if (rendered == null) {
+              throw new MissingRequiredPropertyException("GetNetworkDnsHostTemplateResult", "rendered");
+            }
+            this.rendered = rendered;
             return this;
         }
         public GetNetworkDnsHostTemplateResult build() {

@@ -36,6 +36,7 @@ public final class DomainBootDevice {
 
         @CustomType.Setter
         public Builder devs(@Nullable List<String> devs) {
+
             this.devs = devs;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -124,11 +125,15 @@ public final class DomainNvram {
 
         @CustomType.Setter
         public Builder file(String file) {
-            this.file = Objects.requireNonNull(file);
+            if (file == null) {
+              throw new MissingRequiredPropertyException("DomainNvram", "file");
+            }
+            this.file = file;
             return this;
         }
         @CustomType.Setter
         public Builder template(@Nullable String template) {
+
             this.template = template;
             return this;
         }

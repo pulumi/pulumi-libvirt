@@ -132,26 +132,31 @@ public final class DomainGraphics {
 
         @CustomType.Setter
         public Builder autoport(@Nullable Boolean autoport) {
+
             this.autoport = autoport;
             return this;
         }
         @CustomType.Setter
         public Builder listenAddress(@Nullable String listenAddress) {
+
             this.listenAddress = listenAddress;
             return this;
         }
         @CustomType.Setter
         public Builder listenType(@Nullable String listenType) {
+
             this.listenType = listenType;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder websocket(@Nullable Integer websocket) {
+
             this.websocket = websocket;
             return this;
         }
