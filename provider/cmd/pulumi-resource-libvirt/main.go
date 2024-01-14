@@ -19,9 +19,10 @@ package main
 import (
 	_ "embed"
 
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+
 	libvirt "github.com/pulumi/pulumi-libvirt/provider"
 	"github.com/pulumi/pulumi-libvirt/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 
 //go:embed schema-embed.json
