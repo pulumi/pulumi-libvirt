@@ -95,6 +95,14 @@ namespace Pulumi.Libvirt
         [Output("pool")]
         public Output<string?> Pool { get; private set; } = null!;
 
+        /// <summary>
+        /// The size of the volume in bytes (if you don't like this,
+        /// help fix this issue.
+        /// If `source` is specified, `size` will be set to the source image file size.
+        /// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+        /// `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+        /// If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+        /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
 
@@ -188,6 +196,14 @@ namespace Pulumi.Libvirt
         [Input("pool")]
         public Input<string>? Pool { get; set; }
 
+        /// <summary>
+        /// The size of the volume in bytes (if you don't like this,
+        /// help fix this issue.
+        /// If `source` is specified, `size` will be set to the source image file size.
+        /// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+        /// `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+        /// If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
@@ -243,6 +259,14 @@ namespace Pulumi.Libvirt
         [Input("pool")]
         public Input<string>? Pool { get; set; }
 
+        /// <summary>
+        /// The size of the volume in bytes (if you don't like this,
+        /// help fix this issue.
+        /// If `source` is specified, `size` will be set to the source image file size.
+        /// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+        /// `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+        /// If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 

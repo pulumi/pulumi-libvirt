@@ -109,9 +109,27 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.pool);
     }
 
+    /**
+     * The size of the volume in bytes (if you don&#39;t like this,
+     * help fix this issue.
+     * If `source` is specified, `size` will be set to the source image file size.
+     * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+     * `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+     * If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+     * 
+     */
     @Import(name="size")
     private @Nullable Output<Integer> size;
 
+    /**
+     * @return The size of the volume in bytes (if you don&#39;t like this,
+     * help fix this issue.
+     * If `source` is specified, `size` will be set to the source image file size.
+     * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+     * `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+     * If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+     * 
+     */
     public Optional<Output<Integer>> size() {
         return Optional.ofNullable(this.size);
     }
@@ -286,11 +304,33 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
             return pool(Output.of(pool));
         }
 
+        /**
+         * @param size The size of the volume in bytes (if you don&#39;t like this,
+         * help fix this issue.
+         * If `source` is specified, `size` will be set to the source image file size.
+         * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+         * `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+         * If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder size(@Nullable Output<Integer> size) {
             $.size = size;
             return this;
         }
 
+        /**
+         * @param size The size of the volume in bytes (if you don&#39;t like this,
+         * help fix this issue.
+         * If `source` is specified, `size` will be set to the source image file size.
+         * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+         * `size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.
+         * If `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+         * 
+         * @return builder
+         * 
+         */
         public Builder size(Integer size) {
             return size(Output.of(size));
         }
