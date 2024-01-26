@@ -80,7 +80,13 @@ type Volume struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The storage pool where the resource will be created.
 	// If not given, the `default` storage pool will be used.
-	Pool   pulumi.StringPtrOutput `pulumi:"pool"`
+	Pool pulumi.StringPtrOutput `pulumi:"pool"`
+	// The size of the volume in bytes (if you don't like this,
+	// help fix this issue.
+	// If `source` is specified, `size` will be set to the source image file size.
+	// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+	// `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+	// If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
 	Size   pulumi.IntOutput       `pulumi:"size"`
 	Source pulumi.StringPtrOutput `pulumi:"source"`
 	Xml    VolumeXmlPtrOutput     `pulumi:"xml"`
@@ -131,7 +137,13 @@ type volumeState struct {
 	Name *string `pulumi:"name"`
 	// The storage pool where the resource will be created.
 	// If not given, the `default` storage pool will be used.
-	Pool   *string    `pulumi:"pool"`
+	Pool *string `pulumi:"pool"`
+	// The size of the volume in bytes (if you don't like this,
+	// help fix this issue.
+	// If `source` is specified, `size` will be set to the source image file size.
+	// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+	// `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+	// If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
 	Size   *int       `pulumi:"size"`
 	Source *string    `pulumi:"source"`
 	Xml    *VolumeXml `pulumi:"xml"`
@@ -153,7 +165,13 @@ type VolumeState struct {
 	Name pulumi.StringPtrInput
 	// The storage pool where the resource will be created.
 	// If not given, the `default` storage pool will be used.
-	Pool   pulumi.StringPtrInput
+	Pool pulumi.StringPtrInput
+	// The size of the volume in bytes (if you don't like this,
+	// help fix this issue.
+	// If `source` is specified, `size` will be set to the source image file size.
+	// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+	// `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+	// If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
 	Size   pulumi.IntPtrInput
 	Source pulumi.StringPtrInput
 	Xml    VolumeXmlPtrInput
@@ -179,7 +197,13 @@ type volumeArgs struct {
 	Name *string `pulumi:"name"`
 	// The storage pool where the resource will be created.
 	// If not given, the `default` storage pool will be used.
-	Pool   *string    `pulumi:"pool"`
+	Pool *string `pulumi:"pool"`
+	// The size of the volume in bytes (if you don't like this,
+	// help fix this issue.
+	// If `source` is specified, `size` will be set to the source image file size.
+	// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+	// `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+	// If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
 	Size   *int       `pulumi:"size"`
 	Source *string    `pulumi:"source"`
 	Xml    *VolumeXml `pulumi:"xml"`
@@ -202,7 +226,13 @@ type VolumeArgs struct {
 	Name pulumi.StringPtrInput
 	// The storage pool where the resource will be created.
 	// If not given, the `default` storage pool will be used.
-	Pool   pulumi.StringPtrInput
+	Pool pulumi.StringPtrInput
+	// The size of the volume in bytes (if you don't like this,
+	// help fix this issue.
+	// If `source` is specified, `size` will be set to the source image file size.
+	// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+	// `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+	// If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
 	Size   pulumi.IntPtrInput
 	Source pulumi.StringPtrInput
 	Xml    VolumeXmlPtrInput
@@ -329,6 +359,12 @@ func (o VolumeOutput) Pool() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Pool }).(pulumi.StringPtrOutput)
 }
 
+// The size of the volume in bytes (if you don't like this,
+// help fix this issue.
+// If `source` is specified, `size` will be set to the source image file size.
+// `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+// `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+// If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
 func (o VolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }

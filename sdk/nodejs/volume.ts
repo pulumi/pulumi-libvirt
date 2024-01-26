@@ -87,6 +87,14 @@ export class Volume extends pulumi.CustomResource {
      * If not given, the `default` storage pool will be used.
      */
     public readonly pool!: pulumi.Output<string | undefined>;
+    /**
+     * The size of the volume in bytes (if you don't like this,
+     * help fix this issue.
+     * If `source` is specified, `size` will be set to the source image file size.
+     * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+     * `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+     * If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+     */
     public readonly size!: pulumi.Output<number>;
     public readonly source!: pulumi.Output<string | undefined>;
     public readonly xml!: pulumi.Output<outputs.VolumeXml | undefined>;
@@ -160,6 +168,14 @@ export interface VolumeState {
      * If not given, the `default` storage pool will be used.
      */
     pool?: pulumi.Input<string>;
+    /**
+     * The size of the volume in bytes (if you don't like this,
+     * help fix this issue.
+     * If `source` is specified, `size` will be set to the source image file size.
+     * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+     * `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+     * If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+     */
     size?: pulumi.Input<number>;
     source?: pulumi.Input<string>;
     xml?: pulumi.Input<inputs.VolumeXml>;
@@ -195,6 +211,14 @@ export interface VolumeArgs {
      * If not given, the `default` storage pool will be used.
      */
     pool?: pulumi.Input<string>;
+    /**
+     * The size of the volume in bytes (if you don't like this,
+     * help fix this issue.
+     * If `source` is specified, `size` will be set to the source image file size.
+     * `size` can be omitted if `source` is specified. `size` will then be set to the source image file size.
+     * `size` can be omitted if `baseVolumeId` or `baseVolumeName` is specified. `size` will then be set to the base volume size.
+     * If `size` is specified to be bigger than `baseVolumeId` or `baseVolumeName` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.
+     */
     size?: pulumi.Input<number>;
     source?: pulumi.Input<string>;
     xml?: pulumi.Input<inputs.VolumeXml>;
