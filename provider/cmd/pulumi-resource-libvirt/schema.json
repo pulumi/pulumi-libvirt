@@ -1471,7 +1471,8 @@
                     "description": "The storage pool where the resource will be created.\nIf not given, the `default` storage pool will be used.\n"
                 },
                 "size": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The size of the volume in bytes (if you don't like this,\nhelp fix this issue.\nIf `source` is specified, `size` will be set to the source image file size.\n`size` can be omitted if `source` is specified. `size` will then be set to the source image file size.\n`size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.\nIf `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.\n"
                 },
                 "source": {
                     "type": "string"
@@ -1517,6 +1518,7 @@
                 },
                 "size": {
                     "type": "integer",
+                    "description": "The size of the volume in bytes (if you don't like this,\nhelp fix this issue.\nIf `source` is specified, `size` will be set to the source image file size.\n`size` can be omitted if `source` is specified. `size` will then be set to the source image file size.\n`size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.\nIf `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.\n",
                     "willReplaceOnChanges": true
                 },
                 "source": {
@@ -1562,6 +1564,7 @@
                     },
                     "size": {
                         "type": "integer",
+                        "description": "The size of the volume in bytes (if you don't like this,\nhelp fix this issue.\nIf `source` is specified, `size` will be set to the source image file size.\n`size` can be omitted if `source` is specified. `size` will then be set to the source image file size.\n`size` can be omitted if `base_volume_id` or `base_volume_name` is specified. `size` will then be set to the base volume size.\nIf `size` is specified to be bigger than `base_volume_id` or `base_volume_name` size, you can use [cloudinit](https://cloudinit.readthedocs.io) if your OS supports it, with `libvirt.CloudInitDisk` and the [growpart](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#growpart) module to resize the partition.\n",
                         "willReplaceOnChanges": true
                     },
                     "source": {
