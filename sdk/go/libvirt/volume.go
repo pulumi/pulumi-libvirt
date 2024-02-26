@@ -28,18 +28,22 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Base OS image to use to create a cluster of different
+//			// nodes
 //			opensuseLeap, err := libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
 //				Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// volume to attach to the "master" domain as main disk
 //			_, err = libvirt.NewVolume(ctx, "master", &libvirt.VolumeArgs{
 //				BaseVolumeId: opensuseLeap.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// volumes to attach to the "workers" domains as main disk
 //			var worker []*libvirt.Volume
 //			for index := 0; index < _var.Workers_count; index++ {
 //				key0 := index
