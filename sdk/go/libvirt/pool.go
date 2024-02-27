@@ -31,6 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// A pool for all cluster volumes
 //			cluster, err := libvirt.NewPool(ctx, "cluster", &libvirt.PoolArgs{
 //				Type: pulumi.String("dir"),
 //				Path: pulumi.String("/home/user/cluster_storage"),
