@@ -31,8 +31,6 @@ public final class NetworkDns {
      * 
      * An advanced example of round-robin DNS (using DNS host templates) follows:
      * 
-     * An advanced example of setting up multiple SRV records using DNS SRV templates is:
-     * 
      */
     private @Nullable List<NetworkDnsHost> hosts;
     /**
@@ -67,8 +65,6 @@ public final class NetworkDns {
      * blocks in your DNS definition. You must specify both `ip` and `hostname`.
      * 
      * An advanced example of round-robin DNS (using DNS host templates) follows:
-     * 
-     * An advanced example of setting up multiple SRV records using DNS SRV templates is:
      * 
      */
     public List<NetworkDnsHost> hosts() {

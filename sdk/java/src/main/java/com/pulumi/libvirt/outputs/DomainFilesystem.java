@@ -24,6 +24,8 @@ public final class DomainFilesystem {
      * default read-only access is given.
      * 
      * Example:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -46,10 +48,9 @@ public final class DomainFilesystem {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * The exported filesystems can be mounted inside of the guest in this way:
-     * 
-     * This can be automated inside of `/etc/fstab`:
      * 
      */
     private @Nullable Boolean readonly;
@@ -79,6 +80,8 @@ public final class DomainFilesystem {
      * default read-only access is given.
      * 
      * Example:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -101,10 +104,9 @@ public final class DomainFilesystem {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * The exported filesystems can be mounted inside of the guest in this way:
-     * 
-     * This can be automated inside of `/etc/fstab`:
      * 
      */
     public Optional<Boolean> readonly() {

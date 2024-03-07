@@ -81,6 +81,7 @@ export interface DomainDisk {
      * a scsi controller, if not specified then a random wwn is generated for the disk
      *
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -103,6 +104,7 @@ export interface DomainDisk {
      *     },
      * ]});
      * ```
+     * <!--End PulumiCodeChooser -->
      *
      * Also note that the `disk` block is actually a list of maps, so it is possible to
      * declare several of them by using either the literal list and map syntax as in
@@ -123,14 +125,13 @@ export interface DomainFilesystem {
      *
      * Example:
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * ```
+     * <!--End PulumiCodeChooser -->
      *
      * The exported filesystems can be mounted inside of the guest in this way:
-     *
-     *
-     * This can be automated inside of `/etc/fstab`:
      */
     readonly?: boolean;
     /**
@@ -172,14 +173,6 @@ export interface DomainGraphics {
      * machines VNC server. Usually this is an IP of the host system.
      *
      * The `graphics` block will look as follows:
-     *
-     *
-     * The video card type can be changed from libvirt default `cirrus` to
-     * `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-     *
-     *
-     * > **Note well:** the `graphics` block is ignored for the architectures
-     * `s390x` and `ppc64`.
      */
     websocket?: number;
 }
@@ -224,11 +217,6 @@ export interface DomainNetworkInterface {
      * for example, on Linux this requires kernel 2.6.38 or newer.
      *
      * Example of a `macvtap` interface:
-     *
-     *
-     * **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-     * must be installed and running inside of the domain in order to discover the IP
-     * addresses of all the network interfaces attached to a LAN.
      */
     passthrough?: string;
     /**
@@ -258,20 +246,6 @@ export interface DomainNvram {
      * store.
      *
      * So you should typically use the firmware as this,
-     *
-     *
-     * and `/etc/libvirt/qemu.conf` should contain:
-     *
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * ```
-     *
-     * In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-     * look like this:
-     *
-     *
-     * Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-     * coming from a template, the domain definition should look like this:
      */
     template?: string;
 }
@@ -339,9 +313,6 @@ export interface NetworkDns {
      * blocks in your DNS definition. You must specify both `ip` and `hostname`.
      *
      * An advanced example of round-robin DNS (using DNS host templates) follows:
-     *
-     *
-     * An advanced example of setting up multiple SRV records using DNS SRV templates is:
      */
     hosts?: outputs.NetworkDnsHost[];
     /**

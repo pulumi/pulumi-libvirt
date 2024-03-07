@@ -40,14 +40,6 @@ namespace Pulumi.Libvirt.Outputs
         /// machines VNC server. Usually this is an IP of the host system.
         /// 
         /// The `graphics` block will look as follows:
-        /// 
-        /// 
-        /// The video card type can be changed from libvirt default `cirrus` to
-        /// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-        /// 
-        /// 
-        /// &gt; **Note well:** the `graphics` block is ignored for the architectures
-        /// `s390x` and `ppc64`.
         /// </summary>
         public readonly int? Websocket;
 

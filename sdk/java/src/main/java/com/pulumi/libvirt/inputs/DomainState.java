@@ -105,6 +105,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Arguments to the kernel
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -140,6 +142,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Kernel params that don&#39;t have a keyword identifier can be specified using the
      * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -155,6 +158,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Arguments to the kernel
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -190,6 +195,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Kernel params that don&#39;t have a keyword identifier can be specified using the
      * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -386,6 +392,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
      * as they are local to the hypervisor.
      * 
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -424,6 +432,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     @Import(name="kernel")
@@ -436,6 +445,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
      * as they are local to the hypervisor.
      * 
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -474,6 +485,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Optional<Output<String>> kernel() {
@@ -829,6 +841,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param cmdlines Arguments to the kernel
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -864,6 +878,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * Kernel params that don&#39;t have a keyword identifier can be specified using the
          * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -883,6 +898,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param cmdlines Arguments to the kernel
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -918,6 +935,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * Kernel params that don&#39;t have a keyword identifier can be specified using the
          * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -936,6 +954,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param cmdlines Arguments to the kernel
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -971,6 +991,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * Kernel params that don&#39;t have a keyword identifier can be specified using the
          * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -1254,6 +1275,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          * as they are local to the hypervisor.
          * 
          * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -1292,6 +1315,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 
@@ -1308,6 +1332,8 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          * as they are local to the hypervisor.
          * 
          * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -1346,6 +1372,7 @@ public final class DomainState extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 

@@ -15,6 +15,7 @@ namespace Pulumi.Libvirt
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,6 +28,7 @@ namespace Pulumi.Libvirt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [LibvirtResourceType("libvirt:index/domain:Domain")]
     public partial class Domain : global::Pulumi.CustomResource
@@ -64,6 +66,7 @@ namespace Pulumi.Libvirt
         /// <summary>
         /// Arguments to the kernel
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -90,6 +93,7 @@ namespace Pulumi.Libvirt
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// Kernel params that don't have a keyword identifier can be specified using the
         /// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -183,6 +187,7 @@ namespace Pulumi.Libvirt
         /// 
         /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -208,6 +213,7 @@ namespace Pulumi.Libvirt
         ///     // ...
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Output("kernel")]
         public Output<string?> Kernel { get; private set; } = null!;
@@ -377,6 +383,7 @@ namespace Pulumi.Libvirt
         /// <summary>
         /// Arguments to the kernel
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -403,6 +410,7 @@ namespace Pulumi.Libvirt
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// Kernel params that don't have a keyword identifier can be specified using the
         /// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -516,6 +524,7 @@ namespace Pulumi.Libvirt
         /// 
         /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -541,6 +550,7 @@ namespace Pulumi.Libvirt
         ///     // ...
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Input("kernel")]
         public Input<string>? Kernel { get; set; }
@@ -678,6 +688,7 @@ namespace Pulumi.Libvirt
         /// <summary>
         /// Arguments to the kernel
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -704,6 +715,7 @@ namespace Pulumi.Libvirt
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// Kernel params that don't have a keyword identifier can be specified using the
         /// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -817,6 +829,7 @@ namespace Pulumi.Libvirt
         /// 
         /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -842,6 +855,7 @@ namespace Pulumi.Libvirt
         ///     // ...
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Input("kernel")]
         public Input<string>? Kernel { get; set; }
