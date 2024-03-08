@@ -58,10 +58,6 @@ public final class DomainNetworkInterface {
      * 
      * Example of a `macvtap` interface:
      * 
-     * **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-     * must be installed and running inside of the domain in order to discover the IP
-     * addresses of all the network interfaces attached to a LAN.
-     * 
      */
     private @Nullable String passthrough;
     /**
@@ -141,10 +137,6 @@ public final class DomainNetworkInterface {
      * for example, on Linux this requires kernel 2.6.38 or newer.
      * 
      * Example of a `macvtap` interface:
-     * 
-     * **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-     * must be installed and running inside of the domain in order to discover the IP
-     * addresses of all the network interfaces attached to a LAN.
      * 
      */
     public Optional<String> passthrough() {

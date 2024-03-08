@@ -25,6 +25,7 @@ namespace Pulumi.Libvirt.Inputs
         /// 
         /// Example:
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,11 +35,9 @@ namespace Pulumi.Libvirt.Inputs
         /// {
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// The exported filesystems can be mounted inside of the guest in this way:
-        /// 
-        /// 
-        /// This can be automated inside of `/etc/fstab`:
         /// </summary>
         [Input("readonly")]
         public Input<bool>? Readonly { get; set; }

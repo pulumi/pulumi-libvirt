@@ -52,11 +52,6 @@ namespace Pulumi.Libvirt.Outputs
         /// for example, on Linux this requires kernel 2.6.38 or newer.
         /// 
         /// Example of a `macvtap` interface:
-        /// 
-        /// 
-        /// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-        /// must be installed and running inside of the domain in order to discover the IP
-        /// addresses of all the network interfaces attached to a LAN.
         /// </summary>
         public readonly string? Passthrough;
         /// <summary>

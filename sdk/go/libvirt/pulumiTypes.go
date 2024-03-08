@@ -435,6 +435,7 @@ type DomainDisk struct {
 	// Specify a WWN to use for the disk if the disk is using
 	// a scsi controller, if not specified then a random wwn is generated for the disk
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -481,6 +482,7 @@ type DomainDisk struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	//
 	// Also note that the `disk` block is actually a list of maps, so it is possible to
 	// declare several of them by using either the literal list and map syntax as in
@@ -516,6 +518,7 @@ type DomainDiskArgs struct {
 	// Specify a WWN to use for the disk if the disk is using
 	// a scsi controller, if not specified then a random wwn is generated for the disk
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -562,6 +565,7 @@ type DomainDiskArgs struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	//
 	// Also note that the `disk` block is actually a list of maps, so it is possible to
 	// declare several of them by using either the literal list and map syntax as in
@@ -651,6 +655,7 @@ func (o DomainDiskOutput) VolumeId() pulumi.StringPtrOutput {
 // Specify a WWN to use for the disk if the disk is using
 // a scsi controller, if not specified then a random wwn is generated for the disk
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -700,6 +705,7 @@ func (o DomainDiskOutput) VolumeId() pulumi.StringPtrOutput {
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Also note that the `disk` block is actually a list of maps, so it is possible to
 // declare several of them by using either the literal list and map syntax as in
@@ -737,6 +743,7 @@ type DomainFilesystem struct {
 	//
 	// Example:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -750,10 +757,9 @@ type DomainFilesystem struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	//
 	// The exported filesystems can be mounted inside of the guest in this way:
-	//
-	// This can be automated inside of `/etc/fstab`:
 	Readonly *bool `pulumi:"readonly"`
 	// the directory of the host to be shared with the guest.
 	Source string `pulumi:"source"`
@@ -782,6 +788,7 @@ type DomainFilesystemArgs struct {
 	//
 	// Example:
 	//
+	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -795,10 +802,9 @@ type DomainFilesystemArgs struct {
 	// 	})
 	// }
 	// ```
+	// <!--End PulumiCodeChooser -->
 	//
 	// The exported filesystems can be mounted inside of the guest in this way:
-	//
-	// This can be automated inside of `/etc/fstab`:
 	Readonly pulumi.BoolPtrInput `pulumi:"readonly"`
 	// the directory of the host to be shared with the guest.
 	Source pulumi.StringInput `pulumi:"source"`
@@ -869,6 +875,7 @@ func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 //
 // Example:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -885,10 +892,9 @@ func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // The exported filesystems can be mounted inside of the guest in this way:
-//
-// This can be automated inside of `/etc/fstab`:
 func (o DomainFilesystemOutput) Readonly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *bool { return v.Readonly }).(pulumi.BoolPtrOutput)
 }
@@ -943,12 +949,6 @@ type DomainGraphics struct {
 	// machines VNC server. Usually this is an IP of the host system.
 	//
 	// The `graphics` block will look as follows:
-	//
-	// The video card type can be changed from libvirt default `cirrus` to
-	// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-	//
-	// > **Note well:** the `graphics` block is ignored for the architectures
-	// `s390x` and `ppc64`.
 	Websocket *int `pulumi:"websocket"`
 }
 
@@ -982,12 +982,6 @@ type DomainGraphicsArgs struct {
 	// machines VNC server. Usually this is an IP of the host system.
 	//
 	// The `graphics` block will look as follows:
-	//
-	// The video card type can be changed from libvirt default `cirrus` to
-	// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-	//
-	// > **Note well:** the `graphics` block is ignored for the architectures
-	// `s390x` and `ppc64`.
 	Websocket pulumi.IntPtrInput `pulumi:"websocket"`
 }
 
@@ -1098,12 +1092,6 @@ func (o DomainGraphicsOutput) Type() pulumi.StringPtrOutput {
 // machines VNC server. Usually this is an IP of the host system.
 //
 // The `graphics` block will look as follows:
-//
-// The video card type can be changed from libvirt default `cirrus` to
-// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-//
-// > **Note well:** the `graphics` block is ignored for the architectures
-// `s390x` and `ppc64`.
 func (o DomainGraphicsOutput) Websocket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DomainGraphics) *int { return v.Websocket }).(pulumi.IntPtrOutput)
 }
@@ -1182,12 +1170,6 @@ func (o DomainGraphicsPtrOutput) Type() pulumi.StringPtrOutput {
 // machines VNC server. Usually this is an IP of the host system.
 //
 // The `graphics` block will look as follows:
-//
-// The video card type can be changed from libvirt default `cirrus` to
-// `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-//
-// > **Note well:** the `graphics` block is ignored for the architectures
-// `s390x` and `ppc64`.
 func (o DomainGraphicsPtrOutput) Websocket() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DomainGraphics) *int {
 		if v == nil {
@@ -1226,10 +1208,6 @@ type DomainNetworkInterface struct {
 	// for example, on Linux this requires kernel 2.6.38 or newer.
 	//
 	// Example of a `macvtap` interface:
-	//
-	// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-	// must be installed and running inside of the domain in order to discover the IP
-	// addresses of all the network interfaces attached to a LAN.
 	Passthrough *string `pulumi:"passthrough"`
 	// All VMs' packets are sent to the external bridge. Packets whose
 	// destination is a VM on the same host as where the packet originates from are
@@ -1284,10 +1262,6 @@ type DomainNetworkInterfaceArgs struct {
 	// for example, on Linux this requires kernel 2.6.38 or newer.
 	//
 	// Example of a `macvtap` interface:
-	//
-	// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-	// must be installed and running inside of the domain in order to discover the IP
-	// addresses of all the network interfaces attached to a LAN.
 	Passthrough pulumi.StringPtrInput `pulumi:"passthrough"`
 	// All VMs' packets are sent to the external bridge. Packets whose
 	// destination is a VM on the same host as where the packet originates from are
@@ -1402,10 +1376,6 @@ func (o DomainNetworkInterfaceOutput) NetworkName() pulumi.StringPtrOutput {
 // for example, on Linux this requires kernel 2.6.38 or newer.
 //
 // Example of a `macvtap` interface:
-//
-// **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-// must be installed and running inside of the domain in order to discover the IP
-// addresses of all the network interfaces attached to a LAN.
 func (o DomainNetworkInterfaceOutput) Passthrough() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Passthrough }).(pulumi.StringPtrOutput)
 }
@@ -1454,28 +1424,6 @@ type DomainNvram struct {
 	// store.
 	//
 	// So you should typically use the firmware as this,
-	//
-	// and `/etc/libvirt/qemu.conf` should contain:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	//
-	// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-	// look like this:
-	//
-	// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-	// coming from a template, the domain definition should look like this:
 	Template *string `pulumi:"template"`
 }
 
@@ -1497,28 +1445,6 @@ type DomainNvramArgs struct {
 	// store.
 	//
 	// So you should typically use the firmware as this,
-	//
-	// and `/etc/libvirt/qemu.conf` should contain:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	//
-	// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-	// look like this:
-	//
-	// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-	// coming from a template, the domain definition should look like this:
 	Template pulumi.StringPtrInput `pulumi:"template"`
 }
 
@@ -1608,31 +1534,6 @@ func (o DomainNvramOutput) File() pulumi.StringOutput {
 // store.
 //
 // So you should typically use the firmware as this,
-//
-// and `/etc/libvirt/qemu.conf` should contain:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-// look like this:
-//
-// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-// coming from a template, the domain definition should look like this:
 func (o DomainNvramOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNvram) *string { return v.Template }).(pulumi.StringPtrOutput)
 }
@@ -1675,31 +1576,6 @@ func (o DomainNvramPtrOutput) File() pulumi.StringPtrOutput {
 // store.
 //
 // So you should typically use the firmware as this,
-//
-// and `/etc/libvirt/qemu.conf` should contain:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-// look like this:
-//
-// Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-// coming from a template, the domain definition should look like this:
 func (o DomainNvramPtrOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainNvram) *string {
 		if v == nil {
@@ -2373,8 +2249,6 @@ type NetworkDns struct {
 	// blocks in your DNS definition. You must specify both `ip` and `hostname`.
 	//
 	// An advanced example of round-robin DNS (using DNS host templates) follows:
-	//
-	// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 	Hosts []NetworkDnsHost `pulumi:"hosts"`
 	// true/false: true means 'do not forward unresolved requests for this domain to the part DNS server
 	LocalOnly *bool `pulumi:"localOnly"`
@@ -2403,8 +2277,6 @@ type NetworkDnsArgs struct {
 	// blocks in your DNS definition. You must specify both `ip` and `hostname`.
 	//
 	// An advanced example of round-robin DNS (using DNS host templates) follows:
-	//
-	// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 	Hosts NetworkDnsHostArrayInput `pulumi:"hosts"`
 	// true/false: true means 'do not forward unresolved requests for this domain to the part DNS server
 	LocalOnly pulumi.BoolPtrInput `pulumi:"localOnly"`
@@ -2504,8 +2376,6 @@ func (o NetworkDnsOutput) Forwarders() NetworkDnsForwarderArrayOutput {
 // blocks in your DNS definition. You must specify both `ip` and `hostname`.
 //
 // An advanced example of round-robin DNS (using DNS host templates) follows:
-//
-// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 func (o NetworkDnsOutput) Hosts() NetworkDnsHostArrayOutput {
 	return o.ApplyT(func(v NetworkDns) []NetworkDnsHost { return v.Hosts }).(NetworkDnsHostArrayOutput)
 }
@@ -2569,8 +2439,6 @@ func (o NetworkDnsPtrOutput) Forwarders() NetworkDnsForwarderArrayOutput {
 // blocks in your DNS definition. You must specify both `ip` and `hostname`.
 //
 // An advanced example of round-robin DNS (using DNS host templates) follows:
-//
-// An advanced example of setting up multiple SRV records using DNS SRV templates is:
 func (o NetworkDnsPtrOutput) Hosts() NetworkDnsHostArrayOutput {
 	return o.ApplyT(func(v *NetworkDns) []NetworkDnsHost {
 		if v == nil {
