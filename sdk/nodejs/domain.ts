@@ -12,12 +12,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as libvirt from "@pulumi/libvirt";
  *
  * const _default = new libvirt.Domain("default", {});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class Domain extends pulumi.CustomResource {
     /**
@@ -72,6 +74,7 @@ export class Domain extends pulumi.CustomResource {
     /**
      * Arguments to the kernel
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -87,6 +90,7 @@ export class Domain extends pulumi.CustomResource {
      *     }],
      * });
      * ```
+     * <!--End PulumiCodeChooser -->
      *
      * Kernel params that don't have a keyword identifier can be specified using the
      * special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -156,6 +160,7 @@ export class Domain extends pulumi.CustomResource {
      *
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -172,6 +177,7 @@ export class Domain extends pulumi.CustomResource {
      * });
      * // ...
      * ```
+     * <!--End PulumiCodeChooser -->
      */
     public readonly kernel!: pulumi.Output<string | undefined>;
     /**
@@ -336,6 +342,7 @@ export interface DomainState {
     /**
      * Arguments to the kernel
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -351,6 +358,7 @@ export interface DomainState {
      *     }],
      * });
      * ```
+     * <!--End PulumiCodeChooser -->
      *
      * Kernel params that don't have a keyword identifier can be specified using the
      * special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -420,6 +428,7 @@ export interface DomainState {
      *
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -436,6 +445,7 @@ export interface DomainState {
      * });
      * // ...
      * ```
+     * <!--End PulumiCodeChooser -->
      */
     kernel?: pulumi.Input<string>;
     /**
@@ -520,6 +530,7 @@ export interface DomainArgs {
     /**
      * Arguments to the kernel
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -535,6 +546,7 @@ export interface DomainArgs {
      *     }],
      * });
      * ```
+     * <!--End PulumiCodeChooser -->
      *
      * Kernel params that don't have a keyword identifier can be specified using the
      * special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -604,6 +616,7 @@ export interface DomainArgs {
      *
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
      *
+     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -620,6 +633,7 @@ export interface DomainArgs {
      * });
      * // ...
      * ```
+     * <!--End PulumiCodeChooser -->
      */
     kernel?: pulumi.Input<string>;
     /**

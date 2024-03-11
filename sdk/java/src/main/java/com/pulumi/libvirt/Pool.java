@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * **WARNING:** This is experimental API and may change in the future.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -59,6 +61,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="libvirt:index/pool:Pool")
