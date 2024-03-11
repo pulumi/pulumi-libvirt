@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as libvirt from "@pulumi/libvirt";
@@ -28,6 +29,7 @@ import * as utilities from "./utilities";
  *     source: "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class Pool extends pulumi.CustomResource {
     /**

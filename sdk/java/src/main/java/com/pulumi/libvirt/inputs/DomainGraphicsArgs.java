@@ -90,12 +90,6 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
      * 
      * The `graphics` block will look as follows:
      * 
-     * The video card type can be changed from libvirt default `cirrus` to
-     * `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-     * 
-     * &gt; **Note well:** the `graphics` block is ignored for the architectures
-     * `s390x` and `ppc64`.
-     * 
      */
     @Import(name="websocket")
     private @Nullable Output<Integer> websocket;
@@ -110,12 +104,6 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
      * machines VNC server. Usually this is an IP of the host system.
      * 
      * The `graphics` block will look as follows:
-     * 
-     * The video card type can be changed from libvirt default `cirrus` to
-     * `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-     * 
-     * &gt; **Note well:** the `graphics` block is ignored for the architectures
-     * `s390x` and `ppc64`.
      * 
      */
     public Optional<Output<Integer>> websocket() {
@@ -247,12 +235,6 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
          * 
          * The `graphics` block will look as follows:
          * 
-         * The video card type can be changed from libvirt default `cirrus` to
-         * `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-         * 
-         * &gt; **Note well:** the `graphics` block is ignored for the architectures
-         * `s390x` and `ppc64`.
-         * 
          * @return builder
          * 
          */
@@ -271,12 +253,6 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
          * machines VNC server. Usually this is an IP of the host system.
          * 
          * The `graphics` block will look as follows:
-         * 
-         * The video card type can be changed from libvirt default `cirrus` to
-         * `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-         * 
-         * &gt; **Note well:** the `graphics` block is ignored for the architectures
-         * `s390x` and `ppc64`.
          * 
          * @return builder
          * 

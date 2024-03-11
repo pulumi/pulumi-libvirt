@@ -15,6 +15,7 @@ namespace Pulumi.Libvirt
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -48,6 +49,7 @@ namespace Pulumi.Libvirt
     ///     }
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &gt; **Tip:** when provisioning multiple domains using the same base image, create
     /// a `libvirt.Volume` for the base image and then define the domain specific ones

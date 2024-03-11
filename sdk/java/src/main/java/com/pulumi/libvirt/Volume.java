@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * [the official documentation](https://libvirt.org/formatstorage.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -61,6 +63,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &gt; **Tip:** when provisioning multiple domains using the same base image, create
  * a `libvirt.Volume` for the base image and then define the domain specific ones

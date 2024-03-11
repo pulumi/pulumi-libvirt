@@ -35,6 +35,8 @@ import javax.annotation.Nullable;
  * [the official documentation](https://libvirt.org/formatdomain.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -60,6 +62,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="libvirt:index/domain:Domain")
@@ -134,6 +137,8 @@ public class Domain extends com.pulumi.resources.CustomResource {
     }
     /**
      * Arguments to the kernel
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -169,6 +174,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Kernel params that don&#39;t have a keyword identifier can be specified using the
      * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -184,6 +190,8 @@ public class Domain extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Arguments to the kernel
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -219,6 +227,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Kernel params that don&#39;t have a keyword identifier can be specified using the
      * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
@@ -403,6 +412,8 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * as they are local to the hypervisor.
      * 
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -441,6 +452,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     @Export(name="kernel", refs={String.class}, tree="[0]")
@@ -453,6 +465,8 @@ public class Domain extends com.pulumi.resources.CustomResource {
      * as they are local to the hypervisor.
      * 
      * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -491,6 +505,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Output<Optional<String>> kernel() {

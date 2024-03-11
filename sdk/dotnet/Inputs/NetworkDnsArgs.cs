@@ -38,9 +38,6 @@ namespace Pulumi.Libvirt.Inputs
         /// blocks in your DNS definition. You must specify both `ip` and `hostname`.
         /// 
         /// An advanced example of round-robin DNS (using DNS host templates) follows:
-        /// 
-        /// 
-        /// An advanced example of setting up multiple SRV records using DNS SRV templates is:
         /// </summary>
         public InputList<Inputs.NetworkDnsHostArgs> Hosts
         {

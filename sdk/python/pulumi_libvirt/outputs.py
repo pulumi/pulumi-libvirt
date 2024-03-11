@@ -228,6 +228,7 @@ class DomainDisk(dict):
                a scsi controller, if not specified then a random wwn is generated for the disk
                
                
+               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -250,6 +251,7 @@ class DomainDisk(dict):
                    ),
                ])
                ```
+               <!--End PulumiCodeChooser -->
                
                Also note that the `disk` block is actually a list of maps, so it is possible to
                declare several of them by using either the literal list and map syntax as in
@@ -319,6 +321,7 @@ class DomainDisk(dict):
         a scsi controller, if not specified then a random wwn is generated for the disk
 
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -341,6 +344,7 @@ class DomainDisk(dict):
             ),
         ])
         ```
+        <!--End PulumiCodeChooser -->
 
         Also note that the `disk` block is actually a list of maps, so it is possible to
         declare several of them by using either the literal list and map syntax as in
@@ -367,14 +371,13 @@ class DomainFilesystem(dict):
                
                Example:
                
+               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                ```
+               <!--End PulumiCodeChooser -->
                
                The exported filesystems can be mounted inside of the guest in this way:
-               
-               
-               This can be automated inside of `/etc/fstab`:
         """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
@@ -418,14 +421,13 @@ class DomainFilesystem(dict):
 
         Example:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
+        <!--End PulumiCodeChooser -->
 
         The exported filesystems can be mounted inside of the guest in this way:
-
-
-        This can be automated inside of `/etc/fstab`:
         """
         return pulumi.get(self, "readonly")
 
@@ -472,14 +474,6 @@ class DomainGraphics(dict):
                machines VNC server. Usually this is an IP of the host system.
                
                The `graphics` block will look as follows:
-               
-               
-               The video card type can be changed from libvirt default `cirrus` to
-               `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-               
-               
-               > **Note well:** the `graphics` block is ignored for the architectures
-               `s390x` and `ppc64`.
         """
         if autoport is not None:
             pulumi.set(__self__, "autoport", autoport)
@@ -538,14 +532,6 @@ class DomainGraphics(dict):
         machines VNC server. Usually this is an IP of the host system.
 
         The `graphics` block will look as follows:
-
-
-        The video card type can be changed from libvirt default `cirrus` to
-        `vga` or others as described in [Video Card Elements](https://libvirt.org/formatdomain.html#elementsVideo)
-
-
-        > **Note well:** the `graphics` block is ignored for the architectures
-        `s390x` and `ppc64`.
         """
         return pulumi.get(self, "websocket")
 
@@ -606,11 +592,6 @@ class DomainNetworkInterface(dict):
                for example, on Linux this requires kernel 2.6.38 or newer.
                
                Example of a `macvtap` interface:
-               
-               
-               **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-               must be installed and running inside of the domain in order to discover the IP
-               addresses of all the network interfaces attached to a LAN.
         :param str vepa: All VMs' packets are sent to the external bridge. Packets whose
                destination is a VM on the same host as where the packet originates from are
                sent back to the host by the VEPA capable bridge (today's bridges are
@@ -712,11 +693,6 @@ class DomainNetworkInterface(dict):
         for example, on Linux this requires kernel 2.6.38 or newer.
 
         Example of a `macvtap` interface:
-
-
-        **Warning:** the [Qemu guest agent](http://wiki.libvirt.org/page/Qemu_guest_agent)
-        must be installed and running inside of the domain in order to discover the IP
-        addresses of all the network interfaces attached to a LAN.
         """
         return pulumi.get(self, "passthrough")
 
@@ -755,20 +731,6 @@ class DomainNvram(dict):
                store.
                
                So you should typically use the firmware as this,
-               
-               
-               and `/etc/libvirt/qemu.conf` should contain:
-               
-               ```python
-               import pulumi
-               ```
-               
-               In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-               look like this:
-               
-               
-               Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-               coming from a template, the domain definition should look like this:
         """
         pulumi.set(__self__, "file", file)
         if template is not None:
@@ -790,20 +752,6 @@ class DomainNvram(dict):
         store.
 
         So you should typically use the firmware as this,
-
-
-        and `/etc/libvirt/qemu.conf` should contain:
-
-        ```python
-        import pulumi
-        ```
-
-        In case you need (or want) to specify the path for the NVRAM store, the domain definition should
-        look like this:
-
-
-        Finally, if you want the initial values for the NVRAM to be overridden by custom initial values
-        coming from a template, the domain definition should look like this:
         """
         return pulumi.get(self, "template")
 
@@ -1003,9 +951,6 @@ class NetworkDns(dict):
                blocks in your DNS definition. You must specify both `ip` and `hostname`.
                
                An advanced example of round-robin DNS (using DNS host templates) follows:
-               
-               
-               An advanced example of setting up multiple SRV records using DNS SRV templates is:
         :param bool local_only: true/false: true means 'do not forward unresolved requests for this domain to the part DNS server
         :param Sequence['NetworkDnsSrvArgs'] srvs: a DNS SRV entry block. You can have one or more of these blocks
                in your DNS definition. You must specify `service` and `protocol`.
@@ -1045,9 +990,6 @@ class NetworkDns(dict):
         blocks in your DNS definition. You must specify both `ip` and `hostname`.
 
         An advanced example of round-robin DNS (using DNS host templates) follows:
-
-
-        An advanced example of setting up multiple SRV records using DNS SRV templates is:
         """
         return pulumi.get(self, "hosts")
 

@@ -100,6 +100,8 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -152,6 +154,7 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Also note that the `disk` block is actually a list of maps, so it is possible to
      * declare several of them by using either the literal list and map syntax as in
@@ -164,6 +167,8 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -216,6 +221,7 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Also note that the `disk` block is actually a list of maps, so it is possible to
      * declare several of them by using either the literal list and map syntax as in
@@ -369,6 +375,8 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param wwn Specify a WWN to use for the disk if the disk is using
          * a scsi controller, if not specified then a random wwn is generated for the disk
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -421,6 +429,7 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * Also note that the `disk` block is actually a list of maps, so it is possible to
          * declare several of them by using either the literal list and map syntax as in
@@ -437,6 +446,8 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param wwn Specify a WWN to use for the disk if the disk is using
          * a scsi controller, if not specified then a random wwn is generated for the disk
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -489,6 +500,7 @@ public final class DomainDiskArgs extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * Also note that the `disk` block is actually a list of maps, so it is possible to
          * declare several of them by using either the literal list and map syntax as in
