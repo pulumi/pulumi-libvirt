@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // A pool for all cluster volumes
  *         var cluster = new Pool(&#34;cluster&#34;, PoolArgs.builder()        
  *             .type(&#34;dir&#34;)
  *             .path(&#34;/home/user/cluster_storage&#34;)

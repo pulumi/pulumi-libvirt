@@ -429,6 +429,7 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
      *             .kernel(kernel.id())
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -482,6 +483,7 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
      *             .kernel(kernel.id())
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1312,6 +1314,7 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          *             .kernel(kernel.id())
          *             .build());
          * 
+         *         // ...
          *     }
          * }
          * ```
@@ -1369,6 +1372,7 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          *             .kernel(kernel.id())
          *             .build());
          * 
+         *         // ...
          *     }
          * }
          * ```
