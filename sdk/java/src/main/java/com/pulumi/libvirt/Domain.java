@@ -449,6 +449,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      *             .kernel(kernel.id())
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -502,6 +503,7 @@ public class Domain extends com.pulumi.resources.CustomResource {
      *             .kernel(kernel.id())
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```

@@ -45,14 +45,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Base OS image to use to create a cluster of different
+ *         // nodes
  *         var opensuseLeap = new Volume(&#34;opensuseLeap&#34;, VolumeArgs.builder()        
  *             .source(&#34;http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2&#34;)
  *             .build());
  * 
+ *         // volume to attach to the &#34;master&#34; domain as main disk
  *         var master = new Volume(&#34;master&#34;, VolumeArgs.builder()        
  *             .baseVolumeId(opensuseLeap.id())
  *             .build());
  * 
+ *         // volumes to attach to the &#34;workers&#34; domains as main disk
  *         for (var i = 0; i &lt; var_.workers_count(); i++) {
  *             new Volume(&#34;worker-&#34; + i, VolumeArgs.builder()            
  *                 .baseVolumeId(opensuseLeap.id())
