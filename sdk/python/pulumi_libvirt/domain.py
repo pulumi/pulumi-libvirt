@@ -66,9 +66,10 @@ class DomainArgs:
                import pulumi_libvirt as libvirt
                
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
-                   kernel=libvirt_volume["kernel"]["id"],
+                   kernel=kernel["id"],
                    cmdlines=[{
                        "arg1": "value1",
                        "arg2": "value2",
@@ -120,13 +121,14 @@ class DomainArgs:
                
                kernel = libvirt.Volume("kernel",
                    source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   name="kernel",
                    pool="default",
                    format="raw")
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
                    kernel=kernel.id)
-               # ...
                ```
                <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
@@ -275,9 +277,10 @@ class DomainArgs:
         import pulumi_libvirt as libvirt
 
         domain_suse = libvirt.Domain("domain-suse",
+            name="suse",
             memory=1024,
             vcpu=1,
-            kernel=libvirt_volume["kernel"]["id"],
+            kernel=kernel["id"],
             cmdlines=[{
                 "arg1": "value1",
                 "arg2": "value2",
@@ -457,13 +460,14 @@ class DomainArgs:
 
         kernel = libvirt.Volume("kernel",
             source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+            name="kernel",
             pool="default",
             format="raw")
         domain_suse = libvirt.Domain("domain-suse",
+            name="suse",
             memory=1024,
             vcpu=1,
             kernel=kernel.id)
-        # ...
         ```
         <!--End PulumiCodeChooser -->
         """
@@ -682,9 +686,10 @@ class _DomainState:
                import pulumi_libvirt as libvirt
                
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
-                   kernel=libvirt_volume["kernel"]["id"],
+                   kernel=kernel["id"],
                    cmdlines=[{
                        "arg1": "value1",
                        "arg2": "value2",
@@ -736,13 +741,14 @@ class _DomainState:
                
                kernel = libvirt.Volume("kernel",
                    source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   name="kernel",
                    pool="default",
                    format="raw")
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
                    kernel=kernel.id)
-               # ...
                ```
                <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
@@ -891,9 +897,10 @@ class _DomainState:
         import pulumi_libvirt as libvirt
 
         domain_suse = libvirt.Domain("domain-suse",
+            name="suse",
             memory=1024,
             vcpu=1,
-            kernel=libvirt_volume["kernel"]["id"],
+            kernel=kernel["id"],
             cmdlines=[{
                 "arg1": "value1",
                 "arg2": "value2",
@@ -1073,13 +1080,14 @@ class _DomainState:
 
         kernel = libvirt.Volume("kernel",
             source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+            name="kernel",
             pool="default",
             format="raw")
         domain_suse = libvirt.Domain("domain-suse",
+            name="suse",
             memory=1024,
             vcpu=1,
             kernel=kernel.id)
-        # ...
         ```
         <!--End PulumiCodeChooser -->
         """
@@ -1292,7 +1300,7 @@ class Domain(pulumi.CustomResource):
         import pulumi
         import pulumi_libvirt as libvirt
 
-        default = libvirt.Domain("default")
+        default = libvirt.Domain("default", name="test")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1316,9 +1324,10 @@ class Domain(pulumi.CustomResource):
                import pulumi_libvirt as libvirt
                
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
-                   kernel=libvirt_volume["kernel"]["id"],
+                   kernel=kernel["id"],
                    cmdlines=[{
                        "arg1": "value1",
                        "arg2": "value2",
@@ -1370,13 +1379,14 @@ class Domain(pulumi.CustomResource):
                
                kernel = libvirt.Volume("kernel",
                    source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   name="kernel",
                    pool="default",
                    format="raw")
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
                    kernel=kernel.id)
-               # ...
                ```
                <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
@@ -1415,7 +1425,7 @@ class Domain(pulumi.CustomResource):
         import pulumi
         import pulumi_libvirt as libvirt
 
-        default = libvirt.Domain("default")
+        default = libvirt.Domain("default", name="test")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1568,9 +1578,10 @@ class Domain(pulumi.CustomResource):
                import pulumi_libvirt as libvirt
                
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
-                   kernel=libvirt_volume["kernel"]["id"],
+                   kernel=kernel["id"],
                    cmdlines=[{
                        "arg1": "value1",
                        "arg2": "value2",
@@ -1622,13 +1633,14 @@ class Domain(pulumi.CustomResource):
                
                kernel = libvirt.Volume("kernel",
                    source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+                   name="kernel",
                    pool="default",
                    format="raw")
                domain_suse = libvirt.Domain("domain-suse",
+                   name="suse",
                    memory=1024,
                    vcpu=1,
                    kernel=kernel.id)
-               # ...
                ```
                <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
@@ -1736,9 +1748,10 @@ class Domain(pulumi.CustomResource):
         import pulumi_libvirt as libvirt
 
         domain_suse = libvirt.Domain("domain-suse",
+            name="suse",
             memory=1024,
             vcpu=1,
-            kernel=libvirt_volume["kernel"]["id"],
+            kernel=kernel["id"],
             cmdlines=[{
                 "arg1": "value1",
                 "arg2": "value2",
@@ -1870,13 +1883,14 @@ class Domain(pulumi.CustomResource):
 
         kernel = libvirt.Volume("kernel",
             source="http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+            name="kernel",
             pool="default",
             format="raw")
         domain_suse = libvirt.Domain("domain-suse",
+            name="suse",
             memory=1024,
             vcpu=1,
             kernel=kernel.id)
-        # ...
         ```
         <!--End PulumiCodeChooser -->
         """

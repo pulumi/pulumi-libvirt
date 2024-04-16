@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as libvirt from "@pulumi/libvirt";
  *
- * const _default = new libvirt.Domain("default", {});
+ * const _default = new libvirt.Domain("default", {name: "test"});
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -80,9 +80,10 @@ export class Domain extends pulumi.CustomResource {
      * import * as libvirt from "@pulumi/libvirt";
      *
      * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     name: "suse",
      *     memory: 1024,
      *     vcpu: 1,
-     *     kernel: libvirt_volume.kernel.id,
+     *     kernel: kernel.id,
      *     cmdlines: [{
      *         arg1: "value1",
      *         arg2: "value2",
@@ -167,15 +168,16 @@ export class Domain extends pulumi.CustomResource {
      *
      * const kernel = new libvirt.Volume("kernel", {
      *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+     *     name: "kernel",
      *     pool: "default",
      *     format: "raw",
      * });
      * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     name: "suse",
      *     memory: 1024,
      *     vcpu: 1,
      *     kernel: kernel.id,
      * });
-     * // ...
      * ```
      * <!--End PulumiCodeChooser -->
      */
@@ -348,9 +350,10 @@ export interface DomainState {
      * import * as libvirt from "@pulumi/libvirt";
      *
      * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     name: "suse",
      *     memory: 1024,
      *     vcpu: 1,
-     *     kernel: libvirt_volume.kernel.id,
+     *     kernel: kernel.id,
      *     cmdlines: [{
      *         arg1: "value1",
      *         arg2: "value2",
@@ -435,15 +438,16 @@ export interface DomainState {
      *
      * const kernel = new libvirt.Volume("kernel", {
      *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+     *     name: "kernel",
      *     pool: "default",
      *     format: "raw",
      * });
      * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     name: "suse",
      *     memory: 1024,
      *     vcpu: 1,
      *     kernel: kernel.id,
      * });
-     * // ...
      * ```
      * <!--End PulumiCodeChooser -->
      */
@@ -536,9 +540,10 @@ export interface DomainArgs {
      * import * as libvirt from "@pulumi/libvirt";
      *
      * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     name: "suse",
      *     memory: 1024,
      *     vcpu: 1,
-     *     kernel: libvirt_volume.kernel.id,
+     *     kernel: kernel.id,
      *     cmdlines: [{
      *         arg1: "value1",
      *         arg2: "value2",
@@ -623,15 +628,16 @@ export interface DomainArgs {
      *
      * const kernel = new libvirt.Volume("kernel", {
      *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+     *     name: "kernel",
      *     pool: "default",
      *     format: "raw",
      * });
      * const domain_suse = new libvirt.Domain("domain-suse", {
+     *     name: "suse",
      *     memory: 1024,
      *     vcpu: 1,
      *     kernel: kernel.id,
      * });
-     * // ...
      * ```
      * <!--End PulumiCodeChooser -->
      */

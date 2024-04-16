@@ -86,23 +86,32 @@ export interface DomainDisk {
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
      *
-     * const leap = new libvirt.Volume("leap", {source: "http://someurl/openSUSE_Leap-42.1.qcow2"});
-     * const mydisk = new libvirt.Volume("mydisk", {baseVolumeId: leap.id});
-     * const domain1 = new libvirt.Domain("domain1", {disks: [
-     *     {
-     *         volumeId: mydisk.id,
-     *         scsi: true,
-     *     },
-     *     {
-     *         url: "http://foo.com/install.iso",
-     *     },
-     *     {
-     *         file: "/absolute/path/to/disk.iso",
-     *     },
-     *     {
-     *         blockDevice: "/dev/mapper/36005076802810e55400000000000145f",
-     *     },
-     * ]});
+     * const leap = new libvirt.Volume("leap", {
+     *     name: "leap",
+     *     source: "http://someurl/openSUSE_Leap-42.1.qcow2",
+     * });
+     * const mydisk = new libvirt.Volume("mydisk", {
+     *     name: "mydisk",
+     *     baseVolumeId: leap.id,
+     * });
+     * const domain1 = new libvirt.Domain("domain1", {
+     *     name: "domain1",
+     *     disks: [
+     *         {
+     *             volumeId: mydisk.id,
+     *             scsi: true,
+     *         },
+     *         {
+     *             url: "http://foo.com/install.iso",
+     *         },
+     *         {
+     *             file: "/absolute/path/to/disk.iso",
+     *         },
+     *         {
+     *             blockDevice: "/dev/mapper/36005076802810e55400000000000145f",
+     *         },
+     *     ],
+     * });
      * ```
      * <!--End PulumiCodeChooser -->
      *
@@ -124,14 +133,6 @@ export interface DomainFilesystem {
      * default read-only access is given.
      *
      * Example:
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * ```
-     * <!--End PulumiCodeChooser -->
-     *
-     * The exported filesystems can be mounted inside of the guest in this way:
      */
     readonly?: boolean;
     /**

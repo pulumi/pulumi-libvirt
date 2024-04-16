@@ -50,11 +50,13 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // A pool for all cluster volumes
  *         var cluster = new Pool(&#34;cluster&#34;, PoolArgs.builder()        
+ *             .name(&#34;cluster&#34;)
  *             .type(&#34;dir&#34;)
  *             .path(&#34;/home/user/cluster_storage&#34;)
  *             .build());
  * 
  *         var opensuseLeap = new Volume(&#34;opensuseLeap&#34;, VolumeArgs.builder()        
+ *             .name(&#34;opensuse_leap&#34;)
  *             .pool(cluster.name())
  *             .source(&#34;http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2&#34;)
  *             .build());

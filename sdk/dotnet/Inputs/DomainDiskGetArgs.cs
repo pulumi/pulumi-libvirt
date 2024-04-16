@@ -61,16 +61,19 @@ namespace Pulumi.Libvirt.Inputs
         /// {
         ///     var leap = new Libvirt.Volume("leap", new()
         ///     {
+        ///         Name = "leap",
         ///         Source = "http://someurl/openSUSE_Leap-42.1.qcow2",
         ///     });
         /// 
         ///     var mydisk = new Libvirt.Volume("mydisk", new()
         ///     {
+        ///         Name = "mydisk",
         ///         BaseVolumeId = leap.Id,
         ///     });
         /// 
         ///     var domain1 = new Libvirt.Domain("domain1", new()
         ///     {
+        ///         Name = "domain1",
         ///         Disks = new[]
         ///         {
         ///             new Libvirt.Inputs.DomainDiskArgs

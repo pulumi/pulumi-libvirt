@@ -24,20 +24,6 @@ namespace Pulumi.Libvirt.Inputs
         /// default read-only access is given.
         /// 
         /// Example:
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// The exported filesystems can be mounted inside of the guest in this way:
         /// </summary>
         [Input("readonly")]
         public Input<bool>? Readonly { get; set; }

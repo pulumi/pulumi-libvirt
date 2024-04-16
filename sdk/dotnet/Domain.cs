@@ -24,7 +24,10 @@ namespace Pulumi.Libvirt
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @default = new Libvirt.Domain("default");
+    ///     var @default = new Libvirt.Domain("default", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
     /// });
     /// ```
@@ -77,9 +80,10 @@ namespace Pulumi.Libvirt
         /// {
         ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
         ///     {
+        ///         Name = "suse",
         ///         Memory = 1024,
         ///         Vcpu = 1,
-        ///         Kernel = libvirt_volume.Kernel.Id,
+        ///         Kernel = kernel.Id,
         ///         Cmdlines = new[]
         ///         {
         ///             
@@ -199,18 +203,19 @@ namespace Pulumi.Libvirt
         ///     var kernel = new Libvirt.Volume("kernel", new()
         ///     {
         ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+        ///         Name = "kernel",
         ///         Pool = "default",
         ///         Format = "raw",
         ///     });
         /// 
         ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
         ///     {
+        ///         Name = "suse",
         ///         Memory = 1024,
         ///         Vcpu = 1,
         ///         Kernel = kernel.Id,
         ///     });
         /// 
-        ///     // ...
         /// });
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;
@@ -394,9 +399,10 @@ namespace Pulumi.Libvirt
         /// {
         ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
         ///     {
+        ///         Name = "suse",
         ///         Memory = 1024,
         ///         Vcpu = 1,
-        ///         Kernel = libvirt_volume.Kernel.Id,
+        ///         Kernel = kernel.Id,
         ///         Cmdlines = new[]
         ///         {
         ///             
@@ -536,18 +542,19 @@ namespace Pulumi.Libvirt
         ///     var kernel = new Libvirt.Volume("kernel", new()
         ///     {
         ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+        ///         Name = "kernel",
         ///         Pool = "default",
         ///         Format = "raw",
         ///     });
         /// 
         ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
         ///     {
+        ///         Name = "suse",
         ///         Memory = 1024,
         ///         Vcpu = 1,
         ///         Kernel = kernel.Id,
         ///     });
         /// 
-        ///     // ...
         /// });
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;
@@ -699,9 +706,10 @@ namespace Pulumi.Libvirt
         /// {
         ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
         ///     {
+        ///         Name = "suse",
         ///         Memory = 1024,
         ///         Vcpu = 1,
-        ///         Kernel = libvirt_volume.Kernel.Id,
+        ///         Kernel = kernel.Id,
         ///         Cmdlines = new[]
         ///         {
         ///             
@@ -841,18 +849,19 @@ namespace Pulumi.Libvirt
         ///     var kernel = new Libvirt.Volume("kernel", new()
         ///     {
         ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
+        ///         Name = "kernel",
         ///         Pool = "default",
         ///         Format = "raw",
         ///     });
         /// 
         ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
         ///     {
+        ///         Name = "suse",
         ///         Memory = 1024,
         ///         Vcpu = 1,
         ///         Kernel = kernel.Id,
         ///     });
         /// 
-        ///     // ...
         /// });
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;

@@ -19,13 +19,22 @@ import * as utilities from "./utilities";
  *
  * // Base OS image to use to create a cluster of different
  * // nodes
- * const opensuseLeap = new libvirt.Volume("opensuseLeap", {source: "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"});
+ * const opensuseLeap = new libvirt.Volume("opensuse_leap", {
+ *     name: "opensuse_leap",
+ *     source: "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
+ * });
  * // volume to attach to the "master" domain as main disk
- * const master = new libvirt.Volume("master", {baseVolumeId: opensuseLeap.id});
+ * const master = new libvirt.Volume("master", {
+ *     name: "master.qcow2",
+ *     baseVolumeId: opensuseLeap.id,
+ * });
  * // volumes to attach to the "workers" domains as main disk
  * const worker: libvirt.Volume[] = [];
- * for (const range = {value: 0}; range.value < _var.workers_count; range.value++) {
- *     worker.push(new libvirt.Volume(`worker-${range.value}`, {baseVolumeId: opensuseLeap.id}));
+ * for (const range = {value: 0}; range.value < workersCount; range.value++) {
+ *     worker.push(new libvirt.Volume(`worker-${range.value}`, {
+ *         name: `worker_${range.value}.qcow2`,
+ *         baseVolumeId: opensuseLeap.id,
+ *     }));
  * }
  * ```
  * <!--End PulumiCodeChooser -->
