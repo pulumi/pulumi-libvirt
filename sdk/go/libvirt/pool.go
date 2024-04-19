@@ -34,13 +34,15 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// A pool for all cluster volumes
 //			cluster, err := libvirt.NewPool(ctx, "cluster", &libvirt.PoolArgs{
+//				Name: pulumi.String("cluster"),
 //				Type: pulumi.String("dir"),
 //				Path: pulumi.String("/home/user/cluster_storage"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
+//			_, err = libvirt.NewVolume(ctx, "opensuse_leap", &libvirt.VolumeArgs{
+//				Name:   pulumi.String("opensuse_leap"),
 //				Pool:   cluster.Name,
 //				Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
 //			})

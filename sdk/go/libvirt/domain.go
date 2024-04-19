@@ -29,7 +29,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := libvirt.NewDomain(ctx, "default", nil)
+//			_, err := libvirt.NewDomain(ctx, "default", &libvirt.DomainArgs{
+//				Name: pulumi.String("test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -70,9 +72,10 @@ type Domain struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Kernel: pulumi.Any(kernel.Id),
 	// 			Cmdlines: pulumi.MapArray{
 	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
@@ -151,6 +154,7 @@ type Domain struct {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
 	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Name:   pulumi.String("kernel"),
 	// 			Pool:   pulumi.String("default"),
 	// 			Format: pulumi.String("raw"),
 	// 		})
@@ -158,6 +162,7 @@ type Domain struct {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: kernel.ID(),
@@ -262,9 +267,10 @@ type domainState struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Kernel: pulumi.Any(kernel.Id),
 	// 			Cmdlines: pulumi.MapArray{
 	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
@@ -343,6 +349,7 @@ type domainState struct {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
 	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Name:   pulumi.String("kernel"),
 	// 			Pool:   pulumi.String("default"),
 	// 			Format: pulumi.String("raw"),
 	// 		})
@@ -350,6 +357,7 @@ type domainState struct {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: kernel.ID(),
@@ -425,9 +433,10 @@ type DomainState struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Kernel: pulumi.Any(kernel.Id),
 	// 			Cmdlines: pulumi.MapArray{
 	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
@@ -506,6 +515,7 @@ type DomainState struct {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
 	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Name:   pulumi.String("kernel"),
 	// 			Pool:   pulumi.String("default"),
 	// 			Format: pulumi.String("raw"),
 	// 		})
@@ -513,6 +523,7 @@ type DomainState struct {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: kernel.ID(),
@@ -592,9 +603,10 @@ type domainArgs struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Kernel: pulumi.Any(kernel.Id),
 	// 			Cmdlines: pulumi.MapArray{
 	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
@@ -673,6 +685,7 @@ type domainArgs struct {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
 	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Name:   pulumi.String("kernel"),
 	// 			Pool:   pulumi.String("default"),
 	// 			Format: pulumi.String("raw"),
 	// 		})
@@ -680,6 +693,7 @@ type domainArgs struct {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: kernel.ID(),
@@ -756,9 +770,10 @@ type DomainArgs struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+	// 			Kernel: pulumi.Any(kernel.Id),
 	// 			Cmdlines: pulumi.MapArray{
 	// 				pulumi.Map{
 	// 					"arg1": pulumi.Any("value1"),
@@ -837,6 +852,7 @@ type DomainArgs struct {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
 	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+	// 			Name:   pulumi.String("kernel"),
 	// 			Pool:   pulumi.String("default"),
 	// 			Format: pulumi.String("raw"),
 	// 		})
@@ -844,6 +860,7 @@ type DomainArgs struct {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+	// 			Name:   pulumi.String("suse"),
 	// 			Memory: pulumi.Int(1024),
 	// 			Vcpu:   pulumi.Int(1),
 	// 			Kernel: kernel.ID(),
@@ -1019,9 +1036,10 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+//				Name:   pulumi.String("suse"),
 //				Memory: pulumi.Int(1024),
 //				Vcpu:   pulumi.Int(1),
-//				Kernel: pulumi.Any(libvirt_volume.Kernel.Id),
+//				Kernel: pulumi.Any(kernel.Id),
 //				Cmdlines: pulumi.MapArray{
 //					pulumi.Map{
 //						"arg1": pulumi.Any("value1"),
@@ -1139,6 +1157,7 @@ func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
 //				Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
+//				Name:   pulumi.String("kernel"),
 //				Pool:   pulumi.String("default"),
 //				Format: pulumi.String("raw"),
 //			})
@@ -1146,6 +1165,7 @@ func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
 //				return err
 //			}
 //			_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
+//				Name:   pulumi.String("suse"),
 //				Memory: pulumi.Int(1024),
 //				Vcpu:   pulumi.Int(1),
 //				Kernel: kernel.ID(),

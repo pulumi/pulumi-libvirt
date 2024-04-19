@@ -361,13 +361,19 @@ class Volume(pulumi.CustomResource):
 
         # Base OS image to use to create a cluster of different
         # nodes
-        opensuse_leap = libvirt.Volume("opensuseLeap", source="http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
+        opensuse_leap = libvirt.Volume("opensuse_leap",
+            name="opensuse_leap",
+            source="http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
         # volume to attach to the "master" domain as main disk
-        master = libvirt.Volume("master", base_volume_id=opensuse_leap.id)
+        master = libvirt.Volume("master",
+            name="master.qcow2",
+            base_volume_id=opensuse_leap.id)
         # volumes to attach to the "workers" domains as main disk
         worker = []
-        for range in [{"value": i} for i in range(0, var.workers_count)]:
-            worker.append(libvirt.Volume(f"worker-{range['value']}", base_volume_id=opensuse_leap.id))
+        for range in [{"value": i} for i in range(0, workers_count)]:
+            worker.append(libvirt.Volume(f"worker-{range['value']}",
+                name=f"worker_{range['value']}.qcow2",
+                base_volume_id=opensuse_leap.id))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -414,13 +420,19 @@ class Volume(pulumi.CustomResource):
 
         # Base OS image to use to create a cluster of different
         # nodes
-        opensuse_leap = libvirt.Volume("opensuseLeap", source="http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
+        opensuse_leap = libvirt.Volume("opensuse_leap",
+            name="opensuse_leap",
+            source="http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
         # volume to attach to the "master" domain as main disk
-        master = libvirt.Volume("master", base_volume_id=opensuse_leap.id)
+        master = libvirt.Volume("master",
+            name="master.qcow2",
+            base_volume_id=opensuse_leap.id)
         # volumes to attach to the "workers" domains as main disk
         worker = []
-        for range in [{"value": i} for i in range(0, var.workers_count)]:
-            worker.append(libvirt.Volume(f"worker-{range['value']}", base_volume_id=opensuse_leap.id))
+        for range in [{"value": i} for i in range(0, workers_count)]:
+            worker.append(libvirt.Volume(f"worker-{range['value']}",
+                name=f"worker_{range['value']}.qcow2",
+                base_volume_id=opensuse_leap.id))
         ```
         <!--End PulumiCodeChooser -->
 

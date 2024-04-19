@@ -233,23 +233,29 @@ class DomainDisk(dict):
                import pulumi
                import pulumi_libvirt as libvirt
                
-               leap = libvirt.Volume("leap", source="http://someurl/openSUSE_Leap-42.1.qcow2")
-               mydisk = libvirt.Volume("mydisk", base_volume_id=leap.id)
-               domain1 = libvirt.Domain("domain1", disks=[
-                   libvirt.DomainDiskArgs(
-                       volume_id=mydisk.id,
-                       scsi=True,
-                   ),
-                   libvirt.DomainDiskArgs(
-                       url="http://foo.com/install.iso",
-                   ),
-                   libvirt.DomainDiskArgs(
-                       file="/absolute/path/to/disk.iso",
-                   ),
-                   libvirt.DomainDiskArgs(
-                       block_device="/dev/mapper/36005076802810e55400000000000145f",
-                   ),
-               ])
+               leap = libvirt.Volume("leap",
+                   name="leap",
+                   source="http://someurl/openSUSE_Leap-42.1.qcow2")
+               mydisk = libvirt.Volume("mydisk",
+                   name="mydisk",
+                   base_volume_id=leap.id)
+               domain1 = libvirt.Domain("domain1",
+                   name="domain1",
+                   disks=[
+                       libvirt.DomainDiskArgs(
+                           volume_id=mydisk.id,
+                           scsi=True,
+                       ),
+                       libvirt.DomainDiskArgs(
+                           url="http://foo.com/install.iso",
+                       ),
+                       libvirt.DomainDiskArgs(
+                           file="/absolute/path/to/disk.iso",
+                       ),
+                       libvirt.DomainDiskArgs(
+                           block_device="/dev/mapper/36005076802810e55400000000000145f",
+                       ),
+                   ])
                ```
                <!--End PulumiCodeChooser -->
                
@@ -326,23 +332,29 @@ class DomainDisk(dict):
         import pulumi
         import pulumi_libvirt as libvirt
 
-        leap = libvirt.Volume("leap", source="http://someurl/openSUSE_Leap-42.1.qcow2")
-        mydisk = libvirt.Volume("mydisk", base_volume_id=leap.id)
-        domain1 = libvirt.Domain("domain1", disks=[
-            libvirt.DomainDiskArgs(
-                volume_id=mydisk.id,
-                scsi=True,
-            ),
-            libvirt.DomainDiskArgs(
-                url="http://foo.com/install.iso",
-            ),
-            libvirt.DomainDiskArgs(
-                file="/absolute/path/to/disk.iso",
-            ),
-            libvirt.DomainDiskArgs(
-                block_device="/dev/mapper/36005076802810e55400000000000145f",
-            ),
-        ])
+        leap = libvirt.Volume("leap",
+            name="leap",
+            source="http://someurl/openSUSE_Leap-42.1.qcow2")
+        mydisk = libvirt.Volume("mydisk",
+            name="mydisk",
+            base_volume_id=leap.id)
+        domain1 = libvirt.Domain("domain1",
+            name="domain1",
+            disks=[
+                libvirt.DomainDiskArgs(
+                    volume_id=mydisk.id,
+                    scsi=True,
+                ),
+                libvirt.DomainDiskArgs(
+                    url="http://foo.com/install.iso",
+                ),
+                libvirt.DomainDiskArgs(
+                    file="/absolute/path/to/disk.iso",
+                ),
+                libvirt.DomainDiskArgs(
+                    block_device="/dev/mapper/36005076802810e55400000000000145f",
+                ),
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -370,14 +382,6 @@ class DomainFilesystem(dict):
                default read-only access is given.
                
                Example:
-               
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               ```
-               <!--End PulumiCodeChooser -->
-               
-               The exported filesystems can be mounted inside of the guest in this way:
         """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
@@ -420,14 +424,6 @@ class DomainFilesystem(dict):
         default read-only access is given.
 
         Example:
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
-
-        The exported filesystems can be mounted inside of the guest in this way:
         """
         return pulumi.get(self, "readonly")
 

@@ -447,18 +447,21 @@ type DomainDisk struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		leap, err := libvirt.NewVolume(ctx, "leap", &libvirt.VolumeArgs{
+	// 			Name:   pulumi.String("leap"),
 	// 			Source: pulumi.String("http://someurl/openSUSE_Leap-42.1.qcow2"),
 	// 		})
 	// 		if err != nil {
 	// 			return err
 	// 		}
 	// 		mydisk, err := libvirt.NewVolume(ctx, "mydisk", &libvirt.VolumeArgs{
+	// 			Name:         pulumi.String("mydisk"),
 	// 			BaseVolumeId: leap.ID(),
 	// 		})
 	// 		if err != nil {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain1", &libvirt.DomainArgs{
+	// 			Name: pulumi.String("domain1"),
 	// 			Disks: libvirt.DomainDiskArray{
 	// 				&libvirt.DomainDiskArgs{
 	// 					VolumeId: mydisk.ID(),
@@ -530,18 +533,21 @@ type DomainDiskArgs struct {
 	// func main() {
 	// 	pulumi.Run(func(ctx *pulumi.Context) error {
 	// 		leap, err := libvirt.NewVolume(ctx, "leap", &libvirt.VolumeArgs{
+	// 			Name:   pulumi.String("leap"),
 	// 			Source: pulumi.String("http://someurl/openSUSE_Leap-42.1.qcow2"),
 	// 		})
 	// 		if err != nil {
 	// 			return err
 	// 		}
 	// 		mydisk, err := libvirt.NewVolume(ctx, "mydisk", &libvirt.VolumeArgs{
+	// 			Name:         pulumi.String("mydisk"),
 	// 			BaseVolumeId: leap.ID(),
 	// 		})
 	// 		if err != nil {
 	// 			return err
 	// 		}
 	// 		_, err = libvirt.NewDomain(ctx, "domain1", &libvirt.DomainArgs{
+	// 			Name: pulumi.String("domain1"),
 	// 			Disks: libvirt.DomainDiskArray{
 	// 				&libvirt.DomainDiskArgs{
 	// 					VolumeId: mydisk.ID(),
@@ -669,18 +675,21 @@ func (o DomainDiskOutput) VolumeId() pulumi.StringPtrOutput {
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			leap, err := libvirt.NewVolume(ctx, "leap", &libvirt.VolumeArgs{
+//				Name:   pulumi.String("leap"),
 //				Source: pulumi.String("http://someurl/openSUSE_Leap-42.1.qcow2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mydisk, err := libvirt.NewVolume(ctx, "mydisk", &libvirt.VolumeArgs{
+//				Name:         pulumi.String("mydisk"),
 //				BaseVolumeId: leap.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = libvirt.NewDomain(ctx, "domain1", &libvirt.DomainArgs{
+//				Name: pulumi.String("domain1"),
 //				Disks: libvirt.DomainDiskArray{
 //					&libvirt.DomainDiskArgs{
 //						VolumeId: mydisk.ID(),
@@ -742,24 +751,6 @@ type DomainFilesystem struct {
 	// default read-only access is given.
 	//
 	// Example:
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// The exported filesystems can be mounted inside of the guest in this way:
 	Readonly *bool `pulumi:"readonly"`
 	// the directory of the host to be shared with the guest.
 	Source string `pulumi:"source"`
@@ -787,24 +778,6 @@ type DomainFilesystemArgs struct {
 	// default read-only access is given.
 	//
 	// Example:
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// The exported filesystems can be mounted inside of the guest in this way:
 	Readonly pulumi.BoolPtrInput `pulumi:"readonly"`
 	// the directory of the host to be shared with the guest.
 	Source pulumi.StringInput `pulumi:"source"`
@@ -874,27 +847,6 @@ func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 // default read-only access is given.
 //
 // Example:
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// The exported filesystems can be mounted inside of the guest in this way:
 func (o DomainFilesystemOutput) Readonly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *bool { return v.Readonly }).(pulumi.BoolPtrOutput)
 }

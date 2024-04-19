@@ -129,9 +129,10 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
      * 
      *     public static void stack(Context ctx) {
      *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+     *             .name(&#34;suse&#34;)
      *             .memory(&#34;1024&#34;)
      *             .vcpu(1)
-     *             .kernel(libvirt_volume.kernel().id())
+     *             .kernel(kernel.id())
      *             .cmdlines(Map.ofEntries(
      *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
      *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
@@ -182,9 +183,10 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
      * 
      *     public static void stack(Context ctx) {
      *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+     *             .name(&#34;suse&#34;)
      *             .memory(&#34;1024&#34;)
      *             .vcpu(1)
-     *             .kernel(libvirt_volume.kernel().id())
+     *             .kernel(kernel.id())
      *             .cmdlines(Map.ofEntries(
      *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
      *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
@@ -419,17 +421,18 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
      *     public static void stack(Context ctx) {
      *         var kernel = new Volume(&#34;kernel&#34;, VolumeArgs.builder()        
      *             .source(&#34;http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux&#34;)
+     *             .name(&#34;kernel&#34;)
      *             .pool(&#34;default&#34;)
      *             .format(&#34;raw&#34;)
      *             .build());
      * 
      *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+     *             .name(&#34;suse&#34;)
      *             .memory(&#34;1024&#34;)
      *             .vcpu(1)
      *             .kernel(kernel.id())
      *             .build());
      * 
-     *         // ...
      *     }
      * }
      * ```
@@ -473,17 +476,18 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
      *     public static void stack(Context ctx) {
      *         var kernel = new Volume(&#34;kernel&#34;, VolumeArgs.builder()        
      *             .source(&#34;http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux&#34;)
+     *             .name(&#34;kernel&#34;)
      *             .pool(&#34;default&#34;)
      *             .format(&#34;raw&#34;)
      *             .build());
      * 
      *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+     *             .name(&#34;suse&#34;)
      *             .memory(&#34;1024&#34;)
      *             .vcpu(1)
      *             .kernel(kernel.id())
      *             .build());
      * 
-     *         // ...
      *     }
      * }
      * ```
@@ -867,9 +871,10 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          * 
          *     public static void stack(Context ctx) {
          *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+         *             .name(&#34;suse&#34;)
          *             .memory(&#34;1024&#34;)
          *             .vcpu(1)
-         *             .kernel(libvirt_volume.kernel().id())
+         *             .kernel(kernel.id())
          *             .cmdlines(Map.ofEntries(
          *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
          *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
@@ -924,9 +929,10 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          * 
          *     public static void stack(Context ctx) {
          *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+         *             .name(&#34;suse&#34;)
          *             .memory(&#34;1024&#34;)
          *             .vcpu(1)
-         *             .kernel(libvirt_volume.kernel().id())
+         *             .kernel(kernel.id())
          *             .cmdlines(Map.ofEntries(
          *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
          *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
@@ -980,9 +986,10 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          * 
          *     public static void stack(Context ctx) {
          *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+         *             .name(&#34;suse&#34;)
          *             .memory(&#34;1024&#34;)
          *             .vcpu(1)
-         *             .kernel(libvirt_volume.kernel().id())
+         *             .kernel(kernel.id())
          *             .cmdlines(Map.ofEntries(
          *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
          *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
@@ -1304,17 +1311,18 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          *     public static void stack(Context ctx) {
          *         var kernel = new Volume(&#34;kernel&#34;, VolumeArgs.builder()        
          *             .source(&#34;http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux&#34;)
+         *             .name(&#34;kernel&#34;)
          *             .pool(&#34;default&#34;)
          *             .format(&#34;raw&#34;)
          *             .build());
          * 
          *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+         *             .name(&#34;suse&#34;)
          *             .memory(&#34;1024&#34;)
          *             .vcpu(1)
          *             .kernel(kernel.id())
          *             .build());
          * 
-         *         // ...
          *     }
          * }
          * ```
@@ -1362,17 +1370,18 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
          *     public static void stack(Context ctx) {
          *         var kernel = new Volume(&#34;kernel&#34;, VolumeArgs.builder()        
          *             .source(&#34;http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux&#34;)
+         *             .name(&#34;kernel&#34;)
          *             .pool(&#34;default&#34;)
          *             .format(&#34;raw&#34;)
          *             .build());
          * 
          *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
+         *             .name(&#34;suse&#34;)
          *             .memory(&#34;1024&#34;)
          *             .vcpu(1)
          *             .kernel(kernel.id())
          *             .build());
          * 
-         *         // ...
          *     }
          * }
          * ```

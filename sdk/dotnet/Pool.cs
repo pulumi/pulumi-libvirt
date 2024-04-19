@@ -29,12 +29,14 @@ namespace Pulumi.Libvirt
     ///     // A pool for all cluster volumes
     ///     var cluster = new Libvirt.Pool("cluster", new()
     ///     {
+    ///         Name = "cluster",
     ///         Type = "dir",
     ///         Path = "/home/user/cluster_storage",
     ///     });
     /// 
-    ///     var opensuseLeap = new Libvirt.Volume("opensuseLeap", new()
+    ///     var opensuseLeap = new Libvirt.Volume("opensuse_leap", new()
     ///     {
+    ///         Name = "opensuse_leap",
     ///         Pool = cluster.Name,
     ///         Source = "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
     ///     });

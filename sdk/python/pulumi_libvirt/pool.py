@@ -252,9 +252,11 @@ class Pool(pulumi.CustomResource):
 
         # A pool for all cluster volumes
         cluster = libvirt.Pool("cluster",
+            name="cluster",
             type="dir",
             path="/home/user/cluster_storage")
-        opensuse_leap = libvirt.Volume("opensuseLeap",
+        opensuse_leap = libvirt.Volume("opensuse_leap",
+            name="opensuse_leap",
             pool=cluster.name,
             source="http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
         ```
@@ -288,9 +290,11 @@ class Pool(pulumi.CustomResource):
 
         # A pool for all cluster volumes
         cluster = libvirt.Pool("cluster",
+            name="cluster",
             type="dir",
             path="/home/user/cluster_storage")
-        opensuse_leap = libvirt.Volume("opensuseLeap",
+        opensuse_leap = libvirt.Volume("opensuse_leap",
+            name="opensuse_leap",
             pool=cluster.name,
             source="http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
         ```

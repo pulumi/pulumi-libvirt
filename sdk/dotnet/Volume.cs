@@ -26,24 +26,27 @@ namespace Pulumi.Libvirt
     /// {
     ///     // Base OS image to use to create a cluster of different
     ///     // nodes
-    ///     var opensuseLeap = new Libvirt.Volume("opensuseLeap", new()
+    ///     var opensuseLeap = new Libvirt.Volume("opensuse_leap", new()
     ///     {
+    ///         Name = "opensuse_leap",
     ///         Source = "http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2",
     ///     });
     /// 
     ///     // volume to attach to the "master" domain as main disk
     ///     var master = new Libvirt.Volume("master", new()
     ///     {
+    ///         Name = "master.qcow2",
     ///         BaseVolumeId = opensuseLeap.Id,
     ///     });
     /// 
     ///     // volumes to attach to the "workers" domains as main disk
     ///     var worker = new List&lt;Libvirt.Volume&gt;();
-    ///     for (var rangeIndex = 0; rangeIndex &lt; @var.Workers_count; rangeIndex++)
+    ///     for (var rangeIndex = 0; rangeIndex &lt; workersCount; rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
     ///         worker.Add(new Libvirt.Volume($"worker-{range.Value}", new()
     ///         {
+    ///             Name = $"worker_{range.Value}.qcow2",
     ///             BaseVolumeId = opensuseLeap.Id,
     ///         }));
     ///     }

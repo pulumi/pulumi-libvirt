@@ -22,6 +22,8 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -31,7 +33,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Base OS image to use to create a cluster of different
 //			// nodes
-//			opensuseLeap, err := libvirt.NewVolume(ctx, "opensuseLeap", &libvirt.VolumeArgs{
+//			opensuseLeap, err := libvirt.NewVolume(ctx, "opensuse_leap", &libvirt.VolumeArgs{
+//				Name:   pulumi.String("opensuse_leap"),
 //				Source: pulumi.String("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2"),
 //			})
 //			if err != nil {
@@ -39,6 +42,7 @@ import (
 //			}
 //			// volume to attach to the "master" domain as main disk
 //			_, err = libvirt.NewVolume(ctx, "master", &libvirt.VolumeArgs{
+//				Name:         pulumi.String("master.qcow2"),
 //				BaseVolumeId: opensuseLeap.ID(),
 //			})
 //			if err != nil {
@@ -46,10 +50,11 @@ import (
 //			}
 //			// volumes to attach to the "workers" domains as main disk
 //			var worker []*libvirt.Volume
-//			for index := 0; index < _var.Workers_count; index++ {
+//			for index := 0; index < workersCount; index++ {
 //				key0 := index
-//				_ := index
+//				val0 := index
 //				__res, err := libvirt.NewVolume(ctx, fmt.Sprintf("worker-%v", key0), &libvirt.VolumeArgs{
+//					Name:         pulumi.String(fmt.Sprintf("worker_%v.qcow2", val0)),
 //					BaseVolumeId: opensuseLeap.ID(),
 //				})
 //				if err != nil {
