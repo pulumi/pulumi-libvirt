@@ -17,7 +17,6 @@ namespace Pulumi.Libvirt
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,7 +40,6 @@ namespace Pulumi.Libvirt
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [LibvirtResourceType("libvirt:index/pool:Pool")]
     public partial class Pool : global::Pulumi.CustomResource

@@ -215,7 +215,6 @@ class DomainDiskArgs:
                a scsi controller, if not specified then a random wwn is generated for the disk
                
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -238,7 +237,6 @@ class DomainDiskArgs:
                    ),
                ])
                ```
-               <!--End PulumiCodeChooser -->
                
                Also note that the `disk` block is actually a list of maps, so it is possible to
                declare several of them by using either the literal list and map syntax as in
@@ -328,7 +326,6 @@ class DomainDiskArgs:
         a scsi controller, if not specified then a random wwn is generated for the disk
 
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -351,7 +348,6 @@ class DomainDiskArgs:
             ),
         ])
         ```
-        <!--End PulumiCodeChooser -->
 
         Also note that the `disk` block is actually a list of maps, so it is possible to
         declare several of them by using either the literal list and map syntax as in
@@ -382,11 +378,9 @@ class DomainFilesystemArgs:
                
                Example:
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                ```
-               <!--End PulumiCodeChooser -->
                
                The exported filesystems can be mounted inside of the guest in this way:
         """
@@ -444,11 +438,9 @@ class DomainFilesystemArgs:
 
         Example:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         ```
-        <!--End PulumiCodeChooser -->
 
         The exported filesystems can be mounted inside of the guest in this way:
         """

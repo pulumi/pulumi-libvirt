@@ -354,7 +354,6 @@ class Volume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -369,7 +368,6 @@ class Volume(pulumi.CustomResource):
         for range in [{"value": i} for i in range(0, var.workers_count)]:
             worker.append(libvirt.Volume(f"worker-{range['value']}", base_volume_id=opensuse_leap.id))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **Tip:** when provisioning multiple domains using the same base image, create
         a `Volume` for the base image and then define the domain specific ones
@@ -407,7 +405,6 @@ class Volume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -422,7 +419,6 @@ class Volume(pulumi.CustomResource):
         for range in [{"value": i} for i in range(0, var.workers_count)]:
             worker.append(libvirt.Volume(f"worker-{range['value']}", base_volume_id=opensuse_leap.id))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **Tip:** when provisioning multiple domains using the same base image, create
         a `Volume` for the base image and then define the domain specific ones

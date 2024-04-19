@@ -24,7 +24,6 @@ namespace Pulumi.Libvirt.Outputs
         /// 
         /// Example:
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Libvirt.Outputs
         /// {
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// The exported filesystems can be mounted inside of the guest in this way:
         /// </summary>

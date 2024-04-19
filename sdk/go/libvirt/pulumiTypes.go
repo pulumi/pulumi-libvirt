@@ -435,7 +435,6 @@ type DomainDisk struct {
 	// Specify a WWN to use for the disk if the disk is using
 	// a scsi controller, if not specified then a random wwn is generated for the disk
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -482,7 +481,6 @@ type DomainDisk struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Also note that the `disk` block is actually a list of maps, so it is possible to
 	// declare several of them by using either the literal list and map syntax as in
@@ -518,7 +516,6 @@ type DomainDiskArgs struct {
 	// Specify a WWN to use for the disk if the disk is using
 	// a scsi controller, if not specified then a random wwn is generated for the disk
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -565,7 +562,6 @@ type DomainDiskArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Also note that the `disk` block is actually a list of maps, so it is possible to
 	// declare several of them by using either the literal list and map syntax as in
@@ -655,7 +651,6 @@ func (o DomainDiskOutput) VolumeId() pulumi.StringPtrOutput {
 // Specify a WWN to use for the disk if the disk is using
 // a scsi controller, if not specified then a random wwn is generated for the disk
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -705,7 +700,6 @@ func (o DomainDiskOutput) VolumeId() pulumi.StringPtrOutput {
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Also note that the `disk` block is actually a list of maps, so it is possible to
 // declare several of them by using either the literal list and map syntax as in
@@ -743,7 +737,6 @@ type DomainFilesystem struct {
 	//
 	// Example:
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -757,7 +750,6 @@ type DomainFilesystem struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// The exported filesystems can be mounted inside of the guest in this way:
 	Readonly *bool `pulumi:"readonly"`
@@ -788,7 +780,6 @@ type DomainFilesystemArgs struct {
 	//
 	// Example:
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -802,7 +793,6 @@ type DomainFilesystemArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// The exported filesystems can be mounted inside of the guest in this way:
 	Readonly pulumi.BoolPtrInput `pulumi:"readonly"`
@@ -875,7 +865,6 @@ func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 //
 // Example:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -892,7 +881,6 @@ func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // The exported filesystems can be mounted inside of the guest in this way:
 func (o DomainFilesystemOutput) Readonly() pulumi.BoolPtrOutput {

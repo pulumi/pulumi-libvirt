@@ -60,7 +60,6 @@ class DomainArgs:
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -75,7 +74,6 @@ class DomainArgs:
                        "_": "rw nosplash",
                    }])
                ```
-               <!--End PulumiCodeChooser -->
                
                Kernel params that don't have a keyword identifier can be specified using the
                special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -113,7 +111,6 @@ class DomainArgs:
                
                Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -128,7 +125,6 @@ class DomainArgs:
                    kernel=kernel.id)
                # ...
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -269,7 +265,6 @@ class DomainArgs:
         """
         Arguments to the kernel
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -284,7 +279,6 @@ class DomainArgs:
                 "_": "rw nosplash",
             }])
         ```
-        <!--End PulumiCodeChooser -->
 
         Kernel params that don't have a keyword identifier can be specified using the
         special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -450,7 +444,6 @@ class DomainArgs:
 
         Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -465,7 +458,6 @@ class DomainArgs:
             kernel=kernel.id)
         # ...
         ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "kernel")
 
@@ -676,7 +668,6 @@ class _DomainState:
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -691,7 +682,6 @@ class _DomainState:
                        "_": "rw nosplash",
                    }])
                ```
-               <!--End PulumiCodeChooser -->
                
                Kernel params that don't have a keyword identifier can be specified using the
                special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -729,7 +719,6 @@ class _DomainState:
                
                Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -744,7 +733,6 @@ class _DomainState:
                    kernel=kernel.id)
                # ...
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -885,7 +873,6 @@ class _DomainState:
         """
         Arguments to the kernel
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -900,7 +887,6 @@ class _DomainState:
                 "_": "rw nosplash",
             }])
         ```
-        <!--End PulumiCodeChooser -->
 
         Kernel params that don't have a keyword identifier can be specified using the
         special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -1066,7 +1052,6 @@ class _DomainState:
 
         Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -1081,7 +1066,6 @@ class _DomainState:
             kernel=kernel.id)
         # ...
         ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "kernel")
 
@@ -1287,14 +1271,12 @@ class Domain(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
 
         default = libvirt.Domain("default")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1310,7 +1292,6 @@ class Domain(pulumi.CustomResource):
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -1325,7 +1306,6 @@ class Domain(pulumi.CustomResource):
                        "_": "rw nosplash",
                    }])
                ```
-               <!--End PulumiCodeChooser -->
                
                Kernel params that don't have a keyword identifier can be specified using the
                special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -1363,7 +1343,6 @@ class Domain(pulumi.CustomResource):
                
                Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -1378,7 +1357,6 @@ class Domain(pulumi.CustomResource):
                    kernel=kernel.id)
                # ...
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -1410,14 +1388,12 @@ class Domain(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
 
         default = libvirt.Domain("default")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.
@@ -1562,7 +1538,6 @@ class Domain(pulumi.CustomResource):
                have effect on the next reboot.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] cmdlines: Arguments to the kernel
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -1577,7 +1552,6 @@ class Domain(pulumi.CustomResource):
                        "_": "rw nosplash",
                    }])
                ```
-               <!--End PulumiCodeChooser -->
                
                Kernel params that don't have a keyword identifier can be specified using the
                special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -1615,7 +1589,6 @@ class Domain(pulumi.CustomResource):
                
                Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -1630,7 +1603,6 @@ class Domain(pulumi.CustomResource):
                    kernel=kernel.id)
                # ...
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] machine: The machine type,
                you normally won't need to set this unless you are running on a platform that
                defaults to the wrong machine type for your template
@@ -1730,7 +1702,6 @@ class Domain(pulumi.CustomResource):
         """
         Arguments to the kernel
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -1745,7 +1716,6 @@ class Domain(pulumi.CustomResource):
                 "_": "rw nosplash",
             }])
         ```
-        <!--End PulumiCodeChooser -->
 
         Kernel params that don't have a keyword identifier can be specified using the
         special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -1863,7 +1833,6 @@ class Domain(pulumi.CustomResource):
 
         Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -1878,7 +1847,6 @@ class Domain(pulumi.CustomResource):
             kernel=kernel.id)
         # ...
         ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "kernel")
 

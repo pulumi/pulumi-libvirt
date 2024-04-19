@@ -81,7 +81,6 @@ export interface DomainDisk {
      * a scsi controller, if not specified then a random wwn is generated for the disk
      *
      *
-     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -104,7 +103,6 @@ export interface DomainDisk {
      *     },
      * ]});
      * ```
-     * <!--End PulumiCodeChooser -->
      *
      * Also note that the `disk` block is actually a list of maps, so it is possible to
      * declare several of them by using either the literal list and map syntax as in
@@ -125,11 +123,9 @@ export interface DomainFilesystem {
      *
      * Example:
      *
-     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * ```
-     * <!--End PulumiCodeChooser -->
      *
      * The exported filesystems can be mounted inside of the guest in this way:
      */

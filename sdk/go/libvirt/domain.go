@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,7 +37,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Domain struct {
 	pulumi.CustomResourceState
 
@@ -58,7 +56,6 @@ type Domain struct {
 	Cloudinit pulumi.StringPtrOutput `pulumi:"cloudinit"`
 	// Arguments to the kernel
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -88,7 +85,6 @@ type Domain struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Kernel params that don't have a keyword identifier can be specified using the
 	// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -138,7 +134,6 @@ type Domain struct {
 	//
 	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -169,7 +164,6 @@ type Domain struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Kernel pulumi.StringPtrOutput `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -250,7 +244,6 @@ type domainState struct {
 	Cloudinit *string `pulumi:"cloudinit"`
 	// Arguments to the kernel
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -280,7 +273,6 @@ type domainState struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Kernel params that don't have a keyword identifier can be specified using the
 	// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -330,7 +322,6 @@ type domainState struct {
 	//
 	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -361,7 +352,6 @@ type domainState struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Kernel *string `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -413,7 +403,6 @@ type DomainState struct {
 	Cloudinit pulumi.StringPtrInput
 	// Arguments to the kernel
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -443,7 +432,6 @@ type DomainState struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Kernel params that don't have a keyword identifier can be specified using the
 	// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -493,7 +481,6 @@ type DomainState struct {
 	//
 	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -524,7 +511,6 @@ type DomainState struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Kernel pulumi.StringPtrInput
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -580,7 +566,6 @@ type domainArgs struct {
 	Cloudinit *string `pulumi:"cloudinit"`
 	// Arguments to the kernel
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -610,7 +595,6 @@ type domainArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Kernel params that don't have a keyword identifier can be specified using the
 	// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -660,7 +644,6 @@ type domainArgs struct {
 	//
 	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -691,7 +674,6 @@ type domainArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Kernel *string `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -744,7 +726,6 @@ type DomainArgs struct {
 	Cloudinit pulumi.StringPtrInput
 	// Arguments to the kernel
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -774,7 +755,6 @@ type DomainArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	//
 	// Kernel params that don't have a keyword identifier can be specified using the
 	// special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -824,7 +804,6 @@ type DomainArgs struct {
 	//
 	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -855,7 +834,6 @@ type DomainArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Kernel pulumi.StringPtrInput
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
@@ -1005,7 +983,6 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 
 // Arguments to the kernel
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -1038,7 +1015,6 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Kernel params that don't have a keyword identifier can be specified using the
 // special `"_"` keyword. Multiple keyword-less params have to be specified using
@@ -1124,7 +1100,6 @@ func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
 //
 // Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -1158,7 +1133,6 @@ func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func (o DomainOutput) Kernel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Kernel }).(pulumi.StringPtrOutput)
 }
