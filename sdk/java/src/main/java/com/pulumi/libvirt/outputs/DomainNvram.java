@@ -12,35 +12,13 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainNvram {
-    /**
-     * @return The filename to use as the block device for this disk (read-only)
-     * 
-     */
     private String file;
-    /**
-     * @return path to the file used to override variables from the master NVRAM
-     * store.
-     * 
-     * So you should typically use the firmware as this,
-     * 
-     */
     private @Nullable String template;
 
     private DomainNvram() {}
-    /**
-     * @return The filename to use as the block device for this disk (read-only)
-     * 
-     */
     public String file() {
         return this.file;
     }
-    /**
-     * @return path to the file used to override variables from the master NVRAM
-     * store.
-     * 
-     * So you should typically use the firmware as this,
-     * 
-     */
     public Optional<String> template() {
         return Optional.ofNullable(this.template);
     }

@@ -30,13 +30,9 @@ type Network struct {
 	// device which will be used to construct the virtual network (when not provided,
 	// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
 	Bridge pulumi.StringOutput `pulumi:"bridge"`
-	// DHCP configuration.
-	// You need to use it in conjuction with the adresses variable.
-	Dhcp NetworkDhcpOutput `pulumi:"dhcp"`
+	Dhcp   NetworkDhcpOutput   `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
-	Dns NetworkDnsOutput `pulumi:"dns"`
-	// configuration of Dnsmasq options for the network
-	// You need to provide a list of option name and value pairs.
+	Dns            NetworkDnsOutput               `pulumi:"dns"`
 	DnsmasqOptions NetworkDnsmasqOptionsPtrOutput `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrOutput `pulumi:"domain"`
@@ -98,14 +94,10 @@ type networkState struct {
 	// The bridge device defines the name of a bridge
 	// device which will be used to construct the virtual network (when not provided,
 	// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-	Bridge *string `pulumi:"bridge"`
-	// DHCP configuration.
-	// You need to use it in conjuction with the adresses variable.
-	Dhcp *NetworkDhcp `pulumi:"dhcp"`
+	Bridge *string      `pulumi:"bridge"`
+	Dhcp   *NetworkDhcp `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
-	Dns *NetworkDns `pulumi:"dns"`
-	// configuration of Dnsmasq options for the network
-	// You need to provide a list of option name and value pairs.
+	Dns            *NetworkDns            `pulumi:"dns"`
 	DnsmasqOptions *NetworkDnsmasqOptions `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain *string `pulumi:"domain"`
@@ -139,13 +131,9 @@ type NetworkState struct {
 	// device which will be used to construct the virtual network (when not provided,
 	// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
 	Bridge pulumi.StringPtrInput
-	// DHCP configuration.
-	// You need to use it in conjuction with the adresses variable.
-	Dhcp NetworkDhcpPtrInput
+	Dhcp   NetworkDhcpPtrInput
 	// configuration of DNS specific settings for the network
-	Dns NetworkDnsPtrInput
-	// configuration of Dnsmasq options for the network
-	// You need to provide a list of option name and value pairs.
+	Dns            NetworkDnsPtrInput
 	DnsmasqOptions NetworkDnsmasqOptionsPtrInput
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrInput
@@ -182,14 +170,10 @@ type networkArgs struct {
 	// The bridge device defines the name of a bridge
 	// device which will be used to construct the virtual network (when not provided,
 	// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-	Bridge *string `pulumi:"bridge"`
-	// DHCP configuration.
-	// You need to use it in conjuction with the adresses variable.
-	Dhcp *NetworkDhcp `pulumi:"dhcp"`
+	Bridge *string      `pulumi:"bridge"`
+	Dhcp   *NetworkDhcp `pulumi:"dhcp"`
 	// configuration of DNS specific settings for the network
-	Dns *NetworkDns `pulumi:"dns"`
-	// configuration of Dnsmasq options for the network
-	// You need to provide a list of option name and value pairs.
+	Dns            *NetworkDns            `pulumi:"dns"`
 	DnsmasqOptions *NetworkDnsmasqOptions `pulumi:"dnsmasqOptions"`
 	// The domain used by the DNS server.
 	Domain *string `pulumi:"domain"`
@@ -224,13 +208,9 @@ type NetworkArgs struct {
 	// device which will be used to construct the virtual network (when not provided,
 	// it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
 	Bridge pulumi.StringPtrInput
-	// DHCP configuration.
-	// You need to use it in conjuction with the adresses variable.
-	Dhcp NetworkDhcpPtrInput
+	Dhcp   NetworkDhcpPtrInput
 	// configuration of DNS specific settings for the network
-	Dns NetworkDnsPtrInput
-	// configuration of Dnsmasq options for the network
-	// You need to provide a list of option name and value pairs.
+	Dns            NetworkDnsPtrInput
 	DnsmasqOptions NetworkDnsmasqOptionsPtrInput
 	// The domain used by the DNS server.
 	Domain pulumi.StringPtrInput
@@ -359,8 +339,6 @@ func (o NetworkOutput) Bridge() pulumi.StringOutput {
 	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Bridge }).(pulumi.StringOutput)
 }
 
-// DHCP configuration.
-// You need to use it in conjuction with the adresses variable.
 func (o NetworkOutput) Dhcp() NetworkDhcpOutput {
 	return o.ApplyT(func(v *Network) NetworkDhcpOutput { return v.Dhcp }).(NetworkDhcpOutput)
 }
@@ -370,8 +348,6 @@ func (o NetworkOutput) Dns() NetworkDnsOutput {
 	return o.ApplyT(func(v *Network) NetworkDnsOutput { return v.Dns }).(NetworkDnsOutput)
 }
 
-// configuration of Dnsmasq options for the network
-// You need to provide a list of option name and value pairs.
 func (o NetworkOutput) DnsmasqOptions() NetworkDnsmasqOptionsPtrOutput {
 	return o.ApplyT(func(v *Network) NetworkDnsmasqOptionsPtrOutput { return v.DnsmasqOptions }).(NetworkDnsmasqOptionsPtrOutput)
 }

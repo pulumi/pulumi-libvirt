@@ -43,7 +43,7 @@ export interface DomainConsole {
      */
     targetType?: string;
     /**
-     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * Console device type. Valid values are "pty" and "tcp".
      */
     type: string;
 }
@@ -81,7 +81,6 @@ export interface DomainDisk {
      * a scsi controller, if not specified then a random wwn is generated for the disk
      *
      *
-     * <!--Start PulumiCodeChooser -->
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
      * import * as libvirt from "@pulumi/libvirt";
@@ -113,7 +112,6 @@ export interface DomainDisk {
      *     ],
      * });
      * ```
-     * <!--End PulumiCodeChooser -->
      *
      * Also note that the `disk` block is actually a list of maps, so it is possible to
      * declare several of them by using either the literal list and map syntax as in
@@ -123,26 +121,9 @@ export interface DomainDisk {
 }
 
 export interface DomainFilesystem {
-    /**
-     * specifies the security mode for accessing the source. By default
-     * the `mapped` mode is chosen.
-     */
     accessmode?: string;
-    /**
-     * enables exporting filesystem as a readonly mount for guest, by
-     * default read-only access is given.
-     *
-     * Example:
-     */
     readonly?: boolean;
-    /**
-     * the directory of the host to be shared with the guest.
-     */
     source: string;
-    /**
-     * an arbitrary string tag that is exported to the guest as a hint for
-     * where to mount the source.
-     */
     target: string;
 }
 
@@ -161,7 +142,7 @@ export interface DomainGraphics {
      */
     listenType?: string;
     /**
-     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * the type of graphics emulation (default is "spice")
      */
     type?: string;
     /**
@@ -179,75 +160,20 @@ export interface DomainGraphics {
 }
 
 export interface DomainNetworkInterface {
-    /**
-     * An IP address for this domain in this network.
-     */
     addresses: string[];
-    /**
-     * Provides a bridge from the VM directly to the LAN. This assumes
-     * there is a bridge device on the host which has one or more of the hosts
-     * physical NICs enslaved. The guest VM will have an associated _tun_ device
-     * created and enslaved to the bridge. The IP range / network configuration is
-     * whatever is used on the LAN. This provides the guest VM full incoming &
-     * outgoing net access just like a physical machine.
-     */
     bridge?: string;
-    /**
-     * A hostname that will be assigned to this domain
-     * resource in this network.
-     */
     hostname: string;
-    /**
-     * The specific MAC address to use for this interface.
-     */
     mac: string;
-    /**
-     * Packets whose destination is on the same host as where they
-     * originate from are directly delivered to the target macvtap device. Both
-     * origin and destination devices need to be in bridge mode for direct delivery.
-     * If either one of them is in vepa mode, a VEPA capable bridge is required.
-     */
     macvtap?: string;
     networkId: string;
     networkName: string;
-    /**
-     * This feature attaches a virtual function of a SRIOV capable
-     * NIC directly to a VM without losing the migration capability. All packets are
-     * sent to the VF/IF of the configured network device. Depending on the
-     * capabilities of the device additional prerequisites or limitations may apply;
-     * for example, on Linux this requires kernel 2.6.38 or newer.
-     *
-     * Example of a `macvtap` interface:
-     */
     passthrough?: string;
-    /**
-     * All VMs' packets are sent to the external bridge. Packets whose
-     * destination is a VM on the same host as where the packet originates from are
-     * sent back to the host by the VEPA capable bridge (today's bridges are
-     * typically not VEPA capable).
-     */
     vepa?: string;
-    /**
-     * When creating the domain resource, wait until the
-     * network interface gets a DHCP lease from libvirt, so that the computed IP
-     * addresses will be available when the domain is up and the plan applied.
-     *
-     * When connecting to a LAN, users can specify a target device with:
-     */
     waitForLease?: boolean;
 }
 
 export interface DomainNvram {
-    /**
-     * The filename to use as the block device for this disk (read-only)
-     */
     file: string;
-    /**
-     * path to the file used to override variables from the master NVRAM
-     * store.
-     *
-     * So you should typically use the firmware as this,
-     */
     template?: string;
 }
 
@@ -294,16 +220,10 @@ export interface DomainXml {
 }
 
 export interface NetworkDhcp {
-    /**
-     * when false, disable the DHCP server
-     */
     enabled: boolean;
 }
 
 export interface NetworkDns {
-    /**
-     * when false, disable the DHCP server
-     */
     enabled?: boolean;
     /**
      * Either `address`, `domain`, or both must be set
@@ -354,13 +274,6 @@ export interface NetworkDnsSrv {
 }
 
 export interface NetworkDnsmasqOptions {
-    /**
-     * a Dnsmasq option entry block. You can have one or more of these
-     * blocks in your definition. You must specify `optionName` while `optionValue` is
-     * optional to support value-less options.
-     *
-     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
-     */
     options?: outputs.NetworkDnsmasqOptionsOption[];
 }
 

@@ -62,7 +62,7 @@ class DomainConsoleArgs:
                  target_type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] target_port: Target port
-        :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        :param pulumi.Input[str] type: Console device type. Valid values are "pty" and "tcp".
         :param pulumi.Input[str] source_host: IP address to listen on. Defaults to 127.0.0.1.
         :param pulumi.Input[str] source_path: Source path
                
@@ -107,7 +107,7 @@ class DomainConsoleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        Console device type. Valid values are "pty" and "tcp".
         """
         return pulumi.get(self, "type")
 
@@ -215,7 +215,6 @@ class DomainDiskArgs:
                a scsi controller, if not specified then a random wwn is generated for the disk
                
                
-               <!--Start PulumiCodeChooser -->
                ```python
                import pulumi
                import pulumi_libvirt as libvirt
@@ -244,7 +243,6 @@ class DomainDiskArgs:
                        ),
                    ])
                ```
-               <!--End PulumiCodeChooser -->
                
                Also note that the `disk` block is actually a list of maps, so it is possible to
                declare several of them by using either the literal list and map syntax as in
@@ -334,7 +332,6 @@ class DomainDiskArgs:
         a scsi controller, if not specified then a random wwn is generated for the disk
 
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_libvirt as libvirt
@@ -363,7 +360,6 @@ class DomainDiskArgs:
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         Also note that the `disk` block is actually a list of maps, so it is possible to
         declare several of them by using either the literal list and map syntax as in
@@ -383,17 +379,6 @@ class DomainFilesystemArgs:
                  target: pulumi.Input[str],
                  accessmode: Optional[pulumi.Input[str]] = None,
                  readonly: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] source: the directory of the host to be shared with the guest.
-        :param pulumi.Input[str] target: an arbitrary string tag that is exported to the guest as a hint for
-               where to mount the source.
-        :param pulumi.Input[str] accessmode: specifies the security mode for accessing the source. By default
-               the `mapped` mode is chosen.
-        :param pulumi.Input[bool] readonly: enables exporting filesystem as a readonly mount for guest, by
-               default read-only access is given.
-               
-               Example:
-        """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
         if accessmode is not None:
@@ -404,9 +389,6 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def source(self) -> pulumi.Input[str]:
-        """
-        the directory of the host to be shared with the guest.
-        """
         return pulumi.get(self, "source")
 
     @source.setter
@@ -416,10 +398,6 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def target(self) -> pulumi.Input[str]:
-        """
-        an arbitrary string tag that is exported to the guest as a hint for
-        where to mount the source.
-        """
         return pulumi.get(self, "target")
 
     @target.setter
@@ -429,10 +407,6 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def accessmode(self) -> Optional[pulumi.Input[str]]:
-        """
-        specifies the security mode for accessing the source. By default
-        the `mapped` mode is chosen.
-        """
         return pulumi.get(self, "accessmode")
 
     @accessmode.setter
@@ -442,12 +416,6 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def readonly(self) -> Optional[pulumi.Input[bool]]:
-        """
-        enables exporting filesystem as a readonly mount for guest, by
-        default read-only access is given.
-
-        Example:
-        """
         return pulumi.get(self, "readonly")
 
     @readonly.setter
@@ -468,7 +436,7 @@ class DomainGraphicsArgs:
         :param pulumi.Input[str] listen_address: IP Address where the VNC listener should be started if
                `listen_type` is set to `address`. Defaults to 127.0.0.1
         :param pulumi.Input[str] listen_type: "listen type", defaults to "none"
-        :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        :param pulumi.Input[str] type: the type of graphics emulation (default is "spice")
         :param pulumi.Input[int] websocket: Port to listen on for VNC WebSocket functionality (-1 meaning auto-allocation)
                
                On occasion we have found it necessary to set a `type` of `vnc` and a
@@ -531,7 +499,7 @@ class DomainGraphicsArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        the type of graphics emulation (default is "spice")
         """
         return pulumi.get(self, "type")
 
@@ -573,38 +541,6 @@ class DomainNetworkInterfaceArgs:
                  passthrough: Optional[pulumi.Input[str]] = None,
                  vepa: Optional[pulumi.Input[str]] = None,
                  wait_for_lease: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] addresses: An IP address for this domain in this network.
-        :param pulumi.Input[str] bridge: Provides a bridge from the VM directly to the LAN. This assumes
-               there is a bridge device on the host which has one or more of the hosts
-               physical NICs enslaved. The guest VM will have an associated _tun_ device
-               created and enslaved to the bridge. The IP range / network configuration is
-               whatever is used on the LAN. This provides the guest VM full incoming &
-               outgoing net access just like a physical machine.
-        :param pulumi.Input[str] hostname: A hostname that will be assigned to this domain
-               resource in this network.
-        :param pulumi.Input[str] mac: The specific MAC address to use for this interface.
-        :param pulumi.Input[str] macvtap: Packets whose destination is on the same host as where they
-               originate from are directly delivered to the target macvtap device. Both
-               origin and destination devices need to be in bridge mode for direct delivery.
-               If either one of them is in vepa mode, a VEPA capable bridge is required.
-        :param pulumi.Input[str] passthrough: This feature attaches a virtual function of a SRIOV capable
-               NIC directly to a VM without losing the migration capability. All packets are
-               sent to the VF/IF of the configured network device. Depending on the
-               capabilities of the device additional prerequisites or limitations may apply;
-               for example, on Linux this requires kernel 2.6.38 or newer.
-               
-               Example of a `macvtap` interface:
-        :param pulumi.Input[str] vepa: All VMs' packets are sent to the external bridge. Packets whose
-               destination is a VM on the same host as where the packet originates from are
-               sent back to the host by the VEPA capable bridge (today's bridges are
-               typically not VEPA capable).
-        :param pulumi.Input[bool] wait_for_lease: When creating the domain resource, wait until the
-               network interface gets a DHCP lease from libvirt, so that the computed IP
-               addresses will be available when the domain is up and the plan applied.
-               
-               When connecting to a LAN, users can specify a target device with:
-        """
         if addresses is not None:
             pulumi.set(__self__, "addresses", addresses)
         if bridge is not None:
@@ -629,9 +565,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An IP address for this domain in this network.
-        """
         return pulumi.get(self, "addresses")
 
     @addresses.setter
@@ -641,14 +574,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def bridge(self) -> Optional[pulumi.Input[str]]:
-        """
-        Provides a bridge from the VM directly to the LAN. This assumes
-        there is a bridge device on the host which has one or more of the hosts
-        physical NICs enslaved. The guest VM will have an associated _tun_ device
-        created and enslaved to the bridge. The IP range / network configuration is
-        whatever is used on the LAN. This provides the guest VM full incoming &
-        outgoing net access just like a physical machine.
-        """
         return pulumi.get(self, "bridge")
 
     @bridge.setter
@@ -658,10 +583,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        A hostname that will be assigned to this domain
-        resource in this network.
-        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -671,9 +592,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def mac(self) -> Optional[pulumi.Input[str]]:
-        """
-        The specific MAC address to use for this interface.
-        """
         return pulumi.get(self, "mac")
 
     @mac.setter
@@ -683,12 +601,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def macvtap(self) -> Optional[pulumi.Input[str]]:
-        """
-        Packets whose destination is on the same host as where they
-        originate from are directly delivered to the target macvtap device. Both
-        origin and destination devices need to be in bridge mode for direct delivery.
-        If either one of them is in vepa mode, a VEPA capable bridge is required.
-        """
         return pulumi.get(self, "macvtap")
 
     @macvtap.setter
@@ -716,15 +628,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def passthrough(self) -> Optional[pulumi.Input[str]]:
-        """
-        This feature attaches a virtual function of a SRIOV capable
-        NIC directly to a VM without losing the migration capability. All packets are
-        sent to the VF/IF of the configured network device. Depending on the
-        capabilities of the device additional prerequisites or limitations may apply;
-        for example, on Linux this requires kernel 2.6.38 or newer.
-
-        Example of a `macvtap` interface:
-        """
         return pulumi.get(self, "passthrough")
 
     @passthrough.setter
@@ -734,12 +637,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def vepa(self) -> Optional[pulumi.Input[str]]:
-        """
-        All VMs' packets are sent to the external bridge. Packets whose
-        destination is a VM on the same host as where the packet originates from are
-        sent back to the host by the VEPA capable bridge (today's bridges are
-        typically not VEPA capable).
-        """
         return pulumi.get(self, "vepa")
 
     @vepa.setter
@@ -749,13 +646,6 @@ class DomainNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="waitForLease")
     def wait_for_lease(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When creating the domain resource, wait until the
-        network interface gets a DHCP lease from libvirt, so that the computed IP
-        addresses will be available when the domain is up and the plan applied.
-
-        When connecting to a LAN, users can specify a target device with:
-        """
         return pulumi.get(self, "wait_for_lease")
 
     @wait_for_lease.setter
@@ -768,13 +658,6 @@ class DomainNvramArgs:
     def __init__(__self__, *,
                  file: pulumi.Input[str],
                  template: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] file: The filename to use as the block device for this disk (read-only)
-        :param pulumi.Input[str] template: path to the file used to override variables from the master NVRAM
-               store.
-               
-               So you should typically use the firmware as this,
-        """
         pulumi.set(__self__, "file", file)
         if template is not None:
             pulumi.set(__self__, "template", template)
@@ -782,9 +665,6 @@ class DomainNvramArgs:
     @property
     @pulumi.getter
     def file(self) -> pulumi.Input[str]:
-        """
-        The filename to use as the block device for this disk (read-only)
-        """
         return pulumi.get(self, "file")
 
     @file.setter
@@ -794,12 +674,6 @@ class DomainNvramArgs:
     @property
     @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
-        """
-        path to the file used to override variables from the master NVRAM
-        store.
-
-        So you should typically use the firmware as this,
-        """
         return pulumi.get(self, "template")
 
     @template.setter
@@ -962,18 +836,12 @@ class DomainXmlArgs:
 class NetworkDhcpArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[bool] enabled: when false, disable the DHCP server
-        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        when false, disable the DHCP server
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -990,7 +858,6 @@ class NetworkDnsArgs:
                  local_only: Optional[pulumi.Input[bool]] = None,
                  srvs: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkDnsSrvArgs']]]] = None):
         """
-        :param pulumi.Input[bool] enabled: when false, disable the DHCP server
         :param pulumi.Input[Sequence[pulumi.Input['NetworkDnsForwarderArgs']]] forwarders: Either `address`, `domain`, or both must be set
         :param pulumi.Input[Sequence[pulumi.Input['NetworkDnsHostArgs']]] hosts: a DNS host entry block. You can have one or more of these
                blocks in your DNS definition. You must specify both `ip` and `hostname`.
@@ -1014,9 +881,6 @@ class NetworkDnsArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        when false, disable the DHCP server
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -1239,26 +1103,12 @@ class NetworkDnsSrvArgs:
 class NetworkDnsmasqOptionsArgs:
     def __init__(__self__, *,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]]] = None):
-        """
-        :param pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]] options: a Dnsmasq option entry block. You can have one or more of these
-               blocks in your definition. You must specify `option_name` while `option_value` is
-               optional to support value-less options.
-               
-               An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
-        """
         if options is not None:
             pulumi.set(__self__, "options", options)
 
     @property
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkDnsmasqOptionsOptionArgs']]]]:
-        """
-        a Dnsmasq option entry block. You can have one or more of these
-        blocks in your definition. You must specify `option_name` while `option_value` is
-        optional to support value-less options.
-
-        An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
-        """
         return pulumi.get(self, "options")
 
     @options.setter

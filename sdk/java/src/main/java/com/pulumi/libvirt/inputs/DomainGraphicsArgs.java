@@ -65,14 +65,14 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     public Optional<Output<String>> type() {
@@ -204,7 +204,7 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+         * @param type the type of graphics emulation (default is &#34;spice&#34;)
          * 
          * @return builder
          * 
@@ -215,7 +215,7 @@ public final class DomainGraphicsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+         * @param type the type of graphics emulation (default is &#34;spice&#34;)
          * 
          * @return builder
          * 

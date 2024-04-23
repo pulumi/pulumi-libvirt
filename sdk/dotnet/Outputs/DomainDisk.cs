@@ -41,7 +41,6 @@ namespace Pulumi.Libvirt.Outputs
         /// a scsi controller, if not specified then a random wwn is generated for the disk
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -89,7 +88,6 @@ namespace Pulumi.Libvirt.Outputs
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// Also note that the `disk` block is actually a list of maps, so it is possible to
         /// declare several of them by using either the literal list and map syntax as in

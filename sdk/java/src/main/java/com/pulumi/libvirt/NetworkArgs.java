@@ -84,19 +84,9 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.bridge);
     }
 
-    /**
-     * DHCP configuration.
-     * You need to use it in conjuction with the adresses variable.
-     * 
-     */
     @Import(name="dhcp")
     private @Nullable Output<NetworkDhcpArgs> dhcp;
 
-    /**
-     * @return DHCP configuration.
-     * You need to use it in conjuction with the adresses variable.
-     * 
-     */
     public Optional<Output<NetworkDhcpArgs>> dhcp() {
         return Optional.ofNullable(this.dhcp);
     }
@@ -116,19 +106,9 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.dns);
     }
 
-    /**
-     * configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     * 
-     */
     @Import(name="dnsmasqOptions")
     private @Nullable Output<NetworkDnsmasqOptionsArgs> dnsmasqOptions;
 
-    /**
-     * @return configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     * 
-     */
     public Optional<Output<NetworkDnsmasqOptionsArgs>> dnsmasqOptions() {
         return Optional.ofNullable(this.dnsmasqOptions);
     }
@@ -352,25 +332,11 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
             return bridge(Output.of(bridge));
         }
 
-        /**
-         * @param dhcp DHCP configuration.
-         * You need to use it in conjuction with the adresses variable.
-         * 
-         * @return builder
-         * 
-         */
         public Builder dhcp(@Nullable Output<NetworkDhcpArgs> dhcp) {
             $.dhcp = dhcp;
             return this;
         }
 
-        /**
-         * @param dhcp DHCP configuration.
-         * You need to use it in conjuction with the adresses variable.
-         * 
-         * @return builder
-         * 
-         */
         public Builder dhcp(NetworkDhcpArgs dhcp) {
             return dhcp(Output.of(dhcp));
         }
@@ -396,25 +362,11 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
             return dns(Output.of(dns));
         }
 
-        /**
-         * @param dnsmasqOptions configuration of Dnsmasq options for the network
-         * You need to provide a list of option name and value pairs.
-         * 
-         * @return builder
-         * 
-         */
         public Builder dnsmasqOptions(@Nullable Output<NetworkDnsmasqOptionsArgs> dnsmasqOptions) {
             $.dnsmasqOptions = dnsmasqOptions;
             return this;
         }
 
-        /**
-         * @param dnsmasqOptions configuration of Dnsmasq options for the network
-         * You need to provide a list of option name and value pairs.
-         * 
-         * @return builder
-         * 
-         */
         public Builder dnsmasqOptions(NetworkDnsmasqOptionsArgs dnsmasqOptions) {
             return dnsmasqOptions(Output.of(dnsmasqOptions));
         }

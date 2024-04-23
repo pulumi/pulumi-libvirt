@@ -42,10 +42,6 @@ namespace Pulumi.Libvirt
         [Output("bridge")]
         public Output<string> Bridge { get; private set; } = null!;
 
-        /// <summary>
-        /// DHCP configuration. 
-        /// You need to use it in conjuction with the adresses variable.
-        /// </summary>
         [Output("dhcp")]
         public Output<Outputs.NetworkDhcp> Dhcp { get; private set; } = null!;
 
@@ -55,10 +51,6 @@ namespace Pulumi.Libvirt
         [Output("dns")]
         public Output<Outputs.NetworkDns> Dns { get; private set; } = null!;
 
-        /// <summary>
-        /// configuration of Dnsmasq options for the network
-        /// You need to provide a list of option name and value pairs.
-        /// </summary>
         [Output("dnsmasqOptions")]
         public Output<Outputs.NetworkDnsmasqOptions?> DnsmasqOptions { get; private set; } = null!;
 
@@ -177,10 +169,6 @@ namespace Pulumi.Libvirt
         [Input("bridge")]
         public Input<string>? Bridge { get; set; }
 
-        /// <summary>
-        /// DHCP configuration. 
-        /// You need to use it in conjuction with the adresses variable.
-        /// </summary>
         [Input("dhcp")]
         public Input<Inputs.NetworkDhcpArgs>? Dhcp { get; set; }
 
@@ -190,10 +178,6 @@ namespace Pulumi.Libvirt
         [Input("dns")]
         public Input<Inputs.NetworkDnsArgs>? Dns { get; set; }
 
-        /// <summary>
-        /// configuration of Dnsmasq options for the network
-        /// You need to provide a list of option name and value pairs.
-        /// </summary>
         [Input("dnsmasqOptions")]
         public Input<Inputs.NetworkDnsmasqOptionsArgs>? DnsmasqOptions { get; set; }
 
@@ -280,10 +264,6 @@ namespace Pulumi.Libvirt
         [Input("bridge")]
         public Input<string>? Bridge { get; set; }
 
-        /// <summary>
-        /// DHCP configuration. 
-        /// You need to use it in conjuction with the adresses variable.
-        /// </summary>
         [Input("dhcp")]
         public Input<Inputs.NetworkDhcpGetArgs>? Dhcp { get; set; }
 
@@ -293,10 +273,6 @@ namespace Pulumi.Libvirt
         [Input("dns")]
         public Input<Inputs.NetworkDnsGetArgs>? Dns { get; set; }
 
-        /// <summary>
-        /// configuration of Dnsmasq options for the network
-        /// You need to provide a list of option name and value pairs.
-        /// </summary>
         [Input("dnsmasqOptions")]
         public Input<Inputs.NetworkDnsmasqOptionsGetArgs>? DnsmasqOptions { get; set; }
 

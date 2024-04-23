@@ -58,19 +58,11 @@ export class Network extends pulumi.CustomResource {
      * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      */
     public readonly bridge!: pulumi.Output<string>;
-    /**
-     * DHCP configuration. 
-     * You need to use it in conjuction with the adresses variable.
-     */
     public readonly dhcp!: pulumi.Output<outputs.NetworkDhcp>;
     /**
      * configuration of DNS specific settings for the network
      */
     public readonly dns!: pulumi.Output<outputs.NetworkDns>;
-    /**
-     * configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     */
     public readonly dnsmasqOptions!: pulumi.Output<outputs.NetworkDnsmasqOptions | undefined>;
     /**
      * The domain used by the DNS server.
@@ -167,19 +159,11 @@ export interface NetworkState {
      * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      */
     bridge?: pulumi.Input<string>;
-    /**
-     * DHCP configuration. 
-     * You need to use it in conjuction with the adresses variable.
-     */
     dhcp?: pulumi.Input<inputs.NetworkDhcp>;
     /**
      * configuration of DNS specific settings for the network
      */
     dns?: pulumi.Input<inputs.NetworkDns>;
-    /**
-     * configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     */
     dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
     /**
      * The domain used by the DNS server.
@@ -232,19 +216,11 @@ export interface NetworkArgs {
      * it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
      */
     bridge?: pulumi.Input<string>;
-    /**
-     * DHCP configuration. 
-     * You need to use it in conjuction with the adresses variable.
-     */
     dhcp?: pulumi.Input<inputs.NetworkDhcp>;
     /**
      * configuration of DNS specific settings for the network
      */
     dns?: pulumi.Input<inputs.NetworkDns>;
-    /**
-     * configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     */
     dnsmasqOptions?: pulumi.Input<inputs.NetworkDnsmasqOptions>;
     /**
      * The domain used by the DNS server.

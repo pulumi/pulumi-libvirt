@@ -12,14 +12,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as libvirt from "@pulumi/libvirt";
  *
  * const _default = new libvirt.Domain("default", {name: "test"});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Domain extends pulumi.CustomResource {
     /**
@@ -71,36 +69,6 @@ export class Domain extends pulumi.CustomResource {
      * have effect on the next reboot.
      */
     public readonly cloudinit!: pulumi.Output<string | undefined>;
-    /**
-     * Arguments to the kernel
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * import * as libvirt from "@pulumi/libvirt";
-     *
-     * const domain_suse = new libvirt.Domain("domain-suse", {
-     *     name: "suse",
-     *     memory: 1024,
-     *     vcpu: 1,
-     *     kernel: kernel.id,
-     *     cmdlines: [{
-     *         arg1: "value1",
-     *         arg2: "value2",
-     *         _: "rw nosplash",
-     *     }],
-     * });
-     * ```
-     * <!--End PulumiCodeChooser -->
-     *
-     * Kernel params that don't have a keyword identifier can be specified using the
-     * special `"_"` keyword. Multiple keyword-less params have to be specified using
-     * the same `"_"` keyword, like in the example above.
-     *
-     * Also note that the `cmd` block is actually a list of maps, so it is possible to
-     * declare several of them by using either the literal list and map syntax as in
-     * the following examples:
-     */
     public readonly cmdlines!: pulumi.Output<{[key: string]: any}[] | undefined>;
     public readonly consoles!: pulumi.Output<outputs.DomainConsole[] | undefined>;
     /**
@@ -135,52 +103,13 @@ export class Domain extends pulumi.CustomResource {
      * below.
      */
     public readonly filesystems!: pulumi.Output<outputs.DomainFilesystem[] | undefined>;
-    /**
-     * The UEFI rom images for exercising UEFI secure boot in a qemu
-     * environment. Users should usually specify one of the standard _Open Virtual Machine
-     * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-     * read-only.
-     */
     public readonly firmware!: pulumi.Output<string | undefined>;
     /**
      * The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
      */
     public readonly fwCfgName!: pulumi.Output<string | undefined>;
     public readonly graphics!: pulumi.Output<outputs.DomainGraphics | undefined>;
-    /**
-     * The path of the initrd to boot.
-     *
-     * You can use it in the same way as the kernel.
-     */
     public readonly initrd!: pulumi.Output<string | undefined>;
-    /**
-     * The path of the kernel to boot
-     *
-     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-     * as they are local to the hypervisor.
-     *
-     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * import * as libvirt from "@pulumi/libvirt";
-     *
-     * const kernel = new libvirt.Volume("kernel", {
-     *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
-     *     name: "kernel",
-     *     pool: "default",
-     *     format: "raw",
-     * });
-     * const domain_suse = new libvirt.Domain("domain-suse", {
-     *     name: "suse",
-     *     memory: 1024,
-     *     vcpu: 1,
-     *     kernel: kernel.id,
-     * });
-     * ```
-     * <!--End PulumiCodeChooser -->
-     */
     public readonly kernel!: pulumi.Output<string | undefined>;
     /**
      * The machine type,
@@ -205,9 +134,6 @@ export class Domain extends pulumi.CustomResource {
      * below.
      */
     public readonly networkInterfaces!: pulumi.Output<outputs.DomainNetworkInterface[] | undefined>;
-    /**
-     * this block allows specifying the following attributes related to the _nvram_:
-     */
     public readonly nvram!: pulumi.Output<outputs.DomainNvram | undefined>;
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
@@ -341,36 +267,6 @@ export interface DomainState {
      * have effect on the next reboot.
      */
     cloudinit?: pulumi.Input<string>;
-    /**
-     * Arguments to the kernel
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * import * as libvirt from "@pulumi/libvirt";
-     *
-     * const domain_suse = new libvirt.Domain("domain-suse", {
-     *     name: "suse",
-     *     memory: 1024,
-     *     vcpu: 1,
-     *     kernel: kernel.id,
-     *     cmdlines: [{
-     *         arg1: "value1",
-     *         arg2: "value2",
-     *         _: "rw nosplash",
-     *     }],
-     * });
-     * ```
-     * <!--End PulumiCodeChooser -->
-     *
-     * Kernel params that don't have a keyword identifier can be specified using the
-     * special `"_"` keyword. Multiple keyword-less params have to be specified using
-     * the same `"_"` keyword, like in the example above.
-     *
-     * Also note that the `cmd` block is actually a list of maps, so it is possible to
-     * declare several of them by using either the literal list and map syntax as in
-     * the following examples:
-     */
     cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
     consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
     /**
@@ -405,52 +301,13 @@ export interface DomainState {
      * below.
      */
     filesystems?: pulumi.Input<pulumi.Input<inputs.DomainFilesystem>[]>;
-    /**
-     * The UEFI rom images for exercising UEFI secure boot in a qemu
-     * environment. Users should usually specify one of the standard _Open Virtual Machine
-     * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-     * read-only.
-     */
     firmware?: pulumi.Input<string>;
     /**
      * The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
      */
     fwCfgName?: pulumi.Input<string>;
     graphics?: pulumi.Input<inputs.DomainGraphics>;
-    /**
-     * The path of the initrd to boot.
-     *
-     * You can use it in the same way as the kernel.
-     */
     initrd?: pulumi.Input<string>;
-    /**
-     * The path of the kernel to boot
-     *
-     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-     * as they are local to the hypervisor.
-     *
-     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * import * as libvirt from "@pulumi/libvirt";
-     *
-     * const kernel = new libvirt.Volume("kernel", {
-     *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
-     *     name: "kernel",
-     *     pool: "default",
-     *     format: "raw",
-     * });
-     * const domain_suse = new libvirt.Domain("domain-suse", {
-     *     name: "suse",
-     *     memory: 1024,
-     *     vcpu: 1,
-     *     kernel: kernel.id,
-     * });
-     * ```
-     * <!--End PulumiCodeChooser -->
-     */
     kernel?: pulumi.Input<string>;
     /**
      * The machine type,
@@ -475,9 +332,6 @@ export interface DomainState {
      * below.
      */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.DomainNetworkInterface>[]>;
-    /**
-     * this block allows specifying the following attributes related to the _nvram_:
-     */
     nvram?: pulumi.Input<inputs.DomainNvram>;
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
@@ -531,36 +385,6 @@ export interface DomainArgs {
      * have effect on the next reboot.
      */
     cloudinit?: pulumi.Input<string>;
-    /**
-     * Arguments to the kernel
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * import * as libvirt from "@pulumi/libvirt";
-     *
-     * const domain_suse = new libvirt.Domain("domain-suse", {
-     *     name: "suse",
-     *     memory: 1024,
-     *     vcpu: 1,
-     *     kernel: kernel.id,
-     *     cmdlines: [{
-     *         arg1: "value1",
-     *         arg2: "value2",
-     *         _: "rw nosplash",
-     *     }],
-     * });
-     * ```
-     * <!--End PulumiCodeChooser -->
-     *
-     * Kernel params that don't have a keyword identifier can be specified using the
-     * special `"_"` keyword. Multiple keyword-less params have to be specified using
-     * the same `"_"` keyword, like in the example above.
-     *
-     * Also note that the `cmd` block is actually a list of maps, so it is possible to
-     * declare several of them by using either the literal list and map syntax as in
-     * the following examples:
-     */
     cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
     consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
     /**
@@ -595,52 +419,13 @@ export interface DomainArgs {
      * below.
      */
     filesystems?: pulumi.Input<pulumi.Input<inputs.DomainFilesystem>[]>;
-    /**
-     * The UEFI rom images for exercising UEFI secure boot in a qemu
-     * environment. Users should usually specify one of the standard _Open Virtual Machine
-     * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-     * read-only.
-     */
     firmware?: pulumi.Input<string>;
     /**
      * The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
      */
     fwCfgName?: pulumi.Input<string>;
     graphics?: pulumi.Input<inputs.DomainGraphics>;
-    /**
-     * The path of the initrd to boot.
-     *
-     * You can use it in the same way as the kernel.
-     */
     initrd?: pulumi.Input<string>;
-    /**
-     * The path of the kernel to boot
-     *
-     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-     * as they are local to the hypervisor.
-     *
-     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-     *
-     * <!--Start PulumiCodeChooser -->
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
-     * import * as libvirt from "@pulumi/libvirt";
-     *
-     * const kernel = new libvirt.Volume("kernel", {
-     *     source: "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
-     *     name: "kernel",
-     *     pool: "default",
-     *     format: "raw",
-     * });
-     * const domain_suse = new libvirt.Domain("domain-suse", {
-     *     name: "suse",
-     *     memory: 1024,
-     *     vcpu: 1,
-     *     kernel: kernel.id,
-     * });
-     * ```
-     * <!--End PulumiCodeChooser -->
-     */
     kernel?: pulumi.Input<string>;
     /**
      * The machine type,
@@ -665,9 +450,6 @@ export interface DomainArgs {
      * below.
      */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.DomainNetworkInterface>[]>;
-    /**
-     * this block allows specifying the following attributes related to the _nvram_:
-     */
     nvram?: pulumi.Input<inputs.DomainNvram>;
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
