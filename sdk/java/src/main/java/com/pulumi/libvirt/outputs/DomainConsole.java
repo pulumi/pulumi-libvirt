@@ -50,7 +50,7 @@ public final class DomainConsole {
      */
     private @Nullable String targetType;
     /**
-     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
     private String type;
@@ -104,7 +104,7 @@ public final class DomainConsole {
         return Optional.ofNullable(this.targetType);
     }
     /**
-     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * @return Console device type. Valid values are &#34;pty&#34; and &#34;tcp&#34;.
      * 
      */
     public String type() {

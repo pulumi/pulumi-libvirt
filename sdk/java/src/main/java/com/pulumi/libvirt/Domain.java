@@ -138,111 +138,9 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> cloudinit() {
         return Codegen.optional(this.cloudinit);
     }
-    /**
-     * Arguments to the kernel
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.libvirt.Domain;
-     * import com.pulumi.libvirt.DomainArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
-     *             .name(&#34;suse&#34;)
-     *             .memory(&#34;1024&#34;)
-     *             .vcpu(1)
-     *             .kernel(kernel.id())
-     *             .cmdlines(Map.ofEntries(
-     *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
-     *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
-     *                 Map.entry(&#34;_&#34;, &#34;rw nosplash&#34;)
-     *             ))
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * Kernel params that don&#39;t have a keyword identifier can be specified using the
-     * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
-     * the same `&#34;_&#34;` keyword, like in the example above.
-     * 
-     * Also note that the `cmd` block is actually a list of maps, so it is possible to
-     * declare several of them by using either the literal list and map syntax as in
-     * the following examples:
-     * 
-     */
     @Export(name="cmdlines", refs={List.class,Map.class,String.class,Object.class}, tree="[0,[1,2,3]]")
     private Output</* @Nullable */ List<Map<String,Object>>> cmdlines;
 
-    /**
-     * @return Arguments to the kernel
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.libvirt.Domain;
-     * import com.pulumi.libvirt.DomainArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
-     *             .name(&#34;suse&#34;)
-     *             .memory(&#34;1024&#34;)
-     *             .vcpu(1)
-     *             .kernel(kernel.id())
-     *             .cmdlines(Map.ofEntries(
-     *                 Map.entry(&#34;arg1&#34;, &#34;value1&#34;),
-     *                 Map.entry(&#34;arg2&#34;, &#34;value2&#34;),
-     *                 Map.entry(&#34;_&#34;, &#34;rw nosplash&#34;)
-     *             ))
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * Kernel params that don&#39;t have a keyword identifier can be specified using the
-     * special `&#34;_&#34;` keyword. Multiple keyword-less params have to be specified using
-     * the same `&#34;_&#34;` keyword, like in the example above.
-     * 
-     * Also note that the `cmd` block is actually a list of maps, so it is possible to
-     * declare several of them by using either the literal list and map syntax as in
-     * the following examples:
-     * 
-     */
     public Output<Optional<List<Map<String,Object>>>> cmdlines() {
         return Codegen.optional(this.cmdlines);
     }
@@ -352,23 +250,9 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<DomainFilesystem>>> filesystems() {
         return Codegen.optional(this.filesystems);
     }
-    /**
-     * The UEFI rom images for exercising UEFI secure boot in a qemu
-     * environment. Users should usually specify one of the standard _Open Virtual Machine
-     * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-     * read-only.
-     * 
-     */
     @Export(name="firmware", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firmware;
 
-    /**
-     * @return The UEFI rom images for exercising UEFI secure boot in a qemu
-     * environment. Users should usually specify one of the standard _Open Virtual Machine
-     * Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-     * read-only.
-     * 
-     */
     public Output<Optional<String>> firmware() {
         return Codegen.optional(this.firmware);
     }
@@ -392,131 +276,15 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<DomainGraphics>> graphics() {
         return Codegen.optional(this.graphics);
     }
-    /**
-     * The path of the initrd to boot.
-     * 
-     * You can use it in the same way as the kernel.
-     * 
-     */
     @Export(name="initrd", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> initrd;
 
-    /**
-     * @return The path of the initrd to boot.
-     * 
-     * You can use it in the same way as the kernel.
-     * 
-     */
     public Output<Optional<String>> initrd() {
         return Codegen.optional(this.initrd);
     }
-    /**
-     * The path of the kernel to boot
-     * 
-     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-     * as they are local to the hypervisor.
-     * 
-     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.libvirt.Volume;
-     * import com.pulumi.libvirt.VolumeArgs;
-     * import com.pulumi.libvirt.Domain;
-     * import com.pulumi.libvirt.DomainArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var kernel = new Volume(&#34;kernel&#34;, VolumeArgs.builder()        
-     *             .source(&#34;http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux&#34;)
-     *             .name(&#34;kernel&#34;)
-     *             .pool(&#34;default&#34;)
-     *             .format(&#34;raw&#34;)
-     *             .build());
-     * 
-     *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
-     *             .name(&#34;suse&#34;)
-     *             .memory(&#34;1024&#34;)
-     *             .vcpu(1)
-     *             .kernel(kernel.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     @Export(name="kernel", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> kernel;
 
-    /**
-     * @return The path of the kernel to boot
-     * 
-     * If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-     * as they are local to the hypervisor.
-     * 
-     * Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.libvirt.Volume;
-     * import com.pulumi.libvirt.VolumeArgs;
-     * import com.pulumi.libvirt.Domain;
-     * import com.pulumi.libvirt.DomainArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var kernel = new Volume(&#34;kernel&#34;, VolumeArgs.builder()        
-     *             .source(&#34;http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux&#34;)
-     *             .name(&#34;kernel&#34;)
-     *             .pool(&#34;default&#34;)
-     *             .format(&#34;raw&#34;)
-     *             .build());
-     * 
-     *         var domain_suse = new Domain(&#34;domain-suse&#34;, DomainArgs.builder()        
-     *             .name(&#34;suse&#34;)
-     *             .memory(&#34;1024&#34;)
-     *             .vcpu(1)
-     *             .kernel(kernel.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public Output<Optional<String>> kernel() {
         return Codegen.optional(this.kernel);
     }
@@ -594,17 +362,9 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<DomainNetworkInterface>>> networkInterfaces() {
         return Codegen.optional(this.networkInterfaces);
     }
-    /**
-     * this block allows specifying the following attributes related to the _nvram_:
-     * 
-     */
     @Export(name="nvram", refs={DomainNvram.class}, tree="[0]")
     private Output</* @Nullable */ DomainNvram> nvram;
 
-    /**
-     * @return this block allows specifying the following attributes related to the _nvram_:
-     * 
-     */
     public Output<Optional<DomainNvram>> nvram() {
         return Codegen.optional(this.nvram);
     }

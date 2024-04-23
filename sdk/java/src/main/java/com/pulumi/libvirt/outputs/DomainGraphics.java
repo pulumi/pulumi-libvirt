@@ -30,7 +30,7 @@ public final class DomainGraphics {
      */
     private @Nullable String listenType;
     /**
-     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     private @Nullable String type;
@@ -72,7 +72,7 @@ public final class DomainGraphics {
         return Optional.ofNullable(this.listenType);
     }
     /**
-     * @return The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+     * @return the type of graphics emulation (default is &#34;spice&#34;)
      * 
      */
     public Optional<String> type() {

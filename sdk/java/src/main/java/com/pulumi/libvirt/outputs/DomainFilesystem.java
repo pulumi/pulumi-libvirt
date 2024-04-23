@@ -13,63 +13,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainFilesystem {
-    /**
-     * @return specifies the security mode for accessing the source. By default
-     * the `mapped` mode is chosen.
-     * 
-     */
     private @Nullable String accessmode;
-    /**
-     * @return enables exporting filesystem as a readonly mount for guest, by
-     * default read-only access is given.
-     * 
-     * Example:
-     * 
-     */
     private @Nullable Boolean readonly;
-    /**
-     * @return the directory of the host to be shared with the guest.
-     * 
-     */
     private String source;
-    /**
-     * @return an arbitrary string tag that is exported to the guest as a hint for
-     * where to mount the source.
-     * 
-     */
     private String target;
 
     private DomainFilesystem() {}
-    /**
-     * @return specifies the security mode for accessing the source. By default
-     * the `mapped` mode is chosen.
-     * 
-     */
     public Optional<String> accessmode() {
         return Optional.ofNullable(this.accessmode);
     }
-    /**
-     * @return enables exporting filesystem as a readonly mount for guest, by
-     * default read-only access is given.
-     * 
-     * Example:
-     * 
-     */
     public Optional<Boolean> readonly() {
         return Optional.ofNullable(this.readonly);
     }
-    /**
-     * @return the directory of the host to be shared with the guest.
-     * 
-     */
     public String source() {
         return this.source;
     }
-    /**
-     * @return an arbitrary string tag that is exported to the guest as a hint for
-     * where to mount the source.
-     * 
-     */
     public String target() {
         return this.target;
     }

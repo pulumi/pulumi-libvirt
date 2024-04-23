@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Domain struct {
 	pulumi.CustomResourceState
 
@@ -57,51 +55,9 @@ type Domain struct {
 	// the domain. This is going to be attached as a CDROM ISO. Changing the
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
-	Cloudinit pulumi.StringPtrOutput `pulumi:"cloudinit"`
-	// Arguments to the kernel
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(kernel.Id),
-	// 			Cmdlines: pulumi.MapArray{
-	// 				pulumi.Map{
-	// 					"arg1": pulumi.Any("value1"),
-	// 					"arg2": pulumi.Any("value2"),
-	// 					"_":    pulumi.Any("rw nosplash"),
-	// 				},
-	// 			},
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// Kernel params that don't have a keyword identifier can be specified using the
-	// special `"_"` keyword. Multiple keyword-less params have to be specified using
-	// the same `"_"` keyword, like in the example above.
-	//
-	// Also note that the `cmd` block is actually a list of maps, so it is possible to
-	// declare several of them by using either the literal list and map syntax as in
-	// the following examples:
-	Cmdlines pulumi.MapArrayOutput    `pulumi:"cmdlines"`
-	Consoles DomainConsoleArrayOutput `pulumi:"consoles"`
+	Cloudinit pulumi.StringPtrOutput   `pulumi:"cloudinit"`
+	Cmdlines  pulumi.MapArrayOutput    `pulumi:"cmdlines"`
+	Consoles  DomainConsoleArrayOutput `pulumi:"consoles"`
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -122,60 +78,12 @@ type Domain struct {
 	// the domain. The `filesystem` object structure is documented
 	// below.
 	Filesystems DomainFilesystemArrayOutput `pulumi:"filesystems"`
-	// The UEFI rom images for exercising UEFI secure boot in a qemu
-	// environment. Users should usually specify one of the standard _Open Virtual Machine
-	// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-	// read-only.
-	Firmware pulumi.StringPtrOutput `pulumi:"firmware"`
+	Firmware    pulumi.StringPtrOutput      `pulumi:"firmware"`
 	// The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
 	FwCfgName pulumi.StringPtrOutput  `pulumi:"fwCfgName"`
 	Graphics  DomainGraphicsPtrOutput `pulumi:"graphics"`
-	// The path of the initrd to boot.
-	//
-	// You can use it in the same way as the kernel.
-	Initrd pulumi.StringPtrOutput `pulumi:"initrd"`
-	// The path of the kernel to boot
-	//
-	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-	// as they are local to the hypervisor.
-	//
-	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
-	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
-	// 			Name:   pulumi.String("kernel"),
-	// 			Pool:   pulumi.String("default"),
-	// 			Format: pulumi.String("raw"),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: kernel.ID(),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	Kernel pulumi.StringPtrOutput `pulumi:"kernel"`
+	Initrd    pulumi.StringPtrOutput  `pulumi:"initrd"`
+	Kernel    pulumi.StringPtrOutput  `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
 	// defaults to the wrong machine type for your template
@@ -191,8 +99,7 @@ type Domain struct {
 	// attach to the domain. The `networkInterface` object structure is documented
 	// below.
 	NetworkInterfaces DomainNetworkInterfaceArrayOutput `pulumi:"networkInterfaces"`
-	// this block allows specifying the following attributes related to the _nvram_:
-	Nvram DomainNvramPtrOutput `pulumi:"nvram"`
+	Nvram             DomainNvramPtrOutput              `pulumi:"nvram"`
 	// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
 	QemuAgent pulumi.BoolPtrOutput `pulumi:"qemuAgent"`
 	// Use `false` to turn off the instance. If not specified,
@@ -252,51 +159,9 @@ type domainState struct {
 	// the domain. This is going to be attached as a CDROM ISO. Changing the
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
-	Cloudinit *string `pulumi:"cloudinit"`
-	// Arguments to the kernel
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(kernel.Id),
-	// 			Cmdlines: pulumi.MapArray{
-	// 				pulumi.Map{
-	// 					"arg1": pulumi.Any("value1"),
-	// 					"arg2": pulumi.Any("value2"),
-	// 					"_":    pulumi.Any("rw nosplash"),
-	// 				},
-	// 			},
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// Kernel params that don't have a keyword identifier can be specified using the
-	// special `"_"` keyword. Multiple keyword-less params have to be specified using
-	// the same `"_"` keyword, like in the example above.
-	//
-	// Also note that the `cmd` block is actually a list of maps, so it is possible to
-	// declare several of them by using either the literal list and map syntax as in
-	// the following examples:
-	Cmdlines []map[string]interface{} `pulumi:"cmdlines"`
-	Consoles []DomainConsole          `pulumi:"consoles"`
+	Cloudinit *string                  `pulumi:"cloudinit"`
+	Cmdlines  []map[string]interface{} `pulumi:"cmdlines"`
+	Consoles  []DomainConsole          `pulumi:"consoles"`
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -317,60 +182,12 @@ type domainState struct {
 	// the domain. The `filesystem` object structure is documented
 	// below.
 	Filesystems []DomainFilesystem `pulumi:"filesystems"`
-	// The UEFI rom images for exercising UEFI secure boot in a qemu
-	// environment. Users should usually specify one of the standard _Open Virtual Machine
-	// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-	// read-only.
-	Firmware *string `pulumi:"firmware"`
+	Firmware    *string            `pulumi:"firmware"`
 	// The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
 	FwCfgName *string         `pulumi:"fwCfgName"`
 	Graphics  *DomainGraphics `pulumi:"graphics"`
-	// The path of the initrd to boot.
-	//
-	// You can use it in the same way as the kernel.
-	Initrd *string `pulumi:"initrd"`
-	// The path of the kernel to boot
-	//
-	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-	// as they are local to the hypervisor.
-	//
-	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
-	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
-	// 			Name:   pulumi.String("kernel"),
-	// 			Pool:   pulumi.String("default"),
-	// 			Format: pulumi.String("raw"),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: kernel.ID(),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	Kernel *string `pulumi:"kernel"`
+	Initrd    *string         `pulumi:"initrd"`
+	Kernel    *string         `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
 	// defaults to the wrong machine type for your template
@@ -386,8 +203,7 @@ type domainState struct {
 	// attach to the domain. The `networkInterface` object structure is documented
 	// below.
 	NetworkInterfaces []DomainNetworkInterface `pulumi:"networkInterfaces"`
-	// this block allows specifying the following attributes related to the _nvram_:
-	Nvram *DomainNvram `pulumi:"nvram"`
+	Nvram             *DomainNvram             `pulumi:"nvram"`
 	// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
 	QemuAgent *bool `pulumi:"qemuAgent"`
 	// Use `false` to turn off the instance. If not specified,
@@ -419,50 +235,8 @@ type DomainState struct {
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrInput
-	// Arguments to the kernel
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(kernel.Id),
-	// 			Cmdlines: pulumi.MapArray{
-	// 				pulumi.Map{
-	// 					"arg1": pulumi.Any("value1"),
-	// 					"arg2": pulumi.Any("value2"),
-	// 					"_":    pulumi.Any("rw nosplash"),
-	// 				},
-	// 			},
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// Kernel params that don't have a keyword identifier can be specified using the
-	// special `"_"` keyword. Multiple keyword-less params have to be specified using
-	// the same `"_"` keyword, like in the example above.
-	//
-	// Also note that the `cmd` block is actually a list of maps, so it is possible to
-	// declare several of them by using either the literal list and map syntax as in
-	// the following examples:
-	Cmdlines pulumi.MapArrayInput
-	Consoles DomainConsoleArrayInput
+	Cmdlines  pulumi.MapArrayInput
+	Consoles  DomainConsoleArrayInput
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -483,60 +257,12 @@ type DomainState struct {
 	// the domain. The `filesystem` object structure is documented
 	// below.
 	Filesystems DomainFilesystemArrayInput
-	// The UEFI rom images for exercising UEFI secure boot in a qemu
-	// environment. Users should usually specify one of the standard _Open Virtual Machine
-	// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-	// read-only.
-	Firmware pulumi.StringPtrInput
+	Firmware    pulumi.StringPtrInput
 	// The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
 	FwCfgName pulumi.StringPtrInput
 	Graphics  DomainGraphicsPtrInput
-	// The path of the initrd to boot.
-	//
-	// You can use it in the same way as the kernel.
-	Initrd pulumi.StringPtrInput
-	// The path of the kernel to boot
-	//
-	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-	// as they are local to the hypervisor.
-	//
-	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
-	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
-	// 			Name:   pulumi.String("kernel"),
-	// 			Pool:   pulumi.String("default"),
-	// 			Format: pulumi.String("raw"),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: kernel.ID(),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	Kernel pulumi.StringPtrInput
+	Initrd    pulumi.StringPtrInput
+	Kernel    pulumi.StringPtrInput
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
 	// defaults to the wrong machine type for your template
@@ -552,8 +278,7 @@ type DomainState struct {
 	// attach to the domain. The `networkInterface` object structure is documented
 	// below.
 	NetworkInterfaces DomainNetworkInterfaceArrayInput
-	// this block allows specifying the following attributes related to the _nvram_:
-	Nvram DomainNvramPtrInput
+	Nvram             DomainNvramPtrInput
 	// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
 	QemuAgent pulumi.BoolPtrInput
 	// Use `false` to turn off the instance. If not specified,
@@ -588,51 +313,9 @@ type domainArgs struct {
 	// the domain. This is going to be attached as a CDROM ISO. Changing the
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
-	Cloudinit *string `pulumi:"cloudinit"`
-	// Arguments to the kernel
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(kernel.Id),
-	// 			Cmdlines: pulumi.MapArray{
-	// 				pulumi.Map{
-	// 					"arg1": pulumi.Any("value1"),
-	// 					"arg2": pulumi.Any("value2"),
-	// 					"_":    pulumi.Any("rw nosplash"),
-	// 				},
-	// 			},
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// Kernel params that don't have a keyword identifier can be specified using the
-	// special `"_"` keyword. Multiple keyword-less params have to be specified using
-	// the same `"_"` keyword, like in the example above.
-	//
-	// Also note that the `cmd` block is actually a list of maps, so it is possible to
-	// declare several of them by using either the literal list and map syntax as in
-	// the following examples:
-	Cmdlines []map[string]interface{} `pulumi:"cmdlines"`
-	Consoles []DomainConsole          `pulumi:"consoles"`
+	Cloudinit *string                  `pulumi:"cloudinit"`
+	Cmdlines  []map[string]interface{} `pulumi:"cmdlines"`
+	Consoles  []DomainConsole          `pulumi:"consoles"`
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -653,60 +336,12 @@ type domainArgs struct {
 	// the domain. The `filesystem` object structure is documented
 	// below.
 	Filesystems []DomainFilesystem `pulumi:"filesystems"`
-	// The UEFI rom images for exercising UEFI secure boot in a qemu
-	// environment. Users should usually specify one of the standard _Open Virtual Machine
-	// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-	// read-only.
-	Firmware *string `pulumi:"firmware"`
+	Firmware    *string            `pulumi:"firmware"`
 	// The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
 	FwCfgName *string         `pulumi:"fwCfgName"`
 	Graphics  *DomainGraphics `pulumi:"graphics"`
-	// The path of the initrd to boot.
-	//
-	// You can use it in the same way as the kernel.
-	Initrd *string `pulumi:"initrd"`
-	// The path of the kernel to boot
-	//
-	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-	// as they are local to the hypervisor.
-	//
-	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
-	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
-	// 			Name:   pulumi.String("kernel"),
-	// 			Pool:   pulumi.String("default"),
-	// 			Format: pulumi.String("raw"),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: kernel.ID(),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	Kernel *string `pulumi:"kernel"`
+	Initrd    *string         `pulumi:"initrd"`
+	Kernel    *string         `pulumi:"kernel"`
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
 	// defaults to the wrong machine type for your template
@@ -722,8 +357,7 @@ type domainArgs struct {
 	// attach to the domain. The `networkInterface` object structure is documented
 	// below.
 	NetworkInterfaces []DomainNetworkInterface `pulumi:"networkInterfaces"`
-	// this block allows specifying the following attributes related to the _nvram_:
-	Nvram *DomainNvram `pulumi:"nvram"`
+	Nvram             *DomainNvram             `pulumi:"nvram"`
 	// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
 	QemuAgent *bool `pulumi:"qemuAgent"`
 	// Use `false` to turn off the instance. If not specified,
@@ -756,50 +390,8 @@ type DomainArgs struct {
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrInput
-	// Arguments to the kernel
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: pulumi.Any(kernel.Id),
-	// 			Cmdlines: pulumi.MapArray{
-	// 				pulumi.Map{
-	// 					"arg1": pulumi.Any("value1"),
-	// 					"arg2": pulumi.Any("value2"),
-	// 					"_":    pulumi.Any("rw nosplash"),
-	// 				},
-	// 			},
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	//
-	// Kernel params that don't have a keyword identifier can be specified using the
-	// special `"_"` keyword. Multiple keyword-less params have to be specified using
-	// the same `"_"` keyword, like in the example above.
-	//
-	// Also note that the `cmd` block is actually a list of maps, so it is possible to
-	// declare several of them by using either the literal list and map syntax as in
-	// the following examples:
-	Cmdlines pulumi.MapArrayInput
-	Consoles DomainConsoleArrayInput
+	Cmdlines  pulumi.MapArrayInput
+	Consoles  DomainConsoleArrayInput
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -820,60 +412,12 @@ type DomainArgs struct {
 	// the domain. The `filesystem` object structure is documented
 	// below.
 	Filesystems DomainFilesystemArrayInput
-	// The UEFI rom images for exercising UEFI secure boot in a qemu
-	// environment. Users should usually specify one of the standard _Open Virtual Machine
-	// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-	// read-only.
-	Firmware pulumi.StringPtrInput
+	Firmware    pulumi.StringPtrInput
 	// The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
 	FwCfgName pulumi.StringPtrInput
 	Graphics  DomainGraphicsPtrInput
-	// The path of the initrd to boot.
-	//
-	// You can use it in the same way as the kernel.
-	Initrd pulumi.StringPtrInput
-	// The path of the kernel to boot
-	//
-	// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-	// as they are local to the hypervisor.
-	//
-	// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
-	// 			Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
-	// 			Name:   pulumi.String("kernel"),
-	// 			Pool:   pulumi.String("default"),
-	// 			Format: pulumi.String("raw"),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-	// 			Name:   pulumi.String("suse"),
-	// 			Memory: pulumi.Int(1024),
-	// 			Vcpu:   pulumi.Int(1),
-	// 			Kernel: kernel.ID(),
-	// 		})
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
-	Kernel pulumi.StringPtrInput
+	Initrd    pulumi.StringPtrInput
+	Kernel    pulumi.StringPtrInput
 	// The machine type,
 	// you normally won't need to set this unless you are running on a platform that
 	// defaults to the wrong machine type for your template
@@ -889,8 +433,7 @@ type DomainArgs struct {
 	// attach to the domain. The `networkInterface` object structure is documented
 	// below.
 	NetworkInterfaces DomainNetworkInterfaceArrayInput
-	// this block allows specifying the following attributes related to the _nvram_:
-	Nvram DomainNvramPtrInput
+	Nvram             DomainNvramPtrInput
 	// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
 	QemuAgent pulumi.BoolPtrInput
 	// Use `false` to turn off the instance. If not specified,
@@ -1020,51 +563,6 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Cloudinit }).(pulumi.StringPtrOutput)
 }
 
-// Arguments to the kernel
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-//				Name:   pulumi.String("suse"),
-//				Memory: pulumi.Int(1024),
-//				Vcpu:   pulumi.Int(1),
-//				Kernel: pulumi.Any(kernel.Id),
-//				Cmdlines: pulumi.MapArray{
-//					pulumi.Map{
-//						"arg1": pulumi.Any("value1"),
-//						"arg2": pulumi.Any("value2"),
-//						"_":    pulumi.Any("rw nosplash"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// Kernel params that don't have a keyword identifier can be specified using the
-// special `"_"` keyword. Multiple keyword-less params have to be specified using
-// the same `"_"` keyword, like in the example above.
-//
-// Also note that the `cmd` block is actually a list of maps, so it is possible to
-// declare several of them by using either the literal list and map syntax as in
-// the following examples:
 func (o DomainOutput) Cmdlines() pulumi.MapArrayOutput {
 	return o.ApplyT(func(v *Domain) pulumi.MapArrayOutput { return v.Cmdlines }).(pulumi.MapArrayOutput)
 }
@@ -1111,10 +609,6 @@ func (o DomainOutput) Filesystems() DomainFilesystemArrayOutput {
 	return o.ApplyT(func(v *Domain) DomainFilesystemArrayOutput { return v.Filesystems }).(DomainFilesystemArrayOutput)
 }
 
-// The UEFI rom images for exercising UEFI secure boot in a qemu
-// environment. Users should usually specify one of the standard _Open Virtual Machine
-// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-// read-only.
 func (o DomainOutput) Firmware() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Firmware }).(pulumi.StringPtrOutput)
 }
@@ -1128,57 +622,10 @@ func (o DomainOutput) Graphics() DomainGraphicsPtrOutput {
 	return o.ApplyT(func(v *Domain) DomainGraphicsPtrOutput { return v.Graphics }).(DomainGraphicsPtrOutput)
 }
 
-// The path of the initrd to boot.
-//
-// You can use it in the same way as the kernel.
 func (o DomainOutput) Initrd() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Initrd }).(pulumi.StringPtrOutput)
 }
 
-// The path of the kernel to boot
-//
-// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-// as they are local to the hypervisor.
-//
-// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kernel, err := libvirt.NewVolume(ctx, "kernel", &libvirt.VolumeArgs{
-//				Source: pulumi.String("http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux"),
-//				Name:   pulumi.String("kernel"),
-//				Pool:   pulumi.String("default"),
-//				Format: pulumi.String("raw"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = libvirt.NewDomain(ctx, "domain-suse", &libvirt.DomainArgs{
-//				Name:   pulumi.String("suse"),
-//				Memory: pulumi.Int(1024),
-//				Vcpu:   pulumi.Int(1),
-//				Kernel: kernel.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func (o DomainOutput) Kernel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Kernel }).(pulumi.StringPtrOutput)
 }
@@ -1213,7 +660,6 @@ func (o DomainOutput) NetworkInterfaces() DomainNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v *Domain) DomainNetworkInterfaceArrayOutput { return v.NetworkInterfaces }).(DomainNetworkInterfaceArrayOutput)
 }
 
-// this block allows specifying the following attributes related to the _nvram_:
 func (o DomainOutput) Nvram() DomainNvramPtrOutput {
 	return o.ApplyT(func(v *Domain) DomainNvramPtrOutput { return v.Nvram }).(DomainNvramPtrOutput)
 }

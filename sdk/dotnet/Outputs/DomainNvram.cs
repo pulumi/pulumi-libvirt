@@ -13,16 +13,7 @@ namespace Pulumi.Libvirt.Outputs
     [OutputType]
     public sealed class DomainNvram
     {
-        /// <summary>
-        /// The filename to use as the block device for this disk (read-only)
-        /// </summary>
         public readonly string File;
-        /// <summary>
-        /// path to the file used to override variables from the master NVRAM
-        /// store.
-        /// 
-        /// So you should typically use the firmware as this,
-        /// </summary>
         public readonly string? Template;
 
         [OutputConstructor]

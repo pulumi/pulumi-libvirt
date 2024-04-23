@@ -12,18 +12,9 @@ namespace Pulumi.Libvirt.Inputs
 
     public sealed class DomainNvramGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The filename to use as the block device for this disk (read-only)
-        /// </summary>
         [Input("file", required: true)]
         public Input<string> File { get; set; } = null!;
 
-        /// <summary>
-        /// path to the file used to override variables from the master NVRAM
-        /// store.
-        /// 
-        /// So you should typically use the firmware as this,
-        /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
 

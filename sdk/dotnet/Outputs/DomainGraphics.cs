@@ -27,7 +27,7 @@ namespace Pulumi.Libvirt.Outputs
         /// </summary>
         public readonly string? ListenType;
         /// <summary>
-        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        /// the type of graphics emulation (default is "spice")
         /// </summary>
         public readonly string? Type;
         /// <summary>

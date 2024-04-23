@@ -32,7 +32,7 @@ namespace Pulumi.Libvirt.Inputs
         public Input<string>? ListenType { get; set; }
 
         /// <summary>
-        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        /// the type of graphics emulation (default is "spice")
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -87,19 +87,9 @@ public class Network extends com.pulumi.resources.CustomResource {
     public Output<String> bridge() {
         return this.bridge;
     }
-    /**
-     * DHCP configuration.
-     * You need to use it in conjuction with the adresses variable.
-     * 
-     */
     @Export(name="dhcp", refs={NetworkDhcp.class}, tree="[0]")
     private Output<NetworkDhcp> dhcp;
 
-    /**
-     * @return DHCP configuration.
-     * You need to use it in conjuction with the adresses variable.
-     * 
-     */
     public Output<NetworkDhcp> dhcp() {
         return this.dhcp;
     }
@@ -117,19 +107,9 @@ public class Network extends com.pulumi.resources.CustomResource {
     public Output<NetworkDns> dns() {
         return this.dns;
     }
-    /**
-     * configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     * 
-     */
     @Export(name="dnsmasqOptions", refs={NetworkDnsmasqOptions.class}, tree="[0]")
     private Output</* @Nullable */ NetworkDnsmasqOptions> dnsmasqOptions;
 
-    /**
-     * @return configuration of Dnsmasq options for the network
-     * You need to provide a list of option name and value pairs.
-     * 
-     */
     public Output<Optional<NetworkDnsmasqOptions>> dnsmasqOptions() {
         return Codegen.optional(this.dnsmasqOptions);
     }

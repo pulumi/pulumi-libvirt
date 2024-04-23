@@ -41,11 +41,7 @@ class NetworkArgs:
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
-               You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
-        :param pulumi.Input['NetworkDnsmasqOptionsArgs'] dnsmasq_options: configuration of Dnsmasq options for the network
-               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
@@ -128,10 +124,6 @@ class NetworkArgs:
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input['NetworkDhcpArgs']]:
-        """
-        DHCP configuration. 
-        You need to use it in conjuction with the adresses variable.
-        """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
@@ -153,10 +145,6 @@ class NetworkArgs:
     @property
     @pulumi.getter(name="dnsmasqOptions")
     def dnsmasq_options(self) -> Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']]:
-        """
-        configuration of Dnsmasq options for the network
-        You need to provide a list of option name and value pairs.
-        """
         return pulumi.get(self, "dnsmasq_options")
 
     @dnsmasq_options.setter
@@ -265,11 +253,7 @@ class _NetworkState:
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input['NetworkDhcpArgs'] dhcp: DHCP configuration. 
-               You need to use it in conjuction with the adresses variable.
         :param pulumi.Input['NetworkDnsArgs'] dns: configuration of DNS specific settings for the network
-        :param pulumi.Input['NetworkDnsmasqOptionsArgs'] dnsmasq_options: configuration of Dnsmasq options for the network
-               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
@@ -352,10 +336,6 @@ class _NetworkState:
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input['NetworkDhcpArgs']]:
-        """
-        DHCP configuration. 
-        You need to use it in conjuction with the adresses variable.
-        """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
@@ -377,10 +357,6 @@ class _NetworkState:
     @property
     @pulumi.getter(name="dnsmasqOptions")
     def dnsmasq_options(self) -> Optional[pulumi.Input['NetworkDnsmasqOptionsArgs']]:
-        """
-        configuration of Dnsmasq options for the network
-        You need to provide a list of option name and value pairs.
-        """
         return pulumi.get(self, "dnsmasq_options")
 
     @dnsmasq_options.setter
@@ -496,11 +472,7 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
-               You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
-        :param pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']] dnsmasq_options: configuration of Dnsmasq options for the network
-               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
@@ -609,11 +581,7 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input[pulumi.InputType['NetworkDhcpArgs']] dhcp: DHCP configuration. 
-               You need to use it in conjuction with the adresses variable.
         :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
-        :param pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']] dnsmasq_options: configuration of Dnsmasq options for the network
-               You need to provide a list of option name and value pairs.
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
         :param pulumi.Input[int] mtu: The MTU to set for the underlying network interfaces. When
@@ -677,10 +645,6 @@ class Network(pulumi.CustomResource):
     @property
     @pulumi.getter
     def dhcp(self) -> pulumi.Output['outputs.NetworkDhcp']:
-        """
-        DHCP configuration. 
-        You need to use it in conjuction with the adresses variable.
-        """
         return pulumi.get(self, "dhcp")
 
     @property
@@ -694,10 +658,6 @@ class Network(pulumi.CustomResource):
     @property
     @pulumi.getter(name="dnsmasqOptions")
     def dnsmasq_options(self) -> pulumi.Output[Optional['outputs.NetworkDnsmasqOptions']]:
-        """
-        configuration of Dnsmasq options for the network
-        You need to provide a list of option name and value pairs.
-        """
         return pulumi.get(self, "dnsmasq_options")
 
     @property

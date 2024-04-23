@@ -15,7 +15,6 @@ namespace Pulumi.Libvirt
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +30,6 @@ namespace Pulumi.Libvirt
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [LibvirtResourceType("libvirt:index/domain:Domain")]
     public partial class Domain : global::Pulumi.CustomResource
@@ -66,47 +64,6 @@ namespace Pulumi.Libvirt
         [Output("cloudinit")]
         public Output<string?> Cloudinit { get; private set; } = null!;
 
-        /// <summary>
-        /// Arguments to the kernel
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Libvirt = Pulumi.Libvirt;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
-        ///     {
-        ///         Name = "suse",
-        ///         Memory = 1024,
-        ///         Vcpu = 1,
-        ///         Kernel = kernel.Id,
-        ///         Cmdlines = new[]
-        ///         {
-        ///             
-        ///             {
-        ///                 { "arg1", "value1" },
-        ///                 { "arg2", "value2" },
-        ///                 { "_", "rw nosplash" },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// Kernel params that don't have a keyword identifier can be specified using the
-        /// special `"_"` keyword. Multiple keyword-less params have to be specified using
-        /// the same `"_"` keyword, like in the example above.
-        /// 
-        /// Also note that the `cmd` block is actually a list of maps, so it is possible to
-        /// declare several of them by using either the literal list and map syntax as in
-        /// the following examples:
-        /// </summary>
         [Output("cmdlines")]
         public Output<ImmutableArray<ImmutableDictionary<string, object>>> Cmdlines { get; private set; } = null!;
 
@@ -157,12 +114,6 @@ namespace Pulumi.Libvirt
         [Output("filesystems")]
         public Output<ImmutableArray<Outputs.DomainFilesystem>> Filesystems { get; private set; } = null!;
 
-        /// <summary>
-        /// The UEFI rom images for exercising UEFI secure boot in a qemu
-        /// environment. Users should usually specify one of the standard _Open Virtual Machine
-        /// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-        /// read-only.
-        /// </summary>
         [Output("firmware")]
         public Output<string?> Firmware { get; private set; } = null!;
 
@@ -175,51 +126,9 @@ namespace Pulumi.Libvirt
         [Output("graphics")]
         public Output<Outputs.DomainGraphics?> Graphics { get; private set; } = null!;
 
-        /// <summary>
-        /// The path of the initrd to boot.
-        /// 
-        /// You can use it in the same way as the kernel.
-        /// </summary>
         [Output("initrd")]
         public Output<string?> Initrd { get; private set; } = null!;
 
-        /// <summary>
-        /// The path of the kernel to boot
-        /// 
-        /// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-        /// as they are local to the hypervisor.
-        /// 
-        /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Libvirt = Pulumi.Libvirt;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var kernel = new Libvirt.Volume("kernel", new()
-        ///     {
-        ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
-        ///         Name = "kernel",
-        ///         Pool = "default",
-        ///         Format = "raw",
-        ///     });
-        /// 
-        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
-        ///     {
-        ///         Name = "suse",
-        ///         Memory = 1024,
-        ///         Vcpu = 1,
-        ///         Kernel = kernel.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         [Output("kernel")]
         public Output<string?> Kernel { get; private set; } = null!;
 
@@ -256,9 +165,6 @@ namespace Pulumi.Libvirt
         [Output("networkInterfaces")]
         public Output<ImmutableArray<Outputs.DomainNetworkInterface>> NetworkInterfaces { get; private set; } = null!;
 
-        /// <summary>
-        /// this block allows specifying the following attributes related to the _nvram_:
-        /// </summary>
         [Output("nvram")]
         public Output<Outputs.DomainNvram?> Nvram { get; private set; } = null!;
 
@@ -384,48 +290,6 @@ namespace Pulumi.Libvirt
 
         [Input("cmdlines")]
         private InputList<ImmutableDictionary<string, object>>? _cmdlines;
-
-        /// <summary>
-        /// Arguments to the kernel
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Libvirt = Pulumi.Libvirt;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
-        ///     {
-        ///         Name = "suse",
-        ///         Memory = 1024,
-        ///         Vcpu = 1,
-        ///         Kernel = kernel.Id,
-        ///         Cmdlines = new[]
-        ///         {
-        ///             
-        ///             {
-        ///                 { "arg1", "value1" },
-        ///                 { "arg2", "value2" },
-        ///                 { "_", "rw nosplash" },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// Kernel params that don't have a keyword identifier can be specified using the
-        /// special `"_"` keyword. Multiple keyword-less params have to be specified using
-        /// the same `"_"` keyword, like in the example above.
-        /// 
-        /// Also note that the `cmd` block is actually a list of maps, so it is possible to
-        /// declare several of them by using either the literal list and map syntax as in
-        /// the following examples:
-        /// </summary>
         public InputList<ImmutableDictionary<string, object>> Cmdlines
         {
             get => _cmdlines ?? (_cmdlines = new InputList<ImmutableDictionary<string, object>>());
@@ -496,12 +360,6 @@ namespace Pulumi.Libvirt
             set => _filesystems = value;
         }
 
-        /// <summary>
-        /// The UEFI rom images for exercising UEFI secure boot in a qemu
-        /// environment. Users should usually specify one of the standard _Open Virtual Machine
-        /// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-        /// read-only.
-        /// </summary>
         [Input("firmware")]
         public Input<string>? Firmware { get; set; }
 
@@ -514,51 +372,9 @@ namespace Pulumi.Libvirt
         [Input("graphics")]
         public Input<Inputs.DomainGraphicsArgs>? Graphics { get; set; }
 
-        /// <summary>
-        /// The path of the initrd to boot.
-        /// 
-        /// You can use it in the same way as the kernel.
-        /// </summary>
         [Input("initrd")]
         public Input<string>? Initrd { get; set; }
 
-        /// <summary>
-        /// The path of the kernel to boot
-        /// 
-        /// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-        /// as they are local to the hypervisor.
-        /// 
-        /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Libvirt = Pulumi.Libvirt;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var kernel = new Libvirt.Volume("kernel", new()
-        ///     {
-        ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
-        ///         Name = "kernel",
-        ///         Pool = "default",
-        ///         Format = "raw",
-        ///     });
-        /// 
-        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
-        ///     {
-        ///         Name = "suse",
-        ///         Memory = 1024,
-        ///         Vcpu = 1,
-        ///         Kernel = kernel.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         [Input("kernel")]
         public Input<string>? Kernel { get; set; }
 
@@ -601,9 +417,6 @@ namespace Pulumi.Libvirt
             set => _networkInterfaces = value;
         }
 
-        /// <summary>
-        /// this block allows specifying the following attributes related to the _nvram_:
-        /// </summary>
         [Input("nvram")]
         public Input<Inputs.DomainNvramArgs>? Nvram { get; set; }
 
@@ -691,48 +504,6 @@ namespace Pulumi.Libvirt
 
         [Input("cmdlines")]
         private InputList<ImmutableDictionary<string, object>>? _cmdlines;
-
-        /// <summary>
-        /// Arguments to the kernel
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Libvirt = Pulumi.Libvirt;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
-        ///     {
-        ///         Name = "suse",
-        ///         Memory = 1024,
-        ///         Vcpu = 1,
-        ///         Kernel = kernel.Id,
-        ///         Cmdlines = new[]
-        ///         {
-        ///             
-        ///             {
-        ///                 { "arg1", "value1" },
-        ///                 { "arg2", "value2" },
-        ///                 { "_", "rw nosplash" },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// Kernel params that don't have a keyword identifier can be specified using the
-        /// special `"_"` keyword. Multiple keyword-less params have to be specified using
-        /// the same `"_"` keyword, like in the example above.
-        /// 
-        /// Also note that the `cmd` block is actually a list of maps, so it is possible to
-        /// declare several of them by using either the literal list and map syntax as in
-        /// the following examples:
-        /// </summary>
         public InputList<ImmutableDictionary<string, object>> Cmdlines
         {
             get => _cmdlines ?? (_cmdlines = new InputList<ImmutableDictionary<string, object>>());
@@ -803,12 +574,6 @@ namespace Pulumi.Libvirt
             set => _filesystems = value;
         }
 
-        /// <summary>
-        /// The UEFI rom images for exercising UEFI secure boot in a qemu
-        /// environment. Users should usually specify one of the standard _Open Virtual Machine
-        /// Firmware_ (_OVMF_) images available for their distributions. The file will be opened
-        /// read-only.
-        /// </summary>
         [Input("firmware")]
         public Input<string>? Firmware { get; set; }
 
@@ -821,51 +586,9 @@ namespace Pulumi.Libvirt
         [Input("graphics")]
         public Input<Inputs.DomainGraphicsGetArgs>? Graphics { get; set; }
 
-        /// <summary>
-        /// The path of the initrd to boot.
-        /// 
-        /// You can use it in the same way as the kernel.
-        /// </summary>
         [Input("initrd")]
         public Input<string>? Initrd { get; set; }
 
-        /// <summary>
-        /// The path of the kernel to boot
-        /// 
-        /// If you are using a qcow2 volume, you can pass the id of the volume (eg. `${libvirt_volume.kernel.id}`)
-        /// as they are local to the hypervisor.
-        /// 
-        /// Given that you can define a volume from a remote http file, this means, you can also have remote kernels.
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Libvirt = Pulumi.Libvirt;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var kernel = new Libvirt.Volume("kernel", new()
-        ///     {
-        ///         Source = "http://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/linux",
-        ///         Name = "kernel",
-        ///         Pool = "default",
-        ///         Format = "raw",
-        ///     });
-        /// 
-        ///     var domain_suse = new Libvirt.Domain("domain-suse", new()
-        ///     {
-        ///         Name = "suse",
-        ///         Memory = 1024,
-        ///         Vcpu = 1,
-        ///         Kernel = kernel.Id,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         [Input("kernel")]
         public Input<string>? Kernel { get; set; }
 
@@ -908,9 +631,6 @@ namespace Pulumi.Libvirt
             set => _networkInterfaces = value;
         }
 
-        /// <summary>
-        /// this block allows specifying the following attributes related to the _nvram_:
-        /// </summary>
         [Input("nvram")]
         public Input<Inputs.DomainNvramGetArgs>? Nvram { get; set; }
 
