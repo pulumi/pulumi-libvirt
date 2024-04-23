@@ -12,9 +12,6 @@ namespace Pulumi.Libvirt.Inputs
 
     public sealed class NetworkDhcpArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// when false, disable the DHCP server
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 

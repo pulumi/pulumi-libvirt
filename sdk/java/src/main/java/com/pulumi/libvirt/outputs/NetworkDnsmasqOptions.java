@@ -11,25 +11,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkDnsmasqOptions {
-    /**
-     * @return a Dnsmasq option entry block. You can have one or more of these
-     * blocks in your definition. You must specify `option_name` while `option_value` is
-     * optional to support value-less options.
-     * 
-     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
-     * 
-     */
     private @Nullable List<NetworkDnsmasqOptionsOption> options;
 
     private NetworkDnsmasqOptions() {}
-    /**
-     * @return a Dnsmasq option entry block. You can have one or more of these
-     * blocks in your definition. You must specify `option_name` while `option_value` is
-     * optional to support value-less options.
-     * 
-     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
-     * 
-     */
     public List<NetworkDnsmasqOptionsOption> options() {
         return this.options == null ? List.of() : this.options;
     }

@@ -11,17 +11,9 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkDhcp {
-    /**
-     * @return when false, disable the DHCP server
-     * 
-     */
     private @Nullable Boolean enabled;
 
     private NetworkDhcp() {}
-    /**
-     * @return when false, disable the DHCP server
-     * 
-     */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }

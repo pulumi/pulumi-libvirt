@@ -46,7 +46,7 @@ namespace Pulumi.Libvirt.Outputs
         /// </summary>
         public readonly string? TargetType;
         /// <summary>
-        /// The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
+        /// Console device type. Valid values are "pty" and "tcp".
         /// </summary>
         public readonly string Type;
 

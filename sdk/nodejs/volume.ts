@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as libvirt from "@pulumi/libvirt";
@@ -37,7 +36,6 @@ import * as utilities from "./utilities";
  *     }));
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **Tip:** when provisioning multiple domains using the same base image, create
  * a `libvirt.Volume` for the base image and then define the domain specific ones
