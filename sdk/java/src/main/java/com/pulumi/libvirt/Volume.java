@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,21 +48,21 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Base OS image to use to create a cluster of different
  *         // nodes
- *         var opensuseLeap = new Volume(&#34;opensuseLeap&#34;, VolumeArgs.builder()        
- *             .name(&#34;opensuse_leap&#34;)
- *             .source(&#34;http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2&#34;)
+ *         var opensuseLeap = new Volume("opensuseLeap", VolumeArgs.builder()        
+ *             .name("opensuse_leap")
+ *             .source("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
  *             .build());
  * 
- *         // volume to attach to the &#34;master&#34; domain as main disk
- *         var master = new Volume(&#34;master&#34;, VolumeArgs.builder()        
- *             .name(&#34;master.qcow2&#34;)
+ *         // volume to attach to the "master" domain as main disk
+ *         var master = new Volume("master", VolumeArgs.builder()        
+ *             .name("master.qcow2")
  *             .baseVolumeId(opensuseLeap.id())
  *             .build());
  * 
- *         // volumes to attach to the &#34;workers&#34; domains as main disk
- *         for (var i = 0; i &lt; workersCount; i++) {
- *             new Volume(&#34;worker-&#34; + i, VolumeArgs.builder()            
- *                 .name(String.format(&#34;worker_%s.qcow2&#34;, range.value()))
+ *         // volumes to attach to the "workers" domains as main disk
+ *         for (var i = 0; i < workersCount; i++) {
+ *             new Volume("worker-" + i, VolumeArgs.builder()            
+ *                 .name(String.format("worker_%s.qcow2", range.value()))
  *                 .baseVolumeId(opensuseLeap.id())
  *                 .build());
  * 
@@ -69,7 +70,8 @@ import javax.annotation.Nullable;
  * }
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &gt; **Tip:** when provisioning multiple domains using the same base image, create

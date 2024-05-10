@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,21 +50,22 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // A pool for all cluster volumes
- *         var cluster = new Pool(&#34;cluster&#34;, PoolArgs.builder()        
- *             .name(&#34;cluster&#34;)
- *             .type(&#34;dir&#34;)
- *             .path(&#34;/home/user/cluster_storage&#34;)
+ *         var cluster = new Pool("cluster", PoolArgs.builder()        
+ *             .name("cluster")
+ *             .type("dir")
+ *             .path("/home/user/cluster_storage")
  *             .build());
  * 
- *         var opensuseLeap = new Volume(&#34;opensuseLeap&#34;, VolumeArgs.builder()        
- *             .name(&#34;opensuse_leap&#34;)
+ *         var opensuseLeap = new Volume("opensuseLeap", VolumeArgs.builder()        
+ *             .name("opensuse_leap")
  *             .pool(cluster.name())
- *             .source(&#34;http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2&#34;)
+ *             .source("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
