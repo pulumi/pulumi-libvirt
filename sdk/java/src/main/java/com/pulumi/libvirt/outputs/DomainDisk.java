@@ -45,7 +45,8 @@ public final class DomainDisk {
      * a scsi controller, if not specified then a random wwn is generated for the disk
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -69,37 +70,38 @@ public final class DomainDisk {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var leap = new Volume(&#34;leap&#34;, VolumeArgs.builder()        
-     *             .name(&#34;leap&#34;)
-     *             .source(&#34;http://someurl/openSUSE_Leap-42.1.qcow2&#34;)
+     *         var leap = new Volume("leap", VolumeArgs.builder()        
+     *             .name("leap")
+     *             .source("http://someurl/openSUSE_Leap-42.1.qcow2")
      *             .build());
      * 
-     *         var mydisk = new Volume(&#34;mydisk&#34;, VolumeArgs.builder()        
-     *             .name(&#34;mydisk&#34;)
+     *         var mydisk = new Volume("mydisk", VolumeArgs.builder()        
+     *             .name("mydisk")
      *             .baseVolumeId(leap.id())
      *             .build());
      * 
-     *         var domain1 = new Domain(&#34;domain1&#34;, DomainArgs.builder()        
-     *             .name(&#34;domain1&#34;)
+     *         var domain1 = new Domain("domain1", DomainArgs.builder()        
+     *             .name("domain1")
      *             .disks(            
      *                 DomainDiskArgs.builder()
      *                     .volumeId(mydisk.id())
-     *                     .scsi(&#34;true&#34;)
+     *                     .scsi("true")
      *                     .build(),
      *                 DomainDiskArgs.builder()
-     *                     .url(&#34;http://foo.com/install.iso&#34;)
+     *                     .url("http://foo.com/install.iso")
      *                     .build(),
      *                 DomainDiskArgs.builder()
-     *                     .file(&#34;/absolute/path/to/disk.iso&#34;)
+     *                     .file("/absolute/path/to/disk.iso")
      *                     .build(),
      *                 DomainDiskArgs.builder()
-     *                     .blockDevice(&#34;/dev/mapper/36005076802810e55400000000000145f&#34;)
+     *                     .blockDevice("/dev/mapper/36005076802810e55400000000000145f")
      *                     .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Also note that the `disk` block is actually a list of maps, so it is possible to
@@ -153,7 +155,8 @@ public final class DomainDisk {
      * a scsi controller, if not specified then a random wwn is generated for the disk
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -177,37 +180,38 @@ public final class DomainDisk {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var leap = new Volume(&#34;leap&#34;, VolumeArgs.builder()        
-     *             .name(&#34;leap&#34;)
-     *             .source(&#34;http://someurl/openSUSE_Leap-42.1.qcow2&#34;)
+     *         var leap = new Volume("leap", VolumeArgs.builder()        
+     *             .name("leap")
+     *             .source("http://someurl/openSUSE_Leap-42.1.qcow2")
      *             .build());
      * 
-     *         var mydisk = new Volume(&#34;mydisk&#34;, VolumeArgs.builder()        
-     *             .name(&#34;mydisk&#34;)
+     *         var mydisk = new Volume("mydisk", VolumeArgs.builder()        
+     *             .name("mydisk")
      *             .baseVolumeId(leap.id())
      *             .build());
      * 
-     *         var domain1 = new Domain(&#34;domain1&#34;, DomainArgs.builder()        
-     *             .name(&#34;domain1&#34;)
+     *         var domain1 = new Domain("domain1", DomainArgs.builder()        
+     *             .name("domain1")
      *             .disks(            
      *                 DomainDiskArgs.builder()
      *                     .volumeId(mydisk.id())
-     *                     .scsi(&#34;true&#34;)
+     *                     .scsi("true")
      *                     .build(),
      *                 DomainDiskArgs.builder()
-     *                     .url(&#34;http://foo.com/install.iso&#34;)
+     *                     .url("http://foo.com/install.iso")
      *                     .build(),
      *                 DomainDiskArgs.builder()
-     *                     .file(&#34;/absolute/path/to/disk.iso&#34;)
+     *                     .file("/absolute/path/to/disk.iso")
      *                     .build(),
      *                 DomainDiskArgs.builder()
-     *                     .blockDevice(&#34;/dev/mapper/36005076802810e55400000000000145f&#34;)
+     *                     .blockDevice("/dev/mapper/36005076802810e55400000000000145f")
      *                     .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * Also note that the `disk` block is actually a list of maps, so it is possible to
