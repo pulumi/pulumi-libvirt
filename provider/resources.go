@@ -15,8 +15,11 @@
 package libvirt
 
 import (
+	"bytes"
 	"fmt"
 	"path/filepath"
+	"regexp"
+	"strings"
 	"unicode"
 
 	// embed is used to store bridge-metadata.json in the compiled binary
@@ -78,6 +81,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-libvirt",
 		GitHubOrg:   "dmacvicar",
+		DocRules:    &tfbridge.DocRuleInfo{EditRules: docRuleEdits},
 		Config: map[string]*tfbridge.SchemaInfo{
 			"uri": {
 				Default: &tfbridge.DefaultInfo{
@@ -168,3 +172,22 @@ func Provider() tfbridge.ProviderInfo {
 
 //go:embed cmd/pulumi-resource-libvirt/bridge-metadata.json
 var metadata []byte
+
+var networkModesRegexp = regexp.MustCompile("- `[a-z]*`: ")
+
+func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(defaults, tfbridge.DocsEdit{
+		Path: "network.markdown",
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			matches := networkModesRegexp.FindAllString(string(content), -1)
+			for _, match := range matches {
+				after := strings.ReplaceAll(match, "`", "\"")
+				content = bytes.ReplaceAll(content,
+					[]byte(match),
+					[]byte(after),
+				)
+			}
+			return content, nil
+		},
+	})
+}
