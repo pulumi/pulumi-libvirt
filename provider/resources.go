@@ -19,7 +19,6 @@ import (
 	"fmt"
 	"path/filepath"
 	"regexp"
-	"strings"
 	"unicode"
 
 	// embed is used to store bridge-metadata.json in the compiled binary
@@ -179,15 +178,11 @@ func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 	return append(defaults, tfbridge.DocsEdit{
 		Path: "network.markdown",
 		Edit: func(_ string, content []byte) ([]byte, error) {
-			matches := networkModesRegexp.FindAllString(string(content), -1)
-			for _, match := range matches {
-				after := strings.ReplaceAll(match, "`", "\"")
-				content = bytes.ReplaceAll(content,
-					[]byte(match),
-					[]byte(after),
-				)
-			}
-			return content, nil
+			return networkModesRegexp.ReplaceAllFunc(content,
+				func(src []byte) []byte {
+					return bytes.ReplaceAll(src,
+						[]byte("`"), []byte(`"`))
+				}), nil
 		},
 	})
 }
