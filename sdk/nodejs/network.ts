@@ -70,6 +70,23 @@ export class Network extends pulumi.CustomResource {
     public readonly domain!: pulumi.Output<string | undefined>;
     /**
      * One of:
+     * - "none": the guests can talk to each other and the host OS, but cannot reach
+     * any other machines on the LAN.
+     * - "nat": it is the default network mode. This is a configuration that
+     * allows guest OS to get outbound connectivity regardless of whether the host
+     * uses ethernet, wireless, dialup, or VPN networking without requiring any
+     * specific admin configuration. In the absence of host networking, it at
+     * least allows guests to talk directly to each other.
+     * - "route": this is a variant on the default network which routes traffic from
+     * the virtual network to the LAN **without applying any NAT**. It requires that
+     * the IP address range be pre-configured in the routing tables of the router
+     * on the host network.
+     * - "open": similar to `route`, but no firewall rules are added.
+     * - "bridge": use a pre-existing host bridge. The guests will effectively be
+     * directly connected to the physical network (i.e. their IP addresses will
+     * all be on the subnet of the physical network, and there will be no
+     * restrictions on inbound or outbound connections). The `bridge` network
+     * attribute is mandatory in this case.
      */
     public readonly mode!: pulumi.Output<string | undefined>;
     /**
@@ -171,6 +188,23 @@ export interface NetworkState {
     domain?: pulumi.Input<string>;
     /**
      * One of:
+     * - "none": the guests can talk to each other and the host OS, but cannot reach
+     * any other machines on the LAN.
+     * - "nat": it is the default network mode. This is a configuration that
+     * allows guest OS to get outbound connectivity regardless of whether the host
+     * uses ethernet, wireless, dialup, or VPN networking without requiring any
+     * specific admin configuration. In the absence of host networking, it at
+     * least allows guests to talk directly to each other.
+     * - "route": this is a variant on the default network which routes traffic from
+     * the virtual network to the LAN **without applying any NAT**. It requires that
+     * the IP address range be pre-configured in the routing tables of the router
+     * on the host network.
+     * - "open": similar to `route`, but no firewall rules are added.
+     * - "bridge": use a pre-existing host bridge. The guests will effectively be
+     * directly connected to the physical network (i.e. their IP addresses will
+     * all be on the subnet of the physical network, and there will be no
+     * restrictions on inbound or outbound connections). The `bridge` network
+     * attribute is mandatory in this case.
      */
     mode?: pulumi.Input<string>;
     /**
@@ -228,6 +262,23 @@ export interface NetworkArgs {
     domain?: pulumi.Input<string>;
     /**
      * One of:
+     * - "none": the guests can talk to each other and the host OS, but cannot reach
+     * any other machines on the LAN.
+     * - "nat": it is the default network mode. This is a configuration that
+     * allows guest OS to get outbound connectivity regardless of whether the host
+     * uses ethernet, wireless, dialup, or VPN networking without requiring any
+     * specific admin configuration. In the absence of host networking, it at
+     * least allows guests to talk directly to each other.
+     * - "route": this is a variant on the default network which routes traffic from
+     * the virtual network to the LAN **without applying any NAT**. It requires that
+     * the IP address range be pre-configured in the routing tables of the router
+     * on the host network.
+     * - "open": similar to `route`, but no firewall rules are added.
+     * - "bridge": use a pre-existing host bridge. The guests will effectively be
+     * directly connected to the physical network (i.e. their IP addresses will
+     * all be on the subnet of the physical network, and there will be no
+     * restrictions on inbound or outbound connections). The `bridge` network
+     * attribute is mandatory in this case.
      */
     mode?: pulumi.Input<string>;
     /**
