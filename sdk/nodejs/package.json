@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/libvirt",
-    "version": "${VERSION}",
+    "version": "1.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing libvirt cloud resources.",
     "keywords": [
         "pulumi",
@@ -22,6 +22,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "libvirt"
+        "name": "libvirt",
+        "version": "1.0.0-alpha.0+dev"
     }
 }
