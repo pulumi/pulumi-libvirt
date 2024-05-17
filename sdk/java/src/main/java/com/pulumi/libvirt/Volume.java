@@ -48,20 +48,20 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Base OS image to use to create a cluster of different
  *         // nodes
- *         var opensuseLeap = new Volume("opensuseLeap", VolumeArgs.builder()        
+ *         var opensuseLeap = new Volume("opensuseLeap", VolumeArgs.builder()
  *             .name("opensuse_leap")
  *             .source("http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2")
  *             .build());
  * 
  *         // volume to attach to the "master" domain as main disk
- *         var master = new Volume("master", VolumeArgs.builder()        
+ *         var master = new Volume("master", VolumeArgs.builder()
  *             .name("master.qcow2")
  *             .baseVolumeId(opensuseLeap.id())
  *             .build());
  * 
  *         // volumes to attach to the "workers" domains as main disk
  *         for (var i = 0; i < workersCount; i++) {
- *             new Volume("worker-" + i, VolumeArgs.builder()            
+ *             new Volume("worker-" + i, VolumeArgs.builder()
  *                 .name(String.format("worker_%s.qcow2", range.value()))
  *                 .baseVolumeId(opensuseLeap.id())
  *                 .build());
