@@ -70,17 +70,17 @@ public final class DomainDisk {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var leap = new Volume("leap", VolumeArgs.builder()        
+     *         var leap = new Volume("leap", VolumeArgs.builder()
      *             .name("leap")
      *             .source("http://someurl/openSUSE_Leap-42.1.qcow2")
      *             .build());
      * 
-     *         var mydisk = new Volume("mydisk", VolumeArgs.builder()        
+     *         var mydisk = new Volume("mydisk", VolumeArgs.builder()
      *             .name("mydisk")
      *             .baseVolumeId(leap.id())
      *             .build());
      * 
-     *         var domain1 = new Domain("domain1", DomainArgs.builder()        
+     *         var domain1 = new Domain("domain1", DomainArgs.builder()
      *             .name("domain1")
      *             .disks(            
      *                 DomainDiskArgs.builder()
@@ -180,17 +180,17 @@ public final class DomainDisk {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var leap = new Volume("leap", VolumeArgs.builder()        
+     *         var leap = new Volume("leap", VolumeArgs.builder()
      *             .name("leap")
      *             .source("http://someurl/openSUSE_Leap-42.1.qcow2")
      *             .build());
      * 
-     *         var mydisk = new Volume("mydisk", VolumeArgs.builder()        
+     *         var mydisk = new Volume("mydisk", VolumeArgs.builder()
      *             .name("mydisk")
      *             .baseVolumeId(leap.id())
      *             .build());
      * 
-     *         var domain1 = new Domain("domain1", DomainArgs.builder()        
+     *         var domain1 = new Domain("domain1", DomainArgs.builder()
      *             .name("domain1")
      *             .disks(            
      *                 DomainDiskArgs.builder()

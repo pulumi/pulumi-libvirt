@@ -121,9 +121,26 @@ export interface DomainDisk {
 }
 
 export interface DomainFilesystem {
+    /**
+     * specifies the security mode for accessing the source. By default
+     * the `mapped` mode is chosen.
+     */
     accessmode?: string;
+    /**
+     * enables exporting filesystem as a readonly mount for guest, by
+     * default read-only access is given.
+     *
+     * Example:
+     */
     readonly?: boolean;
+    /**
+     * the directory of the host to be shared with the guest.
+     */
     source: string;
+    /**
+     * an arbitrary string tag that is exported to the guest as a hint for
+     * where to mount the source.
+     */
     target: string;
 }
 
