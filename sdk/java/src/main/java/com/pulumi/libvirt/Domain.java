@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var default_ = new Domain("default", DomainArgs.builder()        
+ *         var default_ = new Domain("default", DomainArgs.builder()
  *             .name("test")
  *             .build());
  * 

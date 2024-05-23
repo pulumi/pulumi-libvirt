@@ -121,9 +121,26 @@ export interface DomainDisk {
 }
 
 export interface DomainFilesystem {
+    /**
+     * specifies the security mode for accessing the source. By default
+     * the `mapped` mode is chosen.
+     */
     accessmode?: pulumi.Input<string>;
+    /**
+     * enables exporting filesystem as a readonly mount for guest, by
+     * default read-only access is given.
+     *
+     * Example:
+     */
     readonly?: pulumi.Input<boolean>;
+    /**
+     * the directory of the host to be shared with the guest.
+     */
     source: pulumi.Input<string>;
+    /**
+     * an arbitrary string tag that is exported to the guest as a hint for
+     * where to mount the source.
+     */
     target: pulumi.Input<string>;
 }
 
