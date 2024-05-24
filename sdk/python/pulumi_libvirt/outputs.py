@@ -368,6 +368,17 @@ class DomainFilesystem(dict):
                  target: str,
                  accessmode: Optional[str] = None,
                  readonly: Optional[bool] = None):
+        """
+        :param str source: the directory of the host to be shared with the guest.
+        :param str target: an arbitrary string tag that is exported to the guest as a hint for
+               where to mount the source.
+        :param str accessmode: specifies the security mode for accessing the source. By default
+               the `mapped` mode is chosen.
+        :param bool readonly: enables exporting filesystem as a readonly mount for guest, by
+               default read-only access is given.
+               
+               Example:
+        """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
         if accessmode is not None:
@@ -378,21 +389,38 @@ class DomainFilesystem(dict):
     @property
     @pulumi.getter
     def source(self) -> str:
+        """
+        the directory of the host to be shared with the guest.
+        """
         return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
     def target(self) -> str:
+        """
+        an arbitrary string tag that is exported to the guest as a hint for
+        where to mount the source.
+        """
         return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
     def accessmode(self) -> Optional[str]:
+        """
+        specifies the security mode for accessing the source. By default
+        the `mapped` mode is chosen.
+        """
         return pulumi.get(self, "accessmode")
 
     @property
     @pulumi.getter
     def readonly(self) -> Optional[bool]:
+        """
+        enables exporting filesystem as a readonly mount for guest, by
+        default read-only access is given.
+
+        Example:
+        """
         return pulumi.get(self, "readonly")
 
 

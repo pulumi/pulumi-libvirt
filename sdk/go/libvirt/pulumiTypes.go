@@ -738,10 +738,19 @@ func (o DomainDiskArrayOutput) Index(i pulumi.IntInput) DomainDiskOutput {
 }
 
 type DomainFilesystem struct {
+	// specifies the security mode for accessing the source. By default
+	// the `mapped` mode is chosen.
 	Accessmode *string `pulumi:"accessmode"`
-	Readonly   *bool   `pulumi:"readonly"`
-	Source     string  `pulumi:"source"`
-	Target     string  `pulumi:"target"`
+	// enables exporting filesystem as a readonly mount for guest, by
+	// default read-only access is given.
+	//
+	// Example:
+	Readonly *bool `pulumi:"readonly"`
+	// the directory of the host to be shared with the guest.
+	Source string `pulumi:"source"`
+	// an arbitrary string tag that is exported to the guest as a hint for
+	// where to mount the source.
+	Target string `pulumi:"target"`
 }
 
 // DomainFilesystemInput is an input type that accepts DomainFilesystemArgs and DomainFilesystemOutput values.
@@ -756,10 +765,19 @@ type DomainFilesystemInput interface {
 }
 
 type DomainFilesystemArgs struct {
+	// specifies the security mode for accessing the source. By default
+	// the `mapped` mode is chosen.
 	Accessmode pulumi.StringPtrInput `pulumi:"accessmode"`
-	Readonly   pulumi.BoolPtrInput   `pulumi:"readonly"`
-	Source     pulumi.StringInput    `pulumi:"source"`
-	Target     pulumi.StringInput    `pulumi:"target"`
+	// enables exporting filesystem as a readonly mount for guest, by
+	// default read-only access is given.
+	//
+	// Example:
+	Readonly pulumi.BoolPtrInput `pulumi:"readonly"`
+	// the directory of the host to be shared with the guest.
+	Source pulumi.StringInput `pulumi:"source"`
+	// an arbitrary string tag that is exported to the guest as a hint for
+	// where to mount the source.
+	Target pulumi.StringInput `pulumi:"target"`
 }
 
 func (DomainFilesystemArgs) ElementType() reflect.Type {
@@ -813,18 +831,27 @@ func (o DomainFilesystemOutput) ToDomainFilesystemOutputWithContext(ctx context.
 	return o
 }
 
+// specifies the security mode for accessing the source. By default
+// the `mapped` mode is chosen.
 func (o DomainFilesystemOutput) Accessmode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *string { return v.Accessmode }).(pulumi.StringPtrOutput)
 }
 
+// enables exporting filesystem as a readonly mount for guest, by
+// default read-only access is given.
+//
+// Example:
 func (o DomainFilesystemOutput) Readonly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainFilesystem) *bool { return v.Readonly }).(pulumi.BoolPtrOutput)
 }
 
+// the directory of the host to be shared with the guest.
 func (o DomainFilesystemOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainFilesystem) string { return v.Source }).(pulumi.StringOutput)
 }
 
+// an arbitrary string tag that is exported to the guest as a hint for
+// where to mount the source.
 func (o DomainFilesystemOutput) Target() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainFilesystem) string { return v.Target }).(pulumi.StringOutput)
 }

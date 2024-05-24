@@ -379,6 +379,17 @@ class DomainFilesystemArgs:
                  target: pulumi.Input[str],
                  accessmode: Optional[pulumi.Input[str]] = None,
                  readonly: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] source: the directory of the host to be shared with the guest.
+        :param pulumi.Input[str] target: an arbitrary string tag that is exported to the guest as a hint for
+               where to mount the source.
+        :param pulumi.Input[str] accessmode: specifies the security mode for accessing the source. By default
+               the `mapped` mode is chosen.
+        :param pulumi.Input[bool] readonly: enables exporting filesystem as a readonly mount for guest, by
+               default read-only access is given.
+               
+               Example:
+        """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
         if accessmode is not None:
@@ -389,6 +400,9 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def source(self) -> pulumi.Input[str]:
+        """
+        the directory of the host to be shared with the guest.
+        """
         return pulumi.get(self, "source")
 
     @source.setter
@@ -398,6 +412,10 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def target(self) -> pulumi.Input[str]:
+        """
+        an arbitrary string tag that is exported to the guest as a hint for
+        where to mount the source.
+        """
         return pulumi.get(self, "target")
 
     @target.setter
@@ -407,6 +425,10 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def accessmode(self) -> Optional[pulumi.Input[str]]:
+        """
+        specifies the security mode for accessing the source. By default
+        the `mapped` mode is chosen.
+        """
         return pulumi.get(self, "accessmode")
 
     @accessmode.setter
@@ -416,6 +438,12 @@ class DomainFilesystemArgs:
     @property
     @pulumi.getter
     def readonly(self) -> Optional[pulumi.Input[bool]]:
+        """
+        enables exporting filesystem as a readonly mount for guest, by
+        default read-only access is given.
+
+        Example:
+        """
         return pulumi.get(self, "readonly")
 
     @readonly.setter
