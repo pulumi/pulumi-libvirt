@@ -224,19 +224,24 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "An IP address for this domain in this network.\n"
                 },
                 "bridge": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Provides a bridge from the VM directly to the LAN. This assumes\nthere is a bridge device on the host which has one or more of the hosts\nphysical NICs enslaved. The guest VM will have an associated _tun_ device\ncreated and enslaved to the bridge. The IP range / network configuration is\nwhatever is used on the LAN. This provides the guest VM full incoming \u0026\noutgoing net access just like a physical machine.\n"
                 },
                 "hostname": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A hostname that will be assigned to this domain\nresource in this network.\n"
                 },
                 "mac": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The specific MAC address to use for this interface.\n"
                 },
                 "macvtap": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Packets whose destination is on the same host as where they\noriginate from are directly delivered to the target macvtap device. Both\norigin and destination devices need to be in bridge mode for direct delivery.\nIf either one of them is in vepa mode, a VEPA capable bridge is required.\n"
                 },
                 "networkId": {
                     "type": "string"
@@ -245,13 +250,16 @@
                     "type": "string"
                 },
                 "passthrough": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "This feature attaches a virtual function of a SRIOV capable\nNIC directly to a VM without losing the migration capability. All packets are\nsent to the VF/IF of the configured network device. Depending on the\ncapabilities of the device additional prerequisites or limitations may apply;\nfor example, on Linux this requires kernel 2.6.38 or newer.\n\nExample of a `macvtap` interface:\n\n"
                 },
                 "vepa": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "All VMs' packets are sent to the external bridge. Packets whose\ndestination is a VM on the same host as where the packet originates from are\nsent back to the host by the VEPA capable bridge (today's bridges are\ntypically not VEPA capable).\n"
                 },
                 "waitForLease": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "When creating the domain resource, wait until the\nnetwork interface gets a DHCP lease from libvirt, so that the computed IP\naddresses will be available when the domain is up and the plan applied.\n\nWhen connecting to a LAN, users can specify a target device with:\n"
                 }
             },
             "type": "object",
@@ -275,6 +283,7 @@
                 },
                 "template": {
                     "type": "string",
+                    "description": "path to the file used to override variables from the master NVRAM\nstore.\n\nSo you should typically use the firmware as this,\n\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -339,7 +348,8 @@
         "libvirt:index/NetworkDhcp:NetworkDhcp": {
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "when false, disable the DHCP server\n"
                 }
             },
             "type": "object",
@@ -354,7 +364,8 @@
         "libvirt:index/NetworkDns:NetworkDns": {
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "when false, disable the DHCP server\n"
                 },
                 "forwarders": {
                     "type": "array",
@@ -451,7 +462,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/libvirt:index/NetworkDnsmasqOptionsOption:NetworkDnsmasqOptionsOption"
-                    }
+                    },
+                    "description": "a Dnsmasq option entry block. You can have one or more of these\nblocks in your definition. You must specify `option_name` while `option_value` is\noptional to support value-less options.\n\nAn example of setting Dnsmasq options (using Dnsmasq option templates) follows:\n\n"
                 }
             },
             "type": "object"
