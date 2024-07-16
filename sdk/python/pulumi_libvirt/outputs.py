@@ -562,6 +562,38 @@ class DomainNetworkInterface(dict):
                  passthrough: Optional[str] = None,
                  vepa: Optional[str] = None,
                  wait_for_lease: Optional[bool] = None):
+        """
+        :param Sequence[str] addresses: An IP address for this domain in this network.
+        :param str bridge: Provides a bridge from the VM directly to the LAN. This assumes
+               there is a bridge device on the host which has one or more of the hosts
+               physical NICs enslaved. The guest VM will have an associated _tun_ device
+               created and enslaved to the bridge. The IP range / network configuration is
+               whatever is used on the LAN. This provides the guest VM full incoming &
+               outgoing net access just like a physical machine.
+        :param str hostname: A hostname that will be assigned to this domain
+               resource in this network.
+        :param str mac: The specific MAC address to use for this interface.
+        :param str macvtap: Packets whose destination is on the same host as where they
+               originate from are directly delivered to the target macvtap device. Both
+               origin and destination devices need to be in bridge mode for direct delivery.
+               If either one of them is in vepa mode, a VEPA capable bridge is required.
+        :param str passthrough: This feature attaches a virtual function of a SRIOV capable
+               NIC directly to a VM without losing the migration capability. All packets are
+               sent to the VF/IF of the configured network device. Depending on the
+               capabilities of the device additional prerequisites or limitations may apply;
+               for example, on Linux this requires kernel 2.6.38 or newer.
+               
+               Example of a `macvtap` interface:
+        :param str vepa: All VMs' packets are sent to the external bridge. Packets whose
+               destination is a VM on the same host as where the packet originates from are
+               sent back to the host by the VEPA capable bridge (today's bridges are
+               typically not VEPA capable).
+        :param bool wait_for_lease: When creating the domain resource, wait until the
+               network interface gets a DHCP lease from libvirt, so that the computed IP
+               addresses will be available when the domain is up and the plan applied.
+               
+               When connecting to a LAN, users can specify a target device with:
+        """
         if addresses is not None:
             pulumi.set(__self__, "addresses", addresses)
         if bridge is not None:
@@ -586,26 +618,50 @@ class DomainNetworkInterface(dict):
     @property
     @pulumi.getter
     def addresses(self) -> Optional[Sequence[str]]:
+        """
+        An IP address for this domain in this network.
+        """
         return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter
     def bridge(self) -> Optional[str]:
+        """
+        Provides a bridge from the VM directly to the LAN. This assumes
+        there is a bridge device on the host which has one or more of the hosts
+        physical NICs enslaved. The guest VM will have an associated _tun_ device
+        created and enslaved to the bridge. The IP range / network configuration is
+        whatever is used on the LAN. This provides the guest VM full incoming &
+        outgoing net access just like a physical machine.
+        """
         return pulumi.get(self, "bridge")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
+        """
+        A hostname that will be assigned to this domain
+        resource in this network.
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def mac(self) -> Optional[str]:
+        """
+        The specific MAC address to use for this interface.
+        """
         return pulumi.get(self, "mac")
 
     @property
     @pulumi.getter
     def macvtap(self) -> Optional[str]:
+        """
+        Packets whose destination is on the same host as where they
+        originate from are directly delivered to the target macvtap device. Both
+        origin and destination devices need to be in bridge mode for direct delivery.
+        If either one of them is in vepa mode, a VEPA capable bridge is required.
+        """
         return pulumi.get(self, "macvtap")
 
     @property
@@ -621,16 +677,38 @@ class DomainNetworkInterface(dict):
     @property
     @pulumi.getter
     def passthrough(self) -> Optional[str]:
+        """
+        This feature attaches a virtual function of a SRIOV capable
+        NIC directly to a VM without losing the migration capability. All packets are
+        sent to the VF/IF of the configured network device. Depending on the
+        capabilities of the device additional prerequisites or limitations may apply;
+        for example, on Linux this requires kernel 2.6.38 or newer.
+
+        Example of a `macvtap` interface:
+        """
         return pulumi.get(self, "passthrough")
 
     @property
     @pulumi.getter
     def vepa(self) -> Optional[str]:
+        """
+        All VMs' packets are sent to the external bridge. Packets whose
+        destination is a VM on the same host as where the packet originates from are
+        sent back to the host by the VEPA capable bridge (today's bridges are
+        typically not VEPA capable).
+        """
         return pulumi.get(self, "vepa")
 
     @property
     @pulumi.getter(name="waitForLease")
     def wait_for_lease(self) -> Optional[bool]:
+        """
+        When creating the domain resource, wait until the
+        network interface gets a DHCP lease from libvirt, so that the computed IP
+        addresses will be available when the domain is up and the plan applied.
+
+        When connecting to a LAN, users can specify a target device with:
+        """
         return pulumi.get(self, "wait_for_lease")
 
 
@@ -639,6 +717,12 @@ class DomainNvram(dict):
     def __init__(__self__, *,
                  file: str,
                  template: Optional[str] = None):
+        """
+        :param str template: path to the file used to override variables from the master NVRAM
+               store.
+               
+               So you should typically use the firmware as this,
+        """
         pulumi.set(__self__, "file", file)
         if template is not None:
             pulumi.set(__self__, "template", template)
@@ -651,6 +735,12 @@ class DomainNvram(dict):
     @property
     @pulumi.getter
     def template(self) -> Optional[str]:
+        """
+        path to the file used to override variables from the master NVRAM
+        store.
+
+        So you should typically use the firmware as this,
+        """
         return pulumi.get(self, "template")
 
 
@@ -802,12 +892,18 @@ class DomainXml(dict):
 class NetworkDhcp(dict):
     def __init__(__self__, *,
                  enabled: Optional[bool] = None):
+        """
+        :param bool enabled: when false, disable the DHCP server
+        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
+        """
+        when false, disable the DHCP server
+        """
         return pulumi.get(self, "enabled")
 
 
@@ -837,6 +933,7 @@ class NetworkDns(dict):
                  local_only: Optional[bool] = None,
                  srvs: Optional[Sequence['outputs.NetworkDnsSrv']] = None):
         """
+        :param bool enabled: when false, disable the DHCP server
         :param Sequence['NetworkDnsForwarderArgs'] forwarders: Either `address`, `domain`, or both must be set
         :param Sequence['NetworkDnsHostArgs'] hosts: a DNS host entry block. You can have one or more of these
                blocks in your DNS definition. You must specify both `ip` and `hostname`.
@@ -860,6 +957,9 @@ class NetworkDns(dict):
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
+        """
+        when false, disable the DHCP server
+        """
         return pulumi.get(self, "enabled")
 
     @property
@@ -1018,12 +1118,26 @@ class NetworkDnsSrv(dict):
 class NetworkDnsmasqOptions(dict):
     def __init__(__self__, *,
                  options: Optional[Sequence['outputs.NetworkDnsmasqOptionsOption']] = None):
+        """
+        :param Sequence['NetworkDnsmasqOptionsOptionArgs'] options: a Dnsmasq option entry block. You can have one or more of these
+               blocks in your definition. You must specify `option_name` while `option_value` is
+               optional to support value-less options.
+               
+               An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+        """
         if options is not None:
             pulumi.set(__self__, "options", options)
 
     @property
     @pulumi.getter
     def options(self) -> Optional[Sequence['outputs.NetworkDnsmasqOptionsOption']]:
+        """
+        a Dnsmasq option entry block. You can have one or more of these
+        blocks in your definition. You must specify `option_name` while `option_value` is
+        optional to support value-less options.
+
+        An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+        """
         return pulumi.get(self, "options")
 
 

@@ -23,9 +23,23 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
         return this.file;
     }
 
+    /**
+     * path to the file used to override variables from the master NVRAM
+     * store.
+     * 
+     * So you should typically use the firmware as this,
+     * 
+     */
     @Import(name="template")
     private @Nullable Output<String> template;
 
+    /**
+     * @return path to the file used to override variables from the master NVRAM
+     * store.
+     * 
+     * So you should typically use the firmware as this,
+     * 
+     */
     public Optional<Output<String>> template() {
         return Optional.ofNullable(this.template);
     }
@@ -64,11 +78,29 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
             return file(Output.of(file));
         }
 
+        /**
+         * @param template path to the file used to override variables from the master NVRAM
+         * store.
+         * 
+         * So you should typically use the firmware as this,
+         * 
+         * @return builder
+         * 
+         */
         public Builder template(@Nullable Output<String> template) {
             $.template = template;
             return this;
         }
 
+        /**
+         * @param template path to the file used to override variables from the master NVRAM
+         * store.
+         * 
+         * So you should typically use the firmware as this,
+         * 
+         * @return builder
+         * 
+         */
         public Builder template(String template) {
             return template(Output.of(template));
         }

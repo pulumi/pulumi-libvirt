@@ -15,6 +15,12 @@ namespace Pulumi.Libvirt.Inputs
         [Input("file", required: true)]
         public Input<string> File { get; set; } = null!;
 
+        /// <summary>
+        /// path to the file used to override variables from the master NVRAM
+        /// store.
+        /// 
+        /// So you should typically use the firmware as this,
+        /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
 
