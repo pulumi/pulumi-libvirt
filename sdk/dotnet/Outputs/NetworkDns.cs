@@ -13,6 +13,9 @@ namespace Pulumi.Libvirt.Outputs
     [OutputType]
     public sealed class NetworkDns
     {
+        /// <summary>
+        /// when false, disable the DHCP server
+        /// </summary>
         public readonly bool? Enabled;
         /// <summary>
         /// Either `address`, `domain`, or both must be set

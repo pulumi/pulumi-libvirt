@@ -13,6 +13,9 @@ namespace Pulumi.Libvirt.Outputs
     [OutputType]
     public sealed class NetworkDhcp
     {
+        /// <summary>
+        /// when false, disable the DHCP server
+        /// </summary>
         public readonly bool? Enabled;
 
         [OutputConstructor]

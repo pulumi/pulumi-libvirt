@@ -15,9 +15,17 @@ public final class NetworkDhcpArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final NetworkDhcpArgs Empty = new NetworkDhcpArgs();
 
+    /**
+     * when false, disable the DHCP server
+     * 
+     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
+    /**
+     * @return when false, disable the DHCP server
+     * 
+     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
@@ -46,11 +54,23 @@ public final class NetworkDhcpArgs extends com.pulumi.resources.ResourceArgs {
             $ = new NetworkDhcpArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param enabled when false, disable the DHCP server
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled when false, disable the DHCP server
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
