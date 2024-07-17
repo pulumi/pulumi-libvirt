@@ -177,20 +177,72 @@ export interface DomainGraphics {
 }
 
 export interface DomainNetworkInterface {
+    /**
+     * An IP address for this domain in this network.
+     */
     addresses: string[];
+    /**
+     * Provides a bridge from the VM directly to the LAN. This assumes
+     * there is a bridge device on the host which has one or more of the hosts
+     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * created and enslaved to the bridge. The IP range / network configuration is
+     * whatever is used on the LAN. This provides the guest VM full incoming &
+     * outgoing net access just like a physical machine.
+     */
     bridge?: string;
+    /**
+     * A hostname that will be assigned to this domain
+     * resource in this network.
+     */
     hostname: string;
+    /**
+     * The specific MAC address to use for this interface.
+     */
     mac: string;
+    /**
+     * Packets whose destination is on the same host as where they
+     * originate from are directly delivered to the target macvtap device. Both
+     * origin and destination devices need to be in bridge mode for direct delivery.
+     * If either one of them is in vepa mode, a VEPA capable bridge is required.
+     */
     macvtap?: string;
     networkId: string;
     networkName: string;
+    /**
+     * This feature attaches a virtual function of a SRIOV capable
+     * NIC directly to a VM without losing the migration capability. All packets are
+     * sent to the VF/IF of the configured network device. Depending on the
+     * capabilities of the device additional prerequisites or limitations may apply;
+     * for example, on Linux this requires kernel 2.6.38 or newer.
+     *
+     * Example of a `macvtap` interface:
+     */
     passthrough?: string;
+    /**
+     * All VMs' packets are sent to the external bridge. Packets whose
+     * destination is a VM on the same host as where the packet originates from are
+     * sent back to the host by the VEPA capable bridge (today's bridges are
+     * typically not VEPA capable).
+     */
     vepa?: string;
+    /**
+     * When creating the domain resource, wait until the
+     * network interface gets a DHCP lease from libvirt, so that the computed IP
+     * addresses will be available when the domain is up and the plan applied.
+     *
+     * When connecting to a LAN, users can specify a target device with:
+     */
     waitForLease?: boolean;
 }
 
 export interface DomainNvram {
     file: string;
+    /**
+     * path to the file used to override variables from the master NVRAM
+     * store.
+     *
+     * So you should typically use the firmware as this,
+     */
     template?: string;
 }
 
@@ -237,10 +289,16 @@ export interface DomainXml {
 }
 
 export interface NetworkDhcp {
+    /**
+     * when false, disable the DHCP server
+     */
     enabled: boolean;
 }
 
 export interface NetworkDns {
+    /**
+     * when false, disable the DHCP server
+     */
     enabled?: boolean;
     /**
      * Either `address`, `domain`, or both must be set
@@ -291,6 +349,13 @@ export interface NetworkDnsSrv {
 }
 
 export interface NetworkDnsmasqOptions {
+    /**
+     * a Dnsmasq option entry block. You can have one or more of these
+     * blocks in your definition. You must specify `optionName` while `optionValue` is
+     * optional to support value-less options.
+     *
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+     */
     options?: outputs.NetworkDnsmasqOptionsOption[];
 }
 

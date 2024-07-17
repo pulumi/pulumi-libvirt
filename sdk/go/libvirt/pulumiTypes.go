@@ -1126,16 +1126,46 @@ func (o DomainGraphicsPtrOutput) Websocket() pulumi.IntPtrOutput {
 }
 
 type DomainNetworkInterface struct {
-	Addresses    []string `pulumi:"addresses"`
-	Bridge       *string  `pulumi:"bridge"`
-	Hostname     *string  `pulumi:"hostname"`
-	Mac          *string  `pulumi:"mac"`
-	Macvtap      *string  `pulumi:"macvtap"`
-	NetworkId    *string  `pulumi:"networkId"`
-	NetworkName  *string  `pulumi:"networkName"`
-	Passthrough  *string  `pulumi:"passthrough"`
-	Vepa         *string  `pulumi:"vepa"`
-	WaitForLease *bool    `pulumi:"waitForLease"`
+	// An IP address for this domain in this network.
+	Addresses []string `pulumi:"addresses"`
+	// Provides a bridge from the VM directly to the LAN. This assumes
+	// there is a bridge device on the host which has one or more of the hosts
+	// physical NICs enslaved. The guest VM will have an associated _tun_ device
+	// created and enslaved to the bridge. The IP range / network configuration is
+	// whatever is used on the LAN. This provides the guest VM full incoming &
+	// outgoing net access just like a physical machine.
+	Bridge *string `pulumi:"bridge"`
+	// A hostname that will be assigned to this domain
+	// resource in this network.
+	Hostname *string `pulumi:"hostname"`
+	// The specific MAC address to use for this interface.
+	Mac *string `pulumi:"mac"`
+	// Packets whose destination is on the same host as where they
+	// originate from are directly delivered to the target macvtap device. Both
+	// origin and destination devices need to be in bridge mode for direct delivery.
+	// If either one of them is in vepa mode, a VEPA capable bridge is required.
+	Macvtap     *string `pulumi:"macvtap"`
+	NetworkId   *string `pulumi:"networkId"`
+	NetworkName *string `pulumi:"networkName"`
+	// This feature attaches a virtual function of a SRIOV capable
+	// NIC directly to a VM without losing the migration capability. All packets are
+	// sent to the VF/IF of the configured network device. Depending on the
+	// capabilities of the device additional prerequisites or limitations may apply;
+	// for example, on Linux this requires kernel 2.6.38 or newer.
+	//
+	// Example of a `macvtap` interface:
+	Passthrough *string `pulumi:"passthrough"`
+	// All VMs' packets are sent to the external bridge. Packets whose
+	// destination is a VM on the same host as where the packet originates from are
+	// sent back to the host by the VEPA capable bridge (today's bridges are
+	// typically not VEPA capable).
+	Vepa *string `pulumi:"vepa"`
+	// When creating the domain resource, wait until the
+	// network interface gets a DHCP lease from libvirt, so that the computed IP
+	// addresses will be available when the domain is up and the plan applied.
+	//
+	// When connecting to a LAN, users can specify a target device with:
+	WaitForLease *bool `pulumi:"waitForLease"`
 }
 
 // DomainNetworkInterfaceInput is an input type that accepts DomainNetworkInterfaceArgs and DomainNetworkInterfaceOutput values.
@@ -1150,16 +1180,46 @@ type DomainNetworkInterfaceInput interface {
 }
 
 type DomainNetworkInterfaceArgs struct {
-	Addresses    pulumi.StringArrayInput `pulumi:"addresses"`
-	Bridge       pulumi.StringPtrInput   `pulumi:"bridge"`
-	Hostname     pulumi.StringPtrInput   `pulumi:"hostname"`
-	Mac          pulumi.StringPtrInput   `pulumi:"mac"`
-	Macvtap      pulumi.StringPtrInput   `pulumi:"macvtap"`
-	NetworkId    pulumi.StringPtrInput   `pulumi:"networkId"`
-	NetworkName  pulumi.StringPtrInput   `pulumi:"networkName"`
-	Passthrough  pulumi.StringPtrInput   `pulumi:"passthrough"`
-	Vepa         pulumi.StringPtrInput   `pulumi:"vepa"`
-	WaitForLease pulumi.BoolPtrInput     `pulumi:"waitForLease"`
+	// An IP address for this domain in this network.
+	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
+	// Provides a bridge from the VM directly to the LAN. This assumes
+	// there is a bridge device on the host which has one or more of the hosts
+	// physical NICs enslaved. The guest VM will have an associated _tun_ device
+	// created and enslaved to the bridge. The IP range / network configuration is
+	// whatever is used on the LAN. This provides the guest VM full incoming &
+	// outgoing net access just like a physical machine.
+	Bridge pulumi.StringPtrInput `pulumi:"bridge"`
+	// A hostname that will be assigned to this domain
+	// resource in this network.
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// The specific MAC address to use for this interface.
+	Mac pulumi.StringPtrInput `pulumi:"mac"`
+	// Packets whose destination is on the same host as where they
+	// originate from are directly delivered to the target macvtap device. Both
+	// origin and destination devices need to be in bridge mode for direct delivery.
+	// If either one of them is in vepa mode, a VEPA capable bridge is required.
+	Macvtap     pulumi.StringPtrInput `pulumi:"macvtap"`
+	NetworkId   pulumi.StringPtrInput `pulumi:"networkId"`
+	NetworkName pulumi.StringPtrInput `pulumi:"networkName"`
+	// This feature attaches a virtual function of a SRIOV capable
+	// NIC directly to a VM without losing the migration capability. All packets are
+	// sent to the VF/IF of the configured network device. Depending on the
+	// capabilities of the device additional prerequisites or limitations may apply;
+	// for example, on Linux this requires kernel 2.6.38 or newer.
+	//
+	// Example of a `macvtap` interface:
+	Passthrough pulumi.StringPtrInput `pulumi:"passthrough"`
+	// All VMs' packets are sent to the external bridge. Packets whose
+	// destination is a VM on the same host as where the packet originates from are
+	// sent back to the host by the VEPA capable bridge (today's bridges are
+	// typically not VEPA capable).
+	Vepa pulumi.StringPtrInput `pulumi:"vepa"`
+	// When creating the domain resource, wait until the
+	// network interface gets a DHCP lease from libvirt, so that the computed IP
+	// addresses will be available when the domain is up and the plan applied.
+	//
+	// When connecting to a LAN, users can specify a target device with:
+	WaitForLease pulumi.BoolPtrInput `pulumi:"waitForLease"`
 }
 
 func (DomainNetworkInterfaceArgs) ElementType() reflect.Type {
@@ -1213,22 +1273,36 @@ func (o DomainNetworkInterfaceOutput) ToDomainNetworkInterfaceOutputWithContext(
 	return o
 }
 
+// An IP address for this domain in this network.
 func (o DomainNetworkInterfaceOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
+// Provides a bridge from the VM directly to the LAN. This assumes
+// there is a bridge device on the host which has one or more of the hosts
+// physical NICs enslaved. The guest VM will have an associated _tun_ device
+// created and enslaved to the bridge. The IP range / network configuration is
+// whatever is used on the LAN. This provides the guest VM full incoming &
+// outgoing net access just like a physical machine.
 func (o DomainNetworkInterfaceOutput) Bridge() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Bridge }).(pulumi.StringPtrOutput)
 }
 
+// A hostname that will be assigned to this domain
+// resource in this network.
 func (o DomainNetworkInterfaceOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// The specific MAC address to use for this interface.
 func (o DomainNetworkInterfaceOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Mac }).(pulumi.StringPtrOutput)
 }
 
+// Packets whose destination is on the same host as where they
+// originate from are directly delivered to the target macvtap device. Both
+// origin and destination devices need to be in bridge mode for direct delivery.
+// If either one of them is in vepa mode, a VEPA capable bridge is required.
 func (o DomainNetworkInterfaceOutput) Macvtap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Macvtap }).(pulumi.StringPtrOutput)
 }
@@ -1241,14 +1315,30 @@ func (o DomainNetworkInterfaceOutput) NetworkName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.NetworkName }).(pulumi.StringPtrOutput)
 }
 
+// This feature attaches a virtual function of a SRIOV capable
+// NIC directly to a VM without losing the migration capability. All packets are
+// sent to the VF/IF of the configured network device. Depending on the
+// capabilities of the device additional prerequisites or limitations may apply;
+// for example, on Linux this requires kernel 2.6.38 or newer.
+//
+// Example of a `macvtap` interface:
 func (o DomainNetworkInterfaceOutput) Passthrough() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Passthrough }).(pulumi.StringPtrOutput)
 }
 
+// All VMs' packets are sent to the external bridge. Packets whose
+// destination is a VM on the same host as where the packet originates from are
+// sent back to the host by the VEPA capable bridge (today's bridges are
+// typically not VEPA capable).
 func (o DomainNetworkInterfaceOutput) Vepa() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *string { return v.Vepa }).(pulumi.StringPtrOutput)
 }
 
+// When creating the domain resource, wait until the
+// network interface gets a DHCP lease from libvirt, so that the computed IP
+// addresses will be available when the domain is up and the plan applied.
+//
+// When connecting to a LAN, users can specify a target device with:
 func (o DomainNetworkInterfaceOutput) WaitForLease() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DomainNetworkInterface) *bool { return v.WaitForLease }).(pulumi.BoolPtrOutput)
 }
@@ -1274,7 +1364,11 @@ func (o DomainNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) DomainNetwor
 }
 
 type DomainNvram struct {
-	File     string  `pulumi:"file"`
+	File string `pulumi:"file"`
+	// path to the file used to override variables from the master NVRAM
+	// store.
+	//
+	// So you should typically use the firmware as this,
 	Template *string `pulumi:"template"`
 }
 
@@ -1290,7 +1384,11 @@ type DomainNvramInput interface {
 }
 
 type DomainNvramArgs struct {
-	File     pulumi.StringInput    `pulumi:"file"`
+	File pulumi.StringInput `pulumi:"file"`
+	// path to the file used to override variables from the master NVRAM
+	// store.
+	//
+	// So you should typically use the firmware as this,
 	Template pulumi.StringPtrInput `pulumi:"template"`
 }
 
@@ -1375,6 +1473,10 @@ func (o DomainNvramOutput) File() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainNvram) string { return v.File }).(pulumi.StringOutput)
 }
 
+// path to the file used to override variables from the master NVRAM
+// store.
+//
+// So you should typically use the firmware as this,
 func (o DomainNvramOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DomainNvram) *string { return v.Template }).(pulumi.StringPtrOutput)
 }
@@ -1412,6 +1514,10 @@ func (o DomainNvramPtrOutput) File() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// path to the file used to override variables from the master NVRAM
+// store.
+//
+// So you should typically use the firmware as this,
 func (o DomainNvramPtrOutput) Template() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainNvram) *string {
 		if v == nil {
@@ -1940,6 +2046,7 @@ func (o DomainXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
 }
 
 type NetworkDhcp struct {
+	// when false, disable the DHCP server
 	Enabled *bool `pulumi:"enabled"`
 }
 
@@ -1955,6 +2062,7 @@ type NetworkDhcpInput interface {
 }
 
 type NetworkDhcpArgs struct {
+	// when false, disable the DHCP server
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
@@ -2035,6 +2143,7 @@ func (o NetworkDhcpOutput) ToNetworkDhcpPtrOutputWithContext(ctx context.Context
 	}).(NetworkDhcpPtrOutput)
 }
 
+// when false, disable the DHCP server
 func (o NetworkDhcpOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NetworkDhcp) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -2063,6 +2172,7 @@ func (o NetworkDhcpPtrOutput) Elem() NetworkDhcpOutput {
 	}).(NetworkDhcpOutput)
 }
 
+// when false, disable the DHCP server
 func (o NetworkDhcpPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NetworkDhcp) *bool {
 		if v == nil {
@@ -2073,6 +2183,7 @@ func (o NetworkDhcpPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 type NetworkDns struct {
+	// when false, disable the DHCP server
 	Enabled *bool `pulumi:"enabled"`
 	// Either `address`, `domain`, or both must be set
 	Forwarders []NetworkDnsForwarder `pulumi:"forwarders"`
@@ -2100,6 +2211,7 @@ type NetworkDnsInput interface {
 }
 
 type NetworkDnsArgs struct {
+	// when false, disable the DHCP server
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Either `address`, `domain`, or both must be set
 	Forwarders NetworkDnsForwarderArrayInput `pulumi:"forwarders"`
@@ -2192,6 +2304,7 @@ func (o NetworkDnsOutput) ToNetworkDnsPtrOutputWithContext(ctx context.Context) 
 	}).(NetworkDnsPtrOutput)
 }
 
+// when false, disable the DHCP server
 func (o NetworkDnsOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NetworkDns) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -2244,6 +2357,7 @@ func (o NetworkDnsPtrOutput) Elem() NetworkDnsOutput {
 	}).(NetworkDnsOutput)
 }
 
+// when false, disable the DHCP server
 func (o NetworkDnsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NetworkDns) *bool {
 		if v == nil {
@@ -2634,6 +2748,11 @@ func (o NetworkDnsSrvArrayOutput) Index(i pulumi.IntInput) NetworkDnsSrvOutput {
 }
 
 type NetworkDnsmasqOptions struct {
+	// a Dnsmasq option entry block. You can have one or more of these
+	// blocks in your definition. You must specify `optionName` while `optionValue` is
+	// optional to support value-less options.
+	//
+	// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 	Options []NetworkDnsmasqOptionsOption `pulumi:"options"`
 }
 
@@ -2649,6 +2768,11 @@ type NetworkDnsmasqOptionsInput interface {
 }
 
 type NetworkDnsmasqOptionsArgs struct {
+	// a Dnsmasq option entry block. You can have one or more of these
+	// blocks in your definition. You must specify `optionName` while `optionValue` is
+	// optional to support value-less options.
+	//
+	// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 	Options NetworkDnsmasqOptionsOptionArrayInput `pulumi:"options"`
 }
 
@@ -2729,6 +2853,11 @@ func (o NetworkDnsmasqOptionsOutput) ToNetworkDnsmasqOptionsPtrOutputWithContext
 	}).(NetworkDnsmasqOptionsPtrOutput)
 }
 
+// a Dnsmasq option entry block. You can have one or more of these
+// blocks in your definition. You must specify `optionName` while `optionValue` is
+// optional to support value-less options.
+//
+// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 func (o NetworkDnsmasqOptionsOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
 	return o.ApplyT(func(v NetworkDnsmasqOptions) []NetworkDnsmasqOptionsOption { return v.Options }).(NetworkDnsmasqOptionsOptionArrayOutput)
 }
@@ -2757,6 +2886,11 @@ func (o NetworkDnsmasqOptionsPtrOutput) Elem() NetworkDnsmasqOptionsOutput {
 	}).(NetworkDnsmasqOptionsOutput)
 }
 
+// a Dnsmasq option entry block. You can have one or more of these
+// blocks in your definition. You must specify `optionName` while `optionValue` is
+// optional to support value-less options.
+//
+// An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
 func (o NetworkDnsmasqOptionsPtrOutput) Options() NetworkDnsmasqOptionsOptionArrayOutput {
 	return o.ApplyT(func(v *NetworkDnsmasqOptions) []NetworkDnsmasqOptionsOption {
 		if v == nil {

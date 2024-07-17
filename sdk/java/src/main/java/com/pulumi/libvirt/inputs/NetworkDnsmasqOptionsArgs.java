@@ -16,9 +16,25 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
 
     public static final NetworkDnsmasqOptionsArgs Empty = new NetworkDnsmasqOptionsArgs();
 
+    /**
+     * a Dnsmasq option entry block. You can have one or more of these
+     * blocks in your definition. You must specify `option_name` while `option_value` is
+     * optional to support value-less options.
+     * 
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+     * 
+     */
     @Import(name="options")
     private @Nullable Output<List<NetworkDnsmasqOptionsOptionArgs>> options;
 
+    /**
+     * @return a Dnsmasq option entry block. You can have one or more of these
+     * blocks in your definition. You must specify `option_name` while `option_value` is
+     * optional to support value-less options.
+     * 
+     * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+     * 
+     */
     public Optional<Output<List<NetworkDnsmasqOptionsOptionArgs>>> options() {
         return Optional.ofNullable(this.options);
     }
@@ -47,15 +63,45 @@ public final class NetworkDnsmasqOptionsArgs extends com.pulumi.resources.Resour
             $ = new NetworkDnsmasqOptionsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param options a Dnsmasq option entry block. You can have one or more of these
+         * blocks in your definition. You must specify `option_name` while `option_value` is
+         * optional to support value-less options.
+         * 
+         * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+         * 
+         * @return builder
+         * 
+         */
         public Builder options(@Nullable Output<List<NetworkDnsmasqOptionsOptionArgs>> options) {
             $.options = options;
             return this;
         }
 
+        /**
+         * @param options a Dnsmasq option entry block. You can have one or more of these
+         * blocks in your definition. You must specify `option_name` while `option_value` is
+         * optional to support value-less options.
+         * 
+         * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+         * 
+         * @return builder
+         * 
+         */
         public Builder options(List<NetworkDnsmasqOptionsOptionArgs> options) {
             return options(Output.of(options));
         }
 
+        /**
+         * @param options a Dnsmasq option entry block. You can have one or more of these
+         * blocks in your definition. You must specify `option_name` while `option_value` is
+         * optional to support value-less options.
+         * 
+         * An example of setting Dnsmasq options (using Dnsmasq option templates) follows:
+         * 
+         * @return builder
+         * 
+         */
         public Builder options(NetworkDnsmasqOptionsOptionArgs... options) {
             return options(List.of(options));
         }

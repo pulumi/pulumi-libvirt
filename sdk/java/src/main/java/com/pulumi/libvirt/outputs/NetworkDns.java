@@ -15,6 +15,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NetworkDns {
+    /**
+     * @return when false, disable the DHCP server
+     * 
+     */
     private @Nullable Boolean enabled;
     /**
      * @return Either `address`, `domain`, or both must be set
@@ -42,6 +46,10 @@ public final class NetworkDns {
     private @Nullable List<NetworkDnsSrv> srvs;
 
     private NetworkDns() {}
+    /**
+     * @return when false, disable the DHCP server
+     * 
+     */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }

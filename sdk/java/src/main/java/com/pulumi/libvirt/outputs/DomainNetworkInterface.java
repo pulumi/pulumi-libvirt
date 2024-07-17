@@ -13,30 +13,113 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainNetworkInterface {
+    /**
+     * @return An IP address for this domain in this network.
+     * 
+     */
     private @Nullable List<String> addresses;
+    /**
+     * @return Provides a bridge from the VM directly to the LAN. This assumes
+     * there is a bridge device on the host which has one or more of the hosts
+     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * created and enslaved to the bridge. The IP range / network configuration is
+     * whatever is used on the LAN. This provides the guest VM full incoming &amp;
+     * outgoing net access just like a physical machine.
+     * 
+     */
     private @Nullable String bridge;
+    /**
+     * @return A hostname that will be assigned to this domain
+     * resource in this network.
+     * 
+     */
     private @Nullable String hostname;
+    /**
+     * @return The specific MAC address to use for this interface.
+     * 
+     */
     private @Nullable String mac;
+    /**
+     * @return Packets whose destination is on the same host as where they
+     * originate from are directly delivered to the target macvtap device. Both
+     * origin and destination devices need to be in bridge mode for direct delivery.
+     * If either one of them is in vepa mode, a VEPA capable bridge is required.
+     * 
+     */
     private @Nullable String macvtap;
     private @Nullable String networkId;
     private @Nullable String networkName;
+    /**
+     * @return This feature attaches a virtual function of a SRIOV capable
+     * NIC directly to a VM without losing the migration capability. All packets are
+     * sent to the VF/IF of the configured network device. Depending on the
+     * capabilities of the device additional prerequisites or limitations may apply;
+     * for example, on Linux this requires kernel 2.6.38 or newer.
+     * 
+     * Example of a `macvtap` interface:
+     * 
+     */
     private @Nullable String passthrough;
+    /**
+     * @return All VMs&#39; packets are sent to the external bridge. Packets whose
+     * destination is a VM on the same host as where the packet originates from are
+     * sent back to the host by the VEPA capable bridge (today&#39;s bridges are
+     * typically not VEPA capable).
+     * 
+     */
     private @Nullable String vepa;
+    /**
+     * @return When creating the domain resource, wait until the
+     * network interface gets a DHCP lease from libvirt, so that the computed IP
+     * addresses will be available when the domain is up and the plan applied.
+     * 
+     * When connecting to a LAN, users can specify a target device with:
+     * 
+     */
     private @Nullable Boolean waitForLease;
 
     private DomainNetworkInterface() {}
+    /**
+     * @return An IP address for this domain in this network.
+     * 
+     */
     public List<String> addresses() {
         return this.addresses == null ? List.of() : this.addresses;
     }
+    /**
+     * @return Provides a bridge from the VM directly to the LAN. This assumes
+     * there is a bridge device on the host which has one or more of the hosts
+     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * created and enslaved to the bridge. The IP range / network configuration is
+     * whatever is used on the LAN. This provides the guest VM full incoming &amp;
+     * outgoing net access just like a physical machine.
+     * 
+     */
     public Optional<String> bridge() {
         return Optional.ofNullable(this.bridge);
     }
+    /**
+     * @return A hostname that will be assigned to this domain
+     * resource in this network.
+     * 
+     */
     public Optional<String> hostname() {
         return Optional.ofNullable(this.hostname);
     }
+    /**
+     * @return The specific MAC address to use for this interface.
+     * 
+     */
     public Optional<String> mac() {
         return Optional.ofNullable(this.mac);
     }
+    /**
+     * @return Packets whose destination is on the same host as where they
+     * originate from are directly delivered to the target macvtap device. Both
+     * origin and destination devices need to be in bridge mode for direct delivery.
+     * If either one of them is in vepa mode, a VEPA capable bridge is required.
+     * 
+     */
     public Optional<String> macvtap() {
         return Optional.ofNullable(this.macvtap);
     }
@@ -46,12 +129,37 @@ public final class DomainNetworkInterface {
     public Optional<String> networkName() {
         return Optional.ofNullable(this.networkName);
     }
+    /**
+     * @return This feature attaches a virtual function of a SRIOV capable
+     * NIC directly to a VM without losing the migration capability. All packets are
+     * sent to the VF/IF of the configured network device. Depending on the
+     * capabilities of the device additional prerequisites or limitations may apply;
+     * for example, on Linux this requires kernel 2.6.38 or newer.
+     * 
+     * Example of a `macvtap` interface:
+     * 
+     */
     public Optional<String> passthrough() {
         return Optional.ofNullable(this.passthrough);
     }
+    /**
+     * @return All VMs&#39; packets are sent to the external bridge. Packets whose
+     * destination is a VM on the same host as where the packet originates from are
+     * sent back to the host by the VEPA capable bridge (today&#39;s bridges are
+     * typically not VEPA capable).
+     * 
+     */
     public Optional<String> vepa() {
         return Optional.ofNullable(this.vepa);
     }
+    /**
+     * @return When creating the domain resource, wait until the
+     * network interface gets a DHCP lease from libvirt, so that the computed IP
+     * addresses will be available when the domain is up and the plan applied.
+     * 
+     * When connecting to a LAN, users can specify a target device with:
+     * 
+     */
     public Optional<Boolean> waitForLease() {
         return Optional.ofNullable(this.waitForLease);
     }

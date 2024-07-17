@@ -14,6 +14,12 @@ namespace Pulumi.Libvirt.Outputs
     public sealed class DomainNvram
     {
         public readonly string File;
+        /// <summary>
+        /// path to the file used to override variables from the master NVRAM
+        /// store.
+        /// 
+        /// So you should typically use the firmware as this,
+        /// </summary>
         public readonly string? Template;
 
         [OutputConstructor]

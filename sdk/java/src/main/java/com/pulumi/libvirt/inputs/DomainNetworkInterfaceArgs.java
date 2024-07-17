@@ -17,37 +17,95 @@ public final class DomainNetworkInterfaceArgs extends com.pulumi.resources.Resou
 
     public static final DomainNetworkInterfaceArgs Empty = new DomainNetworkInterfaceArgs();
 
+    /**
+     * An IP address for this domain in this network.
+     * 
+     */
     @Import(name="addresses")
     private @Nullable Output<List<String>> addresses;
 
+    /**
+     * @return An IP address for this domain in this network.
+     * 
+     */
     public Optional<Output<List<String>>> addresses() {
         return Optional.ofNullable(this.addresses);
     }
 
+    /**
+     * Provides a bridge from the VM directly to the LAN. This assumes
+     * there is a bridge device on the host which has one or more of the hosts
+     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * created and enslaved to the bridge. The IP range / network configuration is
+     * whatever is used on the LAN. This provides the guest VM full incoming &amp;
+     * outgoing net access just like a physical machine.
+     * 
+     */
     @Import(name="bridge")
     private @Nullable Output<String> bridge;
 
+    /**
+     * @return Provides a bridge from the VM directly to the LAN. This assumes
+     * there is a bridge device on the host which has one or more of the hosts
+     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * created and enslaved to the bridge. The IP range / network configuration is
+     * whatever is used on the LAN. This provides the guest VM full incoming &amp;
+     * outgoing net access just like a physical machine.
+     * 
+     */
     public Optional<Output<String>> bridge() {
         return Optional.ofNullable(this.bridge);
     }
 
+    /**
+     * A hostname that will be assigned to this domain
+     * resource in this network.
+     * 
+     */
     @Import(name="hostname")
     private @Nullable Output<String> hostname;
 
+    /**
+     * @return A hostname that will be assigned to this domain
+     * resource in this network.
+     * 
+     */
     public Optional<Output<String>> hostname() {
         return Optional.ofNullable(this.hostname);
     }
 
+    /**
+     * The specific MAC address to use for this interface.
+     * 
+     */
     @Import(name="mac")
     private @Nullable Output<String> mac;
 
+    /**
+     * @return The specific MAC address to use for this interface.
+     * 
+     */
     public Optional<Output<String>> mac() {
         return Optional.ofNullable(this.mac);
     }
 
+    /**
+     * Packets whose destination is on the same host as where they
+     * originate from are directly delivered to the target macvtap device. Both
+     * origin and destination devices need to be in bridge mode for direct delivery.
+     * If either one of them is in vepa mode, a VEPA capable bridge is required.
+     * 
+     */
     @Import(name="macvtap")
     private @Nullable Output<String> macvtap;
 
+    /**
+     * @return Packets whose destination is on the same host as where they
+     * originate from are directly delivered to the target macvtap device. Both
+     * origin and destination devices need to be in bridge mode for direct delivery.
+     * If either one of them is in vepa mode, a VEPA capable bridge is required.
+     * 
+     */
     public Optional<Output<String>> macvtap() {
         return Optional.ofNullable(this.macvtap);
     }
@@ -66,23 +124,73 @@ public final class DomainNetworkInterfaceArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.networkName);
     }
 
+    /**
+     * This feature attaches a virtual function of a SRIOV capable
+     * NIC directly to a VM without losing the migration capability. All packets are
+     * sent to the VF/IF of the configured network device. Depending on the
+     * capabilities of the device additional prerequisites or limitations may apply;
+     * for example, on Linux this requires kernel 2.6.38 or newer.
+     * 
+     * Example of a `macvtap` interface:
+     * 
+     */
     @Import(name="passthrough")
     private @Nullable Output<String> passthrough;
 
+    /**
+     * @return This feature attaches a virtual function of a SRIOV capable
+     * NIC directly to a VM without losing the migration capability. All packets are
+     * sent to the VF/IF of the configured network device. Depending on the
+     * capabilities of the device additional prerequisites or limitations may apply;
+     * for example, on Linux this requires kernel 2.6.38 or newer.
+     * 
+     * Example of a `macvtap` interface:
+     * 
+     */
     public Optional<Output<String>> passthrough() {
         return Optional.ofNullable(this.passthrough);
     }
 
+    /**
+     * All VMs&#39; packets are sent to the external bridge. Packets whose
+     * destination is a VM on the same host as where the packet originates from are
+     * sent back to the host by the VEPA capable bridge (today&#39;s bridges are
+     * typically not VEPA capable).
+     * 
+     */
     @Import(name="vepa")
     private @Nullable Output<String> vepa;
 
+    /**
+     * @return All VMs&#39; packets are sent to the external bridge. Packets whose
+     * destination is a VM on the same host as where the packet originates from are
+     * sent back to the host by the VEPA capable bridge (today&#39;s bridges are
+     * typically not VEPA capable).
+     * 
+     */
     public Optional<Output<String>> vepa() {
         return Optional.ofNullable(this.vepa);
     }
 
+    /**
+     * When creating the domain resource, wait until the
+     * network interface gets a DHCP lease from libvirt, so that the computed IP
+     * addresses will be available when the domain is up and the plan applied.
+     * 
+     * When connecting to a LAN, users can specify a target device with:
+     * 
+     */
     @Import(name="waitForLease")
     private @Nullable Output<Boolean> waitForLease;
 
+    /**
+     * @return When creating the domain resource, wait until the
+     * network interface gets a DHCP lease from libvirt, so that the computed IP
+     * addresses will be available when the domain is up and the plan applied.
+     * 
+     * When connecting to a LAN, users can specify a target device with:
+     * 
+     */
     public Optional<Output<Boolean>> waitForLease() {
         return Optional.ofNullable(this.waitForLease);
     }
@@ -120,51 +228,135 @@ public final class DomainNetworkInterfaceArgs extends com.pulumi.resources.Resou
             $ = new DomainNetworkInterfaceArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param addresses An IP address for this domain in this network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addresses(@Nullable Output<List<String>> addresses) {
             $.addresses = addresses;
             return this;
         }
 
+        /**
+         * @param addresses An IP address for this domain in this network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addresses(List<String> addresses) {
             return addresses(Output.of(addresses));
         }
 
+        /**
+         * @param addresses An IP address for this domain in this network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addresses(String... addresses) {
             return addresses(List.of(addresses));
         }
 
+        /**
+         * @param bridge Provides a bridge from the VM directly to the LAN. This assumes
+         * there is a bridge device on the host which has one or more of the hosts
+         * physical NICs enslaved. The guest VM will have an associated _tun_ device
+         * created and enslaved to the bridge. The IP range / network configuration is
+         * whatever is used on the LAN. This provides the guest VM full incoming &amp;
+         * outgoing net access just like a physical machine.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bridge(@Nullable Output<String> bridge) {
             $.bridge = bridge;
             return this;
         }
 
+        /**
+         * @param bridge Provides a bridge from the VM directly to the LAN. This assumes
+         * there is a bridge device on the host which has one or more of the hosts
+         * physical NICs enslaved. The guest VM will have an associated _tun_ device
+         * created and enslaved to the bridge. The IP range / network configuration is
+         * whatever is used on the LAN. This provides the guest VM full incoming &amp;
+         * outgoing net access just like a physical machine.
+         * 
+         * @return builder
+         * 
+         */
         public Builder bridge(String bridge) {
             return bridge(Output.of(bridge));
         }
 
+        /**
+         * @param hostname A hostname that will be assigned to this domain
+         * resource in this network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder hostname(@Nullable Output<String> hostname) {
             $.hostname = hostname;
             return this;
         }
 
+        /**
+         * @param hostname A hostname that will be assigned to this domain
+         * resource in this network.
+         * 
+         * @return builder
+         * 
+         */
         public Builder hostname(String hostname) {
             return hostname(Output.of(hostname));
         }
 
+        /**
+         * @param mac The specific MAC address to use for this interface.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mac(@Nullable Output<String> mac) {
             $.mac = mac;
             return this;
         }
 
+        /**
+         * @param mac The specific MAC address to use for this interface.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mac(String mac) {
             return mac(Output.of(mac));
         }
 
+        /**
+         * @param macvtap Packets whose destination is on the same host as where they
+         * originate from are directly delivered to the target macvtap device. Both
+         * origin and destination devices need to be in bridge mode for direct delivery.
+         * If either one of them is in vepa mode, a VEPA capable bridge is required.
+         * 
+         * @return builder
+         * 
+         */
         public Builder macvtap(@Nullable Output<String> macvtap) {
             $.macvtap = macvtap;
             return this;
         }
 
+        /**
+         * @param macvtap Packets whose destination is on the same host as where they
+         * originate from are directly delivered to the target macvtap device. Both
+         * origin and destination devices need to be in bridge mode for direct delivery.
+         * If either one of them is in vepa mode, a VEPA capable bridge is required.
+         * 
+         * @return builder
+         * 
+         */
         public Builder macvtap(String macvtap) {
             return macvtap(Output.of(macvtap));
         }
@@ -187,29 +379,91 @@ public final class DomainNetworkInterfaceArgs extends com.pulumi.resources.Resou
             return networkName(Output.of(networkName));
         }
 
+        /**
+         * @param passthrough This feature attaches a virtual function of a SRIOV capable
+         * NIC directly to a VM without losing the migration capability. All packets are
+         * sent to the VF/IF of the configured network device. Depending on the
+         * capabilities of the device additional prerequisites or limitations may apply;
+         * for example, on Linux this requires kernel 2.6.38 or newer.
+         * 
+         * Example of a `macvtap` interface:
+         * 
+         * @return builder
+         * 
+         */
         public Builder passthrough(@Nullable Output<String> passthrough) {
             $.passthrough = passthrough;
             return this;
         }
 
+        /**
+         * @param passthrough This feature attaches a virtual function of a SRIOV capable
+         * NIC directly to a VM without losing the migration capability. All packets are
+         * sent to the VF/IF of the configured network device. Depending on the
+         * capabilities of the device additional prerequisites or limitations may apply;
+         * for example, on Linux this requires kernel 2.6.38 or newer.
+         * 
+         * Example of a `macvtap` interface:
+         * 
+         * @return builder
+         * 
+         */
         public Builder passthrough(String passthrough) {
             return passthrough(Output.of(passthrough));
         }
 
+        /**
+         * @param vepa All VMs&#39; packets are sent to the external bridge. Packets whose
+         * destination is a VM on the same host as where the packet originates from are
+         * sent back to the host by the VEPA capable bridge (today&#39;s bridges are
+         * typically not VEPA capable).
+         * 
+         * @return builder
+         * 
+         */
         public Builder vepa(@Nullable Output<String> vepa) {
             $.vepa = vepa;
             return this;
         }
 
+        /**
+         * @param vepa All VMs&#39; packets are sent to the external bridge. Packets whose
+         * destination is a VM on the same host as where the packet originates from are
+         * sent back to the host by the VEPA capable bridge (today&#39;s bridges are
+         * typically not VEPA capable).
+         * 
+         * @return builder
+         * 
+         */
         public Builder vepa(String vepa) {
             return vepa(Output.of(vepa));
         }
 
+        /**
+         * @param waitForLease When creating the domain resource, wait until the
+         * network interface gets a DHCP lease from libvirt, so that the computed IP
+         * addresses will be available when the domain is up and the plan applied.
+         * 
+         * When connecting to a LAN, users can specify a target device with:
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForLease(@Nullable Output<Boolean> waitForLease) {
             $.waitForLease = waitForLease;
             return this;
         }
 
+        /**
+         * @param waitForLease When creating the domain resource, wait until the
+         * network interface gets a DHCP lease from libvirt, so that the computed IP
+         * addresses will be available when the domain is up and the plan applied.
+         * 
+         * When connecting to a LAN, users can specify a target device with:
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForLease(Boolean waitForLease) {
             return waitForLease(Output.of(waitForLease));
         }
