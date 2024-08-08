@@ -235,7 +235,7 @@ class Pool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['PoolXmlArgs']]] = None,
+                 xml: Optional[pulumi.Input[Union['PoolXmlArgs', 'PoolXmlArgsDict']]] = None,
                  __props__=None):
         """
         Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on
@@ -317,7 +317,7 @@ class Pool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['PoolXmlArgs']]] = None,
+                 xml: Optional[pulumi.Input[Union['PoolXmlArgs', 'PoolXmlArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -352,7 +352,7 @@ class Pool(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            xml: Optional[pulumi.Input[pulumi.InputType['PoolXmlArgs']]] = None) -> 'Pool':
+            xml: Optional[pulumi.Input[Union['PoolXmlArgs', 'PoolXmlArgsDict']]] = None) -> 'Pool':
         """
         Get an existing Pool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
