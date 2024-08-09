@@ -1004,34 +1004,34 @@ class Domain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arch: Optional[pulumi.Input[str]] = None,
                  autostart: Optional[pulumi.Input[bool]] = None,
-                 boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainBootDeviceArgs']]]]] = None,
+                 boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]]] = None,
                  cloudinit: Optional[pulumi.Input[str]] = None,
                  cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
-                 consoles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainConsoleArgs']]]]] = None,
+                 consoles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainConsoleArgs', 'DomainConsoleArgsDict']]]]] = None,
                  coreos_ignition: Optional[pulumi.Input[str]] = None,
-                 cpu: Optional[pulumi.Input[pulumi.InputType['DomainCpuArgs']]] = None,
+                 cpu: Optional[pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainDiskArgs']]]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainDiskArgs', 'DomainDiskArgsDict']]]]] = None,
                  emulator: Optional[pulumi.Input[str]] = None,
-                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainFilesystemArgs']]]]] = None,
+                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainFilesystemArgs', 'DomainFilesystemArgsDict']]]]] = None,
                  firmware: Optional[pulumi.Input[str]] = None,
                  fw_cfg_name: Optional[pulumi.Input[str]] = None,
-                 graphics: Optional[pulumi.Input[pulumi.InputType['DomainGraphicsArgs']]] = None,
+                 graphics: Optional[pulumi.Input[Union['DomainGraphicsArgs', 'DomainGraphicsArgsDict']]] = None,
                  initrd: Optional[pulumi.Input[str]] = None,
                  kernel: Optional[pulumi.Input[str]] = None,
                  machine: Optional[pulumi.Input[str]] = None,
                  memory: Optional[pulumi.Input[int]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainNetworkInterfaceArgs']]]]] = None,
-                 nvram: Optional[pulumi.Input[pulumi.InputType['DomainNvramArgs']]] = None,
+                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainNetworkInterfaceArgs', 'DomainNetworkInterfaceArgsDict']]]]] = None,
+                 nvram: Optional[pulumi.Input[Union['DomainNvramArgs', 'DomainNvramArgsDict']]] = None,
                  qemu_agent: Optional[pulumi.Input[bool]] = None,
                  running: Optional[pulumi.Input[bool]] = None,
-                 tpm: Optional[pulumi.Input[pulumi.InputType['DomainTpmArgs']]] = None,
+                 tpm: Optional[pulumi.Input[Union['DomainTpmArgs', 'DomainTpmArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vcpu: Optional[pulumi.Input[int]] = None,
-                 video: Optional[pulumi.Input[pulumi.InputType['DomainVideoArgs']]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['DomainXmlArgs']]] = None,
+                 video: Optional[pulumi.Input[Union['DomainVideoArgs', 'DomainVideoArgsDict']]] = None,
+                 xml: Optional[pulumi.Input[Union['DomainXmlArgs', 'DomainXmlArgsDict']]] = None,
                  __props__=None):
         """
         Manages a VM domain resource within libvirt. For more information see
@@ -1052,7 +1052,7 @@ class Domain(pulumi.CustomResource):
                you normally won't need to set this unless you are building a special VM
         :param pulumi.Input[bool] autostart: Set to `true` to start the domain on host boot up.
                If not specified `false` is assumed.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainBootDeviceArgs']]]] boot_devices: A list of devices (dev) which defines boot order. Example
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]] boot_devices: A list of devices (dev) which defines boot order. Example
                below.
         :param pulumi.Input[str] cloudinit: The `CloudInitDisk` disk that has to be used by
                the domain. This is going to be attached as a CDROM ISO. Changing the
@@ -1061,15 +1061,15 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[str] coreos_ignition: The
                [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
                that is to be used by the CoreOS domain.
-        :param pulumi.Input[pulumi.InputType['DomainCpuArgs']] cpu: Configures CPU mode. See below for more
+        :param pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']] cpu: Configures CPU mode. See below for more
                details.
         :param pulumi.Input[str] description: The description for domain.
                Changing this forces a new resource to be created.
                This data is not used by libvirt in any way, it can contain any information the user wants.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainDiskArgs']]]] disks: An array of one or more disks to attach to the domain. The
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainDiskArgs', 'DomainDiskArgsDict']]]] disks: An array of one or more disks to attach to the domain. The
                `disk` object structure is documented below.
         :param pulumi.Input[str] emulator: The path of the emulator to use
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainFilesystemArgs']]]] filesystems: An array of one or more host filesystems to attach to
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainFilesystemArgs', 'DomainFilesystemArgsDict']]]] filesystems: An array of one or more host filesystems to attach to
                the domain. The `filesystem` object structure is documented
                below.
         :param pulumi.Input[str] fw_cfg_name: The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
@@ -1080,13 +1080,13 @@ class Domain(pulumi.CustomResource):
                will be created with 512 MiB of memory be used.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainNetworkInterfaceArgs']]]] network_interfaces: An array of one or more network interfaces to
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainNetworkInterfaceArgs', 'DomainNetworkInterfaceArgsDict']]]] network_interfaces: An array of one or more network interfaces to
                attach to the domain. The `network_interface` object structure is documented
                below.
         :param pulumi.Input[bool] qemu_agent: By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
         :param pulumi.Input[bool] running: Use `false` to turn off the instance. If not specified,
                true is assumed and the instance, if stopped, will be started at next apply.
-        :param pulumi.Input[pulumi.InputType['DomainTpmArgs']] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
+        :param pulumi.Input[Union['DomainTpmArgs', 'DomainTpmArgsDict']] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
         :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
@@ -1127,34 +1127,34 @@ class Domain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arch: Optional[pulumi.Input[str]] = None,
                  autostart: Optional[pulumi.Input[bool]] = None,
-                 boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainBootDeviceArgs']]]]] = None,
+                 boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]]] = None,
                  cloudinit: Optional[pulumi.Input[str]] = None,
                  cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
-                 consoles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainConsoleArgs']]]]] = None,
+                 consoles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainConsoleArgs', 'DomainConsoleArgsDict']]]]] = None,
                  coreos_ignition: Optional[pulumi.Input[str]] = None,
-                 cpu: Optional[pulumi.Input[pulumi.InputType['DomainCpuArgs']]] = None,
+                 cpu: Optional[pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainDiskArgs']]]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainDiskArgs', 'DomainDiskArgsDict']]]]] = None,
                  emulator: Optional[pulumi.Input[str]] = None,
-                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainFilesystemArgs']]]]] = None,
+                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainFilesystemArgs', 'DomainFilesystemArgsDict']]]]] = None,
                  firmware: Optional[pulumi.Input[str]] = None,
                  fw_cfg_name: Optional[pulumi.Input[str]] = None,
-                 graphics: Optional[pulumi.Input[pulumi.InputType['DomainGraphicsArgs']]] = None,
+                 graphics: Optional[pulumi.Input[Union['DomainGraphicsArgs', 'DomainGraphicsArgsDict']]] = None,
                  initrd: Optional[pulumi.Input[str]] = None,
                  kernel: Optional[pulumi.Input[str]] = None,
                  machine: Optional[pulumi.Input[str]] = None,
                  memory: Optional[pulumi.Input[int]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainNetworkInterfaceArgs']]]]] = None,
-                 nvram: Optional[pulumi.Input[pulumi.InputType['DomainNvramArgs']]] = None,
+                 network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainNetworkInterfaceArgs', 'DomainNetworkInterfaceArgsDict']]]]] = None,
+                 nvram: Optional[pulumi.Input[Union['DomainNvramArgs', 'DomainNvramArgsDict']]] = None,
                  qemu_agent: Optional[pulumi.Input[bool]] = None,
                  running: Optional[pulumi.Input[bool]] = None,
-                 tpm: Optional[pulumi.Input[pulumi.InputType['DomainTpmArgs']]] = None,
+                 tpm: Optional[pulumi.Input[Union['DomainTpmArgs', 'DomainTpmArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vcpu: Optional[pulumi.Input[int]] = None,
-                 video: Optional[pulumi.Input[pulumi.InputType['DomainVideoArgs']]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['DomainXmlArgs']]] = None,
+                 video: Optional[pulumi.Input[Union['DomainVideoArgs', 'DomainVideoArgsDict']]] = None,
+                 xml: Optional[pulumi.Input[Union['DomainXmlArgs', 'DomainXmlArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1206,34 +1206,34 @@ class Domain(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             arch: Optional[pulumi.Input[str]] = None,
             autostart: Optional[pulumi.Input[bool]] = None,
-            boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainBootDeviceArgs']]]]] = None,
+            boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]]] = None,
             cloudinit: Optional[pulumi.Input[str]] = None,
             cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
-            consoles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainConsoleArgs']]]]] = None,
+            consoles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainConsoleArgs', 'DomainConsoleArgsDict']]]]] = None,
             coreos_ignition: Optional[pulumi.Input[str]] = None,
-            cpu: Optional[pulumi.Input[pulumi.InputType['DomainCpuArgs']]] = None,
+            cpu: Optional[pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainDiskArgs']]]]] = None,
+            disks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainDiskArgs', 'DomainDiskArgsDict']]]]] = None,
             emulator: Optional[pulumi.Input[str]] = None,
-            filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainFilesystemArgs']]]]] = None,
+            filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainFilesystemArgs', 'DomainFilesystemArgsDict']]]]] = None,
             firmware: Optional[pulumi.Input[str]] = None,
             fw_cfg_name: Optional[pulumi.Input[str]] = None,
-            graphics: Optional[pulumi.Input[pulumi.InputType['DomainGraphicsArgs']]] = None,
+            graphics: Optional[pulumi.Input[Union['DomainGraphicsArgs', 'DomainGraphicsArgsDict']]] = None,
             initrd: Optional[pulumi.Input[str]] = None,
             kernel: Optional[pulumi.Input[str]] = None,
             machine: Optional[pulumi.Input[str]] = None,
             memory: Optional[pulumi.Input[int]] = None,
             metadata: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainNetworkInterfaceArgs']]]]] = None,
-            nvram: Optional[pulumi.Input[pulumi.InputType['DomainNvramArgs']]] = None,
+            network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainNetworkInterfaceArgs', 'DomainNetworkInterfaceArgsDict']]]]] = None,
+            nvram: Optional[pulumi.Input[Union['DomainNvramArgs', 'DomainNvramArgsDict']]] = None,
             qemu_agent: Optional[pulumi.Input[bool]] = None,
             running: Optional[pulumi.Input[bool]] = None,
-            tpm: Optional[pulumi.Input[pulumi.InputType['DomainTpmArgs']]] = None,
+            tpm: Optional[pulumi.Input[Union['DomainTpmArgs', 'DomainTpmArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vcpu: Optional[pulumi.Input[int]] = None,
-            video: Optional[pulumi.Input[pulumi.InputType['DomainVideoArgs']]] = None,
-            xml: Optional[pulumi.Input[pulumi.InputType['DomainXmlArgs']]] = None) -> 'Domain':
+            video: Optional[pulumi.Input[Union['DomainVideoArgs', 'DomainVideoArgsDict']]] = None,
+            xml: Optional[pulumi.Input[Union['DomainXmlArgs', 'DomainXmlArgsDict']]] = None) -> 'Domain':
         """
         Get an existing Domain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1245,7 +1245,7 @@ class Domain(pulumi.CustomResource):
                you normally won't need to set this unless you are building a special VM
         :param pulumi.Input[bool] autostart: Set to `true` to start the domain on host boot up.
                If not specified `false` is assumed.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainBootDeviceArgs']]]] boot_devices: A list of devices (dev) which defines boot order. Example
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]] boot_devices: A list of devices (dev) which defines boot order. Example
                below.
         :param pulumi.Input[str] cloudinit: The `CloudInitDisk` disk that has to be used by
                the domain. This is going to be attached as a CDROM ISO. Changing the
@@ -1254,15 +1254,15 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[str] coreos_ignition: The
                [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
                that is to be used by the CoreOS domain.
-        :param pulumi.Input[pulumi.InputType['DomainCpuArgs']] cpu: Configures CPU mode. See below for more
+        :param pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']] cpu: Configures CPU mode. See below for more
                details.
         :param pulumi.Input[str] description: The description for domain.
                Changing this forces a new resource to be created.
                This data is not used by libvirt in any way, it can contain any information the user wants.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainDiskArgs']]]] disks: An array of one or more disks to attach to the domain. The
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainDiskArgs', 'DomainDiskArgsDict']]]] disks: An array of one or more disks to attach to the domain. The
                `disk` object structure is documented below.
         :param pulumi.Input[str] emulator: The path of the emulator to use
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainFilesystemArgs']]]] filesystems: An array of one or more host filesystems to attach to
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainFilesystemArgs', 'DomainFilesystemArgsDict']]]] filesystems: An array of one or more host filesystems to attach to
                the domain. The `filesystem` object structure is documented
                below.
         :param pulumi.Input[str] fw_cfg_name: The name of the firmware config path where ignition file is stored: default is `opt/com.coreos/config`. If you are using [Flatcar Linux](https://docs.flatcar-linux.org/os/booting-with-libvirt/#creating-the-domain-xml), the value is `opt/org.flatcar-linux/config`.
@@ -1273,13 +1273,13 @@ class Domain(pulumi.CustomResource):
                will be created with 512 MiB of memory be used.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomainNetworkInterfaceArgs']]]] network_interfaces: An array of one or more network interfaces to
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainNetworkInterfaceArgs', 'DomainNetworkInterfaceArgsDict']]]] network_interfaces: An array of one or more network interfaces to
                attach to the domain. The `network_interface` object structure is documented
                below.
         :param pulumi.Input[bool] qemu_agent: By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
         :param pulumi.Input[bool] running: Use `false` to turn off the instance. If not specified,
                true is assumed and the instance, if stopped, will be started at next apply.
-        :param pulumi.Input[pulumi.InputType['DomainTpmArgs']] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
+        :param pulumi.Input[Union['DomainTpmArgs', 'DomainTpmArgsDict']] tpm: TPM device to attach to the domain. The `tpm` object structure is documented below.
         :param pulumi.Input[str] type: The type of hypervisor to use for the domain.  Defaults to `kvm`, other values can be found [here](https://libvirt.org/formatdomain.html#id1)
         :param pulumi.Input[int] vcpu: The amount of virtual CPUs. If not specified, a single CPU
                will be created.
