@@ -57,7 +57,7 @@ public class Ignition extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Ignition(String name) {
+    public Ignition(java.lang.String name) {
         this(name, IgnitionArgs.Empty);
     }
     /**
@@ -65,7 +65,7 @@ public class Ignition extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Ignition(String name, IgnitionArgs args) {
+    public Ignition(java.lang.String name, IgnitionArgs args) {
         this(name, args, null);
     }
     /**
@@ -74,15 +74,22 @@ public class Ignition extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Ignition(String name, IgnitionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("libvirt:index/ignition:Ignition", name, args == null ? IgnitionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Ignition(java.lang.String name, IgnitionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("libvirt:index/ignition:Ignition", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Ignition(String name, Output<String> id, @Nullable IgnitionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("libvirt:index/ignition:Ignition", name, state, makeResourceOptions(options, id));
+    private Ignition(java.lang.String name, Output<java.lang.String> id, @Nullable IgnitionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("libvirt:index/ignition:Ignition", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static IgnitionArgs makeArgs(IgnitionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? IgnitionArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -98,7 +105,7 @@ public class Ignition extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Ignition get(String name, Output<String> id, @Nullable IgnitionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Ignition get(java.lang.String name, Output<java.lang.String> id, @Nullable IgnitionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Ignition(name, id, state, options);
     }
 }

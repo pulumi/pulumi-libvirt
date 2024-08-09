@@ -513,15 +513,15 @@ class Network(pulumi.CustomResource):
                  addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  autostart: Optional[pulumi.Input[bool]] = None,
                  bridge: Optional[pulumi.Input[str]] = None,
-                 dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
-                 dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
-                 dnsmasq_options: Optional[pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']]] = None,
+                 dhcp: Optional[pulumi.Input[Union['NetworkDhcpArgs', 'NetworkDhcpArgsDict']]] = None,
+                 dns: Optional[pulumi.Input[Union['NetworkDnsArgs', 'NetworkDnsArgsDict']]] = None,
+                 dnsmasq_options: Optional[pulumi.Input[Union['NetworkDnsmasqOptionsArgs', 'NetworkDnsmasqOptionsArgsDict']]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mtu: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['NetworkXmlArgs']]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NetworkRouteArgs', 'NetworkRouteArgsDict']]]]] = None,
+                 xml: Optional[pulumi.Input[Union['NetworkXmlArgs', 'NetworkXmlArgsDict']]] = None,
                  __props__=None):
         """
         Manages a VM network resource within libvirt. For more information see
@@ -540,7 +540,7 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input[Union['NetworkDnsArgs', 'NetworkDnsArgsDict']] dns: configuration of DNS specific settings for the network
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
                - "none": the guests can talk to each other and the host OS, but cannot reach
@@ -565,7 +565,7 @@ class Network(pulumi.CustomResource):
                Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]] routes: a list of static routes. A `cidr` and a `gateway` must
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NetworkRouteArgs', 'NetworkRouteArgsDict']]]] routes: a list of static routes. A `cidr` and a `gateway` must
                be provided. The `gateway` must be reachable via the bridge interface.
         """
         ...
@@ -596,15 +596,15 @@ class Network(pulumi.CustomResource):
                  addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  autostart: Optional[pulumi.Input[bool]] = None,
                  bridge: Optional[pulumi.Input[str]] = None,
-                 dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
-                 dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
-                 dnsmasq_options: Optional[pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']]] = None,
+                 dhcp: Optional[pulumi.Input[Union['NetworkDhcpArgs', 'NetworkDhcpArgsDict']]] = None,
+                 dns: Optional[pulumi.Input[Union['NetworkDnsArgs', 'NetworkDnsArgsDict']]] = None,
+                 dnsmasq_options: Optional[pulumi.Input[Union['NetworkDnsmasqOptionsArgs', 'NetworkDnsmasqOptionsArgsDict']]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mtu: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['NetworkXmlArgs']]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NetworkRouteArgs', 'NetworkRouteArgsDict']]]]] = None,
+                 xml: Optional[pulumi.Input[Union['NetworkXmlArgs', 'NetworkXmlArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -639,15 +639,15 @@ class Network(pulumi.CustomResource):
             addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             autostart: Optional[pulumi.Input[bool]] = None,
             bridge: Optional[pulumi.Input[str]] = None,
-            dhcp: Optional[pulumi.Input[pulumi.InputType['NetworkDhcpArgs']]] = None,
-            dns: Optional[pulumi.Input[pulumi.InputType['NetworkDnsArgs']]] = None,
-            dnsmasq_options: Optional[pulumi.Input[pulumi.InputType['NetworkDnsmasqOptionsArgs']]] = None,
+            dhcp: Optional[pulumi.Input[Union['NetworkDhcpArgs', 'NetworkDhcpArgsDict']]] = None,
+            dns: Optional[pulumi.Input[Union['NetworkDnsArgs', 'NetworkDnsArgsDict']]] = None,
+            dnsmasq_options: Optional[pulumi.Input[Union['NetworkDnsmasqOptionsArgs', 'NetworkDnsmasqOptionsArgsDict']]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             mtu: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]]] = None,
-            xml: Optional[pulumi.Input[pulumi.InputType['NetworkXmlArgs']]] = None) -> 'Network':
+            routes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NetworkRouteArgs', 'NetworkRouteArgsDict']]]]] = None,
+            xml: Optional[pulumi.Input[Union['NetworkXmlArgs', 'NetworkXmlArgsDict']]] = None) -> 'Network':
         """
         Get an existing Network resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -666,7 +666,7 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] bridge: The bridge device defines the name of a bridge
                device which will be used to construct the virtual network (when not provided,
                it will be automatically obtained by libvirt in `none`, `nat`, `route` and `open` modes).
-        :param pulumi.Input[pulumi.InputType['NetworkDnsArgs']] dns: configuration of DNS specific settings for the network
+        :param pulumi.Input[Union['NetworkDnsArgs', 'NetworkDnsArgsDict']] dns: configuration of DNS specific settings for the network
         :param pulumi.Input[str] domain: The domain used by the DNS server.
         :param pulumi.Input[str] mode: One of:
                - "none": the guests can talk to each other and the host OS, but cannot reach
@@ -691,7 +691,7 @@ class Network(pulumi.CustomResource):
                Libvirt version 5.1 and greater will advertise this value to nodes via DHCP.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkRouteArgs']]]] routes: a list of static routes. A `cidr` and a `gateway` must
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NetworkRouteArgs', 'NetworkRouteArgsDict']]]] routes: a list of static routes. A `cidr` and a `gateway` must
                be provided. The `gateway` must be reachable via the bridge interface.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

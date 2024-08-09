@@ -53,7 +53,7 @@ import (
 //				key0 := index
 //				val0 := index
 //				__res, err := libvirt.NewVolume(ctx, fmt.Sprintf("worker-%v", key0), &libvirt.VolumeArgs{
-//					Name:         pulumi.String(fmt.Sprintf("worker_%v.qcow2", val0)),
+//					Name:         pulumi.Sprintf("worker_%v.qcow2", val0),
 //					BaseVolumeId: opensuseLeap.ID(),
 //				})
 //				if err != nil {
