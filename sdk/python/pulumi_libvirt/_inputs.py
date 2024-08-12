@@ -228,19 +228,19 @@ class DomainDiskArgs:
                domain1 = libvirt.Domain("domain1",
                    name="domain1",
                    disks=[
-                       libvirt.DomainDiskArgs(
-                           volume_id=mydisk.id,
-                           scsi=True,
-                       ),
-                       libvirt.DomainDiskArgs(
-                           url="http://foo.com/install.iso",
-                       ),
-                       libvirt.DomainDiskArgs(
-                           file="/absolute/path/to/disk.iso",
-                       ),
-                       libvirt.DomainDiskArgs(
-                           block_device="/dev/mapper/36005076802810e55400000000000145f",
-                       ),
+                       {
+                           "volume_id": mydisk.id,
+                           "scsi": True,
+                       },
+                       {
+                           "url": "http://foo.com/install.iso",
+                       },
+                       {
+                           "file": "/absolute/path/to/disk.iso",
+                       },
+                       {
+                           "block_device": "/dev/mapper/36005076802810e55400000000000145f",
+                       },
                    ])
                ```
                
@@ -345,19 +345,19 @@ class DomainDiskArgs:
         domain1 = libvirt.Domain("domain1",
             name="domain1",
             disks=[
-                libvirt.DomainDiskArgs(
-                    volume_id=mydisk.id,
-                    scsi=True,
-                ),
-                libvirt.DomainDiskArgs(
-                    url="http://foo.com/install.iso",
-                ),
-                libvirt.DomainDiskArgs(
-                    file="/absolute/path/to/disk.iso",
-                ),
-                libvirt.DomainDiskArgs(
-                    block_device="/dev/mapper/36005076802810e55400000000000145f",
-                ),
+                {
+                    "volume_id": mydisk.id,
+                    "scsi": True,
+                },
+                {
+                    "url": "http://foo.com/install.iso",
+                },
+                {
+                    "file": "/absolute/path/to/disk.iso",
+                },
+                {
+                    "block_device": "/dev/mapper/36005076802810e55400000000000145f",
+                },
             ])
         ```
 
