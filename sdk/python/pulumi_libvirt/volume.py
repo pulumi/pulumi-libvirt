@@ -346,7 +346,7 @@ class Volume(pulumi.CustomResource):
                  pool: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  source: Optional[pulumi.Input[str]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['VolumeXmlArgs']]] = None,
+                 xml: Optional[pulumi.Input[Union['VolumeXmlArgs', 'VolumeXmlArgsDict']]] = None,
                  __props__=None):
         """
         Manages a storage volume in libvirt. For more information see
@@ -460,7 +460,7 @@ class Volume(pulumi.CustomResource):
                  pool: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  source: Optional[pulumi.Input[str]] = None,
-                 xml: Optional[pulumi.Input[pulumi.InputType['VolumeXmlArgs']]] = None,
+                 xml: Optional[pulumi.Input[Union['VolumeXmlArgs', 'VolumeXmlArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -497,7 +497,7 @@ class Volume(pulumi.CustomResource):
             pool: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             source: Optional[pulumi.Input[str]] = None,
-            xml: Optional[pulumi.Input[pulumi.InputType['VolumeXmlArgs']]] = None) -> 'Volume':
+            xml: Optional[pulumi.Input[Union['VolumeXmlArgs', 'VolumeXmlArgsDict']]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
