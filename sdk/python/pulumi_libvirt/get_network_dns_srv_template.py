@@ -80,7 +80,7 @@ class GetNetworkDnsSrvTemplateResult:
 
     @property
     @pulumi.getter
-    def rendered(self) -> Mapping[str, Any]:
+    def rendered(self) -> Mapping[str, str]:
         return pulumi.get(self, "rendered")
 
     @property

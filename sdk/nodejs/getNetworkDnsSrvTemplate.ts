@@ -43,7 +43,7 @@ export interface GetNetworkDnsSrvTemplateResult {
     readonly port?: string;
     readonly priority?: string;
     readonly protocol: string;
-    readonly rendered: {[key: string]: any};
+    readonly rendered: {[key: string]: string};
     readonly service: string;
     readonly target?: string;
     readonly weight?: string;

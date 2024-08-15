@@ -5,7 +5,6 @@ package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +22,7 @@ public final class GetNetworkDnsSrvTemplateResult {
     private @Nullable String port;
     private @Nullable String priority;
     private String protocol;
-    private Map<String,Object> rendered;
+    private Map<String,String> rendered;
     private String service;
     private @Nullable String target;
     private @Nullable String weight;
@@ -48,7 +47,7 @@ public final class GetNetworkDnsSrvTemplateResult {
     public String protocol() {
         return this.protocol;
     }
-    public Map<String,Object> rendered() {
+    public Map<String,String> rendered() {
         return this.rendered;
     }
     public String service() {
@@ -75,7 +74,7 @@ public final class GetNetworkDnsSrvTemplateResult {
         private @Nullable String port;
         private @Nullable String priority;
         private String protocol;
-        private Map<String,Object> rendered;
+        private Map<String,String> rendered;
         private String service;
         private @Nullable String target;
         private @Nullable String weight;
@@ -128,7 +127,7 @@ public final class GetNetworkDnsSrvTemplateResult {
             return this;
         }
         @CustomType.Setter
-        public Builder rendered(Map<String,Object> rendered) {
+        public Builder rendered(Map<String,String> rendered) {
             if (rendered == null) {
               throw new MissingRequiredPropertyException("GetNetworkDnsSrvTemplateResult", "rendered");
             }

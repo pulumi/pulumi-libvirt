@@ -23,7 +23,6 @@ import com.pulumi.libvirt.outputs.DomainVideo;
 import com.pulumi.libvirt.outputs.DomainXml;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -140,10 +139,10 @@ public class Domain extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> cloudinit() {
         return Codegen.optional(this.cloudinit);
     }
-    @Export(name="cmdlines", refs={List.class,Map.class,String.class,Object.class}, tree="[0,[1,2,3]]")
-    private Output</* @Nullable */ List<Map<String,Object>>> cmdlines;
+    @Export(name="cmdlines", refs={List.class,Map.class,String.class}, tree="[0,[1,2,2]]")
+    private Output</* @Nullable */ List<Map<String,String>>> cmdlines;
 
-    public Output<Optional<List<Map<String,Object>>>> cmdlines() {
+    public Output<Optional<List<Map<String,String>>>> cmdlines() {
         return Codegen.optional(this.cmdlines);
     }
     @Export(name="consoles", refs={List.class,DomainConsole.class}, tree="[0,1]")

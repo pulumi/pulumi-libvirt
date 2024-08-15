@@ -65,7 +65,7 @@ namespace Pulumi.Libvirt
         public Output<string?> Cloudinit { get; private set; } = null!;
 
         [Output("cmdlines")]
-        public Output<ImmutableArray<ImmutableDictionary<string, object>>> Cmdlines { get; private set; } = null!;
+        public Output<ImmutableArray<ImmutableDictionary<string, string>>> Cmdlines { get; private set; } = null!;
 
         [Output("consoles")]
         public Output<ImmutableArray<Outputs.DomainConsole>> Consoles { get; private set; } = null!;
@@ -289,10 +289,10 @@ namespace Pulumi.Libvirt
         public Input<string>? Cloudinit { get; set; }
 
         [Input("cmdlines")]
-        private InputList<ImmutableDictionary<string, object>>? _cmdlines;
-        public InputList<ImmutableDictionary<string, object>> Cmdlines
+        private InputList<ImmutableDictionary<string, string>>? _cmdlines;
+        public InputList<ImmutableDictionary<string, string>> Cmdlines
         {
-            get => _cmdlines ?? (_cmdlines = new InputList<ImmutableDictionary<string, object>>());
+            get => _cmdlines ?? (_cmdlines = new InputList<ImmutableDictionary<string, string>>());
             set => _cmdlines = value;
         }
 
@@ -503,10 +503,10 @@ namespace Pulumi.Libvirt
         public Input<string>? Cloudinit { get; set; }
 
         [Input("cmdlines")]
-        private InputList<ImmutableDictionary<string, object>>? _cmdlines;
-        public InputList<ImmutableDictionary<string, object>> Cmdlines
+        private InputList<ImmutableDictionary<string, string>>? _cmdlines;
+        public InputList<ImmutableDictionary<string, string>> Cmdlines
         {
-            get => _cmdlines ?? (_cmdlines = new InputList<ImmutableDictionary<string, object>>());
+            get => _cmdlines ?? (_cmdlines = new InputList<ImmutableDictionary<string, string>>());
             set => _cmdlines = value;
         }
 
