@@ -55,9 +55,9 @@ type Domain struct {
 	// the domain. This is going to be attached as a CDROM ISO. Changing the
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
-	Cloudinit pulumi.StringPtrOutput   `pulumi:"cloudinit"`
-	Cmdlines  pulumi.MapArrayOutput    `pulumi:"cmdlines"`
-	Consoles  DomainConsoleArrayOutput `pulumi:"consoles"`
+	Cloudinit pulumi.StringPtrOutput      `pulumi:"cloudinit"`
+	Cmdlines  pulumi.StringMapArrayOutput `pulumi:"cmdlines"`
+	Consoles  DomainConsoleArrayOutput    `pulumi:"consoles"`
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -159,9 +159,9 @@ type domainState struct {
 	// the domain. This is going to be attached as a CDROM ISO. Changing the
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
-	Cloudinit *string                  `pulumi:"cloudinit"`
-	Cmdlines  []map[string]interface{} `pulumi:"cmdlines"`
-	Consoles  []DomainConsole          `pulumi:"consoles"`
+	Cloudinit *string             `pulumi:"cloudinit"`
+	Cmdlines  []map[string]string `pulumi:"cmdlines"`
+	Consoles  []DomainConsole     `pulumi:"consoles"`
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -235,7 +235,7 @@ type DomainState struct {
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrInput
-	Cmdlines  pulumi.MapArrayInput
+	Cmdlines  pulumi.StringMapArrayInput
 	Consoles  DomainConsoleArrayInput
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
@@ -313,9 +313,9 @@ type domainArgs struct {
 	// the domain. This is going to be attached as a CDROM ISO. Changing the
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
-	Cloudinit *string                  `pulumi:"cloudinit"`
-	Cmdlines  []map[string]interface{} `pulumi:"cmdlines"`
-	Consoles  []DomainConsole          `pulumi:"consoles"`
+	Cloudinit *string             `pulumi:"cloudinit"`
+	Cmdlines  []map[string]string `pulumi:"cmdlines"`
+	Consoles  []DomainConsole     `pulumi:"consoles"`
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
 	// that is to be used by the CoreOS domain.
@@ -390,7 +390,7 @@ type DomainArgs struct {
 	// cloud-init won't cause the domain to be recreated, however the change will
 	// have effect on the next reboot.
 	Cloudinit pulumi.StringPtrInput
-	Cmdlines  pulumi.MapArrayInput
+	Cmdlines  pulumi.StringMapArrayInput
 	Consoles  DomainConsoleArrayInput
 	// The
 	// [Ignition](https://www.terraform.io/docs/providers/libvirt/r/coreos_ignition.html) resource
@@ -563,8 +563,8 @@ func (o DomainOutput) Cloudinit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Cloudinit }).(pulumi.StringPtrOutput)
 }
 
-func (o DomainOutput) Cmdlines() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v *Domain) pulumi.MapArrayOutput { return v.Cmdlines }).(pulumi.MapArrayOutput)
+func (o DomainOutput) Cmdlines() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringMapArrayOutput { return v.Cmdlines }).(pulumi.StringMapArrayOutput)
 }
 
 func (o DomainOutput) Consoles() DomainConsoleArrayOutput {

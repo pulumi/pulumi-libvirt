@@ -69,7 +69,7 @@ export class Domain extends pulumi.CustomResource {
      * have effect on the next reboot.
      */
     public readonly cloudinit!: pulumi.Output<string | undefined>;
-    public readonly cmdlines!: pulumi.Output<{[key: string]: any}[] | undefined>;
+    public readonly cmdlines!: pulumi.Output<{[key: string]: string}[] | undefined>;
     public readonly consoles!: pulumi.Output<outputs.DomainConsole[] | undefined>;
     /**
      * The
@@ -267,7 +267,7 @@ export interface DomainState {
      * have effect on the next reboot.
      */
     cloudinit?: pulumi.Input<string>;
-    cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
     /**
      * The
@@ -385,7 +385,7 @@ export interface DomainArgs {
      * have effect on the next reboot.
      */
     cloudinit?: pulumi.Input<string>;
-    cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    cmdlines?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     consoles?: pulumi.Input<pulumi.Input<inputs.DomainConsole>[]>;
     /**
      * The

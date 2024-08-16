@@ -18,7 +18,6 @@ import com.pulumi.libvirt.inputs.DomainVideoArgs;
 import com.pulumi.libvirt.inputs.DomainXmlArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -104,9 +103,9 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     @Import(name="cmdlines")
-    private @Nullable Output<List<Map<String,Object>>> cmdlines;
+    private @Nullable Output<List<Map<String,String>>> cmdlines;
 
-    public Optional<Output<List<Map<String,Object>>>> cmdlines() {
+    public Optional<Output<List<Map<String,String>>>> cmdlines() {
         return Optional.ofNullable(this.cmdlines);
     }
 
@@ -605,16 +604,16 @@ public final class DomainArgs extends com.pulumi.resources.ResourceArgs {
             return cloudinit(Output.of(cloudinit));
         }
 
-        public Builder cmdlines(@Nullable Output<List<Map<String,Object>>> cmdlines) {
+        public Builder cmdlines(@Nullable Output<List<Map<String,String>>> cmdlines) {
             $.cmdlines = cmdlines;
             return this;
         }
 
-        public Builder cmdlines(List<Map<String,Object>> cmdlines) {
+        public Builder cmdlines(List<Map<String,String>> cmdlines) {
             return cmdlines(Output.of(cmdlines));
         }
 
-        public Builder cmdlines(Map<String,Object>... cmdlines) {
+        public Builder cmdlines(Map<String,String>... cmdlines) {
             return cmdlines(List.of(cmdlines));
         }
 

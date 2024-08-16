@@ -89,7 +89,7 @@ namespace Pulumi.Libvirt
         public readonly string? Port;
         public readonly string? Priority;
         public readonly string Protocol;
-        public readonly ImmutableDictionary<string, object> Rendered;
+        public readonly ImmutableDictionary<string, string> Rendered;
         public readonly string Service;
         public readonly string? Target;
         public readonly string? Weight;
@@ -106,7 +106,7 @@ namespace Pulumi.Libvirt
 
             string protocol,
 
-            ImmutableDictionary<string, object> rendered,
+            ImmutableDictionary<string, string> rendered,
 
             string service,
 

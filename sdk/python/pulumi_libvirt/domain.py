@@ -20,7 +20,7 @@ class DomainArgs:
                  autostart: Optional[pulumi.Input[bool]] = None,
                  boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input['DomainBootDeviceArgs']]]] = None,
                  cloudinit: Optional[pulumi.Input[str]] = None,
-                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
                  consoles: Optional[pulumi.Input[Sequence[pulumi.Input['DomainConsoleArgs']]]] = None,
                  coreos_ignition: Optional[pulumi.Input[str]] = None,
                  cpu: Optional[pulumi.Input['DomainCpuArgs']] = None,
@@ -208,11 +208,11 @@ class DomainArgs:
 
     @property
     @pulumi.getter
-    def cmdlines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]:
+    def cmdlines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]]:
         return pulumi.get(self, "cmdlines")
 
     @cmdlines.setter
-    def cmdlines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]):
+    def cmdlines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]]):
         pulumi.set(self, "cmdlines", value)
 
     @property
@@ -512,7 +512,7 @@ class _DomainState:
                  autostart: Optional[pulumi.Input[bool]] = None,
                  boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input['DomainBootDeviceArgs']]]] = None,
                  cloudinit: Optional[pulumi.Input[str]] = None,
-                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
                  consoles: Optional[pulumi.Input[Sequence[pulumi.Input['DomainConsoleArgs']]]] = None,
                  coreos_ignition: Optional[pulumi.Input[str]] = None,
                  cpu: Optional[pulumi.Input['DomainCpuArgs']] = None,
@@ -700,11 +700,11 @@ class _DomainState:
 
     @property
     @pulumi.getter
-    def cmdlines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]:
+    def cmdlines(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]]:
         return pulumi.get(self, "cmdlines")
 
     @cmdlines.setter
-    def cmdlines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]):
+    def cmdlines(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]]):
         pulumi.set(self, "cmdlines", value)
 
     @property
@@ -1006,7 +1006,7 @@ class Domain(pulumi.CustomResource):
                  autostart: Optional[pulumi.Input[bool]] = None,
                  boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]]] = None,
                  cloudinit: Optional[pulumi.Input[str]] = None,
-                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
                  consoles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainConsoleArgs', 'DomainConsoleArgsDict']]]]] = None,
                  coreos_ignition: Optional[pulumi.Input[str]] = None,
                  cpu: Optional[pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']]] = None,
@@ -1129,7 +1129,7 @@ class Domain(pulumi.CustomResource):
                  autostart: Optional[pulumi.Input[bool]] = None,
                  boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]]] = None,
                  cloudinit: Optional[pulumi.Input[str]] = None,
-                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+                 cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
                  consoles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainConsoleArgs', 'DomainConsoleArgsDict']]]]] = None,
                  coreos_ignition: Optional[pulumi.Input[str]] = None,
                  cpu: Optional[pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']]] = None,
@@ -1208,7 +1208,7 @@ class Domain(pulumi.CustomResource):
             autostart: Optional[pulumi.Input[bool]] = None,
             boot_devices: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainBootDeviceArgs', 'DomainBootDeviceArgsDict']]]]] = None,
             cloudinit: Optional[pulumi.Input[str]] = None,
-            cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+            cmdlines: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
             consoles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainConsoleArgs', 'DomainConsoleArgsDict']]]]] = None,
             coreos_ignition: Optional[pulumi.Input[str]] = None,
             cpu: Optional[pulumi.Input[Union['DomainCpuArgs', 'DomainCpuArgsDict']]] = None,
@@ -1360,7 +1360,7 @@ class Domain(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cmdlines(self) -> pulumi.Output[Optional[Sequence[Mapping[str, Any]]]]:
+    def cmdlines(self) -> pulumi.Output[Optional[Sequence[Mapping[str, str]]]]:
         return pulumi.get(self, "cmdlines")
 
     @property
