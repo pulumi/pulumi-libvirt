@@ -655,7 +655,7 @@
                     "items": {
                         "type": "object",
                         "additionalProperties": {
-                            "$ref": "pulumi.json#/Any"
+                            "type": "string"
                         }
                     }
                 },
@@ -796,7 +796,7 @@
                     "items": {
                         "type": "object",
                         "additionalProperties": {
-                            "$ref": "pulumi.json#/Any"
+                            "type": "string"
                         }
                     },
                     "willReplaceOnChanges": true
@@ -945,7 +945,7 @@
                         "items": {
                             "type": "object",
                             "additionalProperties": {
-                                "$ref": "pulumi.json#/Any"
+                                "type": "string"
                             }
                         },
                         "willReplaceOnChanges": true
@@ -1662,7 +1662,7 @@
                     },
                     "rendered": {
                         "additionalProperties": {
-                            "$ref": "pulumi.json#/Any"
+                            "type": "string"
                         },
                         "type": "object"
                     },

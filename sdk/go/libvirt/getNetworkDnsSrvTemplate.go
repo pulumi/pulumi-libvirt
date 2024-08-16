@@ -36,14 +36,14 @@ type GetNetworkDnsSrvTemplateArgs struct {
 type GetNetworkDnsSrvTemplateResult struct {
 	Domain *string `pulumi:"domain"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string                 `pulumi:"id"`
-	Port     *string                `pulumi:"port"`
-	Priority *string                `pulumi:"priority"`
-	Protocol string                 `pulumi:"protocol"`
-	Rendered map[string]interface{} `pulumi:"rendered"`
-	Service  string                 `pulumi:"service"`
-	Target   *string                `pulumi:"target"`
-	Weight   *string                `pulumi:"weight"`
+	Id       string            `pulumi:"id"`
+	Port     *string           `pulumi:"port"`
+	Priority *string           `pulumi:"priority"`
+	Protocol string            `pulumi:"protocol"`
+	Rendered map[string]string `pulumi:"rendered"`
+	Service  string            `pulumi:"service"`
+	Target   *string           `pulumi:"target"`
+	Weight   *string           `pulumi:"weight"`
 }
 
 func GetNetworkDnsSrvTemplateOutput(ctx *pulumi.Context, args GetNetworkDnsSrvTemplateOutputArgs, opts ...pulumi.InvokeOption) GetNetworkDnsSrvTemplateResultOutput {
@@ -110,8 +110,8 @@ func (o GetNetworkDnsSrvTemplateResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNetworkDnsSrvTemplateResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-func (o GetNetworkDnsSrvTemplateResultOutput) Rendered() pulumi.MapOutput {
-	return o.ApplyT(func(v GetNetworkDnsSrvTemplateResult) map[string]interface{} { return v.Rendered }).(pulumi.MapOutput)
+func (o GetNetworkDnsSrvTemplateResultOutput) Rendered() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNetworkDnsSrvTemplateResult) map[string]string { return v.Rendered }).(pulumi.StringMapOutput)
 }
 
 func (o GetNetworkDnsSrvTemplateResultOutput) Service() pulumi.StringOutput {
