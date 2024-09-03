@@ -14,7 +14,7 @@ namespace Pulumi.Libvirt.Outputs
     public sealed class DomainDisk
     {
         /// <summary>
-        /// The path to the host device to use as the block device for this disk. 
+        /// The path to the host device to use as the block device for this disk.
         /// 
         /// While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         /// </summary>
@@ -39,7 +39,6 @@ namespace Pulumi.Libvirt.Outputs
         /// <summary>
         /// Specify a WWN to use for the disk if the disk is using
         /// a scsi controller, if not specified then a random wwn is generated for the disk
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

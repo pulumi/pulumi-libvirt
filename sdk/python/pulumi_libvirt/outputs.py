@@ -216,7 +216,7 @@ class DomainDisk(dict):
                  volume_id: Optional[str] = None,
                  wwn: Optional[str] = None):
         """
-        :param str block_device: The path to the host device to use as the block device for this disk. 
+        :param str block_device: The path to the host device to use as the block device for this disk.
                
                While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         :param str file: The filename to use as the block device for this disk (read-only)
@@ -226,7 +226,6 @@ class DomainDisk(dict):
         :param str volume_id: The volume id to use for this disk.
         :param str wwn: Specify a WWN to use for the disk if the disk is using
                a scsi controller, if not specified then a random wwn is generated for the disk
-               
                
                ```python
                import pulumi
@@ -278,7 +277,7 @@ class DomainDisk(dict):
     @pulumi.getter(name="blockDevice")
     def block_device(self) -> Optional[str]:
         """
-        The path to the host device to use as the block device for this disk. 
+        The path to the host device to use as the block device for this disk.
 
         While `volume_id`, `url`, `file` and `block_device` are optional, it is intended that you use one of them.
         """
@@ -323,7 +322,6 @@ class DomainDisk(dict):
         """
         Specify a WWN to use for the disk if the disk is using
         a scsi controller, if not specified then a random wwn is generated for the disk
-
 
         ```python
         import pulumi
@@ -566,7 +564,7 @@ class DomainNetworkInterface(dict):
         :param Sequence[str] addresses: An IP address for this domain in this network.
         :param str bridge: Provides a bridge from the VM directly to the LAN. This assumes
                there is a bridge device on the host which has one or more of the hosts
-               physical NICs enslaved. The guest VM will have an associated _tun_ device
+               physical NICs enslaved. The guest VM will have an associated *tun* device
                created and enslaved to the bridge. The IP range / network configuration is
                whatever is used on the LAN. This provides the guest VM full incoming &
                outgoing net access just like a physical machine.
@@ -629,7 +627,7 @@ class DomainNetworkInterface(dict):
         """
         Provides a bridge from the VM directly to the LAN. This assumes
         there is a bridge device on the host which has one or more of the hosts
-        physical NICs enslaved. The guest VM will have an associated _tun_ device
+        physical NICs enslaved. The guest VM will have an associated *tun* device
         created and enslaved to the bridge. The IP range / network configuration is
         whatever is used on the LAN. This provides the guest VM full incoming &
         outgoing net access just like a physical machine.

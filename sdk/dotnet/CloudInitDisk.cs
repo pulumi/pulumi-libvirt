@@ -34,7 +34,7 @@ namespace Pulumi.Libvirt
         /// The pool where the resource will be created.
         /// If not given, the `default` pool will be used.
         /// For user_data, network_config and meta_data parameters have a look at upstream doc:
-        /// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+        /// &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
         /// </summary>
         [Output("pool")]
         public Output<string?> Pool { get; private set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumi.Libvirt
         /// The pool where the resource will be created.
         /// If not given, the `default` pool will be used.
         /// For user_data, network_config and meta_data parameters have a look at upstream doc:
-        /// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+        /// &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
         /// </summary>
         [Input("pool")]
         public Input<string>? Pool { get; set; }
@@ -154,7 +154,7 @@ namespace Pulumi.Libvirt
         /// The pool where the resource will be created.
         /// If not given, the `default` pool will be used.
         /// For user_data, network_config and meta_data parameters have a look at upstream doc:
-        /// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+        /// &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
         /// </summary>
         [Input("pool")]
         public Input<string>? Pool { get; set; }

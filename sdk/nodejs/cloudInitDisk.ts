@@ -48,7 +48,7 @@ export class CloudInitDisk extends pulumi.CustomResource {
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, networkConfig and metaData parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
      */
     public readonly pool!: pulumi.Output<string | undefined>;
     /**
@@ -107,7 +107,7 @@ export interface CloudInitDiskState {
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, networkConfig and metaData parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
      */
     pool?: pulumi.Input<string>;
     /**
@@ -136,7 +136,7 @@ export interface CloudInitDiskArgs {
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, networkConfig and metaData parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
      */
     pool?: pulumi.Input<string>;
     /**
