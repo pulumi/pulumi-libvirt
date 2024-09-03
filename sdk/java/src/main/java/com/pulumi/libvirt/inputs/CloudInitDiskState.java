@@ -64,7 +64,7 @@ public final class CloudInitDiskState extends com.pulumi.resources.ResourceArgs 
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, network_config and meta_data parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
      * 
      */
     @Import(name="pool")
@@ -74,7 +74,7 @@ public final class CloudInitDiskState extends com.pulumi.resources.ResourceArgs 
      * @return The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, network_config and meta_data parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
      * 
      */
     public Optional<Output<String>> pool() {
@@ -191,7 +191,7 @@ public final class CloudInitDiskState extends com.pulumi.resources.ResourceArgs 
          * @param pool The pool where the resource will be created.
          * If not given, the `default` pool will be used.
          * For user_data, network_config and meta_data parameters have a look at upstream doc:
-         * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+         * &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class CloudInitDiskState extends com.pulumi.resources.ResourceArgs 
          * @param pool The pool where the resource will be created.
          * If not given, the `default` pool will be used.
          * For user_data, network_config and meta_data parameters have a look at upstream doc:
-         * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+         * &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
          * 
          * @return builder
          * 

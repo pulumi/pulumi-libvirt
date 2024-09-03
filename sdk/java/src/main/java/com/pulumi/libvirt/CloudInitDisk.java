@@ -62,7 +62,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, network_config and meta_data parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
      * 
      */
     @Export(name="pool", refs={String.class}, tree="[0]")
@@ -72,7 +72,7 @@ public class CloudInitDisk extends com.pulumi.resources.CustomResource {
      * @return The pool where the resource will be created.
      * If not given, the `default` pool will be used.
      * For user_data, network_config and meta_data parameters have a look at upstream doc:
-     * http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+     * &lt;http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud&gt;
      * 
      */
     public Output<Optional<String>> pool() {

@@ -54,7 +54,7 @@ export interface DomainCpu {
 
 export interface DomainDisk {
     /**
-     * The path to the host device to use as the block device for this disk. 
+     * The path to the host device to use as the block device for this disk.
      *
      * While `volumeId`, `url`, `file` and `blockDevice` are optional, it is intended that you use one of them.
      */
@@ -79,7 +79,6 @@ export interface DomainDisk {
     /**
      * Specify a WWN to use for the disk if the disk is using
      * a scsi controller, if not specified then a random wwn is generated for the disk
-     *
      *
      * ```typescript
      * import * as pulumi from "@pulumi/pulumi";
@@ -184,7 +183,7 @@ export interface DomainNetworkInterface {
     /**
      * Provides a bridge from the VM directly to the LAN. This assumes
      * there is a bridge device on the host which has one or more of the hosts
-     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * physical NICs enslaved. The guest VM will have an associated *tun* device
      * created and enslaved to the bridge. The IP range / network configuration is
      * whatever is used on the LAN. This provides the guest VM full incoming &
      * outgoing net access just like a physical machine.

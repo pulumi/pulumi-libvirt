@@ -23,7 +23,7 @@ type CloudInitDisk struct {
 	// The pool where the resource will be created.
 	// If not given, the `default` pool will be used.
 	// For user_data, networkConfig and metaData parameters have a look at upstream doc:
-	// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+	// <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
 	Pool pulumi.StringPtrOutput `pulumi:"pool"`
 	// cloud-init user data.
 	UserData pulumi.StringPtrOutput `pulumi:"userData"`
@@ -68,7 +68,7 @@ type cloudInitDiskState struct {
 	// The pool where the resource will be created.
 	// If not given, the `default` pool will be used.
 	// For user_data, networkConfig and metaData parameters have a look at upstream doc:
-	// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+	// <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
 	Pool *string `pulumi:"pool"`
 	// cloud-init user data.
 	UserData *string `pulumi:"userData"`
@@ -84,7 +84,7 @@ type CloudInitDiskState struct {
 	// The pool where the resource will be created.
 	// If not given, the `default` pool will be used.
 	// For user_data, networkConfig and metaData parameters have a look at upstream doc:
-	// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+	// <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
 	Pool pulumi.StringPtrInput
 	// cloud-init user data.
 	UserData pulumi.StringPtrInput
@@ -104,7 +104,7 @@ type cloudInitDiskArgs struct {
 	// The pool where the resource will be created.
 	// If not given, the `default` pool will be used.
 	// For user_data, networkConfig and metaData parameters have a look at upstream doc:
-	// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+	// <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
 	Pool *string `pulumi:"pool"`
 	// cloud-init user data.
 	UserData *string `pulumi:"userData"`
@@ -121,7 +121,7 @@ type CloudInitDiskArgs struct {
 	// The pool where the resource will be created.
 	// If not given, the `default` pool will be used.
 	// For user_data, networkConfig and metaData parameters have a look at upstream doc:
-	// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+	// <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
 	Pool pulumi.StringPtrInput
 	// cloud-init user data.
 	UserData pulumi.StringPtrInput
@@ -232,7 +232,7 @@ func (o CloudInitDiskOutput) NetworkConfig() pulumi.StringPtrOutput {
 // The pool where the resource will be created.
 // If not given, the `default` pool will be used.
 // For user_data, networkConfig and metaData parameters have a look at upstream doc:
-// http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+// <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
 func (o CloudInitDiskOutput) Pool() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudInitDisk) pulumi.StringPtrOutput { return v.Pool }).(pulumi.StringPtrOutput)
 }

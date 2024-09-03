@@ -21,7 +21,7 @@ public final class DomainNetworkInterface {
     /**
      * @return Provides a bridge from the VM directly to the LAN. This assumes
      * there is a bridge device on the host which has one or more of the hosts
-     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * physical NICs enslaved. The guest VM will have an associated *tun* device
      * created and enslaved to the bridge. The IP range / network configuration is
      * whatever is used on the LAN. This provides the guest VM full incoming &amp;
      * outgoing net access just like a physical machine.
@@ -89,7 +89,7 @@ public final class DomainNetworkInterface {
     /**
      * @return Provides a bridge from the VM directly to the LAN. This assumes
      * there is a bridge device on the host which has one or more of the hosts
-     * physical NICs enslaved. The guest VM will have an associated _tun_ device
+     * physical NICs enslaved. The guest VM will have an associated *tun* device
      * created and enslaved to the bridge. The IP range / network configuration is
      * whatever is used on the LAN. This provides the guest VM full incoming &amp;
      * outgoing net access just like a physical machine.

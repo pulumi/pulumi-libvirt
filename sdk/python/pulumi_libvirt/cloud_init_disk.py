@@ -27,7 +27,7 @@ class CloudInitDiskArgs:
         :param pulumi.Input[str] pool: The pool where the resource will be created.
                If not given, the `default` pool will be used.
                For user_data, network_config and meta_data parameters have a look at upstream doc:
-               http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+               <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         :param pulumi.Input[str] user_data: cloud-init user data.
         """
         if meta_data is not None:
@@ -84,7 +84,7 @@ class CloudInitDiskArgs:
         The pool where the resource will be created.
         If not given, the `default` pool will be used.
         For user_data, network_config and meta_data parameters have a look at upstream doc:
-        http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+        <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         """
         return pulumi.get(self, "pool")
 
@@ -121,7 +121,7 @@ class _CloudInitDiskState:
         :param pulumi.Input[str] pool: The pool where the resource will be created.
                If not given, the `default` pool will be used.
                For user_data, network_config and meta_data parameters have a look at upstream doc:
-               http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+               <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         :param pulumi.Input[str] user_data: cloud-init user data.
         """
         if meta_data is not None:
@@ -178,7 +178,7 @@ class _CloudInitDiskState:
         The pool where the resource will be created.
         If not given, the `default` pool will be used.
         For user_data, network_config and meta_data parameters have a look at upstream doc:
-        http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+        <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         """
         return pulumi.get(self, "pool")
 
@@ -220,7 +220,7 @@ class CloudInitDisk(pulumi.CustomResource):
         :param pulumi.Input[str] pool: The pool where the resource will be created.
                If not given, the `default` pool will be used.
                For user_data, network_config and meta_data parameters have a look at upstream doc:
-               http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+               <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         :param pulumi.Input[str] user_data: cloud-init user data.
         """
         ...
@@ -293,7 +293,7 @@ class CloudInitDisk(pulumi.CustomResource):
         :param pulumi.Input[str] pool: The pool where the resource will be created.
                If not given, the `default` pool will be used.
                For user_data, network_config and meta_data parameters have a look at upstream doc:
-               http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+               <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         :param pulumi.Input[str] user_data: cloud-init user data.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -338,7 +338,7 @@ class CloudInitDisk(pulumi.CustomResource):
         The pool where the resource will be created.
         If not given, the `default` pool will be used.
         For user_data, network_config and meta_data parameters have a look at upstream doc:
-        http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud
+        <http://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html#datasource-nocloud>
         """
         return pulumi.get(self, "pool")
 

@@ -1130,7 +1130,7 @@ type DomainNetworkInterface struct {
 	Addresses []string `pulumi:"addresses"`
 	// Provides a bridge from the VM directly to the LAN. This assumes
 	// there is a bridge device on the host which has one or more of the hosts
-	// physical NICs enslaved. The guest VM will have an associated _tun_ device
+	// physical NICs enslaved. The guest VM will have an associated *tun* device
 	// created and enslaved to the bridge. The IP range / network configuration is
 	// whatever is used on the LAN. This provides the guest VM full incoming &
 	// outgoing net access just like a physical machine.
@@ -1184,7 +1184,7 @@ type DomainNetworkInterfaceArgs struct {
 	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
 	// Provides a bridge from the VM directly to the LAN. This assumes
 	// there is a bridge device on the host which has one or more of the hosts
-	// physical NICs enslaved. The guest VM will have an associated _tun_ device
+	// physical NICs enslaved. The guest VM will have an associated *tun* device
 	// created and enslaved to the bridge. The IP range / network configuration is
 	// whatever is used on the LAN. This provides the guest VM full incoming &
 	// outgoing net access just like a physical machine.
@@ -1280,7 +1280,7 @@ func (o DomainNetworkInterfaceOutput) Addresses() pulumi.StringArrayOutput {
 
 // Provides a bridge from the VM directly to the LAN. This assumes
 // there is a bridge device on the host which has one or more of the hosts
-// physical NICs enslaved. The guest VM will have an associated _tun_ device
+// physical NICs enslaved. The guest VM will have an associated *tun* device
 // created and enslaved to the bridge. The IP range / network configuration is
 // whatever is used on the LAN. This provides the guest VM full incoming &
 // outgoing net access just like a physical machine.
