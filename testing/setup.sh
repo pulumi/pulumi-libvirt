@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -x -ef -o pipefail
 
+mkdir -p /home/runner/.cache
+chmod -R 755 /home/runner/.cache
+
 sudo apt-get update
 
 sudo mkdir -p /etc/systemd/system/libvirtd.socket.d/
