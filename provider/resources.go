@@ -178,14 +178,42 @@ var metadata []byte
 var networkModesRegexp = regexp.MustCompile("- `[a-z]*`: ")
 
 func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
-	return append(defaults, tfbridge.DocsEdit{
-		Path: "network.markdown",
-		Edit: func(_ string, content []byte) ([]byte, error) {
-			return networkModesRegexp.ReplaceAllFunc(content,
-				func(src []byte) []byte {
-					return bytes.ReplaceAll(src,
-						[]byte("`"), []byte(`"`))
-				}), nil
+	return append(
+		defaults,
+		tfbridge.DocsEdit{
+			Path: "network.markdown",
+			Edit: func(_ string, content []byte) ([]byte, error) {
+				return networkModesRegexp.ReplaceAllFunc(content,
+					func(src []byte) []byte {
+						return bytes.ReplaceAll(src,
+							[]byte("`"), []byte(`"`))
+					}), nil
+			},
 		},
-	})
+		fixUpInstallationFileExample,
+		fixupBadHclTag,
+	)
+}
+
+var fixUpInstallationFileExample = targetedReplace(
+	"index.html.markdown",
+	[]byte(`resource "libvirt_domain" "test1" {
+  ...`),
+	[]byte(`resource "libvirt_domain" "test1" {
+  #...`),
+)
+
+var fixupBadHclTag = targetedReplace(
+	"index.html.markdown",
+	[]byte("shell environment variable.\n\n```hcl"),
+	[]byte("shell environment variable.\n\n```"),
+)
+
+func targetedReplace(filePath string, from, to []byte) tfbridge.DocsEdit {
+	return tfbridge.DocsEdit{
+		Path: filePath,
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			return bytes.ReplaceAll(content, from, to), nil
+		},
+	}
 }
