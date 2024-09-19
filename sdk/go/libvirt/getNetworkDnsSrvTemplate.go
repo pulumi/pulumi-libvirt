@@ -48,14 +48,20 @@ type GetNetworkDnsSrvTemplateResult struct {
 
 func GetNetworkDnsSrvTemplateOutput(ctx *pulumi.Context, args GetNetworkDnsSrvTemplateOutputArgs, opts ...pulumi.InvokeOption) GetNetworkDnsSrvTemplateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNetworkDnsSrvTemplateResult, error) {
+		ApplyT(func(v interface{}) (GetNetworkDnsSrvTemplateResultOutput, error) {
 			args := v.(GetNetworkDnsSrvTemplateArgs)
-			r, err := GetNetworkDnsSrvTemplate(ctx, &args, opts...)
-			var s GetNetworkDnsSrvTemplateResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetNetworkDnsSrvTemplateResult
+			secret, err := ctx.InvokePackageRaw("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", args, &rv, "", opts...)
+			if err != nil {
+				return GetNetworkDnsSrvTemplateResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetNetworkDnsSrvTemplateResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetNetworkDnsSrvTemplateResultOutput), nil
+			}
+			return output, nil
 		}).(GetNetworkDnsSrvTemplateResultOutput)
 }
 

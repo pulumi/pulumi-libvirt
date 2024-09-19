@@ -38,14 +38,20 @@ type GetNetworkDnsHostTemplateResult struct {
 
 func GetNetworkDnsHostTemplateOutput(ctx *pulumi.Context, args GetNetworkDnsHostTemplateOutputArgs, opts ...pulumi.InvokeOption) GetNetworkDnsHostTemplateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNetworkDnsHostTemplateResult, error) {
+		ApplyT(func(v interface{}) (GetNetworkDnsHostTemplateResultOutput, error) {
 			args := v.(GetNetworkDnsHostTemplateArgs)
-			r, err := GetNetworkDnsHostTemplate(ctx, &args, opts...)
-			var s GetNetworkDnsHostTemplateResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetNetworkDnsHostTemplateResult
+			secret, err := ctx.InvokePackageRaw("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args, &rv, "", opts...)
+			if err != nil {
+				return GetNetworkDnsHostTemplateResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetNetworkDnsHostTemplateResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetNetworkDnsHostTemplateResultOutput), nil
+			}
+			return output, nil
 		}).(GetNetworkDnsHostTemplateResultOutput)
 }
 
