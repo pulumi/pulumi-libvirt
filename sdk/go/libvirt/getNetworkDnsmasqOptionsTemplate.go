@@ -38,14 +38,20 @@ type GetNetworkDnsmasqOptionsTemplateResult struct {
 
 func GetNetworkDnsmasqOptionsTemplateOutput(ctx *pulumi.Context, args GetNetworkDnsmasqOptionsTemplateOutputArgs, opts ...pulumi.InvokeOption) GetNetworkDnsmasqOptionsTemplateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNetworkDnsmasqOptionsTemplateResult, error) {
+		ApplyT(func(v interface{}) (GetNetworkDnsmasqOptionsTemplateResultOutput, error) {
 			args := v.(GetNetworkDnsmasqOptionsTemplateArgs)
-			r, err := GetNetworkDnsmasqOptionsTemplate(ctx, &args, opts...)
-			var s GetNetworkDnsmasqOptionsTemplateResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetNetworkDnsmasqOptionsTemplateResult
+			secret, err := ctx.InvokePackageRaw("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args, &rv, "", opts...)
+			if err != nil {
+				return GetNetworkDnsmasqOptionsTemplateResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetNetworkDnsmasqOptionsTemplateResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetNetworkDnsmasqOptionsTemplateResultOutput), nil
+			}
+			return output, nil
 		}).(GetNetworkDnsmasqOptionsTemplateResultOutput)
 }
 
