@@ -5,7 +5,6 @@ package com.pulumi.libvirt.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,11 +15,11 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DomainNvramArgs Empty = new DomainNvramArgs();
 
-    @Import(name="file", required=true)
-    private Output<String> file;
+    @Import(name="file")
+    private @Nullable Output<String> file;
 
-    public Output<String> file() {
-        return this.file;
+    public Optional<Output<String>> file() {
+        return Optional.ofNullable(this.file);
     }
 
     /**
@@ -69,7 +68,7 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
             $ = new DomainNvramArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder file(Output<String> file) {
+        public Builder file(@Nullable Output<String> file) {
             $.file = file;
             return this;
         }
@@ -106,9 +105,6 @@ public final class DomainNvramArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DomainNvramArgs build() {
-            if ($.file == null) {
-                throw new MissingRequiredPropertyException("DomainNvramArgs", "file");
-            }
             return $;
         }
     }

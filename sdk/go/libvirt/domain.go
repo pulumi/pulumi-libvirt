@@ -99,7 +99,7 @@ type Domain struct {
 	// attach to the domain. The `networkInterface` object structure is documented
 	// below.
 	NetworkInterfaces DomainNetworkInterfaceArrayOutput `pulumi:"networkInterfaces"`
-	Nvram             DomainNvramPtrOutput              `pulumi:"nvram"`
+	Nvram             DomainNvramOutput                 `pulumi:"nvram"`
 	// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
 	QemuAgent pulumi.BoolPtrOutput `pulumi:"qemuAgent"`
 	// Use `false` to turn off the instance. If not specified,
@@ -660,8 +660,8 @@ func (o DomainOutput) NetworkInterfaces() DomainNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v *Domain) DomainNetworkInterfaceArrayOutput { return v.NetworkInterfaces }).(DomainNetworkInterfaceArrayOutput)
 }
 
-func (o DomainOutput) Nvram() DomainNvramPtrOutput {
-	return o.ApplyT(func(v *Domain) DomainNvramPtrOutput { return v.Nvram }).(DomainNvramPtrOutput)
+func (o DomainOutput) Nvram() DomainNvramOutput {
+	return o.ApplyT(func(v *Domain) DomainNvramOutput { return v.Nvram }).(DomainNvramOutput)
 }
 
 // By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).

@@ -11,25 +11,22 @@ namespace Pulumi.Libvirt.Outputs
 {
 
     [OutputType]
-    public sealed class DomainNvram
+    public sealed class GetNodeDeviceInfoCapabilityIommuGroupResult
     {
-        public readonly string? File;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> Addresses;
         /// <summary>
-        /// path to the file used to override variables from the master NVRAM
-        /// store.
-        /// 
-        /// So you should typically use the firmware as this,
+        /// Device number
         /// </summary>
-        public readonly string? Template;
+        public readonly string Number;
 
         [OutputConstructor]
-        private DomainNvram(
-            string? file,
+        private GetNodeDeviceInfoCapabilityIommuGroupResult(
+            ImmutableArray<ImmutableDictionary<string, string>> addresses,
 
-            string? template)
+            string number)
         {
-            File = file;
-            Template = template;
+            Addresses = addresses;
+            Number = number;
         }
     }
 }

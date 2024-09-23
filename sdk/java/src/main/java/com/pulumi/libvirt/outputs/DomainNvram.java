@@ -4,7 +4,6 @@
 package com.pulumi.libvirt.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,7 +11,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class DomainNvram {
-    private String file;
+    private @Nullable String file;
     /**
      * @return path to the file used to override variables from the master NVRAM
      * store.
@@ -23,8 +22,8 @@ public final class DomainNvram {
     private @Nullable String template;
 
     private DomainNvram() {}
-    public String file() {
-        return this.file;
+    public Optional<String> file() {
+        return Optional.ofNullable(this.file);
     }
     /**
      * @return path to the file used to override variables from the master NVRAM
@@ -46,7 +45,7 @@ public final class DomainNvram {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String file;
+        private @Nullable String file;
         private @Nullable String template;
         public Builder() {}
         public Builder(DomainNvram defaults) {
@@ -56,10 +55,8 @@ public final class DomainNvram {
         }
 
         @CustomType.Setter
-        public Builder file(String file) {
-            if (file == null) {
-              throw new MissingRequiredPropertyException("DomainNvram", "file");
-            }
+        public Builder file(@Nullable String file) {
+
             this.file = file;
             return this;
         }

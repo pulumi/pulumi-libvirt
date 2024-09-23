@@ -236,7 +236,7 @@ export interface DomainNetworkInterface {
 }
 
 export interface DomainNvram {
-    file: pulumi.Input<string>;
+    file?: pulumi.Input<string>;
     /**
      * path to the file used to override variables from the master NVRAM
      * store.
@@ -286,6 +286,276 @@ export interface DomainVideo {
 
 export interface DomainXml {
     xslt?: pulumi.Input<string>;
+}
+
+export interface GetNodeDeviceInfoCapability {
+    /**
+     * If present, the MAC address of the device
+     */
+    address?: string;
+    /**
+     * Block device name
+     */
+    block?: string;
+    /**
+     * The bus within the host
+     */
+    bus?: string;
+    /**
+     * Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+     */
+    capability?: {[key: string]: string};
+    /**
+     * Device class
+     */
+    class?: string;
+    description?: string;
+    /**
+     * Which device within the \
+     */
+    device?: string;
+    /**
+     * Device PCI domain
+     */
+    domain?: string;
+    /**
+     * Device drive type
+     */
+    driveType?: string;
+    /**
+     * Type of DRM device: `render` or `card`
+     */
+    drmType?: string;
+    features?: string[];
+    firmware?: {[key: string]: string};
+    /**
+     * Device PCI function
+     */
+    function?: string;
+    hardware?: {[key: string]: string};
+    /**
+     * The SCSI host containing the device
+     */
+    host?: string;
+    /**
+     * The interface name tied to this device
+     */
+    interface?: string;
+    /**
+     * Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+     */
+    iommuGroup?: inputs.GetNodeDeviceInfoCapabilityIommuGroup;
+    /**
+     * Optional to reflect the status of the link via `speed` and `state` keys
+     */
+    link?: {[key: string]: string};
+    /**
+     * Device logical block size
+     */
+    logicalBlockSize?: string;
+    /**
+     * The lun within the target
+     */
+    lun?: string;
+    /**
+     * Device model
+     */
+    model?: string;
+    /**
+     * Number of blocks on the device
+     */
+    numBlocks?: string;
+    /**
+     * Device number
+     */
+    number?: string;
+    /**
+     * If present, the product `id` and `name` from the device ROM
+     */
+    product?: {[key: string]: string};
+    /**
+     * Device protocol
+     */
+    protocol?: string;
+    /**
+     * The type of SCSI device
+     */
+    scsiType?: string;
+    /**
+     * Device serial number
+     */
+    serial?: string;
+    /**
+     * Device size in bytes
+     */
+    size?: string;
+    /**
+     * Device PCI slot
+     */
+    slot?: string;
+    /**
+     * Device subclass
+     */
+    subclass?: string;
+    /**
+     * The target within the bus
+     */
+    target?: string;
+    /**
+     * Device type: `pci`, `storage`, `usb`
+     */
+    type?: string;
+    /**
+     * This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+     */
+    uniqueId?: string;
+    /**
+     * If present, the vendor `id` and `name` from the device ROM
+     */
+    vendor?: {[key: string]: string};
+}
+
+export interface GetNodeDeviceInfoCapabilityArgs {
+    /**
+     * If present, the MAC address of the device
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * Block device name
+     */
+    block?: pulumi.Input<string>;
+    /**
+     * The bus within the host
+     */
+    bus?: pulumi.Input<string>;
+    /**
+     * Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+     */
+    capability?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Device class
+     */
+    class?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    /**
+     * Which device within the \
+     */
+    device?: pulumi.Input<string>;
+    /**
+     * Device PCI domain
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * Device drive type
+     */
+    driveType?: pulumi.Input<string>;
+    /**
+     * Type of DRM device: `render` or `card`
+     */
+    drmType?: pulumi.Input<string>;
+    features?: pulumi.Input<pulumi.Input<string>[]>;
+    firmware?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Device PCI function
+     */
+    function?: pulumi.Input<string>;
+    hardware?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The SCSI host containing the device
+     */
+    host?: pulumi.Input<string>;
+    /**
+     * The interface name tied to this device
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+     */
+    iommuGroup?: pulumi.Input<inputs.GetNodeDeviceInfoCapabilityIommuGroupArgs>;
+    /**
+     * Optional to reflect the status of the link via `speed` and `state` keys
+     */
+    link?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Device logical block size
+     */
+    logicalBlockSize?: pulumi.Input<string>;
+    /**
+     * The lun within the target
+     */
+    lun?: pulumi.Input<string>;
+    /**
+     * Device model
+     */
+    model?: pulumi.Input<string>;
+    /**
+     * Number of blocks on the device
+     */
+    numBlocks?: pulumi.Input<string>;
+    /**
+     * Device number
+     */
+    number?: pulumi.Input<string>;
+    /**
+     * If present, the product `id` and `name` from the device ROM
+     */
+    product?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Device protocol
+     */
+    protocol?: pulumi.Input<string>;
+    /**
+     * The type of SCSI device
+     */
+    scsiType?: pulumi.Input<string>;
+    /**
+     * Device serial number
+     */
+    serial?: pulumi.Input<string>;
+    /**
+     * Device size in bytes
+     */
+    size?: pulumi.Input<string>;
+    /**
+     * Device PCI slot
+     */
+    slot?: pulumi.Input<string>;
+    /**
+     * Device subclass
+     */
+    subclass?: pulumi.Input<string>;
+    /**
+     * The target within the bus
+     */
+    target?: pulumi.Input<string>;
+    /**
+     * Device type: `pci`, `storage`, `usb`
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+     */
+    uniqueId?: pulumi.Input<string>;
+    /**
+     * If present, the vendor `id` and `name` from the device ROM
+     */
+    vendor?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface GetNodeDeviceInfoCapabilityIommuGroup {
+    addresses?: {[key: string]: string}[];
+    /**
+     * Device number
+     */
+    number?: string;
+}
+
+export interface GetNodeDeviceInfoCapabilityIommuGroupArgs {
+    addresses?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    /**
+     * Device number
+     */
+    number?: pulumi.Input<string>;
 }
 
 export interface NetworkDhcp {

@@ -26,6 +26,53 @@ import javax.annotation.Nullable;
  * Manages a VM network resource within libvirt. For more information see
  * [the official documentation](https://libvirt.org/formatnetwork.html).
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.libvirt.Network;
+ * import com.pulumi.libvirt.NetworkArgs;
+ * import com.pulumi.libvirt.inputs.NetworkDnsArgs;
+ * import com.pulumi.libvirt.inputs.NetworkDnsmasqOptionsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var kubeNetwork = new Network("kubeNetwork", NetworkArgs.builder()
+ *             .name("k8snet")
+ *             .mode("nat")
+ *             .domain("k8s.local")
+ *             .addresses(            
+ *                 "10.17.3.0/24",
+ *                 "2001:db8:ca2:2::1/64")
+ *             .dns(NetworkDnsArgs.builder()
+ *                 .enabled(true)
+ *                 .localOnly(true)
+ *                 .build())
+ *             .dnsmasqOptions()
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  */
 @ResourceType(type="libvirt:index/network:Network")
 public class Network extends com.pulumi.resources.CustomResource {

@@ -11,25 +11,25 @@ namespace Pulumi.Libvirt.Outputs
 {
 
     [OutputType]
-    public sealed class DomainNvram
+    public sealed class GetNodeDeviceInfoDevnodeResult
     {
-        public readonly string? File;
         /// <summary>
-        /// path to the file used to override variables from the master NVRAM
-        /// store.
-        /// 
-        /// So you should typically use the firmware as this,
+        /// Full path of the device
         /// </summary>
-        public readonly string? Template;
+        public readonly string Path;
+        /// <summary>
+        /// Device type: `pci`, `storage`, `usb`
+        /// </summary>
+        public readonly string Type;
 
         [OutputConstructor]
-        private DomainNvram(
-            string? file,
+        private GetNodeDeviceInfoDevnodeResult(
+            string path,
 
-            string? template)
+            string type)
         {
-            File = file;
-            Template = template;
+            Path = path;
+            Type = type;
         }
     }
 }
