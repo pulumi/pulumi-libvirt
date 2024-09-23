@@ -95,6 +95,11 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "cloudinit.html.markdown",
 				},
 			},
+			"libvirt_combustion": {
+				Docs: &tfbridge.DocInfo{
+					Markdown: []byte(" "),
+				},
+			},
 			"libvirt_domain": {Tok: makeResource(mainMod, "Domain")},
 			"libvirt_ignition": {
 				Tok: makeResource(mainMod, "Ignition"),
