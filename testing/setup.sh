@@ -27,6 +27,7 @@ lxc.idmap = u 0 165536 65536
 lxc.idmap = g 0 165536 65536
 EOF
 
-lxc-create -t download -n foo -- --dist ubuntu --release bionic --arch amd64
+# Download ubuntu image from available images at https://images.linuxcontainers.org/.
+lxc-create -t download -n foo -- --dist ubuntu --release focal --arch amd64
 
 virsh -c lxc:// list
