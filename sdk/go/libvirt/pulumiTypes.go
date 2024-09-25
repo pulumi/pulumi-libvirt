@@ -1364,7 +1364,7 @@ func (o DomainNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) DomainNetwor
 }
 
 type DomainNvram struct {
-	File string `pulumi:"file"`
+	File *string `pulumi:"file"`
 	// path to the file used to override variables from the master NVRAM
 	// store.
 	//
@@ -1384,7 +1384,7 @@ type DomainNvramInput interface {
 }
 
 type DomainNvramArgs struct {
-	File pulumi.StringInput `pulumi:"file"`
+	File pulumi.StringPtrInput `pulumi:"file"`
 	// path to the file used to override variables from the master NVRAM
 	// store.
 	//
@@ -1469,8 +1469,8 @@ func (o DomainNvramOutput) ToDomainNvramPtrOutputWithContext(ctx context.Context
 	}).(DomainNvramPtrOutput)
 }
 
-func (o DomainNvramOutput) File() pulumi.StringOutput {
-	return o.ApplyT(func(v DomainNvram) string { return v.File }).(pulumi.StringOutput)
+func (o DomainNvramOutput) File() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DomainNvram) *string { return v.File }).(pulumi.StringPtrOutput)
 }
 
 // path to the file used to override variables from the master NVRAM
@@ -1510,7 +1510,7 @@ func (o DomainNvramPtrOutput) File() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.File
+		return v.File
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3499,6 +3499,1012 @@ func (o VolumeXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetNodeDeviceInfoCapability struct {
+	// If present, the MAC address of the device
+	Address *string `pulumi:"address"`
+	// Block device name
+	Block string `pulumi:"block"`
+	// The bus within the host
+	Bus string `pulumi:"bus"`
+	// Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+	Capability map[string]string `pulumi:"capability"`
+	// Device class
+	Class       string `pulumi:"class"`
+	Description string `pulumi:"description"`
+	// Which device within the \
+	Device string `pulumi:"device"`
+	// Device PCI domain
+	Domain string `pulumi:"domain"`
+	// Device drive type
+	DriveType string `pulumi:"driveType"`
+	// Type of DRM device: `render` or `card`
+	DrmType  string            `pulumi:"drmType"`
+	Features []string          `pulumi:"features"`
+	Firmware map[string]string `pulumi:"firmware"`
+	// Device PCI function
+	Function string            `pulumi:"function"`
+	Hardware map[string]string `pulumi:"hardware"`
+	// The SCSI host containing the device
+	Host string `pulumi:"host"`
+	// The interface name tied to this device
+	Interface *string `pulumi:"interface"`
+	// Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+	IommuGroup GetNodeDeviceInfoCapabilityIommuGroup `pulumi:"iommuGroup"`
+	// Optional to reflect the status of the link via `speed` and `state` keys
+	Link map[string]string `pulumi:"link"`
+	// Device logical block size
+	LogicalBlockSize string `pulumi:"logicalBlockSize"`
+	// The lun within the target
+	Lun string `pulumi:"lun"`
+	// Device model
+	Model string `pulumi:"model"`
+	// Number of blocks on the device
+	NumBlocks string `pulumi:"numBlocks"`
+	// Device number
+	Number string `pulumi:"number"`
+	// If present, the product `id` and `name` from the device ROM
+	Product map[string]string `pulumi:"product"`
+	// Device protocol
+	Protocol string `pulumi:"protocol"`
+	// The type of SCSI device
+	ScsiType string `pulumi:"scsiType"`
+	// Device serial number
+	Serial string `pulumi:"serial"`
+	// Device size in bytes
+	Size string `pulumi:"size"`
+	// Device PCI slot
+	Slot string `pulumi:"slot"`
+	// Device subclass
+	Subclass string `pulumi:"subclass"`
+	// The target within the bus
+	Target string `pulumi:"target"`
+	// Device type: `pci`, `storage`, `usb`
+	Type string `pulumi:"type"`
+	// This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+	UniqueId string `pulumi:"uniqueId"`
+	// If present, the vendor `id` and `name` from the device ROM
+	Vendor map[string]string `pulumi:"vendor"`
+}
+
+// GetNodeDeviceInfoCapabilityInput is an input type that accepts GetNodeDeviceInfoCapabilityArgs and GetNodeDeviceInfoCapabilityOutput values.
+// You can construct a concrete instance of `GetNodeDeviceInfoCapabilityInput` via:
+//
+//	GetNodeDeviceInfoCapabilityArgs{...}
+type GetNodeDeviceInfoCapabilityInput interface {
+	pulumi.Input
+
+	ToGetNodeDeviceInfoCapabilityOutput() GetNodeDeviceInfoCapabilityOutput
+	ToGetNodeDeviceInfoCapabilityOutputWithContext(context.Context) GetNodeDeviceInfoCapabilityOutput
+}
+
+type GetNodeDeviceInfoCapabilityArgs struct {
+	// If present, the MAC address of the device
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// Block device name
+	Block pulumi.StringInput `pulumi:"block"`
+	// The bus within the host
+	Bus pulumi.StringInput `pulumi:"bus"`
+	// Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+	Capability pulumi.StringMapInput `pulumi:"capability"`
+	// Device class
+	Class       pulumi.StringInput `pulumi:"class"`
+	Description pulumi.StringInput `pulumi:"description"`
+	// Which device within the \
+	Device pulumi.StringInput `pulumi:"device"`
+	// Device PCI domain
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Device drive type
+	DriveType pulumi.StringInput `pulumi:"driveType"`
+	// Type of DRM device: `render` or `card`
+	DrmType  pulumi.StringInput      `pulumi:"drmType"`
+	Features pulumi.StringArrayInput `pulumi:"features"`
+	Firmware pulumi.StringMapInput   `pulumi:"firmware"`
+	// Device PCI function
+	Function pulumi.StringInput    `pulumi:"function"`
+	Hardware pulumi.StringMapInput `pulumi:"hardware"`
+	// The SCSI host containing the device
+	Host pulumi.StringInput `pulumi:"host"`
+	// The interface name tied to this device
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+	IommuGroup GetNodeDeviceInfoCapabilityIommuGroupInput `pulumi:"iommuGroup"`
+	// Optional to reflect the status of the link via `speed` and `state` keys
+	Link pulumi.StringMapInput `pulumi:"link"`
+	// Device logical block size
+	LogicalBlockSize pulumi.StringInput `pulumi:"logicalBlockSize"`
+	// The lun within the target
+	Lun pulumi.StringInput `pulumi:"lun"`
+	// Device model
+	Model pulumi.StringInput `pulumi:"model"`
+	// Number of blocks on the device
+	NumBlocks pulumi.StringInput `pulumi:"numBlocks"`
+	// Device number
+	Number pulumi.StringInput `pulumi:"number"`
+	// If present, the product `id` and `name` from the device ROM
+	Product pulumi.StringMapInput `pulumi:"product"`
+	// Device protocol
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The type of SCSI device
+	ScsiType pulumi.StringInput `pulumi:"scsiType"`
+	// Device serial number
+	Serial pulumi.StringInput `pulumi:"serial"`
+	// Device size in bytes
+	Size pulumi.StringInput `pulumi:"size"`
+	// Device PCI slot
+	Slot pulumi.StringInput `pulumi:"slot"`
+	// Device subclass
+	Subclass pulumi.StringInput `pulumi:"subclass"`
+	// The target within the bus
+	Target pulumi.StringInput `pulumi:"target"`
+	// Device type: `pci`, `storage`, `usb`
+	Type pulumi.StringInput `pulumi:"type"`
+	// This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+	UniqueId pulumi.StringInput `pulumi:"uniqueId"`
+	// If present, the vendor `id` and `name` from the device ROM
+	Vendor pulumi.StringMapInput `pulumi:"vendor"`
+}
+
+func (GetNodeDeviceInfoCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDeviceInfoCapability)(nil)).Elem()
+}
+
+func (i GetNodeDeviceInfoCapabilityArgs) ToGetNodeDeviceInfoCapabilityOutput() GetNodeDeviceInfoCapabilityOutput {
+	return i.ToGetNodeDeviceInfoCapabilityOutputWithContext(context.Background())
+}
+
+func (i GetNodeDeviceInfoCapabilityArgs) ToGetNodeDeviceInfoCapabilityOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoCapabilityOutput)
+}
+
+func (i GetNodeDeviceInfoCapabilityArgs) ToGetNodeDeviceInfoCapabilityPtrOutput() GetNodeDeviceInfoCapabilityPtrOutput {
+	return i.ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(context.Background())
+}
+
+func (i GetNodeDeviceInfoCapabilityArgs) ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoCapabilityOutput).ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(ctx)
+}
+
+// GetNodeDeviceInfoCapabilityPtrInput is an input type that accepts GetNodeDeviceInfoCapabilityArgs, GetNodeDeviceInfoCapabilityPtr and GetNodeDeviceInfoCapabilityPtrOutput values.
+// You can construct a concrete instance of `GetNodeDeviceInfoCapabilityPtrInput` via:
+//
+//	        GetNodeDeviceInfoCapabilityArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetNodeDeviceInfoCapabilityPtrInput interface {
+	pulumi.Input
+
+	ToGetNodeDeviceInfoCapabilityPtrOutput() GetNodeDeviceInfoCapabilityPtrOutput
+	ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(context.Context) GetNodeDeviceInfoCapabilityPtrOutput
+}
+
+type getNodeDeviceInfoCapabilityPtrType GetNodeDeviceInfoCapabilityArgs
+
+func GetNodeDeviceInfoCapabilityPtr(v *GetNodeDeviceInfoCapabilityArgs) GetNodeDeviceInfoCapabilityPtrInput {
+	return (*getNodeDeviceInfoCapabilityPtrType)(v)
+}
+
+func (*getNodeDeviceInfoCapabilityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetNodeDeviceInfoCapability)(nil)).Elem()
+}
+
+func (i *getNodeDeviceInfoCapabilityPtrType) ToGetNodeDeviceInfoCapabilityPtrOutput() GetNodeDeviceInfoCapabilityPtrOutput {
+	return i.ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(context.Background())
+}
+
+func (i *getNodeDeviceInfoCapabilityPtrType) ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoCapabilityPtrOutput)
+}
+
+type GetNodeDeviceInfoCapabilityOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDeviceInfoCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDeviceInfoCapability)(nil)).Elem()
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) ToGetNodeDeviceInfoCapabilityOutput() GetNodeDeviceInfoCapabilityOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) ToGetNodeDeviceInfoCapabilityOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) ToGetNodeDeviceInfoCapabilityPtrOutput() GetNodeDeviceInfoCapabilityPtrOutput {
+	return o.ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(context.Background())
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetNodeDeviceInfoCapability) *GetNodeDeviceInfoCapability {
+		return &v
+	}).(GetNodeDeviceInfoCapabilityPtrOutput)
+}
+
+// If present, the MAC address of the device
+func (o GetNodeDeviceInfoCapabilityOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// Block device name
+func (o GetNodeDeviceInfoCapabilityOutput) Block() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Block }).(pulumi.StringOutput)
+}
+
+// The bus within the host
+func (o GetNodeDeviceInfoCapabilityOutput) Bus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Bus }).(pulumi.StringOutput)
+}
+
+// Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+func (o GetNodeDeviceInfoCapabilityOutput) Capability() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) map[string]string { return v.Capability }).(pulumi.StringMapOutput)
+}
+
+// Device class
+func (o GetNodeDeviceInfoCapabilityOutput) Class() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Class }).(pulumi.StringOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Which device within the \
+func (o GetNodeDeviceInfoCapabilityOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Device }).(pulumi.StringOutput)
+}
+
+// Device PCI domain
+func (o GetNodeDeviceInfoCapabilityOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Device drive type
+func (o GetNodeDeviceInfoCapabilityOutput) DriveType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.DriveType }).(pulumi.StringOutput)
+}
+
+// Type of DRM device: `render` or `card`
+func (o GetNodeDeviceInfoCapabilityOutput) DrmType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.DrmType }).(pulumi.StringOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) Features() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) []string { return v.Features }).(pulumi.StringArrayOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) Firmware() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) map[string]string { return v.Firmware }).(pulumi.StringMapOutput)
+}
+
+// Device PCI function
+func (o GetNodeDeviceInfoCapabilityOutput) Function() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Function }).(pulumi.StringOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityOutput) Hardware() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) map[string]string { return v.Hardware }).(pulumi.StringMapOutput)
+}
+
+// The SCSI host containing the device
+func (o GetNodeDeviceInfoCapabilityOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The interface name tied to this device
+func (o GetNodeDeviceInfoCapabilityOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+// Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+func (o GetNodeDeviceInfoCapabilityOutput) IommuGroup() GetNodeDeviceInfoCapabilityIommuGroupOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) GetNodeDeviceInfoCapabilityIommuGroup { return v.IommuGroup }).(GetNodeDeviceInfoCapabilityIommuGroupOutput)
+}
+
+// Optional to reflect the status of the link via `speed` and `state` keys
+func (o GetNodeDeviceInfoCapabilityOutput) Link() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) map[string]string { return v.Link }).(pulumi.StringMapOutput)
+}
+
+// Device logical block size
+func (o GetNodeDeviceInfoCapabilityOutput) LogicalBlockSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.LogicalBlockSize }).(pulumi.StringOutput)
+}
+
+// The lun within the target
+func (o GetNodeDeviceInfoCapabilityOutput) Lun() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Lun }).(pulumi.StringOutput)
+}
+
+// Device model
+func (o GetNodeDeviceInfoCapabilityOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Model }).(pulumi.StringOutput)
+}
+
+// Number of blocks on the device
+func (o GetNodeDeviceInfoCapabilityOutput) NumBlocks() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.NumBlocks }).(pulumi.StringOutput)
+}
+
+// Device number
+func (o GetNodeDeviceInfoCapabilityOutput) Number() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Number }).(pulumi.StringOutput)
+}
+
+// If present, the product `id` and `name` from the device ROM
+func (o GetNodeDeviceInfoCapabilityOutput) Product() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) map[string]string { return v.Product }).(pulumi.StringMapOutput)
+}
+
+// Device protocol
+func (o GetNodeDeviceInfoCapabilityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The type of SCSI device
+func (o GetNodeDeviceInfoCapabilityOutput) ScsiType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.ScsiType }).(pulumi.StringOutput)
+}
+
+// Device serial number
+func (o GetNodeDeviceInfoCapabilityOutput) Serial() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Serial }).(pulumi.StringOutput)
+}
+
+// Device size in bytes
+func (o GetNodeDeviceInfoCapabilityOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Size }).(pulumi.StringOutput)
+}
+
+// Device PCI slot
+func (o GetNodeDeviceInfoCapabilityOutput) Slot() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Slot }).(pulumi.StringOutput)
+}
+
+// Device subclass
+func (o GetNodeDeviceInfoCapabilityOutput) Subclass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Subclass }).(pulumi.StringOutput)
+}
+
+// The target within the bus
+func (o GetNodeDeviceInfoCapabilityOutput) Target() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Target }).(pulumi.StringOutput)
+}
+
+// Device type: `pci`, `storage`, `usb`
+func (o GetNodeDeviceInfoCapabilityOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+func (o GetNodeDeviceInfoCapabilityOutput) UniqueId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) string { return v.UniqueId }).(pulumi.StringOutput)
+}
+
+// If present, the vendor `id` and `name` from the device ROM
+func (o GetNodeDeviceInfoCapabilityOutput) Vendor() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapability) map[string]string { return v.Vendor }).(pulumi.StringMapOutput)
+}
+
+type GetNodeDeviceInfoCapabilityPtrOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDeviceInfoCapabilityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetNodeDeviceInfoCapability)(nil)).Elem()
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) ToGetNodeDeviceInfoCapabilityPtrOutput() GetNodeDeviceInfoCapabilityPtrOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) ToGetNodeDeviceInfoCapabilityPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityPtrOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Elem() GetNodeDeviceInfoCapabilityOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) GetNodeDeviceInfoCapability {
+		if v != nil {
+			return *v
+		}
+		var ret GetNodeDeviceInfoCapability
+		return ret
+	}).(GetNodeDeviceInfoCapabilityOutput)
+}
+
+// If present, the MAC address of the device
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Address
+	}).(pulumi.StringPtrOutput)
+}
+
+// Block device name
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Block() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Block
+	}).(pulumi.StringPtrOutput)
+}
+
+// The bus within the host
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Bus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bus
+	}).(pulumi.StringPtrOutput)
+}
+
+// Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Capability() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Capability
+	}).(pulumi.StringMapOutput)
+}
+
+// Device class
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Class() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Class
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+// Which device within the \
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Device() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Device
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device PCI domain
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Domain
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device drive type
+func (o GetNodeDeviceInfoCapabilityPtrOutput) DriveType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DriveType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of DRM device: `render` or `card`
+func (o GetNodeDeviceInfoCapabilityPtrOutput) DrmType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DrmType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Features() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Features
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Firmware() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Firmware
+	}).(pulumi.StringMapOutput)
+}
+
+// Device PCI function
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Function() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Function
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Hardware() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Hardware
+	}).(pulumi.StringMapOutput)
+}
+
+// The SCSI host containing the device
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The interface name tied to this device
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Interface
+	}).(pulumi.StringPtrOutput)
+}
+
+// Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+func (o GetNodeDeviceInfoCapabilityPtrOutput) IommuGroup() GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *GetNodeDeviceInfoCapabilityIommuGroup {
+		if v == nil {
+			return nil
+		}
+		return &v.IommuGroup
+	}).(GetNodeDeviceInfoCapabilityIommuGroupPtrOutput)
+}
+
+// Optional to reflect the status of the link via `speed` and `state` keys
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Link() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Link
+	}).(pulumi.StringMapOutput)
+}
+
+// Device logical block size
+func (o GetNodeDeviceInfoCapabilityPtrOutput) LogicalBlockSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LogicalBlockSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// The lun within the target
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Lun() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Lun
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device model
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Model() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Model
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of blocks on the device
+func (o GetNodeDeviceInfoCapabilityPtrOutput) NumBlocks() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NumBlocks
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device number
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Number() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Number
+	}).(pulumi.StringPtrOutput)
+}
+
+// If present, the product `id` and `name` from the device ROM
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Product() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Product
+	}).(pulumi.StringMapOutput)
+}
+
+// Device protocol
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of SCSI device
+func (o GetNodeDeviceInfoCapabilityPtrOutput) ScsiType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ScsiType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device serial number
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Serial() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Serial
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device size in bytes
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device PCI slot
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Slot() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Slot
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device subclass
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Subclass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Subclass
+	}).(pulumi.StringPtrOutput)
+}
+
+// The target within the bus
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Target
+	}).(pulumi.StringPtrOutput)
+}
+
+// Device type: `pci`, `storage`, `usb`
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+func (o GetNodeDeviceInfoCapabilityPtrOutput) UniqueId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.UniqueId
+	}).(pulumi.StringPtrOutput)
+}
+
+// If present, the vendor `id` and `name` from the device ROM
+func (o GetNodeDeviceInfoCapabilityPtrOutput) Vendor() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapability) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Vendor
+	}).(pulumi.StringMapOutput)
+}
+
+type GetNodeDeviceInfoCapabilityIommuGroup struct {
+	Addresses []map[string]string `pulumi:"addresses"`
+	// Device number
+	Number string `pulumi:"number"`
+}
+
+// GetNodeDeviceInfoCapabilityIommuGroupInput is an input type that accepts GetNodeDeviceInfoCapabilityIommuGroupArgs and GetNodeDeviceInfoCapabilityIommuGroupOutput values.
+// You can construct a concrete instance of `GetNodeDeviceInfoCapabilityIommuGroupInput` via:
+//
+//	GetNodeDeviceInfoCapabilityIommuGroupArgs{...}
+type GetNodeDeviceInfoCapabilityIommuGroupInput interface {
+	pulumi.Input
+
+	ToGetNodeDeviceInfoCapabilityIommuGroupOutput() GetNodeDeviceInfoCapabilityIommuGroupOutput
+	ToGetNodeDeviceInfoCapabilityIommuGroupOutputWithContext(context.Context) GetNodeDeviceInfoCapabilityIommuGroupOutput
+}
+
+type GetNodeDeviceInfoCapabilityIommuGroupArgs struct {
+	Addresses pulumi.StringMapArrayInput `pulumi:"addresses"`
+	// Device number
+	Number pulumi.StringInput `pulumi:"number"`
+}
+
+func (GetNodeDeviceInfoCapabilityIommuGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDeviceInfoCapabilityIommuGroup)(nil)).Elem()
+}
+
+func (i GetNodeDeviceInfoCapabilityIommuGroupArgs) ToGetNodeDeviceInfoCapabilityIommuGroupOutput() GetNodeDeviceInfoCapabilityIommuGroupOutput {
+	return i.ToGetNodeDeviceInfoCapabilityIommuGroupOutputWithContext(context.Background())
+}
+
+func (i GetNodeDeviceInfoCapabilityIommuGroupArgs) ToGetNodeDeviceInfoCapabilityIommuGroupOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityIommuGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoCapabilityIommuGroupOutput)
+}
+
+func (i GetNodeDeviceInfoCapabilityIommuGroupArgs) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutput() GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return i.ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(context.Background())
+}
+
+func (i GetNodeDeviceInfoCapabilityIommuGroupArgs) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoCapabilityIommuGroupOutput).ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(ctx)
+}
+
+// GetNodeDeviceInfoCapabilityIommuGroupPtrInput is an input type that accepts GetNodeDeviceInfoCapabilityIommuGroupArgs, GetNodeDeviceInfoCapabilityIommuGroupPtr and GetNodeDeviceInfoCapabilityIommuGroupPtrOutput values.
+// You can construct a concrete instance of `GetNodeDeviceInfoCapabilityIommuGroupPtrInput` via:
+//
+//	        GetNodeDeviceInfoCapabilityIommuGroupArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetNodeDeviceInfoCapabilityIommuGroupPtrInput interface {
+	pulumi.Input
+
+	ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutput() GetNodeDeviceInfoCapabilityIommuGroupPtrOutput
+	ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(context.Context) GetNodeDeviceInfoCapabilityIommuGroupPtrOutput
+}
+
+type getNodeDeviceInfoCapabilityIommuGroupPtrType GetNodeDeviceInfoCapabilityIommuGroupArgs
+
+func GetNodeDeviceInfoCapabilityIommuGroupPtr(v *GetNodeDeviceInfoCapabilityIommuGroupArgs) GetNodeDeviceInfoCapabilityIommuGroupPtrInput {
+	return (*getNodeDeviceInfoCapabilityIommuGroupPtrType)(v)
+}
+
+func (*getNodeDeviceInfoCapabilityIommuGroupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetNodeDeviceInfoCapabilityIommuGroup)(nil)).Elem()
+}
+
+func (i *getNodeDeviceInfoCapabilityIommuGroupPtrType) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutput() GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return i.ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(context.Background())
+}
+
+func (i *getNodeDeviceInfoCapabilityIommuGroupPtrType) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoCapabilityIommuGroupPtrOutput)
+}
+
+type GetNodeDeviceInfoCapabilityIommuGroupOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDeviceInfoCapabilityIommuGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDeviceInfoCapabilityIommuGroup)(nil)).Elem()
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupOutput) ToGetNodeDeviceInfoCapabilityIommuGroupOutput() GetNodeDeviceInfoCapabilityIommuGroupOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupOutput) ToGetNodeDeviceInfoCapabilityIommuGroupOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityIommuGroupOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupOutput) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutput() GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return o.ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(context.Background())
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupOutput) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetNodeDeviceInfoCapabilityIommuGroup) *GetNodeDeviceInfoCapabilityIommuGroup {
+		return &v
+	}).(GetNodeDeviceInfoCapabilityIommuGroupPtrOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupOutput) Addresses() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapabilityIommuGroup) []map[string]string { return v.Addresses }).(pulumi.StringMapArrayOutput)
+}
+
+// Device number
+func (o GetNodeDeviceInfoCapabilityIommuGroupOutput) Number() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoCapabilityIommuGroup) string { return v.Number }).(pulumi.StringOutput)
+}
+
+type GetNodeDeviceInfoCapabilityIommuGroupPtrOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDeviceInfoCapabilityIommuGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetNodeDeviceInfoCapabilityIommuGroup)(nil)).Elem()
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupPtrOutput) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutput() GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupPtrOutput) ToGetNodeDeviceInfoCapabilityIommuGroupPtrOutputWithContext(ctx context.Context) GetNodeDeviceInfoCapabilityIommuGroupPtrOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupPtrOutput) Elem() GetNodeDeviceInfoCapabilityIommuGroupOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapabilityIommuGroup) GetNodeDeviceInfoCapabilityIommuGroup {
+		if v != nil {
+			return *v
+		}
+		var ret GetNodeDeviceInfoCapabilityIommuGroup
+		return ret
+	}).(GetNodeDeviceInfoCapabilityIommuGroupOutput)
+}
+
+func (o GetNodeDeviceInfoCapabilityIommuGroupPtrOutput) Addresses() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapabilityIommuGroup) []map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Addresses
+	}).(pulumi.StringMapArrayOutput)
+}
+
+// Device number
+func (o GetNodeDeviceInfoCapabilityIommuGroupPtrOutput) Number() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetNodeDeviceInfoCapabilityIommuGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Number
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetNodeDeviceInfoDevnode struct {
+	// Full path of the device
+	Path string `pulumi:"path"`
+	// Device type: `pci`, `storage`, `usb`
+	Type string `pulumi:"type"`
+}
+
+// GetNodeDeviceInfoDevnodeInput is an input type that accepts GetNodeDeviceInfoDevnodeArgs and GetNodeDeviceInfoDevnodeOutput values.
+// You can construct a concrete instance of `GetNodeDeviceInfoDevnodeInput` via:
+//
+//	GetNodeDeviceInfoDevnodeArgs{...}
+type GetNodeDeviceInfoDevnodeInput interface {
+	pulumi.Input
+
+	ToGetNodeDeviceInfoDevnodeOutput() GetNodeDeviceInfoDevnodeOutput
+	ToGetNodeDeviceInfoDevnodeOutputWithContext(context.Context) GetNodeDeviceInfoDevnodeOutput
+}
+
+type GetNodeDeviceInfoDevnodeArgs struct {
+	// Full path of the device
+	Path pulumi.StringInput `pulumi:"path"`
+	// Device type: `pci`, `storage`, `usb`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetNodeDeviceInfoDevnodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDeviceInfoDevnode)(nil)).Elem()
+}
+
+func (i GetNodeDeviceInfoDevnodeArgs) ToGetNodeDeviceInfoDevnodeOutput() GetNodeDeviceInfoDevnodeOutput {
+	return i.ToGetNodeDeviceInfoDevnodeOutputWithContext(context.Background())
+}
+
+func (i GetNodeDeviceInfoDevnodeArgs) ToGetNodeDeviceInfoDevnodeOutputWithContext(ctx context.Context) GetNodeDeviceInfoDevnodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoDevnodeOutput)
+}
+
+// GetNodeDeviceInfoDevnodeArrayInput is an input type that accepts GetNodeDeviceInfoDevnodeArray and GetNodeDeviceInfoDevnodeArrayOutput values.
+// You can construct a concrete instance of `GetNodeDeviceInfoDevnodeArrayInput` via:
+//
+//	GetNodeDeviceInfoDevnodeArray{ GetNodeDeviceInfoDevnodeArgs{...} }
+type GetNodeDeviceInfoDevnodeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeDeviceInfoDevnodeArrayOutput() GetNodeDeviceInfoDevnodeArrayOutput
+	ToGetNodeDeviceInfoDevnodeArrayOutputWithContext(context.Context) GetNodeDeviceInfoDevnodeArrayOutput
+}
+
+type GetNodeDeviceInfoDevnodeArray []GetNodeDeviceInfoDevnodeInput
+
+func (GetNodeDeviceInfoDevnodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeDeviceInfoDevnode)(nil)).Elem()
+}
+
+func (i GetNodeDeviceInfoDevnodeArray) ToGetNodeDeviceInfoDevnodeArrayOutput() GetNodeDeviceInfoDevnodeArrayOutput {
+	return i.ToGetNodeDeviceInfoDevnodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeDeviceInfoDevnodeArray) ToGetNodeDeviceInfoDevnodeArrayOutputWithContext(ctx context.Context) GetNodeDeviceInfoDevnodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDeviceInfoDevnodeArrayOutput)
+}
+
+type GetNodeDeviceInfoDevnodeOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDeviceInfoDevnodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDeviceInfoDevnode)(nil)).Elem()
+}
+
+func (o GetNodeDeviceInfoDevnodeOutput) ToGetNodeDeviceInfoDevnodeOutput() GetNodeDeviceInfoDevnodeOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoDevnodeOutput) ToGetNodeDeviceInfoDevnodeOutputWithContext(ctx context.Context) GetNodeDeviceInfoDevnodeOutput {
+	return o
+}
+
+// Full path of the device
+func (o GetNodeDeviceInfoDevnodeOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoDevnode) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// Device type: `pci`, `storage`, `usb`
+func (o GetNodeDeviceInfoDevnodeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDeviceInfoDevnode) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetNodeDeviceInfoDevnodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDeviceInfoDevnodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeDeviceInfoDevnode)(nil)).Elem()
+}
+
+func (o GetNodeDeviceInfoDevnodeArrayOutput) ToGetNodeDeviceInfoDevnodeArrayOutput() GetNodeDeviceInfoDevnodeArrayOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoDevnodeArrayOutput) ToGetNodeDeviceInfoDevnodeArrayOutputWithContext(ctx context.Context) GetNodeDeviceInfoDevnodeArrayOutput {
+	return o
+}
+
+func (o GetNodeDeviceInfoDevnodeArrayOutput) Index(i pulumi.IntInput) GetNodeDeviceInfoDevnodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeDeviceInfoDevnode {
+		return vs[0].([]GetNodeDeviceInfoDevnode)[vs[1].(int)]
+	}).(GetNodeDeviceInfoDevnodeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainBootDeviceInput)(nil)).Elem(), DomainBootDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainBootDeviceArrayInput)(nil)).Elem(), DomainBootDeviceArray{})
@@ -3544,6 +4550,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolXmlPtrInput)(nil)).Elem(), PoolXmlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeXmlInput)(nil)).Elem(), VolumeXmlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeXmlPtrInput)(nil)).Elem(), VolumeXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDeviceInfoCapabilityInput)(nil)).Elem(), GetNodeDeviceInfoCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDeviceInfoCapabilityPtrInput)(nil)).Elem(), GetNodeDeviceInfoCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDeviceInfoCapabilityIommuGroupInput)(nil)).Elem(), GetNodeDeviceInfoCapabilityIommuGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDeviceInfoCapabilityIommuGroupPtrInput)(nil)).Elem(), GetNodeDeviceInfoCapabilityIommuGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDeviceInfoDevnodeInput)(nil)).Elem(), GetNodeDeviceInfoDevnodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDeviceInfoDevnodeArrayInput)(nil)).Elem(), GetNodeDeviceInfoDevnodeArray{})
 	pulumi.RegisterOutputType(DomainBootDeviceOutput{})
 	pulumi.RegisterOutputType(DomainBootDeviceArrayOutput{})
 	pulumi.RegisterOutputType(DomainConsoleOutput{})
@@ -3588,4 +4600,10 @@ func init() {
 	pulumi.RegisterOutputType(PoolXmlPtrOutput{})
 	pulumi.RegisterOutputType(VolumeXmlOutput{})
 	pulumi.RegisterOutputType(VolumeXmlPtrOutput{})
+	pulumi.RegisterOutputType(GetNodeDeviceInfoCapabilityOutput{})
+	pulumi.RegisterOutputType(GetNodeDeviceInfoCapabilityPtrOutput{})
+	pulumi.RegisterOutputType(GetNodeDeviceInfoCapabilityIommuGroupOutput{})
+	pulumi.RegisterOutputType(GetNodeDeviceInfoCapabilityIommuGroupPtrOutput{})
+	pulumi.RegisterOutputType(GetNodeDeviceInfoDevnodeOutput{})
+	pulumi.RegisterOutputType(GetNodeDeviceInfoDevnodeArrayOutput{})
 }

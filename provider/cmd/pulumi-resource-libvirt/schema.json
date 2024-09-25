@@ -162,7 +162,14 @@
                     "description": "Specify a WWN to use for the disk if the disk is using\na scsi controller, if not specified then a random wwn is generated for the disk\n\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst leap = new libvirt.Volume(\"leap\", {\n    name: \"leap\",\n    source: \"http://someurl/openSUSE_Leap-42.1.qcow2\",\n});\nconst mydisk = new libvirt.Volume(\"mydisk\", {\n    name: \"mydisk\",\n    baseVolumeId: leap.id,\n});\nconst domain1 = new libvirt.Domain(\"domain1\", {\n    name: \"domain1\",\n    disks: [\n        {\n            volumeId: mydisk.id,\n            scsi: true,\n        },\n        {\n            url: \"http://foo.com/install.iso\",\n        },\n        {\n            file: \"/absolute/path/to/disk.iso\",\n        },\n        {\n            blockDevice: \"/dev/mapper/36005076802810e55400000000000145f\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nleap = libvirt.Volume(\"leap\",\n    name=\"leap\",\n    source=\"http://someurl/openSUSE_Leap-42.1.qcow2\")\nmydisk = libvirt.Volume(\"mydisk\",\n    name=\"mydisk\",\n    base_volume_id=leap.id)\ndomain1 = libvirt.Domain(\"domain1\",\n    name=\"domain1\",\n    disks=[\n        {\n            \"volume_id\": mydisk.id,\n            \"scsi\": True,\n        },\n        {\n            \"url\": \"http://foo.com/install.iso\",\n        },\n        {\n            \"file\": \"/absolute/path/to/disk.iso\",\n        },\n        {\n            \"block_device\": \"/dev/mapper/36005076802810e55400000000000145f\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var leap = new Libvirt.Volume(\"leap\", new()\n    {\n        Name = \"leap\",\n        Source = \"http://someurl/openSUSE_Leap-42.1.qcow2\",\n    });\n\n    var mydisk = new Libvirt.Volume(\"mydisk\", new()\n    {\n        Name = \"mydisk\",\n        BaseVolumeId = leap.Id,\n    });\n\n    var domain1 = new Libvirt.Domain(\"domain1\", new()\n    {\n        Name = \"domain1\",\n        Disks = new[]\n        {\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                VolumeId = mydisk.Id,\n                Scsi = true,\n            },\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                Url = \"http://foo.com/install.iso\",\n            },\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                File = \"/absolute/path/to/disk.iso\",\n            },\n            new Libvirt.Inputs.DomainDiskArgs\n            {\n                BlockDevice = \"/dev/mapper/36005076802810e55400000000000145f\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tleap, err := libvirt.NewVolume(ctx, \"leap\", \u0026libvirt.VolumeArgs{\n\t\t\tName:   pulumi.String(\"leap\"),\n\t\t\tSource: pulumi.String(\"http://someurl/openSUSE_Leap-42.1.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmydisk, err := libvirt.NewVolume(ctx, \"mydisk\", \u0026libvirt.VolumeArgs{\n\t\t\tName:         pulumi.String(\"mydisk\"),\n\t\t\tBaseVolumeId: leap.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewDomain(ctx, \"domain1\", \u0026libvirt.DomainArgs{\n\t\t\tName: pulumi.String(\"domain1\"),\n\t\t\tDisks: libvirt.DomainDiskArray{\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tVolumeId: mydisk.ID(),\n\t\t\t\t\tScsi:     pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tUrl: pulumi.String(\"http://foo.com/install.iso\"),\n\t\t\t\t},\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tFile: pulumi.String(\"/absolute/path/to/disk.iso\"),\n\t\t\t\t},\n\t\t\t\t\u0026libvirt.DomainDiskArgs{\n\t\t\t\t\tBlockDevice: pulumi.String(\"/dev/mapper/36005076802810e55400000000000145f\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport com.pulumi.libvirt.Domain;\nimport com.pulumi.libvirt.DomainArgs;\nimport com.pulumi.libvirt.inputs.DomainDiskArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var leap = new Volume(\"leap\", VolumeArgs.builder()\n            .name(\"leap\")\n            .source(\"http://someurl/openSUSE_Leap-42.1.qcow2\")\n            .build());\n\n        var mydisk = new Volume(\"mydisk\", VolumeArgs.builder()\n            .name(\"mydisk\")\n            .baseVolumeId(leap.id())\n            .build());\n\n        var domain1 = new Domain(\"domain1\", DomainArgs.builder()\n            .name(\"domain1\")\n            .disks(            \n                DomainDiskArgs.builder()\n                    .volumeId(mydisk.id())\n                    .scsi(\"true\")\n                    .build(),\n                DomainDiskArgs.builder()\n                    .url(\"http://foo.com/install.iso\")\n                    .build(),\n                DomainDiskArgs.builder()\n                    .file(\"/absolute/path/to/disk.iso\")\n                    .build(),\n                DomainDiskArgs.builder()\n                    .blockDevice(\"/dev/mapper/36005076802810e55400000000000145f\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  leap:\n    type: libvirt:Volume\n    properties:\n      name: leap\n      source: http://someurl/openSUSE_Leap-42.1.qcow2\n  mydisk:\n    type: libvirt:Volume\n    properties:\n      name: mydisk\n      baseVolumeId: ${leap.id}\n  domain1:\n    type: libvirt:Domain\n    properties:\n      name: domain1\n      disks:\n        - volumeId: ${mydisk.id}\n          scsi: 'true'\n        - url: http://foo.com/install.iso\n        - file: /absolute/path/to/disk.iso\n        - blockDevice: /dev/mapper/36005076802810e55400000000000145f\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nAlso note that the `disk` block is actually a list of maps, so it is possible to\ndeclare several of them by using either the literal list and map syntax as in\nthe following examples:\n\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "wwn"
+                    ]
+                }
+            }
         },
         "libvirt:index/DomainFilesystem:DomainFilesystem": {
             "properties": {
@@ -288,9 +295,14 @@
                 }
             },
             "type": "object",
-            "required": [
-                "file"
-            ]
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "file",
+                        "template"
+                    ]
+                }
+            }
         },
         "libvirt:index/DomainTpm:DomainTpm": {
             "properties": {
@@ -520,6 +532,245 @@
                 }
             },
             "type": "object"
+        },
+        "libvirt:index/getNodeDeviceInfoCapability:getNodeDeviceInfoCapability": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "If present, the MAC address of the device\n"
+                },
+                "block": {
+                    "type": "string",
+                    "description": "Block device name\n"
+                },
+                "bus": {
+                    "type": "string",
+                    "description": "The bus within the host\n"
+                },
+                "capability": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11\n"
+                },
+                "class": {
+                    "type": "string",
+                    "description": "Device class\n"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "device": {
+                    "type": "string",
+                    "description": "Which device within the \\\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "Device PCI domain\n"
+                },
+                "driveType": {
+                    "type": "string",
+                    "description": "Device drive type\n"
+                },
+                "drmType": {
+                    "type": "string",
+                    "description": "Type of DRM device: `render` or `card`\n"
+                },
+                "features": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "firmware": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "function": {
+                    "type": "string",
+                    "description": "Device PCI function\n"
+                },
+                "hardware": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The SCSI host containing the device\n"
+                },
+                "interface": {
+                    "type": "string",
+                    "description": "The interface name tied to this device\n"
+                },
+                "iommuGroup": {
+                    "$ref": "#/types/libvirt:index/getNodeDeviceInfoCapabilityIommuGroup:getNodeDeviceInfoCapabilityIommuGroup",
+                    "description": "Structure that holds IOMMU Group `number` and the list of devices that are part of the group\n"
+                },
+                "link": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optional to reflect the status of the link via `speed` and `state` keys\n"
+                },
+                "logicalBlockSize": {
+                    "type": "string",
+                    "description": "Device logical block size\n"
+                },
+                "lun": {
+                    "type": "string",
+                    "description": "The lun within the target\n"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "Device model\n"
+                },
+                "numBlocks": {
+                    "type": "string",
+                    "description": "Number of blocks on the device\n"
+                },
+                "number": {
+                    "type": "string",
+                    "description": "Device number\n"
+                },
+                "product": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "If present, the product `id` and `name` from the device ROM\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "Device protocol\n"
+                },
+                "scsiType": {
+                    "type": "string",
+                    "description": "The type of SCSI device\n"
+                },
+                "serial": {
+                    "type": "string",
+                    "description": "Device serial number\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "Device size in bytes\n"
+                },
+                "slot": {
+                    "type": "string",
+                    "description": "Device PCI slot\n"
+                },
+                "subclass": {
+                    "type": "string",
+                    "description": "Device subclass\n"
+                },
+                "target": {
+                    "type": "string",
+                    "description": "The target within the bus\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Device type: `pci`, `storage`, `usb`\n"
+                },
+                "uniqueId": {
+                    "type": "string",
+                    "description": "This optionally provides the value from the 'unique_id' file found in the scsi_host's directory\n"
+                },
+                "vendor": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "If present, the vendor `id` and `name` from the device ROM\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "block",
+                "bus",
+                "class",
+                "description",
+                "device",
+                "domain",
+                "driveType",
+                "drmType",
+                "function",
+                "host",
+                "iommuGroup",
+                "logicalBlockSize",
+                "lun",
+                "model",
+                "numBlocks",
+                "number",
+                "protocol",
+                "scsiType",
+                "serial",
+                "size",
+                "slot",
+                "subclass",
+                "target",
+                "type",
+                "uniqueId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "libvirt:index/getNodeDeviceInfoCapabilityIommuGroup:getNodeDeviceInfoCapabilityIommuGroup": {
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "number": {
+                    "type": "string",
+                    "description": "Device number\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "addresses",
+                "number"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "libvirt:index/getNodeDeviceInfoDevnode:getNodeDeviceInfoDevnode": {
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "Full path of the device\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Device type: `pci`, `storage`, `usb`\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "path",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -622,6 +873,58 @@
                     "userData": {
                         "type": "string",
                         "description": "cloud-init user data.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "libvirt:index/combustion:Combustion": {
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "pool": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "content",
+                "name"
+            ],
+            "inputProperties": {
+                "content": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "pool": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "content"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Combustion resources.\n",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "pool": {
+                        "type": "string",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -769,7 +1072,8 @@
                 "cpu",
                 "emulator",
                 "machine",
-                "name"
+                "name",
+                "nvram"
             ],
             "inputProperties": {
                 "arch": {
@@ -1129,7 +1433,7 @@
             }
         },
         "libvirt:index/network:Network": {
-            "description": "Manages a VM network resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatnetwork.html).\n\n",
+            "description": "Manages a VM network resource within libvirt. For more information see\n[the official documentation](https://libvirt.org/formatnetwork.html).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst kubeNetwork = new libvirt.Network(\"kube_network\", {\n    name: \"k8snet\",\n    mode: \"nat\",\n    domain: \"k8s.local\",\n    addresses: [\n        \"10.17.3.0/24\",\n        \"2001:db8:ca2:2::1/64\",\n    ],\n    dns: {\n        enabled: true,\n        localOnly: true,\n    },\n    dnsmasqOptions: {},\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nkube_network = libvirt.Network(\"kube_network\",\n    name=\"k8snet\",\n    mode=\"nat\",\n    domain=\"k8s.local\",\n    addresses=[\n        \"10.17.3.0/24\",\n        \"2001:db8:ca2:2::1/64\",\n    ],\n    dns={\n        \"enabled\": True,\n        \"local_only\": True,\n    },\n    dnsmasq_options={})\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kubeNetwork = new Libvirt.Network(\"kube_network\", new()\n    {\n        Name = \"k8snet\",\n        Mode = \"nat\",\n        Domain = \"k8s.local\",\n        Addresses = new[]\n        {\n            \"10.17.3.0/24\",\n            \"2001:db8:ca2:2::1/64\",\n        },\n        Dns = new Libvirt.Inputs.NetworkDnsArgs\n        {\n            Enabled = true,\n            LocalOnly = true,\n        },\n        DnsmasqOptions = null,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.NewNetwork(ctx, \"kube_network\", \u0026libvirt.NetworkArgs{\n\t\t\tName:   pulumi.String(\"k8snet\"),\n\t\t\tMode:   pulumi.String(\"nat\"),\n\t\t\tDomain: pulumi.String(\"k8s.local\"),\n\t\t\tAddresses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.17.3.0/24\"),\n\t\t\t\tpulumi.String(\"2001:db8:ca2:2::1/64\"),\n\t\t\t},\n\t\t\tDns: \u0026libvirt.NetworkDnsArgs{\n\t\t\t\tEnabled:   pulumi.Bool(true),\n\t\t\t\tLocalOnly: pulumi.Bool(true),\n\t\t\t},\n\t\t\tDnsmasqOptions: nil,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Network;\nimport com.pulumi.libvirt.NetworkArgs;\nimport com.pulumi.libvirt.inputs.NetworkDnsArgs;\nimport com.pulumi.libvirt.inputs.NetworkDnsmasqOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kubeNetwork = new Network(\"kubeNetwork\", NetworkArgs.builder()\n            .name(\"k8snet\")\n            .mode(\"nat\")\n            .domain(\"k8s.local\")\n            .addresses(            \n                \"10.17.3.0/24\",\n                \"2001:db8:ca2:2::1/64\")\n            .dns(NetworkDnsArgs.builder()\n                .enabled(true)\n                .localOnly(true)\n                .build())\n            .dnsmasqOptions()\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kubeNetwork:\n    type: libvirt:Network\n    name: kube_network\n    properties:\n      name: k8snet\n      mode: nat\n      domain: k8s.local\n      addresses:\n        - 10.17.3.0/24\n        - 2001:db8:ca2:2::1/64\n      dns:\n        enabled: true\n        localOnly: true\n      dnsmasqOptions: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "addresses": {
                     "type": "array",
@@ -1724,6 +2028,159 @@
                 "required": [
                     "optionName",
                     "rendered",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo": {
+            "description": "Retrieve information about a specific device on the current node\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst device = libvirt.getNodeDeviceInfo({\n    name: \"pci_0000_00_00_0\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\ndevice = libvirt.get_node_device_info(name=\"pci_0000_00_00_0\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var device = Libvirt.GetNodeDeviceInfo.Invoke(new()\n    {\n        Name = \"pci_0000_00_00_0\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.GetNodeDeviceInfo(ctx, \u0026libvirt.GetNodeDeviceInfoArgs{\n\t\t\tName: \"pci_0000_00_00_0\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.LibvirtFunctions;\nimport com.pulumi.libvirt.inputs.GetNodeDeviceInfoArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var device = LibvirtFunctions.getNodeDeviceInfo(GetNodeDeviceInfoArgs.builder()\n            .name(\"pci_0000_00_00_0\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  device:\n    fn::invoke:\n      Function: libvirt:getNodeDeviceInfo\n      Arguments:\n        name: pci_0000_00_00_0\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNodeDeviceInfo.\n",
+                "properties": {
+                    "capability": {
+                        "$ref": "#/types/libvirt:index/getNodeDeviceInfoCapability:getNodeDeviceInfoCapability",
+                        "description": "Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the device name as expected by [libvirt](https://www.libvirt.org/manpages/virsh.html#nodedev-commands).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNodeDeviceInfo.\n",
+                "properties": {
+                    "capability": {
+                        "$ref": "#/types/libvirt:index/getNodeDeviceInfoCapability:getNodeDeviceInfoCapability",
+                        "description": "Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11\n"
+                    },
+                    "devnodes": {
+                        "description": "For type `drm` holds the `path` and `link` that point to the device\n",
+                        "items": {
+                            "$ref": "#/types/libvirt:index/getNodeDeviceInfoDevnode:getNodeDeviceInfoDevnode"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "parent": {
+                        "description": "The parent of this device in the hierarchy\n",
+                        "type": "string"
+                    },
+                    "path": {
+                        "description": "Full path of the device\n",
+                        "type": "string"
+                    },
+                    "xml": {
+                        "description": "The XML returned by the libvirt API call\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "capability",
+                    "devnodes",
+                    "name",
+                    "parent",
+                    "path",
+                    "xml",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "libvirt:index/getNodeDevices:getNodeDevices": {
+            "description": "Retrieve information about the devices present on the current node\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst node = libvirt.getNodeDevices({\n    capability: \"pci\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nnode = libvirt.get_node_devices(capability=\"pci\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var node = Libvirt.GetNodeDevices.Invoke(new()\n    {\n        Capability = \"pci\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.GetNodeDevices(ctx, \u0026libvirt.GetNodeDevicesArgs{\n\t\t\tCapability: pulumi.StringRef(\"pci\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.LibvirtFunctions;\nimport com.pulumi.libvirt.inputs.GetNodeDevicesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var node = LibvirtFunctions.getNodeDevices(GetNodeDevicesArgs.builder()\n            .capability(\"pci\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  node:\n    fn::invoke:\n      Function: libvirt:getNodeDevices\n      Arguments:\n        capability: pci\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNodeDevices.\n",
+                "properties": {
+                    "capability": {
+                        "type": "string",
+                        "description": "The type of device, used to filter the output by capability type.\nCan be one of `system`, `pci`, `usb_device`,  `usb`,  `net`,  `scsi_host`,\n`scsi_target`,  `scsi`,  `storage`, `fc_host`,  `vports`, `scsi_generic`, `drm`,\n`mdev`, `mdev_types`, `ccw`, `css`, `ap_card`, `ap_queue`, `ap_matrix`.\nDefaults to all active devices.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNodeDevices.\n",
+                "properties": {
+                    "capability": {
+                        "type": "string"
+                    },
+                    "devices": {
+                        "description": "A list of devices that match the selected capability\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "devices",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "libvirt:index/getNodeInfo:getNodeInfo": {
+            "description": "Retrieve information about the current node\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\nconst node = libvirt.getNodeInfo({});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\nnode = libvirt.get_node_info()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var node = Libvirt.GetNodeInfo.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := libvirt.GetNodeInfo(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.LibvirtFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var node = LibvirtFunctions.getNodeInfo();\n\n    }\n}\n```\n```yaml\nvariables:\n  node:\n    fn::invoke:\n      Function: libvirt:getNodeInfo\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "outputs": {
+                "description": "A collection of values returned by getNodeInfo.\n",
+                "properties": {
+                    "cpuCoresPerSocket": {
+                        "description": "Number of CPU cores per each socket\n",
+                        "type": "integer"
+                    },
+                    "cpuCoresTotal": {
+                        "description": "Number of CPU cores in total\n",
+                        "type": "integer"
+                    },
+                    "cpuModel": {
+                        "description": "CPU Architecture, usually `x86_64`\n",
+                        "type": "string"
+                    },
+                    "cpuSockets": {
+                        "description": "How many CPU sockets are present\n",
+                        "type": "integer"
+                    },
+                    "cpuThreadsPerCore": {
+                        "description": "How many CPU Threads are available per each CPU core\n",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "memoryTotalKb": {
+                        "description": "The amount of memory installed, in KiB\n",
+                        "type": "integer"
+                    },
+                    "numaNodes": {
+                        "description": "How many NUMA nodes/cells are available.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "cpuCoresPerSocket",
+                    "cpuCoresTotal",
+                    "cpuModel",
+                    "cpuSockets",
+                    "cpuThreadsPerCore",
+                    "memoryTotalKb",
+                    "numaNodes",
                     "id"
                 ],
                 "type": "object"

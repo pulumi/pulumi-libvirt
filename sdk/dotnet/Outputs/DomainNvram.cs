@@ -13,7 +13,7 @@ namespace Pulumi.Libvirt.Outputs
     [OutputType]
     public sealed class DomainNvram
     {
-        public readonly string File;
+        public readonly string? File;
         /// <summary>
         /// path to the file used to override variables from the master NVRAM
         /// store.
@@ -24,7 +24,7 @@ namespace Pulumi.Libvirt.Outputs
 
         [OutputConstructor]
         private DomainNvram(
-            string file,
+            string? file,
 
             string? template)
         {

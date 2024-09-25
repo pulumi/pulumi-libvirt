@@ -4,6 +4,9 @@
             "libvirt_cloudinit_disk": {
                 "current": "libvirt:index/cloudInitDisk:CloudInitDisk"
             },
+            "libvirt_combustion": {
+                "current": "libvirt:index/combustion:Combustion"
+            },
             "libvirt_domain": {
                 "current": "libvirt:index/domain:Domain",
                 "fields": {
@@ -131,6 +134,45 @@
             },
             "libvirt_network_dnsmasq_options_template": {
                 "current": "libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate"
+            },
+            "libvirt_node_device_info": {
+                "current": "libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "features": {
+                                    "maxItemsOne": false
+                                },
+                                "iommu_group": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "addresses": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "devnode": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "libvirt_node_devices": {
+                "current": "libvirt:index/getNodeDevices:getNodeDevices",
+                "fields": {
+                    "devices": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "libvirt_node_info": {
+                "current": "libvirt:index/getNodeInfo:getNodeInfo"
             }
         }
     },

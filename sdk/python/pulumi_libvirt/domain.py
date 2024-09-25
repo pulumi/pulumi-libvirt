@@ -1497,7 +1497,7 @@ class Domain(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def nvram(self) -> pulumi.Output[Optional['outputs.DomainNvram']]:
+    def nvram(self) -> pulumi.Output['outputs.DomainNvram']:
         return pulumi.get(self, "nvram")
 
     @property

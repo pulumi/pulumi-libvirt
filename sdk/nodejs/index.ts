@@ -10,6 +10,11 @@ export type CloudInitDisk = import("./cloudInitDisk").CloudInitDisk;
 export const CloudInitDisk: typeof import("./cloudInitDisk").CloudInitDisk = null as any;
 utilities.lazyLoad(exports, ["CloudInitDisk"], () => require("./cloudInitDisk"));
 
+export { CombustionArgs, CombustionState } from "./combustion";
+export type Combustion = import("./combustion").Combustion;
+export const Combustion: typeof import("./combustion").Combustion = null as any;
+utilities.lazyLoad(exports, ["Combustion"], () => require("./combustion"));
+
 export { DomainArgs, DomainState } from "./domain";
 export type Domain = import("./domain").Domain;
 export const Domain: typeof import("./domain").Domain = null as any;
@@ -29,6 +34,21 @@ export { GetNetworkDnsmasqOptionsTemplateArgs, GetNetworkDnsmasqOptionsTemplateR
 export const getNetworkDnsmasqOptionsTemplate: typeof import("./getNetworkDnsmasqOptionsTemplate").getNetworkDnsmasqOptionsTemplate = null as any;
 export const getNetworkDnsmasqOptionsTemplateOutput: typeof import("./getNetworkDnsmasqOptionsTemplate").getNetworkDnsmasqOptionsTemplateOutput = null as any;
 utilities.lazyLoad(exports, ["getNetworkDnsmasqOptionsTemplate","getNetworkDnsmasqOptionsTemplateOutput"], () => require("./getNetworkDnsmasqOptionsTemplate"));
+
+export { GetNodeDeviceInfoArgs, GetNodeDeviceInfoResult, GetNodeDeviceInfoOutputArgs } from "./getNodeDeviceInfo";
+export const getNodeDeviceInfo: typeof import("./getNodeDeviceInfo").getNodeDeviceInfo = null as any;
+export const getNodeDeviceInfoOutput: typeof import("./getNodeDeviceInfo").getNodeDeviceInfoOutput = null as any;
+utilities.lazyLoad(exports, ["getNodeDeviceInfo","getNodeDeviceInfoOutput"], () => require("./getNodeDeviceInfo"));
+
+export { GetNodeDevicesArgs, GetNodeDevicesResult, GetNodeDevicesOutputArgs } from "./getNodeDevices";
+export const getNodeDevices: typeof import("./getNodeDevices").getNodeDevices = null as any;
+export const getNodeDevicesOutput: typeof import("./getNodeDevices").getNodeDevicesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodeDevices","getNodeDevicesOutput"], () => require("./getNodeDevices"));
+
+export { GetNodeInfoResult } from "./getNodeInfo";
+export const getNodeInfo: typeof import("./getNodeInfo").getNodeInfo = null as any;
+export const getNodeInfoOutput: typeof import("./getNodeInfo").getNodeInfoOutput = null as any;
+utilities.lazyLoad(exports, ["getNodeInfo","getNodeInfoOutput"], () => require("./getNodeInfo"));
 
 export { IgnitionArgs, IgnitionState } from "./ignition";
 export type Ignition = import("./ignition").Ignition;
@@ -71,6 +91,8 @@ const _module = {
         switch (type) {
             case "libvirt:index/cloudInitDisk:CloudInitDisk":
                 return new CloudInitDisk(name, <any>undefined, { urn })
+            case "libvirt:index/combustion:Combustion":
+                return new Combustion(name, <any>undefined, { urn })
             case "libvirt:index/domain:Domain":
                 return new Domain(name, <any>undefined, { urn })
             case "libvirt:index/ignition:Ignition":
@@ -87,6 +109,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("libvirt", "index/cloudInitDisk", _module)
+pulumi.runtime.registerResourceModule("libvirt", "index/combustion", _module)
 pulumi.runtime.registerResourceModule("libvirt", "index/domain", _module)
 pulumi.runtime.registerResourceModule("libvirt", "index/ignition", _module)
 pulumi.runtime.registerResourceModule("libvirt", "index/network", _module)

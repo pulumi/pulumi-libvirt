@@ -117,7 +117,7 @@ export interface DomainDisk {
      * declare several of them by using either the literal list and map syntax as in
      * the following examples:
      */
-    wwn?: string;
+    wwn: string;
 }
 
 export interface DomainFilesystem {
@@ -243,7 +243,7 @@ export interface DomainNvram {
      *
      * So you should typically use the firmware as this,
      */
-    template?: string;
+    template: string;
 }
 
 export interface DomainTpm {
@@ -286,6 +286,152 @@ export interface DomainVideo {
 
 export interface DomainXml {
     xslt?: string;
+}
+
+export interface GetNodeDeviceInfoCapability {
+    /**
+     * If present, the MAC address of the device
+     */
+    address?: string;
+    /**
+     * Block device name
+     */
+    block: string;
+    /**
+     * The bus within the host
+     */
+    bus: string;
+    /**
+     * Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+     */
+    capability?: {[key: string]: string};
+    /**
+     * Device class
+     */
+    class: string;
+    description: string;
+    /**
+     * Which device within the \
+     */
+    device: string;
+    /**
+     * Device PCI domain
+     */
+    domain: string;
+    /**
+     * Device drive type
+     */
+    driveType: string;
+    /**
+     * Type of DRM device: `render` or `card`
+     */
+    drmType: string;
+    features?: string[];
+    firmware?: {[key: string]: string};
+    /**
+     * Device PCI function
+     */
+    function: string;
+    hardware?: {[key: string]: string};
+    /**
+     * The SCSI host containing the device
+     */
+    host: string;
+    /**
+     * The interface name tied to this device
+     */
+    interface?: string;
+    /**
+     * Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+     */
+    iommuGroup: outputs.GetNodeDeviceInfoCapabilityIommuGroup;
+    /**
+     * Optional to reflect the status of the link via `speed` and `state` keys
+     */
+    link?: {[key: string]: string};
+    /**
+     * Device logical block size
+     */
+    logicalBlockSize: string;
+    /**
+     * The lun within the target
+     */
+    lun: string;
+    /**
+     * Device model
+     */
+    model: string;
+    /**
+     * Number of blocks on the device
+     */
+    numBlocks: string;
+    /**
+     * Device number
+     */
+    number: string;
+    /**
+     * If present, the product `id` and `name` from the device ROM
+     */
+    product?: {[key: string]: string};
+    /**
+     * Device protocol
+     */
+    protocol: string;
+    /**
+     * The type of SCSI device
+     */
+    scsiType: string;
+    /**
+     * Device serial number
+     */
+    serial: string;
+    /**
+     * Device size in bytes
+     */
+    size: string;
+    /**
+     * Device PCI slot
+     */
+    slot: string;
+    /**
+     * Device subclass
+     */
+    subclass: string;
+    /**
+     * The target within the bus
+     */
+    target: string;
+    /**
+     * Device type: `pci`, `storage`, `usb`
+     */
+    type: string;
+    /**
+     * This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+     */
+    uniqueId: string;
+    /**
+     * If present, the vendor `id` and `name` from the device ROM
+     */
+    vendor?: {[key: string]: string};
+}
+
+export interface GetNodeDeviceInfoCapabilityIommuGroup {
+    addresses: {[key: string]: string}[];
+    /**
+     * Device number
+     */
+    number: string;
+}
+
+export interface GetNodeDeviceInfoDevnode {
+    /**
+     * Full path of the device
+     */
+    path: string;
+    /**
+     * Device type: `pci`, `storage`, `usb`
+     */
+    type: string;
 }
 
 export interface NetworkDhcp {

@@ -32,6 +32,8 @@ __all__ = [
     'NetworkXmlArgs',
     'PoolXmlArgs',
     'VolumeXmlArgs',
+    'GetNodeDeviceInfoCapabilityArgs',
+    'GetNodeDeviceInfoCapabilityIommuGroupArgs',
 ]
 
 @pulumi.input_type
@@ -762,7 +764,7 @@ class DomainNetworkInterfaceArgs:
 @pulumi.input_type
 class DomainNvramArgs:
     def __init__(__self__, *,
-                 file: pulumi.Input[str],
+                 file: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] template: path to the file used to override variables from the master NVRAM
@@ -770,17 +772,18 @@ class DomainNvramArgs:
                
                So you should typically use the firmware as this,
         """
-        pulumi.set(__self__, "file", file)
+        if file is not None:
+            pulumi.set(__self__, "file", file)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter
-    def file(self) -> pulumi.Input[str]:
+    def file(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "file")
 
     @file.setter
-    def file(self, value: pulumi.Input[str]):
+    def file(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "file", value)
 
     @property
@@ -1363,5 +1366,548 @@ class VolumeXmlArgs:
     @xslt.setter
     def xslt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "xslt", value)
+
+
+@pulumi.input_type
+class GetNodeDeviceInfoCapabilityArgs:
+    def __init__(__self__, *,
+                 block: str,
+                 bus: str,
+                 class_: str,
+                 description: str,
+                 device: str,
+                 domain: str,
+                 drive_type: str,
+                 drm_type: str,
+                 function: str,
+                 host: str,
+                 iommu_group: 'GetNodeDeviceInfoCapabilityIommuGroupArgs',
+                 logical_block_size: str,
+                 lun: str,
+                 model: str,
+                 num_blocks: str,
+                 number: str,
+                 protocol: str,
+                 scsi_type: str,
+                 serial: str,
+                 size: str,
+                 slot: str,
+                 subclass: str,
+                 target: str,
+                 type: str,
+                 unique_id: str,
+                 address: Optional[str] = None,
+                 capability: Optional[Mapping[str, str]] = None,
+                 features: Optional[Sequence[str]] = None,
+                 firmware: Optional[Mapping[str, str]] = None,
+                 hardware: Optional[Mapping[str, str]] = None,
+                 interface: Optional[str] = None,
+                 link: Optional[Mapping[str, str]] = None,
+                 product: Optional[Mapping[str, str]] = None,
+                 vendor: Optional[Mapping[str, str]] = None):
+        """
+        :param str block: Block device name
+        :param str bus: The bus within the host
+        :param str class_: Device class
+        :param str device: Which device within the \\
+        :param str domain: Device PCI domain
+        :param str drive_type: Device drive type
+        :param str drm_type: Type of DRM device: `render` or `card`
+        :param str function: Device PCI function
+        :param str host: The SCSI host containing the device
+        :param 'GetNodeDeviceInfoCapabilityIommuGroupArgs' iommu_group: Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+        :param str logical_block_size: Device logical block size
+        :param str lun: The lun within the target
+        :param str model: Device model
+        :param str num_blocks: Number of blocks on the device
+        :param str number: Device number
+        :param str protocol: Device protocol
+        :param str scsi_type: The type of SCSI device
+        :param str serial: Device serial number
+        :param str size: Device size in bytes
+        :param str slot: Device PCI slot
+        :param str subclass: Device subclass
+        :param str target: The target within the bus
+        :param str type: Device type: `pci`, `storage`, `usb`
+        :param str unique_id: This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+        :param str address: If present, the MAC address of the device
+        :param Mapping[str, str] capability: Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+        :param str interface: The interface name tied to this device
+        :param Mapping[str, str] link: Optional to reflect the status of the link via `speed` and `state` keys
+        :param Mapping[str, str] product: If present, the product `id` and `name` from the device ROM
+        :param Mapping[str, str] vendor: If present, the vendor `id` and `name` from the device ROM
+        """
+        pulumi.set(__self__, "block", block)
+        pulumi.set(__self__, "bus", bus)
+        pulumi.set(__self__, "class_", class_)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "drive_type", drive_type)
+        pulumi.set(__self__, "drm_type", drm_type)
+        pulumi.set(__self__, "function", function)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "iommu_group", iommu_group)
+        pulumi.set(__self__, "logical_block_size", logical_block_size)
+        pulumi.set(__self__, "lun", lun)
+        pulumi.set(__self__, "model", model)
+        pulumi.set(__self__, "num_blocks", num_blocks)
+        pulumi.set(__self__, "number", number)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "scsi_type", scsi_type)
+        pulumi.set(__self__, "serial", serial)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "slot", slot)
+        pulumi.set(__self__, "subclass", subclass)
+        pulumi.set(__self__, "target", target)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unique_id", unique_id)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if capability is not None:
+            pulumi.set(__self__, "capability", capability)
+        if features is not None:
+            pulumi.set(__self__, "features", features)
+        if firmware is not None:
+            pulumi.set(__self__, "firmware", firmware)
+        if hardware is not None:
+            pulumi.set(__self__, "hardware", hardware)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if link is not None:
+            pulumi.set(__self__, "link", link)
+        if product is not None:
+            pulumi.set(__self__, "product", product)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+
+    @property
+    @pulumi.getter
+    def block(self) -> str:
+        """
+        Block device name
+        """
+        return pulumi.get(self, "block")
+
+    @block.setter
+    def block(self, value: str):
+        pulumi.set(self, "block", value)
+
+    @property
+    @pulumi.getter
+    def bus(self) -> str:
+        """
+        The bus within the host
+        """
+        return pulumi.get(self, "bus")
+
+    @bus.setter
+    def bus(self, value: str):
+        pulumi.set(self, "bus", value)
+
+    @property
+    @pulumi.getter(name="class")
+    def class_(self) -> str:
+        """
+        Device class
+        """
+        return pulumi.get(self, "class_")
+
+    @class_.setter
+    def class_(self, value: str):
+        pulumi.set(self, "class_", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: str):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def device(self) -> str:
+        """
+        Which device within the \\
+        """
+        return pulumi.get(self, "device")
+
+    @device.setter
+    def device(self, value: str):
+        pulumi.set(self, "device", value)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        Device PCI domain
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: str):
+        pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="driveType")
+    def drive_type(self) -> str:
+        """
+        Device drive type
+        """
+        return pulumi.get(self, "drive_type")
+
+    @drive_type.setter
+    def drive_type(self, value: str):
+        pulumi.set(self, "drive_type", value)
+
+    @property
+    @pulumi.getter(name="drmType")
+    def drm_type(self) -> str:
+        """
+        Type of DRM device: `render` or `card`
+        """
+        return pulumi.get(self, "drm_type")
+
+    @drm_type.setter
+    def drm_type(self, value: str):
+        pulumi.set(self, "drm_type", value)
+
+    @property
+    @pulumi.getter
+    def function(self) -> str:
+        """
+        Device PCI function
+        """
+        return pulumi.get(self, "function")
+
+    @function.setter
+    def function(self, value: str):
+        pulumi.set(self, "function", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The SCSI host containing the device
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: str):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="iommuGroup")
+    def iommu_group(self) -> 'GetNodeDeviceInfoCapabilityIommuGroupArgs':
+        """
+        Structure that holds IOMMU Group `number` and the list of devices that are part of the group
+        """
+        return pulumi.get(self, "iommu_group")
+
+    @iommu_group.setter
+    def iommu_group(self, value: 'GetNodeDeviceInfoCapabilityIommuGroupArgs'):
+        pulumi.set(self, "iommu_group", value)
+
+    @property
+    @pulumi.getter(name="logicalBlockSize")
+    def logical_block_size(self) -> str:
+        """
+        Device logical block size
+        """
+        return pulumi.get(self, "logical_block_size")
+
+    @logical_block_size.setter
+    def logical_block_size(self, value: str):
+        pulumi.set(self, "logical_block_size", value)
+
+    @property
+    @pulumi.getter
+    def lun(self) -> str:
+        """
+        The lun within the target
+        """
+        return pulumi.get(self, "lun")
+
+    @lun.setter
+    def lun(self, value: str):
+        pulumi.set(self, "lun", value)
+
+    @property
+    @pulumi.getter
+    def model(self) -> str:
+        """
+        Device model
+        """
+        return pulumi.get(self, "model")
+
+    @model.setter
+    def model(self, value: str):
+        pulumi.set(self, "model", value)
+
+    @property
+    @pulumi.getter(name="numBlocks")
+    def num_blocks(self) -> str:
+        """
+        Number of blocks on the device
+        """
+        return pulumi.get(self, "num_blocks")
+
+    @num_blocks.setter
+    def num_blocks(self, value: str):
+        pulumi.set(self, "num_blocks", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> str:
+        """
+        Device number
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: str):
+        pulumi.set(self, "number", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        Device protocol
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: str):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="scsiType")
+    def scsi_type(self) -> str:
+        """
+        The type of SCSI device
+        """
+        return pulumi.get(self, "scsi_type")
+
+    @scsi_type.setter
+    def scsi_type(self, value: str):
+        pulumi.set(self, "scsi_type", value)
+
+    @property
+    @pulumi.getter
+    def serial(self) -> str:
+        """
+        Device serial number
+        """
+        return pulumi.get(self, "serial")
+
+    @serial.setter
+    def serial(self, value: str):
+        pulumi.set(self, "serial", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> str:
+        """
+        Device size in bytes
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: str):
+        pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter
+    def slot(self) -> str:
+        """
+        Device PCI slot
+        """
+        return pulumi.get(self, "slot")
+
+    @slot.setter
+    def slot(self, value: str):
+        pulumi.set(self, "slot", value)
+
+    @property
+    @pulumi.getter
+    def subclass(self) -> str:
+        """
+        Device subclass
+        """
+        return pulumi.get(self, "subclass")
+
+    @subclass.setter
+    def subclass(self, value: str):
+        pulumi.set(self, "subclass", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> str:
+        """
+        The target within the bus
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: str):
+        pulumi.set(self, "target", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Device type: `pci`, `storage`, `usb`
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: str):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> str:
+        """
+        This optionally provides the value from the 'unique_id' file found in the scsi_host's directory
+        """
+        return pulumi.get(self, "unique_id")
+
+    @unique_id.setter
+    def unique_id(self, value: str):
+        pulumi.set(self, "unique_id", value)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        If present, the MAC address of the device
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[str]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def capability(self) -> Optional[Mapping[str, str]]:
+        """
+        Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
+        """
+        return pulumi.get(self, "capability")
+
+    @capability.setter
+    def capability(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "capability", value)
+
+    @property
+    @pulumi.getter
+    def features(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "features")
+
+    @features.setter
+    def features(self, value: Optional[Sequence[str]]):
+        pulumi.set(self, "features", value)
+
+    @property
+    @pulumi.getter
+    def firmware(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "firmware")
+
+    @firmware.setter
+    def firmware(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "firmware", value)
+
+    @property
+    @pulumi.getter
+    def hardware(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "hardware")
+
+    @hardware.setter
+    def hardware(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "hardware", value)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        The interface name tied to this device
+        """
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[str]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter
+    def link(self) -> Optional[Mapping[str, str]]:
+        """
+        Optional to reflect the status of the link via `speed` and `state` keys
+        """
+        return pulumi.get(self, "link")
+
+    @link.setter
+    def link(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "link", value)
+
+    @property
+    @pulumi.getter
+    def product(self) -> Optional[Mapping[str, str]]:
+        """
+        If present, the product `id` and `name` from the device ROM
+        """
+        return pulumi.get(self, "product")
+
+    @product.setter
+    def product(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "product", value)
+
+    @property
+    @pulumi.getter
+    def vendor(self) -> Optional[Mapping[str, str]]:
+        """
+        If present, the vendor `id` and `name` from the device ROM
+        """
+        return pulumi.get(self, "vendor")
+
+    @vendor.setter
+    def vendor(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "vendor", value)
+
+
+@pulumi.input_type
+class GetNodeDeviceInfoCapabilityIommuGroupArgs:
+    def __init__(__self__, *,
+                 addresses: Sequence[Mapping[str, str]],
+                 number: str):
+        """
+        :param str number: Device number
+        """
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "number", number)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Sequence[Mapping[str, str]]:
+        return pulumi.get(self, "addresses")
+
+    @addresses.setter
+    def addresses(self, value: Sequence[Mapping[str, str]]):
+        pulumi.set(self, "addresses", value)
+
+    @property
+    @pulumi.getter
+    def number(self) -> str:
+        """
+        Device number
+        """
+        return pulumi.get(self, "number")
+
+    @number.setter
+    def number(self, value: str):
+        pulumi.set(self, "number", value)
 
 

@@ -527,6 +527,27 @@ class Network(pulumi.CustomResource):
         Manages a VM network resource within libvirt. For more information see
         [the official documentation](https://libvirt.org/formatnetwork.html).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        kube_network = libvirt.Network("kube_network",
+            name="k8snet",
+            mode="nat",
+            domain="k8s.local",
+            addresses=[
+                "10.17.3.0/24",
+                "2001:db8:ca2:2::1/64",
+            ],
+            dns={
+                "enabled": True,
+                "local_only": True,
+            },
+            dnsmasq_options={})
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] addresses: A list of (0 or 1) IPv4 and (0 or 1) IPv6 subnets in
@@ -577,6 +598,27 @@ class Network(pulumi.CustomResource):
         """
         Manages a VM network resource within libvirt. For more information see
         [the official documentation](https://libvirt.org/formatnetwork.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_libvirt as libvirt
+
+        kube_network = libvirt.Network("kube_network",
+            name="k8snet",
+            mode="nat",
+            domain="k8s.local",
+            addresses=[
+                "10.17.3.0/24",
+                "2001:db8:ca2:2::1/64",
+            ],
+            dns={
+                "enabled": True,
+                "local_only": True,
+            },
+            dnsmasq_options={})
+        ```
 
         :param str resource_name: The name of the resource.
         :param NetworkArgs args: The arguments to use to populate this resource's properties.

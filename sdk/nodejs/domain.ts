@@ -134,7 +134,7 @@ export class Domain extends pulumi.CustomResource {
      * below.
      */
     public readonly networkInterfaces!: pulumi.Output<outputs.DomainNetworkInterface[] | undefined>;
-    public readonly nvram!: pulumi.Output<outputs.DomainNvram | undefined>;
+    public readonly nvram!: pulumi.Output<outputs.DomainNvram>;
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).
      */

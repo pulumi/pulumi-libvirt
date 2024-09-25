@@ -12,6 +12,37 @@ namespace Pulumi.Libvirt
     /// <summary>
     /// Manages a VM network resource within libvirt. For more information see
     /// [the official documentation](https://libvirt.org/formatnetwork.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Libvirt = Pulumi.Libvirt;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var kubeNetwork = new Libvirt.Network("kube_network", new()
+    ///     {
+    ///         Name = "k8snet",
+    ///         Mode = "nat",
+    ///         Domain = "k8s.local",
+    ///         Addresses = new[]
+    ///         {
+    ///             "10.17.3.0/24",
+    ///             "2001:db8:ca2:2::1/64",
+    ///         },
+    ///         Dns = new Libvirt.Inputs.NetworkDnsArgs
+    ///         {
+    ///             Enabled = true,
+    ///             LocalOnly = true,
+    ///         },
+    ///         DnsmasqOptions = null,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [LibvirtResourceType("libvirt:index/network:Network")]
     public partial class Network : global::Pulumi.CustomResource

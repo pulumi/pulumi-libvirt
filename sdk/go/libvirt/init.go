@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "libvirt:index/cloudInitDisk:CloudInitDisk":
 		r = &CloudInitDisk{}
+	case "libvirt:index/combustion:Combustion":
+		r = &Combustion{}
 	case "libvirt:index/domain:Domain":
 		r = &Domain{}
 	case "libvirt:index/ignition:Ignition":
@@ -67,6 +69,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"libvirt",
 		"index/cloudInitDisk",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"libvirt",
+		"index/combustion",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

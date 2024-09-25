@@ -364,10 +364,10 @@ public class Domain extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.networkInterfaces);
     }
     @Export(name="nvram", refs={DomainNvram.class}, tree="[0]")
-    private Output</* @Nullable */ DomainNvram> nvram;
+    private Output<DomainNvram> nvram;
 
-    public Output<Optional<DomainNvram>> nvram() {
-        return Codegen.optional(this.nvram);
+    public Output<DomainNvram> nvram() {
+        return this.nvram;
     }
     /**
      * By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).

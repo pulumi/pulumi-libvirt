@@ -13,6 +13,43 @@ import (
 
 // Manages a VM network resource within libvirt. For more information see
 // [the official documentation](https://libvirt.org/formatnetwork.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := libvirt.NewNetwork(ctx, "kube_network", &libvirt.NetworkArgs{
+//				Name:   pulumi.String("k8snet"),
+//				Mode:   pulumi.String("nat"),
+//				Domain: pulumi.String("k8s.local"),
+//				Addresses: pulumi.StringArray{
+//					pulumi.String("10.17.3.0/24"),
+//					pulumi.String("2001:db8:ca2:2::1/64"),
+//				},
+//				Dns: &libvirt.NetworkDnsArgs{
+//					Enabled:   pulumi.Bool(true),
+//					LocalOnly: pulumi.Bool(true),
+//				},
+//				DnsmasqOptions: nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Network struct {
 	pulumi.CustomResourceState
 

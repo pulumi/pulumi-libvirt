@@ -6,10 +6,14 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .cloud_init_disk import *
+from .combustion import *
 from .domain import *
 from .get_network_dns_host_template import *
 from .get_network_dns_srv_template import *
 from .get_network_dnsmasq_options_template import *
+from .get_node_device_info import *
+from .get_node_devices import *
+from .get_node_info import *
 from .ignition import *
 from .network import *
 from .pool import *
@@ -34,6 +38,14 @@ _utilities.register(
   "fqn": "pulumi_libvirt",
   "classes": {
    "libvirt:index/cloudInitDisk:CloudInitDisk": "CloudInitDisk"
+  }
+ },
+ {
+  "pkg": "libvirt",
+  "mod": "index/combustion",
+  "fqn": "pulumi_libvirt",
+  "classes": {
+   "libvirt:index/combustion:Combustion": "Combustion"
   }
  },
  {

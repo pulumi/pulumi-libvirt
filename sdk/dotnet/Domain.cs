@@ -166,7 +166,7 @@ namespace Pulumi.Libvirt
         public Output<ImmutableArray<Outputs.DomainNetworkInterface>> NetworkInterfaces { get; private set; } = null!;
 
         [Output("nvram")]
-        public Output<Outputs.DomainNvram?> Nvram { get; private set; } = null!;
+        public Output<Outputs.DomainNvram> Nvram { get; private set; } = null!;
 
         /// <summary>
         /// By default is disabled, set to true for enabling it. More info [qemu-agent](https://wiki.libvirt.org/page/Qemu_guest_agent).

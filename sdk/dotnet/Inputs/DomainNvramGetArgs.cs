@@ -12,8 +12,8 @@ namespace Pulumi.Libvirt.Inputs
 
     public sealed class DomainNvramGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("file", required: true)]
-        public Input<string> File { get; set; } = null!;
+        [Input("file")]
+        public Input<string>? File { get; set; }
 
         /// <summary>
         /// path to the file used to override variables from the master NVRAM

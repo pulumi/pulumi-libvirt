@@ -9,6 +9,28 @@ import * as utilities from "./utilities";
 /**
  * Manages a VM network resource within libvirt. For more information see
  * [the official documentation](https://libvirt.org/formatnetwork.html).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as libvirt from "@pulumi/libvirt";
+ *
+ * const kubeNetwork = new libvirt.Network("kube_network", {
+ *     name: "k8snet",
+ *     mode: "nat",
+ *     domain: "k8s.local",
+ *     addresses: [
+ *         "10.17.3.0/24",
+ *         "2001:db8:ca2:2::1/64",
+ *     ],
+ *     dns: {
+ *         enabled: true,
+ *         localOnly: true,
+ *     },
+ *     dnsmasqOptions: {},
+ * });
+ * ```
  */
 export class Network extends pulumi.CustomResource {
     /**
