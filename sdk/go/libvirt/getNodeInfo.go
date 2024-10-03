@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := libvirt.GetNodeInfo(ctx, nil, nil)
+//			_, err := libvirt.GetNodeInfo(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -154,9 +159,6 @@ def get_node_info(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNo
         id=pulumi.get(__ret__, 'id'),
         memory_total_kb=pulumi.get(__ret__, 'memory_total_kb'),
         numa_nodes=pulumi.get(__ret__, 'numa_nodes'))
-
-
-@_utilities.lift_output_func(get_node_info)
 def get_node_info_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeInfoResult]:
     """
     Retrieve information about the current node
@@ -170,4 +172,15 @@ def get_node_info_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.
     node = libvirt.get_node_info()
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNodeInfo:getNodeInfo', __args__, opts=opts, typ=GetNodeInfoResult)
+    return __ret__.apply(lambda __response__: GetNodeInfoResult(
+        cpu_cores_per_socket=pulumi.get(__response__, 'cpu_cores_per_socket'),
+        cpu_cores_total=pulumi.get(__response__, 'cpu_cores_total'),
+        cpu_model=pulumi.get(__response__, 'cpu_model'),
+        cpu_sockets=pulumi.get(__response__, 'cpu_sockets'),
+        cpu_threads_per_core=pulumi.get(__response__, 'cpu_threads_per_core'),
+        id=pulumi.get(__response__, 'id'),
+        memory_total_kb=pulumi.get(__response__, 'memory_total_kb'),
+        numa_nodes=pulumi.get(__response__, 'numa_nodes')))

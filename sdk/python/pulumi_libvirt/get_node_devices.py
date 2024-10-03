@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -95,9 +100,6 @@ def get_node_devices(capability: Optional[str] = None,
         capability=pulumi.get(__ret__, 'capability'),
         devices=pulumi.get(__ret__, 'devices'),
         id=pulumi.get(__ret__, 'id'))
-
-
-@_utilities.lift_output_func(get_node_devices)
 def get_node_devices_output(capability: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeDevicesResult]:
     """
@@ -119,4 +121,11 @@ def get_node_devices_output(capability: Optional[pulumi.Input[Optional[str]]] = 
            `mdev`, `mdev_types`, `ccw`, `css`, `ap_card`, `ap_queue`, `ap_matrix`.
            Defaults to all active devices.
     """
-    ...
+    __args__ = dict()
+    __args__['capability'] = capability
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNodeDevices:getNodeDevices', __args__, opts=opts, typ=GetNodeDevicesResult)
+    return __ret__.apply(lambda __response__: GetNodeDevicesResult(
+        capability=pulumi.get(__response__, 'capability'),
+        devices=pulumi.get(__response__, 'devices'),
+        id=pulumi.get(__response__, 'id')))
