@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -148,9 +153,6 @@ def get_node_device_info(capability: Optional[Union['GetNodeDeviceInfoCapability
         parent=pulumi.get(__ret__, 'parent'),
         path=pulumi.get(__ret__, 'path'),
         xml=pulumi.get(__ret__, 'xml'))
-
-
-@_utilities.lift_output_func(get_node_device_info)
 def get_node_device_info_output(capability: Optional[pulumi.Input[Optional[Union['GetNodeDeviceInfoCapabilityArgs', 'GetNodeDeviceInfoCapabilityArgsDict']]]] = None,
                                 name: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeDeviceInfoResult]:
@@ -170,4 +172,16 @@ def get_node_device_info_output(capability: Optional[pulumi.Input[Optional[Union
     :param Union['GetNodeDeviceInfoCapabilityArgs', 'GetNodeDeviceInfoCapabilityArgsDict'] capability: Holds key `type` that describes the type of network interface: `80203` for IEEE 802.3 or `80211` for IEEE 802.11
     :param str name: The name of the device name as expected by [libvirt](https://www.libvirt.org/manpages/virsh.html#nodedev-commands).
     """
-    ...
+    __args__ = dict()
+    __args__['capability'] = capability
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo', __args__, opts=opts, typ=GetNodeDeviceInfoResult)
+    return __ret__.apply(lambda __response__: GetNodeDeviceInfoResult(
+        capability=pulumi.get(__response__, 'capability'),
+        devnodes=pulumi.get(__response__, 'devnodes'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        parent=pulumi.get(__response__, 'parent'),
+        path=pulumi.get(__response__, 'path'),
+        xml=pulumi.get(__response__, 'xml')))
