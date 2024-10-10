@@ -40,7 +40,7 @@ import (
 //					Enabled:   pulumi.Bool(true),
 //					LocalOnly: pulumi.Bool(true),
 //				},
-//				DnsmasqOptions: nil,
+//				DnsmasqOptions: &libvirt.NetworkDnsmasqOptionsArgs{},
 //			})
 //			if err != nil {
 //				return err
