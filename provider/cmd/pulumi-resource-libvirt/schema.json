@@ -509,6 +509,49 @@
             },
             "type": "object"
         },
+        "libvirt:index/PoolSource:PoolSource": {
+            "properties": {
+                "devices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/libvirt:index/PoolSourceDevice:PoolSourceDevice"
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A unique name for the resource, required by libvirt.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/PoolSourceDevice:PoolSourceDevice": {
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "**Deprecated** (Optional) use `path` in the `target` block.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object"
+        },
+        "libvirt:index/PoolTarget:PoolTarget": {
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "**Deprecated** (Optional) use `path` in the `target` block.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "path"
+                    ]
+                }
+            }
+        },
         "libvirt:index/PoolXml:PoolXml": {
             "properties": {
                 "xslt": {
@@ -1616,7 +1659,7 @@
             }
         },
         "libvirt:index/pool:Pool": {
-            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    name: \"cluster\",\n    type: \"dir\",\n    path: \"/home/user/cluster_storage\",\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuse_leap\", {\n    name: \"opensuse_leap\",\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    name=\"cluster\",\n    type=\"dir\",\n    path=\"/home/user/cluster_storage\")\nopensuse_leap = libvirt.Volume(\"opensuse_leap\",\n    name=\"opensuse_leap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // A pool for all cluster volumes\n    var cluster = new Libvirt.Pool(\"cluster\", new()\n    {\n        Name = \"cluster\",\n        Type = \"dir\",\n        Path = \"/home/user/cluster_storage\",\n    });\n\n    var opensuseLeap = new Libvirt.Volume(\"opensuse_leap\", new()\n    {\n        Name = \"opensuse_leap\",\n        Pool = cluster.Name,\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// A pool for all cluster volumes\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tName: pulumi.String(\"cluster\"),\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuse_leap\", \u0026libvirt.VolumeArgs{\n\t\t\tName:   pulumi.String(\"opensuse_leap\"),\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Pool;\nimport com.pulumi.libvirt.PoolArgs;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // A pool for all cluster volumes\n        var cluster = new Pool(\"cluster\", PoolArgs.builder()\n            .name(\"cluster\")\n            .type(\"dir\")\n            .path(\"/home/user/cluster_storage\")\n            .build());\n\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()\n            .name(\"opensuse_leap\")\n            .pool(cluster.name())\n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # A pool for all cluster volumes\n  cluster:\n    type: libvirt:Pool\n    properties:\n      name: cluster\n      type: dir\n      path: /home/user/cluster_storage\n  opensuseLeap:\n    type: libvirt:Volume\n    name: opensuse_leap\n    properties:\n      name: opensuse_leap\n      pool: ${cluster.name}\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manages a storage pool in libvirt. Currently only directory-based storage pool are supported. For more information on\nstorage pools in libvirt, see [the official documentation](https://libvirt.org/formatstorage.html).\n\n**WARNING:** This is experimental API and may change in the future.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as libvirt from \"@pulumi/libvirt\";\n\n// A pool for all cluster volumes\nconst cluster = new libvirt.Pool(\"cluster\", {\n    name: \"cluster\",\n    type: \"dir\",\n    target: {\n        path: \"/home/user/cluster_storage\",\n    },\n});\nconst opensuseLeap = new libvirt.Volume(\"opensuse_leap\", {\n    name: \"opensuse_leap\",\n    pool: cluster.name,\n    source: \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_libvirt as libvirt\n\n# A pool for all cluster volumes\ncluster = libvirt.Pool(\"cluster\",\n    name=\"cluster\",\n    type=\"dir\",\n    target={\n        \"path\": \"/home/user/cluster_storage\",\n    })\nopensuse_leap = libvirt.Volume(\"opensuse_leap\",\n    name=\"opensuse_leap\",\n    pool=cluster.name,\n    source=\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Libvirt = Pulumi.Libvirt;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // A pool for all cluster volumes\n    var cluster = new Libvirt.Pool(\"cluster\", new()\n    {\n        Name = \"cluster\",\n        Type = \"dir\",\n        Target = new Libvirt.Inputs.PoolTargetArgs\n        {\n            Path = \"/home/user/cluster_storage\",\n        },\n    });\n\n    var opensuseLeap = new Libvirt.Volume(\"opensuse_leap\", new()\n    {\n        Name = \"opensuse_leap\",\n        Pool = cluster.Name,\n        Source = \"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-libvirt/sdk/go/libvirt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// A pool for all cluster volumes\n\t\tcluster, err := libvirt.NewPool(ctx, \"cluster\", \u0026libvirt.PoolArgs{\n\t\t\tName: pulumi.String(\"cluster\"),\n\t\t\tType: pulumi.String(\"dir\"),\n\t\t\tTarget: \u0026libvirt.PoolTargetArgs{\n\t\t\t\tPath: pulumi.String(\"/home/user/cluster_storage\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = libvirt.NewVolume(ctx, \"opensuse_leap\", \u0026libvirt.VolumeArgs{\n\t\t\tName:   pulumi.String(\"opensuse_leap\"),\n\t\t\tPool:   cluster.Name,\n\t\t\tSource: pulumi.String(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.libvirt.Pool;\nimport com.pulumi.libvirt.PoolArgs;\nimport com.pulumi.libvirt.inputs.PoolTargetArgs;\nimport com.pulumi.libvirt.Volume;\nimport com.pulumi.libvirt.VolumeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // A pool for all cluster volumes\n        var cluster = new Pool(\"cluster\", PoolArgs.builder()\n            .name(\"cluster\")\n            .type(\"dir\")\n            .target(PoolTargetArgs.builder()\n                .path(\"/home/user/cluster_storage\")\n                .build())\n            .build());\n\n        var opensuseLeap = new Volume(\"opensuseLeap\", VolumeArgs.builder()\n            .name(\"opensuse_leap\")\n            .pool(cluster.name())\n            .source(\"http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # A pool for all cluster volumes\n  cluster:\n    type: libvirt:Pool\n    properties:\n      name: cluster\n      type: dir\n      target:\n        path: /home/user/cluster_storage\n  opensuseLeap:\n    type: libvirt:Volume\n    name: opensuse_leap\n    properties:\n      name: opensuse_leap\n      pool: ${cluster.name}\n      source: http://download.opensuse.org/repositories/Cloud:/Images:/Leap_42.1/images/openSUSE-Leap-42.1-OpenStack.x86_64.qcow2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "allocation": {
                     "type": "integer"
@@ -1633,11 +1676,18 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n"
+                    "description": "**Deprecated** (Optional) use `path` in the `target` block.\n",
+                    "deprecationMessage": "use target.path instead"
+                },
+                "source": {
+                    "$ref": "#/types/libvirt:index/PoolSource:PoolSource"
+                },
+                "target": {
+                    "$ref": "#/types/libvirt:index/PoolTarget:PoolTarget"
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of the pool. Currently, only \"dir\" supported.\n"
+                    "description": "The type of the pool. Currently, \"dir\" and \"logical\" are supported.\n"
                 },
                 "xml": {
                     "$ref": "#/types/libvirt:index/PoolXml:PoolXml"
@@ -1648,6 +1698,7 @@
                 "available",
                 "capacity",
                 "name",
+                "target",
                 "type"
             ],
             "inputProperties": {
@@ -1670,12 +1721,20 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n",
+                    "description": "**Deprecated** (Optional) use `path` in the `target` block.\n",
+                    "deprecationMessage": "use target.path instead",
                     "willReplaceOnChanges": true
+                },
+                "source": {
+                    "$ref": "#/types/libvirt:index/PoolSource:PoolSource",
+                    "willReplaceOnChanges": true
+                },
+                "target": {
+                    "$ref": "#/types/libvirt:index/PoolTarget:PoolTarget"
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of the pool. Currently, only \"dir\" supported.\n",
+                    "description": "The type of the pool. Currently, \"dir\" and \"logical\" are supported.\n",
                     "willReplaceOnChanges": true
                 },
                 "xml": {
@@ -1708,12 +1767,20 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The directory where the pool will keep all its volumes. This is only relevant to (and required by)\nthe \"dir\" type pools.\n",
+                        "description": "**Deprecated** (Optional) use `path` in the `target` block.\n",
+                        "deprecationMessage": "use target.path instead",
                         "willReplaceOnChanges": true
+                    },
+                    "source": {
+                        "$ref": "#/types/libvirt:index/PoolSource:PoolSource",
+                        "willReplaceOnChanges": true
+                    },
+                    "target": {
+                        "$ref": "#/types/libvirt:index/PoolTarget:PoolTarget"
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the pool. Currently, only \"dir\" supported.\n",
+                        "description": "The type of the pool. Currently, \"dir\" and \"logical\" are supported.\n",
                         "willReplaceOnChanges": true
                     },
                     "xml": {
