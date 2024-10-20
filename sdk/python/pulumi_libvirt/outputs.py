@@ -36,6 +36,9 @@ __all__ = [
     'NetworkDnsmasqOptionsOption',
     'NetworkRoute',
     'NetworkXml',
+    'PoolSource',
+    'PoolSourceDevice',
+    'PoolTarget',
     'PoolXml',
     'VolumeXml',
     'GetNodeDeviceInfoCapabilityResult',
@@ -1220,6 +1223,71 @@ class NetworkXml(dict):
     @pulumi.getter
     def xslt(self) -> Optional[str]:
         return pulumi.get(self, "xslt")
+
+
+@pulumi.output_type
+class PoolSource(dict):
+    def __init__(__self__, *,
+                 devices: Optional[Sequence['outputs.PoolSourceDevice']] = None,
+                 name: Optional[str] = None):
+        """
+        :param str name: A unique name for the resource, required by libvirt.
+        """
+        if devices is not None:
+            pulumi.set(__self__, "devices", devices)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def devices(self) -> Optional[Sequence['outputs.PoolSourceDevice']]:
+        return pulumi.get(self, "devices")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        A unique name for the resource, required by libvirt.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class PoolSourceDevice(dict):
+    def __init__(__self__, *,
+                 path: Optional[str] = None):
+        """
+        :param str path: **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class PoolTarget(dict):
+    def __init__(__self__, *,
+                 path: Optional[str] = None):
+        """
+        :param str path: **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        return pulumi.get(self, "path")
 
 
 @pulumi.output_type

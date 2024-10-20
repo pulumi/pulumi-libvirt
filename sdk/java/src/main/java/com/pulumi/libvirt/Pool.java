@@ -10,6 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.libvirt.PoolArgs;
 import com.pulumi.libvirt.Utilities;
 import com.pulumi.libvirt.inputs.PoolState;
+import com.pulumi.libvirt.outputs.PoolSource;
+import com.pulumi.libvirt.outputs.PoolTarget;
 import com.pulumi.libvirt.outputs.PoolXml;
 import java.lang.Integer;
 import java.lang.String;
@@ -34,6 +36,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.libvirt.Pool;
  * import com.pulumi.libvirt.PoolArgs;
+ * import com.pulumi.libvirt.inputs.PoolTargetArgs;
  * import com.pulumi.libvirt.Volume;
  * import com.pulumi.libvirt.VolumeArgs;
  * import java.util.List;
@@ -53,7 +56,9 @@ import javax.annotation.Nullable;
  *         var cluster = new Pool("cluster", PoolArgs.builder()
  *             .name("cluster")
  *             .type("dir")
- *             .path("/home/user/cluster_storage")
+ *             .target(PoolTargetArgs.builder()
+ *                 .path("/home/user/cluster_storage")
+ *                 .build())
  *             .build());
  * 
  *         var opensuseLeap = new Volume("opensuseLeap", VolumeArgs.builder()
@@ -104,30 +109,44 @@ public class Pool extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the &#34;dir&#34; type pools.
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     * 
+     * @deprecated
+     * use target.path instead
      * 
      */
+    @Deprecated /* use target.path instead */
     @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
-     * @return The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the &#34;dir&#34; type pools.
+     * @return **Deprecated** (Optional) use `path` in the `target` block.
      * 
      */
     public Output<Optional<String>> path() {
         return Codegen.optional(this.path);
     }
+    @Export(name="source", refs={PoolSource.class}, tree="[0]")
+    private Output</* @Nullable */ PoolSource> source;
+
+    public Output<Optional<PoolSource>> source() {
+        return Codegen.optional(this.source);
+    }
+    @Export(name="target", refs={PoolTarget.class}, tree="[0]")
+    private Output<PoolTarget> target;
+
+    public Output<PoolTarget> target() {
+        return this.target;
+    }
     /**
-     * The type of the pool. Currently, only &#34;dir&#34; supported.
+     * The type of the pool. Currently, &#34;dir&#34; and &#34;logical&#34; are supported.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of the pool. Currently, only &#34;dir&#34; supported.
+     * @return The type of the pool. Currently, &#34;dir&#34; and &#34;logical&#34; are supported.
      * 
      */
     public Output<String> type() {

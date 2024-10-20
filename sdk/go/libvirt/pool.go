@@ -35,7 +35,9 @@ import (
 //			cluster, err := libvirt.NewPool(ctx, "cluster", &libvirt.PoolArgs{
 //				Name: pulumi.String("cluster"),
 //				Type: pulumi.String("dir"),
-//				Path: pulumi.String("/home/user/cluster_storage"),
+//				Target: &libvirt.PoolTargetArgs{
+//					Path: pulumi.String("/home/user/cluster_storage"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -61,10 +63,13 @@ type Pool struct {
 	Capacity   pulumi.IntOutput `pulumi:"capacity"`
 	// A unique name for the resource, required by libvirt.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-	// the "dir" type pools.
-	Path pulumi.StringPtrOutput `pulumi:"path"`
-	// The type of the pool. Currently, only "dir" supported.
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	//
+	// Deprecated: use target.path instead
+	Path   pulumi.StringPtrOutput `pulumi:"path"`
+	Source PoolSourcePtrOutput    `pulumi:"source"`
+	Target PoolTargetOutput       `pulumi:"target"`
+	// The type of the pool. Currently, "dir" and "logical" are supported.
 	Type pulumi.StringOutput `pulumi:"type"`
 	Xml  PoolXmlPtrOutput    `pulumi:"xml"`
 }
@@ -107,10 +112,13 @@ type poolState struct {
 	Capacity   *int `pulumi:"capacity"`
 	// A unique name for the resource, required by libvirt.
 	Name *string `pulumi:"name"`
-	// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-	// the "dir" type pools.
-	Path *string `pulumi:"path"`
-	// The type of the pool. Currently, only "dir" supported.
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	//
+	// Deprecated: use target.path instead
+	Path   *string     `pulumi:"path"`
+	Source *PoolSource `pulumi:"source"`
+	Target *PoolTarget `pulumi:"target"`
+	// The type of the pool. Currently, "dir" and "logical" are supported.
 	Type *string  `pulumi:"type"`
 	Xml  *PoolXml `pulumi:"xml"`
 }
@@ -121,10 +129,13 @@ type PoolState struct {
 	Capacity   pulumi.IntPtrInput
 	// A unique name for the resource, required by libvirt.
 	Name pulumi.StringPtrInput
-	// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-	// the "dir" type pools.
-	Path pulumi.StringPtrInput
-	// The type of the pool. Currently, only "dir" supported.
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	//
+	// Deprecated: use target.path instead
+	Path   pulumi.StringPtrInput
+	Source PoolSourcePtrInput
+	Target PoolTargetPtrInput
+	// The type of the pool. Currently, "dir" and "logical" are supported.
 	Type pulumi.StringPtrInput
 	Xml  PoolXmlPtrInput
 }
@@ -139,10 +150,13 @@ type poolArgs struct {
 	Capacity   *int `pulumi:"capacity"`
 	// A unique name for the resource, required by libvirt.
 	Name *string `pulumi:"name"`
-	// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-	// the "dir" type pools.
-	Path *string `pulumi:"path"`
-	// The type of the pool. Currently, only "dir" supported.
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	//
+	// Deprecated: use target.path instead
+	Path   *string     `pulumi:"path"`
+	Source *PoolSource `pulumi:"source"`
+	Target *PoolTarget `pulumi:"target"`
+	// The type of the pool. Currently, "dir" and "logical" are supported.
 	Type string   `pulumi:"type"`
 	Xml  *PoolXml `pulumi:"xml"`
 }
@@ -154,10 +168,13 @@ type PoolArgs struct {
 	Capacity   pulumi.IntPtrInput
 	// A unique name for the resource, required by libvirt.
 	Name pulumi.StringPtrInput
-	// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-	// the "dir" type pools.
-	Path pulumi.StringPtrInput
-	// The type of the pool. Currently, only "dir" supported.
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	//
+	// Deprecated: use target.path instead
+	Path   pulumi.StringPtrInput
+	Source PoolSourcePtrInput
+	Target PoolTargetPtrInput
+	// The type of the pool. Currently, "dir" and "logical" are supported.
 	Type pulumi.StringInput
 	Xml  PoolXmlPtrInput
 }
@@ -266,13 +283,22 @@ func (o PoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-// the "dir" type pools.
+// **Deprecated** (Optional) use `path` in the `target` block.
+//
+// Deprecated: use target.path instead
 func (o PoolOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// The type of the pool. Currently, only "dir" supported.
+func (o PoolOutput) Source() PoolSourcePtrOutput {
+	return o.ApplyT(func(v *Pool) PoolSourcePtrOutput { return v.Source }).(PoolSourcePtrOutput)
+}
+
+func (o PoolOutput) Target() PoolTargetOutput {
+	return o.ApplyT(func(v *Pool) PoolTargetOutput { return v.Target }).(PoolTargetOutput)
+}
+
+// The type of the pool. Currently, "dir" and "logical" are supported.
 func (o PoolOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

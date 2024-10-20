@@ -55,6 +55,12 @@ __all__ = [
     'NetworkRouteArgsDict',
     'NetworkXmlArgs',
     'NetworkXmlArgsDict',
+    'PoolSourceArgs',
+    'PoolSourceArgsDict',
+    'PoolSourceDeviceArgs',
+    'PoolSourceDeviceArgsDict',
+    'PoolTargetArgs',
+    'PoolTargetArgsDict',
     'PoolXmlArgs',
     'PoolXmlArgsDict',
     'VolumeXmlArgs',
@@ -1768,6 +1774,115 @@ class NetworkXmlArgs:
     @xslt.setter
     def xslt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "xslt", value)
+
+
+if not MYPY:
+    class PoolSourceArgsDict(TypedDict):
+        devices: NotRequired[pulumi.Input[Sequence[pulumi.Input['PoolSourceDeviceArgsDict']]]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        A unique name for the resource, required by libvirt.
+        """
+elif False:
+    PoolSourceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PoolSourceArgs:
+    def __init__(__self__, *,
+                 devices: Optional[pulumi.Input[Sequence[pulumi.Input['PoolSourceDeviceArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
+        """
+        if devices is not None:
+            pulumi.set(__self__, "devices", devices)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PoolSourceDeviceArgs']]]]:
+        return pulumi.get(self, "devices")
+
+    @devices.setter
+    def devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PoolSourceDeviceArgs']]]]):
+        pulumi.set(self, "devices", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique name for the resource, required by libvirt.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+if not MYPY:
+    class PoolSourceDeviceArgsDict(TypedDict):
+        path: NotRequired[pulumi.Input[str]]
+        """
+        **Deprecated** (Optional) use `path` in the `target` block.
+        """
+elif False:
+    PoolSourceDeviceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PoolSourceDeviceArgs:
+    def __init__(__self__, *,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] path: **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+if not MYPY:
+    class PoolTargetArgsDict(TypedDict):
+        path: NotRequired[pulumi.Input[str]]
+        """
+        **Deprecated** (Optional) use `path` in the `target` block.
+        """
+elif False:
+    PoolTargetArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PoolTargetArgs:
+    def __init__(__self__, *,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] path: **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        **Deprecated** (Optional) use `path` in the `target` block.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
 
 if not MYPY:

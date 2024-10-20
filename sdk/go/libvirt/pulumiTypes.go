@@ -3233,6 +3233,392 @@ func (o NetworkXmlPtrOutput) Xslt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type PoolSource struct {
+	Devices []PoolSourceDevice `pulumi:"devices"`
+	// A unique name for the resource, required by libvirt.
+	Name *string `pulumi:"name"`
+}
+
+// PoolSourceInput is an input type that accepts PoolSourceArgs and PoolSourceOutput values.
+// You can construct a concrete instance of `PoolSourceInput` via:
+//
+//	PoolSourceArgs{...}
+type PoolSourceInput interface {
+	pulumi.Input
+
+	ToPoolSourceOutput() PoolSourceOutput
+	ToPoolSourceOutputWithContext(context.Context) PoolSourceOutput
+}
+
+type PoolSourceArgs struct {
+	Devices PoolSourceDeviceArrayInput `pulumi:"devices"`
+	// A unique name for the resource, required by libvirt.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (PoolSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolSource)(nil)).Elem()
+}
+
+func (i PoolSourceArgs) ToPoolSourceOutput() PoolSourceOutput {
+	return i.ToPoolSourceOutputWithContext(context.Background())
+}
+
+func (i PoolSourceArgs) ToPoolSourceOutputWithContext(ctx context.Context) PoolSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolSourceOutput)
+}
+
+func (i PoolSourceArgs) ToPoolSourcePtrOutput() PoolSourcePtrOutput {
+	return i.ToPoolSourcePtrOutputWithContext(context.Background())
+}
+
+func (i PoolSourceArgs) ToPoolSourcePtrOutputWithContext(ctx context.Context) PoolSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolSourceOutput).ToPoolSourcePtrOutputWithContext(ctx)
+}
+
+// PoolSourcePtrInput is an input type that accepts PoolSourceArgs, PoolSourcePtr and PoolSourcePtrOutput values.
+// You can construct a concrete instance of `PoolSourcePtrInput` via:
+//
+//	        PoolSourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type PoolSourcePtrInput interface {
+	pulumi.Input
+
+	ToPoolSourcePtrOutput() PoolSourcePtrOutput
+	ToPoolSourcePtrOutputWithContext(context.Context) PoolSourcePtrOutput
+}
+
+type poolSourcePtrType PoolSourceArgs
+
+func PoolSourcePtr(v *PoolSourceArgs) PoolSourcePtrInput {
+	return (*poolSourcePtrType)(v)
+}
+
+func (*poolSourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PoolSource)(nil)).Elem()
+}
+
+func (i *poolSourcePtrType) ToPoolSourcePtrOutput() PoolSourcePtrOutput {
+	return i.ToPoolSourcePtrOutputWithContext(context.Background())
+}
+
+func (i *poolSourcePtrType) ToPoolSourcePtrOutputWithContext(ctx context.Context) PoolSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolSourcePtrOutput)
+}
+
+type PoolSourceOutput struct{ *pulumi.OutputState }
+
+func (PoolSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolSource)(nil)).Elem()
+}
+
+func (o PoolSourceOutput) ToPoolSourceOutput() PoolSourceOutput {
+	return o
+}
+
+func (o PoolSourceOutput) ToPoolSourceOutputWithContext(ctx context.Context) PoolSourceOutput {
+	return o
+}
+
+func (o PoolSourceOutput) ToPoolSourcePtrOutput() PoolSourcePtrOutput {
+	return o.ToPoolSourcePtrOutputWithContext(context.Background())
+}
+
+func (o PoolSourceOutput) ToPoolSourcePtrOutputWithContext(ctx context.Context) PoolSourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PoolSource) *PoolSource {
+		return &v
+	}).(PoolSourcePtrOutput)
+}
+
+func (o PoolSourceOutput) Devices() PoolSourceDeviceArrayOutput {
+	return o.ApplyT(func(v PoolSource) []PoolSourceDevice { return v.Devices }).(PoolSourceDeviceArrayOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+func (o PoolSourceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolSource) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type PoolSourcePtrOutput struct{ *pulumi.OutputState }
+
+func (PoolSourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PoolSource)(nil)).Elem()
+}
+
+func (o PoolSourcePtrOutput) ToPoolSourcePtrOutput() PoolSourcePtrOutput {
+	return o
+}
+
+func (o PoolSourcePtrOutput) ToPoolSourcePtrOutputWithContext(ctx context.Context) PoolSourcePtrOutput {
+	return o
+}
+
+func (o PoolSourcePtrOutput) Elem() PoolSourceOutput {
+	return o.ApplyT(func(v *PoolSource) PoolSource {
+		if v != nil {
+			return *v
+		}
+		var ret PoolSource
+		return ret
+	}).(PoolSourceOutput)
+}
+
+func (o PoolSourcePtrOutput) Devices() PoolSourceDeviceArrayOutput {
+	return o.ApplyT(func(v *PoolSource) []PoolSourceDevice {
+		if v == nil {
+			return nil
+		}
+		return v.Devices
+	}).(PoolSourceDeviceArrayOutput)
+}
+
+// A unique name for the resource, required by libvirt.
+func (o PoolSourcePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PoolSource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+type PoolSourceDevice struct {
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	Path *string `pulumi:"path"`
+}
+
+// PoolSourceDeviceInput is an input type that accepts PoolSourceDeviceArgs and PoolSourceDeviceOutput values.
+// You can construct a concrete instance of `PoolSourceDeviceInput` via:
+//
+//	PoolSourceDeviceArgs{...}
+type PoolSourceDeviceInput interface {
+	pulumi.Input
+
+	ToPoolSourceDeviceOutput() PoolSourceDeviceOutput
+	ToPoolSourceDeviceOutputWithContext(context.Context) PoolSourceDeviceOutput
+}
+
+type PoolSourceDeviceArgs struct {
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+}
+
+func (PoolSourceDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolSourceDevice)(nil)).Elem()
+}
+
+func (i PoolSourceDeviceArgs) ToPoolSourceDeviceOutput() PoolSourceDeviceOutput {
+	return i.ToPoolSourceDeviceOutputWithContext(context.Background())
+}
+
+func (i PoolSourceDeviceArgs) ToPoolSourceDeviceOutputWithContext(ctx context.Context) PoolSourceDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolSourceDeviceOutput)
+}
+
+// PoolSourceDeviceArrayInput is an input type that accepts PoolSourceDeviceArray and PoolSourceDeviceArrayOutput values.
+// You can construct a concrete instance of `PoolSourceDeviceArrayInput` via:
+//
+//	PoolSourceDeviceArray{ PoolSourceDeviceArgs{...} }
+type PoolSourceDeviceArrayInput interface {
+	pulumi.Input
+
+	ToPoolSourceDeviceArrayOutput() PoolSourceDeviceArrayOutput
+	ToPoolSourceDeviceArrayOutputWithContext(context.Context) PoolSourceDeviceArrayOutput
+}
+
+type PoolSourceDeviceArray []PoolSourceDeviceInput
+
+func (PoolSourceDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolSourceDevice)(nil)).Elem()
+}
+
+func (i PoolSourceDeviceArray) ToPoolSourceDeviceArrayOutput() PoolSourceDeviceArrayOutput {
+	return i.ToPoolSourceDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i PoolSourceDeviceArray) ToPoolSourceDeviceArrayOutputWithContext(ctx context.Context) PoolSourceDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolSourceDeviceArrayOutput)
+}
+
+type PoolSourceDeviceOutput struct{ *pulumi.OutputState }
+
+func (PoolSourceDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolSourceDevice)(nil)).Elem()
+}
+
+func (o PoolSourceDeviceOutput) ToPoolSourceDeviceOutput() PoolSourceDeviceOutput {
+	return o
+}
+
+func (o PoolSourceDeviceOutput) ToPoolSourceDeviceOutputWithContext(ctx context.Context) PoolSourceDeviceOutput {
+	return o
+}
+
+// **Deprecated** (Optional) use `path` in the `target` block.
+func (o PoolSourceDeviceOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolSourceDevice) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+type PoolSourceDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (PoolSourceDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolSourceDevice)(nil)).Elem()
+}
+
+func (o PoolSourceDeviceArrayOutput) ToPoolSourceDeviceArrayOutput() PoolSourceDeviceArrayOutput {
+	return o
+}
+
+func (o PoolSourceDeviceArrayOutput) ToPoolSourceDeviceArrayOutputWithContext(ctx context.Context) PoolSourceDeviceArrayOutput {
+	return o
+}
+
+func (o PoolSourceDeviceArrayOutput) Index(i pulumi.IntInput) PoolSourceDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PoolSourceDevice {
+		return vs[0].([]PoolSourceDevice)[vs[1].(int)]
+	}).(PoolSourceDeviceOutput)
+}
+
+type PoolTarget struct {
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	Path *string `pulumi:"path"`
+}
+
+// PoolTargetInput is an input type that accepts PoolTargetArgs and PoolTargetOutput values.
+// You can construct a concrete instance of `PoolTargetInput` via:
+//
+//	PoolTargetArgs{...}
+type PoolTargetInput interface {
+	pulumi.Input
+
+	ToPoolTargetOutput() PoolTargetOutput
+	ToPoolTargetOutputWithContext(context.Context) PoolTargetOutput
+}
+
+type PoolTargetArgs struct {
+	// **Deprecated** (Optional) use `path` in the `target` block.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+}
+
+func (PoolTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolTarget)(nil)).Elem()
+}
+
+func (i PoolTargetArgs) ToPoolTargetOutput() PoolTargetOutput {
+	return i.ToPoolTargetOutputWithContext(context.Background())
+}
+
+func (i PoolTargetArgs) ToPoolTargetOutputWithContext(ctx context.Context) PoolTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolTargetOutput)
+}
+
+func (i PoolTargetArgs) ToPoolTargetPtrOutput() PoolTargetPtrOutput {
+	return i.ToPoolTargetPtrOutputWithContext(context.Background())
+}
+
+func (i PoolTargetArgs) ToPoolTargetPtrOutputWithContext(ctx context.Context) PoolTargetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolTargetOutput).ToPoolTargetPtrOutputWithContext(ctx)
+}
+
+// PoolTargetPtrInput is an input type that accepts PoolTargetArgs, PoolTargetPtr and PoolTargetPtrOutput values.
+// You can construct a concrete instance of `PoolTargetPtrInput` via:
+//
+//	        PoolTargetArgs{...}
+//
+//	or:
+//
+//	        nil
+type PoolTargetPtrInput interface {
+	pulumi.Input
+
+	ToPoolTargetPtrOutput() PoolTargetPtrOutput
+	ToPoolTargetPtrOutputWithContext(context.Context) PoolTargetPtrOutput
+}
+
+type poolTargetPtrType PoolTargetArgs
+
+func PoolTargetPtr(v *PoolTargetArgs) PoolTargetPtrInput {
+	return (*poolTargetPtrType)(v)
+}
+
+func (*poolTargetPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PoolTarget)(nil)).Elem()
+}
+
+func (i *poolTargetPtrType) ToPoolTargetPtrOutput() PoolTargetPtrOutput {
+	return i.ToPoolTargetPtrOutputWithContext(context.Background())
+}
+
+func (i *poolTargetPtrType) ToPoolTargetPtrOutputWithContext(ctx context.Context) PoolTargetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolTargetPtrOutput)
+}
+
+type PoolTargetOutput struct{ *pulumi.OutputState }
+
+func (PoolTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolTarget)(nil)).Elem()
+}
+
+func (o PoolTargetOutput) ToPoolTargetOutput() PoolTargetOutput {
+	return o
+}
+
+func (o PoolTargetOutput) ToPoolTargetOutputWithContext(ctx context.Context) PoolTargetOutput {
+	return o
+}
+
+func (o PoolTargetOutput) ToPoolTargetPtrOutput() PoolTargetPtrOutput {
+	return o.ToPoolTargetPtrOutputWithContext(context.Background())
+}
+
+func (o PoolTargetOutput) ToPoolTargetPtrOutputWithContext(ctx context.Context) PoolTargetPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PoolTarget) *PoolTarget {
+		return &v
+	}).(PoolTargetPtrOutput)
+}
+
+// **Deprecated** (Optional) use `path` in the `target` block.
+func (o PoolTargetOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolTarget) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+type PoolTargetPtrOutput struct{ *pulumi.OutputState }
+
+func (PoolTargetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PoolTarget)(nil)).Elem()
+}
+
+func (o PoolTargetPtrOutput) ToPoolTargetPtrOutput() PoolTargetPtrOutput {
+	return o
+}
+
+func (o PoolTargetPtrOutput) ToPoolTargetPtrOutputWithContext(ctx context.Context) PoolTargetPtrOutput {
+	return o
+}
+
+func (o PoolTargetPtrOutput) Elem() PoolTargetOutput {
+	return o.ApplyT(func(v *PoolTarget) PoolTarget {
+		if v != nil {
+			return *v
+		}
+		var ret PoolTarget
+		return ret
+	}).(PoolTargetOutput)
+}
+
+// **Deprecated** (Optional) use `path` in the `target` block.
+func (o PoolTargetPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PoolTarget) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
 type PoolXml struct {
 	Xslt *string `pulumi:"xslt"`
 }
@@ -4546,6 +4932,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkRouteArrayInput)(nil)).Elem(), NetworkRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkXmlInput)(nil)).Elem(), NetworkXmlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkXmlPtrInput)(nil)).Elem(), NetworkXmlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolSourceInput)(nil)).Elem(), PoolSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolSourcePtrInput)(nil)).Elem(), PoolSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolSourceDeviceInput)(nil)).Elem(), PoolSourceDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolSourceDeviceArrayInput)(nil)).Elem(), PoolSourceDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolTargetInput)(nil)).Elem(), PoolTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolTargetPtrInput)(nil)).Elem(), PoolTargetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolXmlInput)(nil)).Elem(), PoolXmlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolXmlPtrInput)(nil)).Elem(), PoolXmlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeXmlInput)(nil)).Elem(), VolumeXmlArgs{})
@@ -4596,6 +4988,12 @@ func init() {
 	pulumi.RegisterOutputType(NetworkRouteArrayOutput{})
 	pulumi.RegisterOutputType(NetworkXmlOutput{})
 	pulumi.RegisterOutputType(NetworkXmlPtrOutput{})
+	pulumi.RegisterOutputType(PoolSourceOutput{})
+	pulumi.RegisterOutputType(PoolSourcePtrOutput{})
+	pulumi.RegisterOutputType(PoolSourceDeviceOutput{})
+	pulumi.RegisterOutputType(PoolSourceDeviceArrayOutput{})
+	pulumi.RegisterOutputType(PoolTargetOutput{})
+	pulumi.RegisterOutputType(PoolTargetPtrOutput{})
 	pulumi.RegisterOutputType(PoolXmlOutput{})
 	pulumi.RegisterOutputType(PoolXmlPtrOutput{})
 	pulumi.RegisterOutputType(VolumeXmlOutput{})

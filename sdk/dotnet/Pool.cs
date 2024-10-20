@@ -30,7 +30,10 @@ namespace Pulumi.Libvirt
     ///     {
     ///         Name = "cluster",
     ///         Type = "dir",
-    ///         Path = "/home/user/cluster_storage",
+    ///         Target = new Libvirt.Inputs.PoolTargetArgs
+    ///         {
+    ///             Path = "/home/user/cluster_storage",
+    ///         },
     ///     });
     /// 
     ///     var opensuseLeap = new Libvirt.Volume("opensuse_leap", new()
@@ -62,14 +65,19 @@ namespace Pulumi.Libvirt
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-        /// the "dir" type pools.
+        /// **Deprecated** (Optional) use `path` in the `target` block.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
+        [Output("source")]
+        public Output<Outputs.PoolSource?> Source { get; private set; } = null!;
+
+        [Output("target")]
+        public Output<Outputs.PoolTarget> Target { get; private set; } = null!;
+
         /// <summary>
-        /// The type of the pool. Currently, only "dir" supported.
+        /// The type of the pool. Currently, "dir" and "logical" are supported.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -139,14 +147,19 @@ namespace Pulumi.Libvirt
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-        /// the "dir" type pools.
+        /// **Deprecated** (Optional) use `path` in the `target` block.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("source")]
+        public Input<Inputs.PoolSourceArgs>? Source { get; set; }
+
+        [Input("target")]
+        public Input<Inputs.PoolTargetArgs>? Target { get; set; }
+
         /// <summary>
-        /// The type of the pool. Currently, only "dir" supported.
+        /// The type of the pool. Currently, "dir" and "logical" are supported.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -178,14 +191,19 @@ namespace Pulumi.Libvirt
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-        /// the "dir" type pools.
+        /// **Deprecated** (Optional) use `path` in the `target` block.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("source")]
+        public Input<Inputs.PoolSourceGetArgs>? Source { get; set; }
+
+        [Input("target")]
+        public Input<Inputs.PoolTargetGetArgs>? Target { get; set; }
+
         /// <summary>
-        /// The type of the pool. Currently, only "dir" supported.
+        /// The type of the pool. Currently, "dir" and "logical" are supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
