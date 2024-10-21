@@ -643,6 +643,28 @@ export interface NetworkXml {
     xslt?: pulumi.Input<string>;
 }
 
+export interface PoolSource {
+    devices?: pulumi.Input<pulumi.Input<inputs.PoolSourceDevice>[]>;
+    /**
+     * A unique name for the resource, required by libvirt.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface PoolSourceDevice {
+    /**
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     */
+    path?: pulumi.Input<string>;
+}
+
+export interface PoolTarget {
+    /**
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     */
+    path?: pulumi.Input<string>;
+}
+
 export interface PoolXml {
     xslt?: pulumi.Input<string>;
 }

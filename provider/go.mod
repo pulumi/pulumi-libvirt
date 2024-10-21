@@ -1,8 +1,8 @@
 module github.com/pulumi/pulumi-libvirt/provider
 
-go 1.22.0
+go 1.23
 
-toolchain go1.22.7
+toolchain go1.23.2
 
 replace (
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
@@ -11,7 +11,7 @@ replace (
 )
 
 require (
-	github.com/dmacvicar/terraform-provider-libvirt v0.8.0
+	github.com/dmacvicar/terraform-provider-libvirt v0.8.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.93.1
 	github.com/pulumi/pulumi/sdk/v3 v3.136.1
 )
@@ -75,7 +75,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/deckarep/golang-set/v2 v2.5.0 // indirect
 	github.com/digitalocean/go-libvirt v0.0.0-20240916165608-bff44a349d9d // indirect
-	github.com/djherbis/times v1.5.0 // indirect
+	github.com/djherbis/times v1.6.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/ettle/strcase v0.1.1 // indirect
@@ -196,7 +196,7 @@ require (
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
-	github.com/ulikunitz/xz v0.5.10 // indirect
+	github.com/ulikunitz/xz v0.5.11 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect

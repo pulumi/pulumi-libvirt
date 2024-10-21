@@ -111,6 +111,19 @@
             "libvirt_pool": {
                 "current": "libvirt:index/pool:Pool",
                 "fields": {
+                    "source": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "device": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "target": {
+                        "maxItemsOne": true
+                    },
                     "xml": {
                         "maxItemsOne": true
                     }

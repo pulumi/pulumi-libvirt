@@ -27,13 +27,14 @@ class PoolArgs:
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input['PoolSourceArgs']] = None,
+                 target: Optional[pulumi.Input['PoolTargetArgs']] = None,
                  xml: Optional[pulumi.Input['PoolXmlArgs']] = None):
         """
         The set of arguments for constructing a Pool resource.
-        :param pulumi.Input[str] type: The type of the pool. Currently, only "dir" supported.
+        :param pulumi.Input[str] type: The type of the pool. Currently, "dir" and "logical" are supported.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
-        :param pulumi.Input[str] path: The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-               the "dir" type pools.
+        :param pulumi.Input[str] path: **Deprecated** (Optional) use `path` in the `target` block.
         """
         pulumi.set(__self__, "type", type)
         if allocation is not None:
@@ -45,7 +46,14 @@ class PoolArgs:
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
+            warnings.warn("""use target.path instead""", DeprecationWarning)
+            pulumi.log.warn("""path is deprecated: use target.path instead""")
+        if path is not None:
             pulumi.set(__self__, "path", path)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
         if xml is not None:
             pulumi.set(__self__, "xml", xml)
 
@@ -53,7 +61,7 @@ class PoolArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of the pool. Currently, only "dir" supported.
+        The type of the pool. Currently, "dir" and "logical" are supported.
         """
         return pulumi.get(self, "type")
 
@@ -102,16 +110,34 @@ class PoolArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""use target.path instead""")
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-        the "dir" type pools.
+        **Deprecated** (Optional) use `path` in the `target` block.
         """
         return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['PoolSourceArgs']]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input['PoolSourceArgs']]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input['PoolTargetArgs']]:
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input['PoolTargetArgs']]):
+        pulumi.set(self, "target", value)
 
     @property
     @pulumi.getter
@@ -131,14 +157,15 @@ class _PoolState:
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input['PoolSourceArgs']] = None,
+                 target: Optional[pulumi.Input['PoolTargetArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  xml: Optional[pulumi.Input['PoolXmlArgs']] = None):
         """
         Input properties used for looking up and filtering Pool resources.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
-        :param pulumi.Input[str] path: The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-               the "dir" type pools.
-        :param pulumi.Input[str] type: The type of the pool. Currently, only "dir" supported.
+        :param pulumi.Input[str] path: **Deprecated** (Optional) use `path` in the `target` block.
+        :param pulumi.Input[str] type: The type of the pool. Currently, "dir" and "logical" are supported.
         """
         if allocation is not None:
             pulumi.set(__self__, "allocation", allocation)
@@ -149,7 +176,14 @@ class _PoolState:
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
+            warnings.warn("""use target.path instead""", DeprecationWarning)
+            pulumi.log.warn("""path is deprecated: use target.path instead""")
+        if path is not None:
             pulumi.set(__self__, "path", path)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if xml is not None:
@@ -196,10 +230,10 @@ class _PoolState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""use target.path instead""")
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-        the "dir" type pools.
+        **Deprecated** (Optional) use `path` in the `target` block.
         """
         return pulumi.get(self, "path")
 
@@ -209,9 +243,27 @@ class _PoolState:
 
     @property
     @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['PoolSourceArgs']]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input['PoolSourceArgs']]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input['PoolTargetArgs']]:
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input['PoolTargetArgs']]):
+        pulumi.set(self, "target", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the pool. Currently, only "dir" supported.
+        The type of the pool. Currently, "dir" and "logical" are supported.
         """
         return pulumi.get(self, "type")
 
@@ -239,6 +291,8 @@ class Pool(pulumi.CustomResource):
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[Union['PoolSourceArgs', 'PoolSourceArgsDict']]] = None,
+                 target: Optional[pulumi.Input[Union['PoolTargetArgs', 'PoolTargetArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  xml: Optional[pulumi.Input[Union['PoolXmlArgs', 'PoolXmlArgsDict']]] = None,
                  __props__=None):
@@ -258,7 +312,9 @@ class Pool(pulumi.CustomResource):
         cluster = libvirt.Pool("cluster",
             name="cluster",
             type="dir",
-            path="/home/user/cluster_storage")
+            target={
+                "path": "/home/user/cluster_storage",
+            })
         opensuse_leap = libvirt.Volume("opensuse_leap",
             name="opensuse_leap",
             pool=cluster.name,
@@ -268,9 +324,8 @@ class Pool(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
-        :param pulumi.Input[str] path: The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-               the "dir" type pools.
-        :param pulumi.Input[str] type: The type of the pool. Currently, only "dir" supported.
+        :param pulumi.Input[str] path: **Deprecated** (Optional) use `path` in the `target` block.
+        :param pulumi.Input[str] type: The type of the pool. Currently, "dir" and "logical" are supported.
         """
         ...
     @overload
@@ -294,7 +349,9 @@ class Pool(pulumi.CustomResource):
         cluster = libvirt.Pool("cluster",
             name="cluster",
             type="dir",
-            path="/home/user/cluster_storage")
+            target={
+                "path": "/home/user/cluster_storage",
+            })
         opensuse_leap = libvirt.Volume("opensuse_leap",
             name="opensuse_leap",
             pool=cluster.name,
@@ -321,6 +378,8 @@ class Pool(pulumi.CustomResource):
                  capacity: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[Union['PoolSourceArgs', 'PoolSourceArgsDict']]] = None,
+                 target: Optional[pulumi.Input[Union['PoolTargetArgs', 'PoolTargetArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  xml: Optional[pulumi.Input[Union['PoolXmlArgs', 'PoolXmlArgsDict']]] = None,
                  __props__=None):
@@ -337,6 +396,8 @@ class Pool(pulumi.CustomResource):
             __props__.__dict__["capacity"] = capacity
             __props__.__dict__["name"] = name
             __props__.__dict__["path"] = path
+            __props__.__dict__["source"] = source
+            __props__.__dict__["target"] = target
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -356,6 +417,8 @@ class Pool(pulumi.CustomResource):
             capacity: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
+            source: Optional[pulumi.Input[Union['PoolSourceArgs', 'PoolSourceArgsDict']]] = None,
+            target: Optional[pulumi.Input[Union['PoolTargetArgs', 'PoolTargetArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None,
             xml: Optional[pulumi.Input[Union['PoolXmlArgs', 'PoolXmlArgsDict']]] = None) -> 'Pool':
         """
@@ -366,9 +429,8 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: A unique name for the resource, required by libvirt.
-        :param pulumi.Input[str] path: The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-               the "dir" type pools.
-        :param pulumi.Input[str] type: The type of the pool. Currently, only "dir" supported.
+        :param pulumi.Input[str] path: **Deprecated** (Optional) use `path` in the `target` block.
+        :param pulumi.Input[str] type: The type of the pool. Currently, "dir" and "logical" are supported.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -379,6 +441,8 @@ class Pool(pulumi.CustomResource):
         __props__.__dict__["capacity"] = capacity
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
+        __props__.__dict__["source"] = source
+        __props__.__dict__["target"] = target
         __props__.__dict__["type"] = type
         __props__.__dict__["xml"] = xml
         return Pool(resource_name, opts=opts, __props__=__props__)
@@ -408,18 +472,28 @@ class Pool(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""use target.path instead""")
     def path(self) -> pulumi.Output[Optional[str]]:
         """
-        The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-        the "dir" type pools.
+        **Deprecated** (Optional) use `path` in the `target` block.
         """
         return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
+    def source(self) -> pulumi.Output[Optional['outputs.PoolSource']]:
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def target(self) -> pulumi.Output['outputs.PoolTarget']:
+        return pulumi.get(self, "target")
+
+    @property
+    @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of the pool. Currently, only "dir" supported.
+        The type of the pool. Currently, "dir" and "logical" are supported.
         """
         return pulumi.get(self, "type")
 

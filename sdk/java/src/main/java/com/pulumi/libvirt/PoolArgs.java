@@ -6,6 +6,8 @@ package com.pulumi.libvirt;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.libvirt.inputs.PoolSourceArgs;
+import com.pulumi.libvirt.inputs.PoolTargetArgs;
 import com.pulumi.libvirt.inputs.PoolXmlArgs;
 import java.lang.Integer;
 import java.lang.String;
@@ -55,31 +57,51 @@ public final class PoolArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the &#34;dir&#34; type pools.
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     * 
+     * @deprecated
+     * use target.path instead
      * 
      */
+    @Deprecated /* use target.path instead */
     @Import(name="path")
     private @Nullable Output<String> path;
 
     /**
-     * @return The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the &#34;dir&#34; type pools.
+     * @return **Deprecated** (Optional) use `path` in the `target` block.
+     * 
+     * @deprecated
+     * use target.path instead
      * 
      */
+    @Deprecated /* use target.path instead */
     public Optional<Output<String>> path() {
         return Optional.ofNullable(this.path);
     }
 
+    @Import(name="source")
+    private @Nullable Output<PoolSourceArgs> source;
+
+    public Optional<Output<PoolSourceArgs>> source() {
+        return Optional.ofNullable(this.source);
+    }
+
+    @Import(name="target")
+    private @Nullable Output<PoolTargetArgs> target;
+
+    public Optional<Output<PoolTargetArgs>> target() {
+        return Optional.ofNullable(this.target);
+    }
+
     /**
-     * The type of the pool. Currently, only &#34;dir&#34; supported.
+     * The type of the pool. Currently, &#34;dir&#34; and &#34;logical&#34; are supported.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The type of the pool. Currently, only &#34;dir&#34; supported.
+     * @return The type of the pool. Currently, &#34;dir&#34; and &#34;logical&#34; are supported.
      * 
      */
     public Output<String> type() {
@@ -101,6 +123,8 @@ public final class PoolArgs extends com.pulumi.resources.ResourceArgs {
         this.capacity = $.capacity;
         this.name = $.name;
         this.path = $.path;
+        this.source = $.source;
+        this.target = $.target;
         this.type = $.type;
         this.xml = $.xml;
     }
@@ -172,30 +196,54 @@ public final class PoolArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-         * the &#34;dir&#34; type pools.
+         * @param path **Deprecated** (Optional) use `path` in the `target` block.
          * 
          * @return builder
          * 
+         * @deprecated
+         * use target.path instead
+         * 
          */
+        @Deprecated /* use target.path instead */
         public Builder path(@Nullable Output<String> path) {
             $.path = path;
             return this;
         }
 
         /**
-         * @param path The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-         * the &#34;dir&#34; type pools.
+         * @param path **Deprecated** (Optional) use `path` in the `target` block.
          * 
          * @return builder
          * 
+         * @deprecated
+         * use target.path instead
+         * 
          */
+        @Deprecated /* use target.path instead */
         public Builder path(String path) {
             return path(Output.of(path));
         }
 
+        public Builder source(@Nullable Output<PoolSourceArgs> source) {
+            $.source = source;
+            return this;
+        }
+
+        public Builder source(PoolSourceArgs source) {
+            return source(Output.of(source));
+        }
+
+        public Builder target(@Nullable Output<PoolTargetArgs> target) {
+            $.target = target;
+            return this;
+        }
+
+        public Builder target(PoolTargetArgs target) {
+            return target(Output.of(target));
+        }
+
         /**
-         * @param type The type of the pool. Currently, only &#34;dir&#34; supported.
+         * @param type The type of the pool. Currently, &#34;dir&#34; and &#34;logical&#34; are supported.
          * 
          * @return builder
          * 
@@ -206,7 +254,7 @@ public final class PoolArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the pool. Currently, only &#34;dir&#34; supported.
+         * @param type The type of the pool. Currently, &#34;dir&#34; and &#34;logical&#34; are supported.
          * 
          * @return builder
          * 

@@ -22,7 +22,9 @@ import * as utilities from "./utilities";
  * const cluster = new libvirt.Pool("cluster", {
  *     name: "cluster",
  *     type: "dir",
- *     path: "/home/user/cluster_storage",
+ *     target: {
+ *         path: "/home/user/cluster_storage",
+ *     },
  * });
  * const opensuseLeap = new libvirt.Volume("opensuse_leap", {
  *     name: "opensuse_leap",
@@ -67,12 +69,15 @@ export class Pool extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the "dir" type pools.
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     *
+     * @deprecated use target.path instead
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    public readonly source!: pulumi.Output<outputs.PoolSource | undefined>;
+    public readonly target!: pulumi.Output<outputs.PoolTarget>;
     /**
-     * The type of the pool. Currently, only "dir" supported.
+     * The type of the pool. Currently, "dir" and "logical" are supported.
      */
     public readonly type!: pulumi.Output<string>;
     public readonly xml!: pulumi.Output<outputs.PoolXml | undefined>;
@@ -95,6 +100,8 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["capacity"] = state ? state.capacity : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["target"] = state ? state.target : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["xml"] = state ? state.xml : undefined;
         } else {
@@ -107,6 +114,8 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["capacity"] = args ? args.capacity : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["target"] = args ? args.target : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["xml"] = args ? args.xml : undefined;
         }
@@ -127,12 +136,15 @@ export interface PoolState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the "dir" type pools.
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     *
+     * @deprecated use target.path instead
      */
     path?: pulumi.Input<string>;
+    source?: pulumi.Input<inputs.PoolSource>;
+    target?: pulumi.Input<inputs.PoolTarget>;
     /**
-     * The type of the pool. Currently, only "dir" supported.
+     * The type of the pool. Currently, "dir" and "logical" are supported.
      */
     type?: pulumi.Input<string>;
     xml?: pulumi.Input<inputs.PoolXml>;
@@ -150,12 +162,15 @@ export interface PoolArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The directory where the pool will keep all its volumes. This is only relevant to (and required by)
-     * the "dir" type pools.
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     *
+     * @deprecated use target.path instead
      */
     path?: pulumi.Input<string>;
+    source?: pulumi.Input<inputs.PoolSource>;
+    target?: pulumi.Input<inputs.PoolTarget>;
     /**
-     * The type of the pool. Currently, only "dir" supported.
+     * The type of the pool. Currently, "dir" and "logical" are supported.
      */
     type: pulumi.Input<string>;
     xml?: pulumi.Input<inputs.PoolXml>;

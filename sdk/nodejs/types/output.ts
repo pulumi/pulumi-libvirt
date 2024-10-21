@@ -519,6 +519,28 @@ export interface NetworkXml {
     xslt?: string;
 }
 
+export interface PoolSource {
+    devices?: outputs.PoolSourceDevice[];
+    /**
+     * A unique name for the resource, required by libvirt.
+     */
+    name?: string;
+}
+
+export interface PoolSourceDevice {
+    /**
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     */
+    path?: string;
+}
+
+export interface PoolTarget {
+    /**
+     * **Deprecated** (Optional) use `path` in the `target` block.
+     */
+    path: string;
+}
+
 export interface PoolXml {
     xslt?: string;
 }
