@@ -95,14 +95,14 @@ def get_network_dns_host_template(hostname: Optional[str] = None,
         rendered=pulumi.get(__ret__, 'rendered'))
 def get_network_dns_host_template_output(hostname: Optional[pulumi.Input[str]] = None,
                                          ip: Optional[pulumi.Input[str]] = None,
-                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsHostTemplateResult]:
+                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkDnsHostTemplateResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['hostname'] = hostname
     __args__['ip'] = ip
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate', __args__, opts=opts, typ=GetNetworkDnsHostTemplateResult)
     return __ret__.apply(lambda __response__: GetNetworkDnsHostTemplateResult(
         hostname=pulumi.get(__response__, 'hostname'),

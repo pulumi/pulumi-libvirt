@@ -32,7 +32,7 @@ export interface GetNetworkDnsHostTemplateResult {
     readonly ip: string;
     readonly rendered: {[key: string]: string};
 }
-export function getNetworkDnsHostTemplateOutput(args: GetNetworkDnsHostTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsHostTemplateResult> {
+export function getNetworkDnsHostTemplateOutput(args: GetNetworkDnsHostTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkDnsHostTemplateResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", {
         "hostname": args.hostname,
