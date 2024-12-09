@@ -160,7 +160,7 @@ def get_network_dns_srv_template_output(domain: Optional[pulumi.Input[Optional[s
                                         service: Optional[pulumi.Input[str]] = None,
                                         target: Optional[pulumi.Input[Optional[str]]] = None,
                                         weight: Optional[pulumi.Input[Optional[str]]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsSrvTemplateResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkDnsSrvTemplateResult]:
     """
     Use this data source to access information about an existing resource.
     """
@@ -172,7 +172,7 @@ def get_network_dns_srv_template_output(domain: Optional[pulumi.Input[Optional[s
     __args__['service'] = service
     __args__['target'] = target
     __args__['weight'] = weight
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate', __args__, opts=opts, typ=GetNetworkDnsSrvTemplateResult)
     return __ret__.apply(lambda __response__: GetNetworkDnsSrvTemplateResult(
         domain=pulumi.get(__response__, 'domain'),

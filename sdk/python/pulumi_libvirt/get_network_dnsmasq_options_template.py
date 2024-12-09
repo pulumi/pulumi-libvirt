@@ -95,14 +95,14 @@ def get_network_dnsmasq_options_template(option_name: Optional[str] = None,
         rendered=pulumi.get(__ret__, 'rendered'))
 def get_network_dnsmasq_options_template_output(option_name: Optional[pulumi.Input[str]] = None,
                                                 option_value: Optional[pulumi.Input[Optional[str]]] = None,
-                                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkDnsmasqOptionsTemplateResult]:
+                                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkDnsmasqOptionsTemplateResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['optionName'] = option_name
     __args__['optionValue'] = option_value
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate', __args__, opts=opts, typ=GetNetworkDnsmasqOptionsTemplateResult)
     return __ret__.apply(lambda __response__: GetNetworkDnsmasqOptionsTemplateResult(
         id=pulumi.get(__response__, 'id'),

@@ -71,7 +71,7 @@ export interface GetNodeInfoResult {
  * const node = libvirt.getNodeInfo({});
  * ```
  */
-export function getNodeInfoOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetNodeInfoResult> {
+export function getNodeInfoOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodeInfoResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("libvirt:index/getNodeInfo:getNodeInfo", {
     }, opts);

@@ -68,7 +68,7 @@ export interface GetNodeDevicesResult {
  * });
  * ```
  */
-export function getNodeDevicesOutput(args?: GetNodeDevicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNodeDevicesResult> {
+export function getNodeDevicesOutput(args?: GetNodeDevicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodeDevicesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("libvirt:index/getNodeDevices:getNodeDevices", {
