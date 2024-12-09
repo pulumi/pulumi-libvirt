@@ -86,7 +86,7 @@ export interface GetNodeDeviceInfoResult {
  * });
  * ```
  */
-export function getNodeDeviceInfoOutput(args: GetNodeDeviceInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNodeDeviceInfoResult> {
+export function getNodeDeviceInfoOutput(args: GetNodeDeviceInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodeDeviceInfoResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo", {
         "capability": args.capability,

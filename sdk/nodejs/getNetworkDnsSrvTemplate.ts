@@ -47,7 +47,7 @@ export interface GetNetworkDnsSrvTemplateResult {
     readonly target?: string;
     readonly weight?: string;
 }
-export function getNetworkDnsSrvTemplateOutput(args: GetNetworkDnsSrvTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsSrvTemplateResult> {
+export function getNetworkDnsSrvTemplateOutput(args: GetNetworkDnsSrvTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkDnsSrvTemplateResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", {
         "domain": args.domain,
