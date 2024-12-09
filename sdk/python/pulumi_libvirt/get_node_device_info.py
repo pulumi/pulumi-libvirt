@@ -155,7 +155,7 @@ def get_node_device_info(capability: Optional[Union['GetNodeDeviceInfoCapability
         xml=pulumi.get(__ret__, 'xml'))
 def get_node_device_info_output(capability: Optional[pulumi.Input[Optional[Union['GetNodeDeviceInfoCapabilityArgs', 'GetNodeDeviceInfoCapabilityArgsDict']]]] = None,
                                 name: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeDeviceInfoResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodeDeviceInfoResult]:
     """
     Retrieve information about a specific device on the current node
 
@@ -175,7 +175,7 @@ def get_node_device_info_output(capability: Optional[pulumi.Input[Optional[Union
     __args__ = dict()
     __args__['capability'] = capability
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo', __args__, opts=opts, typ=GetNodeDeviceInfoResult)
     return __ret__.apply(lambda __response__: GetNodeDeviceInfoResult(
         capability=pulumi.get(__response__, 'capability'),
