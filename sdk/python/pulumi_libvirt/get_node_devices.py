@@ -101,7 +101,7 @@ def get_node_devices(capability: Optional[str] = None,
         devices=pulumi.get(__ret__, 'devices'),
         id=pulumi.get(__ret__, 'id'))
 def get_node_devices_output(capability: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeDevicesResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodeDevicesResult]:
     """
     Retrieve information about the devices present on the current node
 
@@ -123,7 +123,7 @@ def get_node_devices_output(capability: Optional[pulumi.Input[Optional[str]]] = 
     """
     __args__ = dict()
     __args__['capability'] = capability
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNodeDevices:getNodeDevices', __args__, opts=opts, typ=GetNodeDevicesResult)
     return __ret__.apply(lambda __response__: GetNodeDevicesResult(
         capability=pulumi.get(__response__, 'capability'),

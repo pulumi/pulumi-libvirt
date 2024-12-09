@@ -32,7 +32,7 @@ export interface GetNetworkDnsmasqOptionsTemplateResult {
     readonly optionValue?: string;
     readonly rendered: {[key: string]: string};
 }
-export function getNetworkDnsmasqOptionsTemplateOutput(args: GetNetworkDnsmasqOptionsTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkDnsmasqOptionsTemplateResult> {
+export function getNetworkDnsmasqOptionsTemplateOutput(args: GetNetworkDnsmasqOptionsTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkDnsmasqOptionsTemplateResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", {
         "optionName": args.optionName,

@@ -159,7 +159,7 @@ def get_node_info(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNo
         id=pulumi.get(__ret__, 'id'),
         memory_total_kb=pulumi.get(__ret__, 'memory_total_kb'),
         numa_nodes=pulumi.get(__ret__, 'numa_nodes'))
-def get_node_info_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodeInfoResult]:
+def get_node_info_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodeInfoResult]:
     """
     Retrieve information about the current node
 
@@ -173,7 +173,7 @@ def get_node_info_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('libvirt:index/getNodeInfo:getNodeInfo', __args__, opts=opts, typ=GetNodeInfoResult)
     return __ret__.apply(lambda __response__: GetNodeInfoResult(
         cpu_cores_per_socket=pulumi.get(__response__, 'cpu_cores_per_socket'),
