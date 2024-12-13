@@ -16,6 +16,9 @@ namespace Pulumi.Libvirt
 
         public static Output<GetNetworkDnsmasqOptionsTemplateResult> Invoke(GetNetworkDnsmasqOptionsTemplateInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetNetworkDnsmasqOptionsTemplateResult> Invoke(GetNetworkDnsmasqOptionsTemplateInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkDnsmasqOptionsTemplateResult>("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", args ?? new GetNetworkDnsmasqOptionsTemplateInvokeArgs(), options.WithDefaults());
     }
 
 

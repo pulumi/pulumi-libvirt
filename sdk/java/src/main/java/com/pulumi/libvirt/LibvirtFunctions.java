@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.libvirt.Utilities;
 import com.pulumi.libvirt.inputs.GetNetworkDnsHostTemplateArgs;
 import com.pulumi.libvirt.inputs.GetNetworkDnsHostTemplatePlainArgs;
@@ -37,6 +38,9 @@ public final class LibvirtFunctions {
     public static Output<GetNetworkDnsHostTemplateResult> getNetworkDnsHostTemplate(GetNetworkDnsHostTemplateArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", TypeShape.of(GetNetworkDnsHostTemplateResult.class), args, Utilities.withVersion(options));
     }
+    public static Output<GetNetworkDnsHostTemplateResult> getNetworkDnsHostTemplate(GetNetworkDnsHostTemplateArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", TypeShape.of(GetNetworkDnsHostTemplateResult.class), args, Utilities.withVersion(options));
+    }
     public static CompletableFuture<GetNetworkDnsHostTemplateResult> getNetworkDnsHostTemplatePlain(GetNetworkDnsHostTemplatePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", TypeShape.of(GetNetworkDnsHostTemplateResult.class), args, Utilities.withVersion(options));
     }
@@ -49,6 +53,9 @@ public final class LibvirtFunctions {
     public static Output<GetNetworkDnsSrvTemplateResult> getNetworkDnsSrvTemplate(GetNetworkDnsSrvTemplateArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", TypeShape.of(GetNetworkDnsSrvTemplateResult.class), args, Utilities.withVersion(options));
     }
+    public static Output<GetNetworkDnsSrvTemplateResult> getNetworkDnsSrvTemplate(GetNetworkDnsSrvTemplateArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", TypeShape.of(GetNetworkDnsSrvTemplateResult.class), args, Utilities.withVersion(options));
+    }
     public static CompletableFuture<GetNetworkDnsSrvTemplateResult> getNetworkDnsSrvTemplatePlain(GetNetworkDnsSrvTemplatePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", TypeShape.of(GetNetworkDnsSrvTemplateResult.class), args, Utilities.withVersion(options));
     }
@@ -59,6 +66,9 @@ public final class LibvirtFunctions {
         return getNetworkDnsmasqOptionsTemplatePlain(args, InvokeOptions.Empty);
     }
     public static Output<GetNetworkDnsmasqOptionsTemplateResult> getNetworkDnsmasqOptionsTemplate(GetNetworkDnsmasqOptionsTemplateArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", TypeShape.of(GetNetworkDnsmasqOptionsTemplateResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetNetworkDnsmasqOptionsTemplateResult> getNetworkDnsmasqOptionsTemplate(GetNetworkDnsmasqOptionsTemplateArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("libvirt:index/getNetworkDnsmasqOptionsTemplate:getNetworkDnsmasqOptionsTemplate", TypeShape.of(GetNetworkDnsmasqOptionsTemplateResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetNetworkDnsmasqOptionsTemplateResult> getNetworkDnsmasqOptionsTemplatePlain(GetNetworkDnsmasqOptionsTemplatePlainArgs args, InvokeOptions options) {
@@ -188,6 +198,48 @@ public final class LibvirtFunctions {
      * 
      */
     public static Output<GetNodeDeviceInfoResult> getNodeDeviceInfo(GetNodeDeviceInfoArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo", TypeShape.of(GetNodeDeviceInfoResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve information about a specific device on the current node
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.libvirt.LibvirtFunctions;
+     * import com.pulumi.libvirt.inputs.GetNodeDeviceInfoArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var device = LibvirtFunctions.getNodeDeviceInfo(GetNodeDeviceInfoArgs.builder()
+     *             .name("pci_0000_00_00_0")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNodeDeviceInfoResult> getNodeDeviceInfo(GetNodeDeviceInfoArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("libvirt:index/getNodeDeviceInfo:getNodeDeviceInfo", TypeShape.of(GetNodeDeviceInfoResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -481,6 +533,48 @@ public final class LibvirtFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetNodeDevicesResult> getNodeDevices(GetNodeDevicesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("libvirt:index/getNodeDevices:getNodeDevices", TypeShape.of(GetNodeDevicesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve information about the devices present on the current node
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.libvirt.LibvirtFunctions;
+     * import com.pulumi.libvirt.inputs.GetNodeDevicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var node = LibvirtFunctions.getNodeDevices(GetNodeDevicesArgs.builder()
+     *             .capability("pci")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetNodeDevicesResult> getNodeDevicesPlain(GetNodeDevicesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("libvirt:index/getNodeDevices:getNodeDevices", TypeShape.of(GetNodeDevicesResult.class), args, Utilities.withVersion(options));
     }
@@ -677,6 +771,45 @@ public final class LibvirtFunctions {
      * 
      */
     public static Output<GetNodeInfoResult> getNodeInfo(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("libvirt:index/getNodeInfo:getNodeInfo", TypeShape.of(GetNodeInfoResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve information about the current node
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.libvirt.LibvirtFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var node = LibvirtFunctions.getNodeInfo();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNodeInfoResult> getNodeInfo(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("libvirt:index/getNodeInfo:getNodeInfo", TypeShape.of(GetNodeInfoResult.class), args, Utilities.withVersion(options));
     }
     /**

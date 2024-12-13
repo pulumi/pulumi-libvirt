@@ -47,21 +47,11 @@ type GetNetworkDnsSrvTemplateResult struct {
 }
 
 func GetNetworkDnsSrvTemplateOutput(ctx *pulumi.Context, args GetNetworkDnsSrvTemplateOutputArgs, opts ...pulumi.InvokeOption) GetNetworkDnsSrvTemplateResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetNetworkDnsSrvTemplateResultOutput, error) {
 			args := v.(GetNetworkDnsSrvTemplateArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetNetworkDnsSrvTemplateResult
-			secret, err := ctx.InvokePackageRaw("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", args, &rv, "", opts...)
-			if err != nil {
-				return GetNetworkDnsSrvTemplateResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetNetworkDnsSrvTemplateResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetNetworkDnsSrvTemplateResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("libvirt:index/getNetworkDnsSrvTemplate:getNetworkDnsSrvTemplate", args, GetNetworkDnsSrvTemplateResultOutput{}, options).(GetNetworkDnsSrvTemplateResultOutput), nil
 		}).(GetNetworkDnsSrvTemplateResultOutput)
 }
 
