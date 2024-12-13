@@ -16,6 +16,9 @@ namespace Pulumi.Libvirt
 
         public static Output<GetNetworkDnsHostTemplateResult> Invoke(GetNetworkDnsHostTemplateInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkDnsHostTemplateResult>("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args ?? new GetNetworkDnsHostTemplateInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetNetworkDnsHostTemplateResult> Invoke(GetNetworkDnsHostTemplateInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkDnsHostTemplateResult>("libvirt:index/getNetworkDnsHostTemplate:getNetworkDnsHostTemplate", args ?? new GetNetworkDnsHostTemplateInvokeArgs(), options.WithDefaults());
     }
 
 

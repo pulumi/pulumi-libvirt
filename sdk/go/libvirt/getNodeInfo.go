@@ -68,18 +68,8 @@ type GetNodeInfoResult struct {
 
 func GetNodeInfoOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetNodeInfoResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetNodeInfoResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetNodeInfoResult
-		secret, err := ctx.InvokePackageRaw("libvirt:index/getNodeInfo:getNodeInfo", nil, &rv, "", opts...)
-		if err != nil {
-			return GetNodeInfoResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetNodeInfoResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetNodeInfoResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("libvirt:index/getNodeInfo:getNodeInfo", nil, GetNodeInfoResultOutput{}, options).(GetNodeInfoResultOutput), nil
 	}).(GetNodeInfoResultOutput)
 }
 

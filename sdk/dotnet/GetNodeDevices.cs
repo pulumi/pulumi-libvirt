@@ -58,6 +58,30 @@ namespace Pulumi.Libvirt
         /// </summary>
         public static Output<GetNodeDevicesResult> Invoke(GetNodeDevicesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNodeDevicesResult>("libvirt:index/getNodeDevices:getNodeDevices", args ?? new GetNodeDevicesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve information about the devices present on the current node
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var node = Libvirt.GetNodeDevices.Invoke(new()
+        ///     {
+        ///         Capability = "pci",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNodeDevicesResult> Invoke(GetNodeDevicesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNodeDevicesResult>("libvirt:index/getNodeDevices:getNodeDevices", args ?? new GetNodeDevicesInvokeArgs(), options.WithDefaults());
     }
 
 
