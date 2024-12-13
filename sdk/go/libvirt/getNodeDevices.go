@@ -68,21 +68,11 @@ type GetNodeDevicesResult struct {
 }
 
 func GetNodeDevicesOutput(ctx *pulumi.Context, args GetNodeDevicesOutputArgs, opts ...pulumi.InvokeOption) GetNodeDevicesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetNodeDevicesResultOutput, error) {
 			args := v.(GetNodeDevicesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetNodeDevicesResult
-			secret, err := ctx.InvokePackageRaw("libvirt:index/getNodeDevices:getNodeDevices", args, &rv, "", opts...)
-			if err != nil {
-				return GetNodeDevicesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetNodeDevicesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetNodeDevicesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("libvirt:index/getNodeDevices:getNodeDevices", args, GetNodeDevicesResultOutput{}, options).(GetNodeDevicesResultOutput), nil
 		}).(GetNodeDevicesResultOutput)
 }
 

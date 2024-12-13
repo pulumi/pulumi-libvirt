@@ -52,6 +52,27 @@ namespace Pulumi.Libvirt
         /// </summary>
         public static Output<GetNodeInfoResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNodeInfoResult>("libvirt:index/getNodeInfo:getNodeInfo", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve information about the current node
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Libvirt = Pulumi.Libvirt;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var node = Libvirt.GetNodeInfo.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNodeInfoResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNodeInfoResult>("libvirt:index/getNodeInfo:getNodeInfo", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
