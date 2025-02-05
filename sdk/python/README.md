@@ -10,44 +10,19 @@
 
 The libvirt Resource Provider lets you manage libvirt resources.
 
-## Installing
 
-This package is available in many languages in the standard packaging formats.
+>[!NOTE] As of v0.5.4, this provider is DEPRECATED and will no longer be maintained by Pulumi.
+> We recommend using the [Local Provider](https://www.pulumi.com/blog/any-terraform-provider/) version of this package,
+> which can be generated from the Libvirt Terraform provider as follows:
+> `pulumi package add terraform-provider registry.opentofu.org/dmacvicar/libvirt <version>`
+> and follow the instructions.
 
-### Node.js (Java/TypeScript)
+## Migration
 
-To use from JavaScript or TypeScript in Node.js, install using either `npm`:
-
-    $ npm install @pulumi/libvirt
-
-or `yarn`:
-
-    $ yarn add @pulumi/libvirt
-
-### Python
-
-To use from Python, install using `pip`:
-
-    $ pip install pulumi_libvirt
-
-### Go
-
-To use from Go, use `go get` to grab the latest version of the library
-
-    $ go get github.com/pulumi/pulumi-libvirt/sdk
-
-### .NET
-
-To use from .NET, install using `dotnet add package`:
-
-    $ dotnet add package Pulumi.Libvirt
-
-## Configuration
-
-The following configuration points are available:
-
-- `libvirt:uri` - (Required) The [connection URI](https://libvirt.org/uri.html) used to connect to the libvirt host.
-  It can also be sourced from the `LIBVIRT_DEFAULT_URI` environment variable.
+The currently equivalent upstream version to pulumi-libvirt@v0.5.4 is search.opentofu.org/provider/macvicar/libvirt v0.8.1.
+We recommend that you migrate between these versions of each provider.
+To perform the migration of existing Libvirt resources, we recommend running `pulumi import` in a fresh stack
+which uses the local provider package.
 
 ## Reference
 
